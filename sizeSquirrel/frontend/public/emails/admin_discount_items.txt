@@ -1,0 +1,9 @@
+  Discount Items: {{ discount_items.length }}
+
+  {% for item in discount_items %}
+    {{ item.Brand_Name }}
+    {{ item.Product_Name }}
+    {{ item.Retailer_Name }}
+    {{ item.Percent_Off }}
+  {% endfor %}
+

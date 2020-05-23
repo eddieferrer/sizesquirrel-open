@@ -1,0 +1,30 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
+  <head>
+    <title>Admin - Discount Items {{ time }}</title>
+  </head>
+  <body>
+    <h4>Discount Items: {{ discount_items | length }}</h4>
+    <table
+      align="left"
+      border="1"
+      cellpadding="6"
+      cellspacing="6"
+      style="border-collapse: collapse;mso-table-lspace: 0pt;mso-table-rspace: 0pt;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%; margin-bottom:20px; width: 650px;"
+      class="mcnTextContentContainer"
+    >
+      <tbody>
+        {% for item in discount_items %}
+        <tr>
+          <td style="width: 110px;">{{ item.Brand_Name }}</td>
+          <td>{{ item.Product_Name }}</td>
+          <td>{{ item.Retailer_Name }}</td>
+          <td>{{ item.Percent_Off }}</td>
+          <td>{{ item.Sale_Price }}</td>
+          <td>{{ item.Variants }}</td>
+          <td>{{ item.Buy_Link }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </body>
+</html>

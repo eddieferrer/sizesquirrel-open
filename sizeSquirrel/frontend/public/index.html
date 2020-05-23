@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+
+    <!-- Meta tags for Social Media, get replaced by JS  -->
+    <meta property="og:site_name" content="SizeSquirrel" />
+    <meta property="og:title" content="{{ meta['title'] }}" data-vmid="og:title" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="{{ meta['url'] }}" />
+    <meta property="og:image" content="{{ meta['image'] }}" data-vmid="og:image" />
+    <meta property="og:image:width" content="{{ meta['width'] }}" data-vmid="og:image:width" />
+    <meta property="og:image:height" content="{{ meta['height'] }}" data-vmid="og:image:height" />
+    <meta
+      property="og:description"
+      content="Your climbing shoe resource. Climbing shoe sales, find your size for any climbing shoe, recommendations based on foot shape, and more."
+    />
+    <meta property="fb:app_id" content="943851385727348" />
+    <meta
+      name="description"
+      content="Your climbing shoe resource. Climbing shoe sales, find your size for any climbing shoe, recommendations based on foot shape, and more."
+    />
+    <meta name="author" content="SizeSquirrel" />
+    <meta name="copyright" content="SizeSquirrel, Copyright (c) 2019" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="https://www.sizesquirrel.com" />
+    <meta name="twitter:title" content="SizeSquirrel" />
+    <meta
+      name="twitter:description"
+      content="Your climbing shoe resource. Climbing shoe sales, find your size for any climbing shoe, recommendations based on foot shape, and more."
+    />
+    <meta name="twitter:image:src" content="{{ meta['image'] }}" />
+    <meta itemprop="name" content="SizeSquirrel" />
+    <meta
+      itemprop="description"
+      content="Your climbing shoe resource. Climbing shoe sales, find your size for any climbing shoe, recommendations based on foot shape, and more."
+    />
+    <meta itemprop="image" content="{{ meta['image'] }}" />
+    <!-- end of meta tags -->
+
+    <link rel="icon" href="/favicon.ico" />
+    <title>{{ meta['title'] }}</title>
+    <!-- Global site tag (gtag.js) - Google AdWords: 872632887 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-872632887"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag('js', new Date());
+      gtag('config', 'AW-872632887');
+    </script>
+    <!-- icons for bulma, not used yet -->
+    <!-- <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script> -->
+  </head>
+  <body>
+    <noscript>
+      <strong
+        >We're sorry but SizeSquirrel doesn't work properly without JavaScript enabled. Please
+        enable it to continue.</strong
+      >
+    </noscript>
+    <div id="app"></div>
+    <!-- built files will be auto injected -->
+    <!-- AdWords conversion tracking -->
+    <!--
+      Event snippet for ClickedAffiliateLink conversion page In your html page,
+      add the snippet and call gtag_report_conversion when someone clicks on the
+      chosen link or button.
+    -->
+    <script>
+      function gtag_report_conversion(url) {
+        var callback = function() {
+          if (typeof url != 'undefined') {
+            window.location = url;
+          }
+        };
+        gtag('event', 'conversion', {
+          send_to: 'AW-872632887/0ru2CPfGyIUBELekjaAD',
+          event_callback: callback,
+        });
+        return false;
+      }
+      window.fbAsyncInit = function() {
+        //prod appId
+        let appId = '943851385727348';
+        if (window.location.hostname === 'localhost') {
+          //dev appId
+          appId = '944781472301006';
+        }
+        FB.init({
+          appId,
+          autoLogAppEvents: true,
+          xfbml: true,
+          version: 'v5.0',
+        });
+        FB.AppEvents.logPageView();
+      };
+
+      (function(d, s, id) {
+        var js,
+          fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) {
+          return;
+        }
+        js = d.createElement(s);
+        js.id = id;
+        js.src = '//connect.facebook.net/en_US/sdk.js';
+        fjs.parentNode.insertBefore(js, fjs);
+      })(document, 'script', 'facebook-jssdk');
+    </script>
+  </body>
+</html>

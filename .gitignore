@@ -1,0 +1,21 @@
+*.pyc
+*.retry
+__pycache__
+env/
+.vscode/
+
+# Front end files
+sizeSquirrel/frontend/node_modules/
+sizeSquirrel/dist/
+
+# SizeSquirrel processed files
+itemslist
+outfile
+
+# SizeSquirrel Deployment Files
+production-database.db
+wsgi.py
+production_settings.py
+production_manage.py
+logs/*
+!logs/.gitkeep 

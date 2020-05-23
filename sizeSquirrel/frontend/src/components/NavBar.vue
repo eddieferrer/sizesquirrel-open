@@ -1,0 +1,128 @@
+<template>
+  <nav class="navbar is-dark" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+      <RouterLink class="navbar-item brandlogo nohover" to="/">
+        <img
+          src="/static/images/SizeSquirrelLogoMainSquare.svg"
+          height="88"
+          width="80"
+          alt="SizeSquirrel"
+        />
+      </RouterLink>
+      <a
+        role="button"
+        class="navbar-burger burger"
+        :class="{ 'is-active': isActive }"
+        aria-label="menu"
+        aria-expanded="false"
+        data-target="navbarBasic"
+        @click="isActive = !isActive"
+      >
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </a>
+    </div>
+
+    <div id="navbarBasic" class="navbar-menu" :class="{ 'is-active': isActive }">
+      <div class="navbar-start">
+        <span v-if="!isActive" class="navbar-item navbar-item-brand">SizeSquirrel</span>
+        <span v-if="isActive" class="navbar-item navbar-item-brand">&nbsp;</span>
+        <RouterLink class="navbar-item" to="/">Home</RouterLink>
+        <RouterLink v-if="isAuthenticated" to="/browse" class="navbar-item"
+          >Browse Shoes</RouterLink
+        >
+        <RouterLink v-if="isAuthenticated" to="/my_profile" class="navbar-item"
+          >My Profile</RouterLink
+        >
+        <RouterLink to="/sales" class="navbar-item">Shoes On Sale</RouterLink>
+        <RouterLink to="/recommend" class="navbar-item">Recommend A Shoe</RouterLink>
+      </div>
+      <div class="navbar-end">
+        <a v-if="isAuthenticated" href="#" class="navbar-item" @click.prevent.stop="logout()"
+          >Log Out</a
+        >
+        <div class="navbar-item">
+          <div class="buttons">
+            <RouterLink v-if="!isAuthenticated" to="/register" class="button is-info">
+              <strong>Sign up</strong>
+            </RouterLink>
+            <RouterLink v-if="!isAuthenticated" to="/login" class="button is-light"
+              >Log in</RouterLink
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+</template>
+
+<script>
+import { mapGetters } from 'vuex';
+
+export default {
+  name: 'NavBar',
+  data() {
+    return {
+      isActive: false,
+    };
+  },
+  computed: {
+    ...mapGetters(['isAuthenticated']),
+  },
+  methods: {
+    logout() {
+      this.$store.dispatch('AUTH_LOGOUT').then(() => {
+        window.location = '/';
+      });
+    },
+  },
+};
+</script>
+
+<style scoped lang="scss">
+$ss-transparent-gray: rgba(0, 0, 0, 0.6);
+$squirrelDarkGray: #131313;
+
+.navbar.is-dark {
+  background-color: $ss-transparent-gray !important;
+}
+.navbar.is-dark .navbar-start > a.navbar-item:hover,
+.navbar.is-dark .navbar-start > a.navbar-item.is-active,
+.navbar.is-dark .navbar-start .navbar-link:hover,
+.navbar.is-dark .navbar-start .navbar-link.is-active,
+.navbar.is-dark .navbar-end > a.navbar-item:hover,
+.navbar.is-dark .navbar-end > a.navbar-item.is-active,
+.navbar.is-dark .navbar-end .navbar-link:hover,
+.navbar.is-dark .navbar-end .navbar-link.is-active {
+  background-color: $ss-transparent-gray;
+}
+.navbar-item-brand {
+  font-family: 'Helvetica Neue', Helvetica, Roboto, Arial, sans-serif;
+  font-weight: 800;
+  font-variant: small-caps;
+  letter-spacing: 0.05em;
+  font-size: 1.2rem;
+}
+.navbar-item.brandlogo {
+  overflow: visible;
+  padding-right: 0;
+  padding-bottom: 0;
+  padding-top: 0;
+  height: 3.5rem;
+  img {
+    max-height: none;
+    margin-top: 28px;
+    background-color: $squirrelDarkGray;
+    padding: 1em;
+    width: 80px;
+    height: 88px;
+  }
+}
+.nohover:hover {
+  background-color: transparent !important;
+}
+a.navbar-item:hover {
+  color: $white;
+}
+</style>

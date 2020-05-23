@@ -1,0 +1,16 @@
+{% extends "emails/email_base_text.txt" %}
+
+{% block email_title %}
+Your SizeSquirrel Username
+{% endblock %}
+
+{% block email_content %}
+Your SizeSquirrel Username is:
+
+{{ username }}
+
+<a href="https://www.sizesquirrel.com/login/">Log In to SizeSquirrel</a>
+
+If you did not request your username, you can ignore this email, someone probably typed in your email address by accident.
+
+{% endblock %}
