@@ -34,6 +34,8 @@ app.OAUTH_CREDENTIALS = {
 }
 app.ROOT_URL = dev_settings.ROOT_URL
 app.AVANT_LINK_AUTH_TOKEN = dev_settings.AVANT_LINK_AUTH_TOKEN
+app.DATAFEED_PATH = dev_settings.DATAFEED_PATH
+
 
 migrate = Migrate(app, db)
 manager = Manager(app)

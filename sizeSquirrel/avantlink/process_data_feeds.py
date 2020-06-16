@@ -13,7 +13,7 @@ from flask import render_template, current_app
 
 def get_datafeed(retailer):
     try: 
-        with open(app.config['ROOT_URL'] + 'sizeSquirrel/datafeeds/'+retailer+'_datafeed.xml') as fd:
+        with open(app.config['ROOT_URL'] + app.config['DATAFEED_PATH'] + '/' + retailer+'_datafeed.xml') as fd:
             obj = xmltodict.parse(fd.read())
 
         obj = obj["Products"]
