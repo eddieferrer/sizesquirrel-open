@@ -30,7 +30,7 @@ def static_from_root_image():
 @app.route('/service-worker.js')
 @app.route('/googledd078f0b0c898aa8.html')
 def static_for_misc_files():
-    return send_from_directory(app.root_path + '/dist/', request.path[1:])
+    return send_from_directory(app.root_path + '/frontend/dist/', request.path[1:])
 
 
 @app.route('/', defaults={'path': ''})

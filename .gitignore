@@ -5,8 +5,8 @@ env/
 .vscode/
 
 # Front end files
-sizeSquirrel/frontend/node_modules/
-sizeSquirrel/dist/
+frontend/node_modules/
+frontend/dist/
 
 # SizeSquirrel processed files
 itemslist

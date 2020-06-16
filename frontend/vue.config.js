@@ -16,7 +16,7 @@ process.env.VUE_APP_RELEASE_TAG = isProd
   : 'dev';
 
 module.exports = {
-  outputDir: path.resolve(__dirname, '../dist'),
+  outputDir: path.resolve(__dirname, './dist'),
   assetsDir: 'static',
   devServer: {
     proxy: {

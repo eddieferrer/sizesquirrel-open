@@ -8,9 +8,9 @@ basedir = os.path.abspath(os.path.dirname(__file__))
 parent_path = os.path.abspath(os.path.join(basedir, os.pardir))
 
 os.environ['SETTINGS_FILE'] = os.path.join(basedir, 'dev_settings.py')
-os.environ['static_folder'] = "./dist/static"
+os.environ['static_folder'] = "./frontend/dist/static"
 os.environ['static_url_path'] = "/fakepath/" # overwrite the flask path, any path that doesnt exist will do
-os.environ['template_folder'] = "./dist"
+os.environ['template_folder'] = "./frontend/dist"
 
 import dev_settings
 
