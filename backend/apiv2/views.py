@@ -8,14 +8,14 @@ from collections import Counter, defaultdict
 from sqlalchemy import func, or_, cast, Float,  and_
 from flask import Flask, jsonify, abort, request, g, current_app, render_template
 from flask_httpauth import HTTPTokenAuth
-from sizeSquirrel import app, db
+from backend import app, db
 from sentry_sdk import capture_message
-from sizeSquirrel.emails import send_email
-from sizeSquirrel.models import User, User_Item, Item, Brand, convert_shoe_size_to_standards
-from sizeSquirrel.utils import list_all_brands, convert_shoe_size_to_inches, match_strings
-from sizeSquirrel.match import get_shoe_buddies, get_best_shoe_buddies
-from sizeSquirrel.match.views import match_function, process_results_dict, match_by_street_shoe_size
-from sizeSquirrel.scripts.set_stats_items import shoe_stats
+from backend.emails import send_email
+from backend.models import User, User_Item, Item, Brand, convert_shoe_size_to_standards
+from backend.utils import list_all_brands, convert_shoe_size_to_inches, match_strings
+from backend.match import get_shoe_buddies, get_best_shoe_buddies
+from backend.match.views import match_function, process_results_dict, match_by_street_shoe_size
+from backend.scripts.set_stats_items import shoe_stats
 
 token_auth = HTTPTokenAuth(scheme='Bearer')
 

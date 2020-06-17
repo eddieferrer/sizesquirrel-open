@@ -4,34 +4,11 @@ import json
 import requests
 
 from sqlalchemy import func
-from sizeSquirrel import app, db
-from sizeSquirrel.models import User, Brand, Item
-from flask import Flask, request, redirect, url_for, render_template, jsonify, abort, flash, g, send_from_directory
+from backend import app, db
+from backend.models import User, Brand, Item
+from flask import Flask, request, redirect, url_for, render_template, jsonify, abort, flash, g, send_file
 
 from .apiv2 import views
-
-@app.route('/images/favicon/android-icon-96x96.png')
-@app.route('/images/favicon/android-icon-192x192.png')
-@app.route('/images/favicon/android-icon-144x144.png')
-@app.route('/images/favicon/apple-touch-icon-120x120.png')
-@app.route('/images/favicon/apple-touch-icon-120x120-precomposed.png')
-@app.route('/images/favicon/apple-touch-icon-precomposed.png')
-@app.route('/images/favicon/apple-touch-icon-152x152-precomposed.png')
-@app.route('/images/favicon/apple-touch-icon-152x152.png')
-@app.route('/images/favicon/apple-touch-icon.png')
-@app.route('/images/SizeSquirrelLogoMainSquare.svg')
-def static_from_root_image():
-    return send_from_directory(app.static_folder, request.path[1:])
-
-
-@app.route('/favicon.ico')
-@app.route('/robots.txt')
-@app.route('/manifest.json')
-@app.route('/service-worker.js')
-@app.route('/googledd078f0b0c898aa8.html')
-def static_for_misc_files():
-    return send_from_directory(app.root_path + '/frontend/dist/', request.path[1:])
-
 
 @app.route('/', defaults={'path': ''})
 @app.route('/<path:path>')
@@ -72,6 +49,9 @@ def catch_all(path):
                     meta["title"] = brand_url_segment.title(
                     ) + ' ' + model.model.title() + " | SizeSquirrel"
     if app.debug:
+        if 'svg' in path:
+            # svgs need to be returned with a specific mimetype to work 
+            return send_file('../frontend/public/'+ path, mimetype='image/svg+xml')
         return requests.get('http://localhost:8080/{}'.format(path)).content
     return render_template("index.html", meta=meta)
 

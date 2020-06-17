@@ -3,7 +3,7 @@ import datetime
 import math
 from itsdangerous import (TimedJSONWebSignatureSerializer
                           as Serializer, BadSignature, SignatureExpired)
-from sizeSquirrel import app, db
+from backend import app, db
 from flask import current_app
 from passlib.apps import custom_app_context as pwd_context
 from sqlalchemy import Table, Column, Integer, ForeignKey, DateTime

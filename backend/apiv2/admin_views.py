@@ -4,10 +4,10 @@ import pickle
 from collections import Counter
 from sqlalchemy import Float
 from flask import Flask, jsonify, abort, request, g
-from sizeSquirrel import app
-from sizeSquirrel.models import User, User_Item, Item, Brand
-from sizeSquirrel.utils import match_strings
-from sizeSquirrel.avantlink.process_data_feeds import DATA_FEED_INFO_ARRAY, clean_up_feed
+from backend import app
+from backend.models import User, User_Item, Item, Brand
+from backend.utils import match_strings
+from backend.avantlink.process_data_feeds import DATA_FEED_INFO_ARRAY, clean_up_feed
 
 from .views import token_auth
 

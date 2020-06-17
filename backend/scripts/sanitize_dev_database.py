@@ -1,6 +1,6 @@
 # Utility script that takes a db and sanitizes it of personal information for development
-from sizeSquirrel import app, db
-from sizeSquirrel.models import Item, User_Item, User
+from backend import app, db
+from backend.models import Item, User_Item, User
 
 import urllib.request
 import random

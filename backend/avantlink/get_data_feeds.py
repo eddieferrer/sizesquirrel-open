@@ -1,6 +1,6 @@
 import urllib
 import datetime
-from sizeSquirrel import app
+from backend import app
 from flask import current_app
 
 def get_data_feeds():

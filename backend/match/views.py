@@ -1,11 +1,11 @@
 from datetime import datetime, timedelta
 from sqlalchemy import and_
 
-from sizeSquirrel import app, db
-from sizeSquirrel.models import User_Item, User, Item, convert_shoe_size_to_standards
+from backend import app, db
+from backend.models import User_Item, User, Item, convert_shoe_size_to_standards
 from collections import Counter
 from flask import Flask, g
-from sizeSquirrel.utils import pretty_print_dict, nearly_equal
+from backend.utils import pretty_print_dict, nearly_equal
 
 # main matching algorithm. Takes have_item_id, have_item_size, want_item_id
 

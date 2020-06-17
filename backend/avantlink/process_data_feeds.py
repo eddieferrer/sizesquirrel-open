@@ -4,11 +4,11 @@ import datetime
 import json
 
 from collections import OrderedDict
-from sizeSquirrel import app, db
-from sizeSquirrel.models import Item, CONSTANT_BRANDS
-from sizeSquirrel.emails import send_email
+from backend import app, db
+from backend.models import Item, CONSTANT_BRANDS
+from backend.emails import send_email
 
-from sizeSquirrel.utils import list_all_items, match_strings
+from backend.utils import list_all_items, match_strings
 from flask import render_template, current_app
 
 def get_datafeed(retailer):

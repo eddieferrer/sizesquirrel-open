@@ -1,10 +1,10 @@
 import re
-from sizeSquirrel import app, db
-from sizeSquirrel.emails import send_email
+from backend import app, db
+from backend.emails import send_email
 from collections import Counter, defaultdict
 from sqlalchemy import func
 
-from sizeSquirrel.models import *
+from backend.models import *
 
 # debugging function to pretty print dict
 

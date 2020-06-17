@@ -2,8 +2,8 @@ from flask import Flask, request, current_app
 import json
 from datetime import datetime, timedelta
 from amazon.api import AmazonAPI
-from sizeSquirrel import app, db
-from sizeSquirrel.models import Item
+from backend import app, db
+from backend.models import Item
 
 AMAZON_ACCESS_KEY = current_app.config['AMAZON_ACCESS_KEY']
 AMAZON_SECRET_KEY = current_app.config['AMAZON_SECRET_KEY']

@@ -6,9 +6,9 @@ from urllib.parse import urlparse
 from collections import Counter, defaultdict
 from sqlalchemy import func
 from flask import Flask, jsonify, request, g
-from sizeSquirrel import app, db
-from sizeSquirrel.models import User
-from sizeSquirrel.match import get_recommendations_by_shape
+from backend import app, db
+from backend.models import User
+from backend.match import get_recommendations_by_shape
 
 from .views import token_auth
 

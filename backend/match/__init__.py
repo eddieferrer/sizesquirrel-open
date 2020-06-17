@@ -1,13 +1,13 @@
 import datetime
 import re
 from sqlalchemy import and_
-from sizeSquirrel import app, db
-from sizeSquirrel.models import *
+from backend import app, db
+from backend.models import *
 
 from collections import Counter, defaultdict
 import random
 
-from sizeSquirrel.utils import list_all_brands, nearly_equal
+from backend.utils import list_all_brands, nearly_equal
 
 
 def get_shoe_buddies(current_user_id, target_item_ids=None):

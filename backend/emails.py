@@ -1,5 +1,5 @@
 from flask_mail import Message
-from sizeSquirrel import mail
+from backend import mail
 
 def send_email(subject, sender, recipients, text_body, html_body):
     msg = Message(subject, sender=sender, recipients=recipients)

@@ -1,5 +1,5 @@
-from sizeSquirrel import app, db
-from sizeSquirrel.models import Item, User_Item, User
+from backend import app, db
+from backend.models import Item, User_Item, User
 
 from collections import Counter
 

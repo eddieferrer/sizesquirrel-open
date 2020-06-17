@@ -1,9 +1,9 @@
 import re
-from sizeSquirrel import app, db
-from sizeSquirrel.emails import send_email
+from backend import app, db
+from backend.emails import send_email
 from collections import Counter, defaultdict
 
-from sizeSquirrel.models import User
+from backend.models import User
 
 import numpy as np
 import matplotlib.pyplot as plt
