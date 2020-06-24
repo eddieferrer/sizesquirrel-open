@@ -11,6 +11,9 @@ const gitHash = gitRevisionPlugin.commithash().substring(0, 7);
 const nicelyFormattedHour = `0${d.getHours()}`.slice(-2);
 const nicelyFormattedTime = `${nicelyFormattedHour}${d.getMinutes()}`;
 
+process.env.VUE_APP_GITBRANCH = gitRevisionPlugin.branch();
+process.env.VUE_APP_GITVERSION = gitRevisionPlugin.version();
+
 process.env.VUE_APP_RELEASE_TAG = isProd
   ? `${gitHash}-${nicelyFormattedDate}_${nicelyFormattedTime}`
   : 'dev';
