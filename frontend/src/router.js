@@ -181,6 +181,15 @@ const router = new Router({
       meta: { requiresAuth: false },
     },
     {
+      path: '/release',
+      name: 'release',
+      component: () => import(/* webpackChunkName: "release" */ './views/Release.vue'),
+      meta: {
+        requiresAuth: false,
+        hideItemMatchForm: true,
+      },
+    },
+    {
       path: '/sales',
       name: 'sales',
       component: () => import(/* webpackChunkName: "sales" */ './views/Sales.vue'),
