@@ -19,3 +19,6 @@ production_settings.py
 production_manage.py
 logs/*
 !logs/.gitkeep 
+
+# Dev database
+dev-database.db
