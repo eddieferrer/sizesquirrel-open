@@ -1,7 +1,7 @@
 const path = require('path');
 const GitRevisionPlugin = require('git-revision-webpack-plugin');
 
-const gitRevisionPlugin = new GitRevisionPlugin();
+const gitRevisionPlugin = new GitRevisionPlugin({lightweightTags: true});
 
 const isProd = process.env.NODE_ENV === 'production';
 
