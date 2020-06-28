@@ -222,9 +222,13 @@ export default {
   computed: {
     currentGender: {
       get() {
-        return this.gender_options.find(
-          genderArray => genderArray.id === this.user.gender.toString()
-        );
+        // this can be 0 so we have to check for undefined
+        if (typeof this.user.gender !== 'undefined') {
+          return this.gender_options.filter(
+            genderArray => genderArray.id === this.user.gender.toString()
+          )[0];
+        }
+        return {};
       },
       set(value) {
         this.user.gender = value.id;
@@ -232,19 +236,13 @@ export default {
     },
     currentFootShape: {
       get() {
-        // In some strange cases user.foot_shape can be null.
-        let currentFootShapeObj;
-        try {
-          currentFootShapeObj = this.foot_shape_options.find(
+        // this can be 0 so we have to check for undefined
+        if (typeof this.user.foot_shape !== 'undefined') {
+          return this.foot_shape_options.filter(
             footShapeArray => footShapeArray.id === this.user.foot_shape.toString()
-          );
-        } catch {
-          // return the default case
-          currentFootShapeObj = this.foot_shape_options.find(
-            footShapeArray => footShapeArray.id === '0'
-          );
+          )[0];
         }
-        return currentFootShapeObj;
+        return {};
       },
       set(value) {
         this.user.foot_shape = value.id;
@@ -252,19 +250,13 @@ export default {
     },
     currentSplitShoeSizing: {
       get() {
-        // In some strange cases user.split_shoe_info can be null.
-        let currentSplitObj;
-        try {
-          currentSplitObj = this.split_shoe_sizing_options.find(
+        // this can be 0 so we have to check for undefined
+        if (typeof this.user.split_shoe_info !== 'undefined') {
+          return this.split_shoe_sizing_options.filter(
             splitShoeArray => splitShoeArray.id === this.user.split_shoe_info.toString()
-          );
-        } catch {
-          // return the default case
-          currentSplitObj = this.split_shoe_sizing_options.find(
-            splitShoeArray => splitShoeArray.id === '0'
-          );
+          )[0];
         }
-        return currentSplitObj;
+        return {};
       },
       set(value) {
         this.user.split_shoe_info = value.id;
@@ -272,9 +264,12 @@ export default {
     },
     currentBoulderingSkill: {
       get() {
-        return this.boulder_options.find(
-          boulderArray => boulderArray.id === this.user.climbing_boulder.toString()
-        );
+        if (typeof this.user.climbing_boulder !== 'undefined') {
+          return this.boulder_options.filter(
+            boulderArray => boulderArray.id === this.user.climbing_boulder.toString()
+          )[0];
+        }
+        return {};
       },
       set(value) {
         this.user.climbing_boulder = value.id;
@@ -282,9 +277,13 @@ export default {
     },
     currentSportSkill: {
       get() {
-        return this.sport_trad_options.find(
-          sportArray => sportArray.id === this.user.climbing_sport.toString()
-        );
+        // this can be 0 so we have to check for undefined
+        if (typeof this.user.climbing_sport !== 'undefined') {
+          return this.sport_trad_options.filter(
+            sportArray => sportArray.id === this.user.climbing_sport.toString()
+          )[0];
+        }
+        return {};
       },
       set(value) {
         this.user.climbing_sport = value.id;
@@ -292,9 +291,13 @@ export default {
     },
     currentTradSkill: {
       get() {
-        return this.sport_trad_options.filter(
-          tradArray => tradArray.id === this.user.climbing_trad.toString()
-        );
+        // this can be 0 so we have to check for undefined
+        if (typeof this.user.climbing_trad !== 'undefined') {
+          return this.sport_trad_options.filter(
+            tradArray => tradArray.id === this.user.climbing_trad.toString()
+          )[0];
+        }
+        return {};
       },
       set(value) {
         this.user.climbing_trad = value.id;
