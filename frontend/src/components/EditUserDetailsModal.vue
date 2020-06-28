@@ -292,7 +292,7 @@ export default {
     },
     currentTradSkill: {
       get() {
-        return this.sport_trad_options.filter(
+        return this.sport_trad_options.find(
           tradArray => tradArray.id === this.user.climbing_trad.toString()
         );
       },
