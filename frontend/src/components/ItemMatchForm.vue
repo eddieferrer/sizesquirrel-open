@@ -39,10 +39,9 @@
 <script>
 import { mapGetters } from 'vuex';
 
+import SizeOptions from '@/mixins/SizeOptions';
 import MultiSelectItems from './MultiSelectItems';
 import MultiSelectSize from './MultiSelectSize';
-
-import SizeOptions from '@/mixins/SizeOptions';
 
 export default {
   name: 'ItemMatchForm',
@@ -58,7 +57,7 @@ export default {
             this.size_option_groups[1].sizes
           );
           return reducedArray.filter(
-            sizeArray => sizeArray.value === this.urlContextMatch.size.toString()
+            (sizeArray) => sizeArray.value === this.urlContextMatch.size.toString()
           )[0];
         }
         return null;
@@ -110,9 +109,7 @@ export default {
         this.$router.push(`/match/?want_item_id=${this.urlContextMatch.want_item.id}`);
       } else {
         this.$router.push(
-          `/public_match/?have_item_id=${this.urlContextMatch.have_item.id}&size=${
-            this.urlContextMatch.size
-          }&want_item_id=${this.urlContextMatch.want_item.id}`
+          `/public_match/?have_item_id=${this.urlContextMatch.have_item.id}&size=${this.urlContextMatch.size}&want_item_id=${this.urlContextMatch.want_item.id}`
         );
       }
     },

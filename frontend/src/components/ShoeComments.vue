@@ -125,8 +125,8 @@
 <script>
 import { mapGetters } from 'vuex';
 
-import ItemListSearchSort from './ItemListSearchSort';
 import ComponentLoader from '@/components/ComponentLoader';
+import ItemListSearchSort from './ItemListSearchSort';
 
 export default {
   name: 'ShoeComments',
@@ -211,10 +211,10 @@ export default {
     },
   },
   created() {
-    this.$on('sortOrder', value => {
+    this.$on('sortOrder', (value) => {
       this.sort_order = value;
     });
-    this.$on('sortItems', value => {
+    this.$on('sortItems', (value) => {
       this.sort = value;
     });
   },

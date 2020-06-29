@@ -331,11 +331,11 @@ export default {
           footShape: this.footShape,
           gender: this.gender,
         })
-        .then(response => {
+        .then((response) => {
           this.recommendedShoes = response.data.items;
           this.goToStep(3);
         })
-        .catch(error => {
+        .catch((error) => {
           // eslint-disable-next-line no-console
           console.log(error);
         })

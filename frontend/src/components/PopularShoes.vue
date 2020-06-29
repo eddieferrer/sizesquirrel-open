@@ -38,9 +38,9 @@
 <script>
 import { mapGetters } from 'vuex';
 
+import ComponentLoader from '@/components/ComponentLoader';
 import FindMySizeBlock from './FindMySizeBlock';
 import ShoeTiles from './ShoeTiles';
-import ComponentLoader from '@/components/ComponentLoader';
 
 export default {
   name: 'PopularShoes',
@@ -57,7 +57,7 @@ export default {
     this.isLoadingComponent = true;
     this.$store
       .dispatch('GET_POPULAR_SHOES', this.targetUserId)
-      .then(response => {
+      .then((response) => {
         this.popular_shoes = response.data.items;
       })
       .catch(() => {

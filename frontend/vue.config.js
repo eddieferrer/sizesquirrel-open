@@ -1,7 +1,7 @@
 const path = require('path');
 const GitRevisionPlugin = require('git-revision-webpack-plugin');
 
-const gitRevisionPlugin = new GitRevisionPlugin({lightweightTags: true});
+const gitRevisionPlugin = new GitRevisionPlugin({ lightweightTags: true });
 
 const isProd = process.env.NODE_ENV === 'production';
 
@@ -38,13 +38,10 @@ module.exports = {
       openAnalyzer: false,
     },
   },
-  chainWebpack: config => {
-    config.module
-      .rule('eslint')
-      .use('eslint-loader')
-      .options({
-        fix: true,
-      });
+  chainWebpack: (config) => {
+    config.module.rule('eslint').use('eslint-loader').options({
+      fix: true,
+    });
 
     // override vue's default chunks because their chunking is too big.
     config.optimization.delete('splitChunks');

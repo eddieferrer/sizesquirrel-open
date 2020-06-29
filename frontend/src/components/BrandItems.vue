@@ -69,10 +69,10 @@
 </template>
 
 <script>
+import ComponentLoader from '@/components/ComponentLoader';
 import BrandItemListFilters from './BrandItemListFilters';
 import ItemListSearchSort from './ItemListSearchSort';
 import FindMySizeBlock from './FindMySizeBlock';
-import ComponentLoader from '@/components/ComponentLoader';
 
 export default {
   name: 'BrandItems',
@@ -131,7 +131,7 @@ export default {
       // model or brand in filter
       if (this.filter !== '') {
         itemsFiltered = itemsFiltered.filter(
-          item =>
+          (item) =>
             item.model.toLowerCase().includes(this.filter.toLowerCase()) ||
             item.brand.name.toLowerCase().includes(this.filter.toLowerCase())
         );
@@ -140,33 +140,33 @@ export default {
       // shoe_type filter
       if (this.shoe_type.length > 0) {
         itemsFiltered = itemsFiltered.filter(
-          item => this.shoe_type.indexOf(item.type.toLowerCase()) > -1
+          (item) => this.shoe_type.indexOf(item.type.toLowerCase()) > -1
         );
       }
 
       // rating filter
       if (this.min_rating && !Number.isNaN(this.min_rating)) {
-        itemsFiltered = itemsFiltered.filter(item => item.stats.avg_rating >= this.min_rating);
+        itemsFiltered = itemsFiltered.filter((item) => item.stats.avg_rating >= this.min_rating);
       }
       if (this.max_rating && !Number.isNaN(this.max_rating)) {
-        itemsFiltered = itemsFiltered.filter(item => item.stats.avg_rating <= this.max_rating);
+        itemsFiltered = itemsFiltered.filter((item) => item.stats.avg_rating <= this.max_rating);
         this.resetPages();
       }
 
       // foot shape rating filter
       if (this.foot_shape.min && !Number.isNaN(this.foot_shape.min)) {
-        itemsFiltered = itemsFiltered.filter(item => {
+        itemsFiltered = itemsFiltered.filter((item) => {
           const found = item.stats.ratings.find(
-            rating => rating.foot_shape_descriptor_id === this.foot_shape.shape
+            (rating) => rating.foot_shape_descriptor_id === this.foot_shape.shape
           );
           return found.avg_rating >= this.foot_shape.min;
         });
       }
 
       if (this.foot_shape.max && !Number.isNaN(this.foot_shape.max)) {
-        itemsFiltered = itemsFiltered.filter(item => {
+        itemsFiltered = itemsFiltered.filter((item) => {
           const found = item.stats.ratings.find(
-            rating => rating.foot_shape_descriptor_id === this.foot_shape.shape
+            (rating) => rating.foot_shape_descriptor_id === this.foot_shape.shape
           );
           return found.avg_rating <= this.foot_shape.max;
         });
@@ -176,27 +176,27 @@ export default {
       // gender filter
       if (this.gender.length > 0) {
         itemsFiltered = itemsFiltered.filter(
-          item => this.gender.indexOf(item.gender.name.toLowerCase()) > -1
+          (item) => this.gender.indexOf(item.gender.name.toLowerCase()) > -1
         );
       }
 
       // mostCommonFit filter
       if (this.mostCommonFit.length > 0) {
         itemsFiltered = itemsFiltered.filter(
-          item => this.mostCommonFit.indexOf(item.stats.popular_fit_descriptor.toLowerCase()) > -1
+          (item) => this.mostCommonFit.indexOf(item.stats.popular_fit_descriptor.toLowerCase()) > -1
         );
       }
 
       // recommendedFootShape filter
       if (this.recommendedFootShape.length > 0) {
-        itemsFiltered = itemsFiltered.filter(item => {
+        itemsFiltered = itemsFiltered.filter((item) => {
           // this.recommendedFootShape.indexOf(item.stats.highest_rated_foot_shape.toLowerCase().trim()) > -1
           const footshapearr = item.stats.highest_rated_foot_shape
             .toLowerCase()
             .replace(/\s/g, '')
             .trim()
             .split('&');
-          const found = this.recommendedFootShape.some(r => footshapearr.indexOf(r) >= 0);
+          const found = this.recommendedFootShape.some((r) => footshapearr.indexOf(r) >= 0);
           return found;
         });
       }
@@ -204,7 +204,7 @@ export default {
       // brand filter
       if (this.brand.length > 0) {
         itemsFiltered = itemsFiltered.filter(
-          item => this.brand.indexOf(item.brand.name.toLowerCase()) > -1
+          (item) => this.brand.indexOf(item.brand.name.toLowerCase()) > -1
         );
       }
 
@@ -262,7 +262,7 @@ export default {
       .dispatch('GET_LIST_ITEMS', {
         target: this.target,
       })
-      .then(response => {
+      .then((response) => {
         this.items = response.data.items;
       })
       .catch(() => {
@@ -272,16 +272,16 @@ export default {
         this.isLoadingComponent = false;
       });
 
-    this.$on('sortOrder', value => {
+    this.$on('sortOrder', (value) => {
       this.sort_order = value;
     });
-    this.$on('filterItems', value => {
+    this.$on('filterItems', (value) => {
       this.filter = value;
     });
-    this.$on('sortItems', value => {
+    this.$on('sortItems', (value) => {
       this.sort = value;
     });
-    this.$on('allFilterValues', filterValues => {
+    this.$on('allFilterValues', (filterValues) => {
       this.gender = filterValues.gender;
       this.max_rating = filterValues.max_rating;
       this.min_rating = filterValues.min_rating;

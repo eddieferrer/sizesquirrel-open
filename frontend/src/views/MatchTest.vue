@@ -70,7 +70,7 @@ export default {
         .dispatch('POST_ADMIN_MATCH_TEST', {
           matchTestItemId: this.item.id,
         })
-        .then(response => {
+        .then((response) => {
           this.matchTestItems = response.data.matchTest;
         });
     },

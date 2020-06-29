@@ -110,7 +110,7 @@ export default {
           confirmPassword: vm.confirmPassword,
           token: vm.getParameterByName('token'),
         })
-        .then(response => {
+        .then((response) => {
           if (response.data.status === 'success') {
             vm.status = 'success';
             vm.message = response.data.message;
@@ -122,7 +122,7 @@ export default {
             vm.password_change_error.confirmPassword = response.data.message.confirmPassword;
           }
         })
-        .catch(error => {
+        .catch((error) => {
           // eslint-disable-next-line no-console
           console.log(error);
         })
