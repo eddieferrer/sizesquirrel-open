@@ -93,7 +93,7 @@ export default {
   },
   mounted() {
     // eslint-disable-next-line func-names
-    (function(d, s, id) {
+    (function (d, s, id) {
       const fjs = d.getElementsByTagName(s)[0];
       if (d.getElementById(id)) return;
       const js = d.createElement(s);

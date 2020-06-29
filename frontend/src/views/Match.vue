@@ -132,7 +132,7 @@ export default {
         .dispatch('PRIVATE_MATCH', {
           wantItemId: urlWantItemId,
         })
-        .then(response => {
+        .then((response) => {
           vm.matchResults = response.data.match_results;
           vm.targetItem = response.data.target_item;
           vm.groupedMatchUsers = response.data.grouped_match_users;
@@ -151,7 +151,7 @@ export default {
           haveItemId: urlHaveItemId,
           size: urlSize,
         })
-        .then(response => {
+        .then((response) => {
           vm.matchResults = response.data.match_results;
           vm.targetItem = response.data.target_item;
         })

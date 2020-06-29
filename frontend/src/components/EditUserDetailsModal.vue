@@ -175,14 +175,14 @@
 </template>
 
 <script>
-import Modal from './Modal';
-import MultiSelectSize from './MultiSelectSize';
-import MultiSelectMinimal from './MultiSelectMinimal';
 import SportTradOptions from '@/mixins/SportTradOptions';
 import BoulderOptions from '@/mixins/BoulderOptions';
 import SplitShoeSizingOptions from '@/mixins/SplitShoeSizingOptions';
 import FootShapeOptions from '@/mixins/FootShapeOptions';
 import GenderOptions from '@/mixins/GenderOptions';
+import MultiSelectMinimal from './MultiSelectMinimal';
+import MultiSelectSize from './MultiSelectSize';
+import Modal from './Modal';
 
 export default {
   name: 'EditUserDetailsModal',
@@ -223,7 +223,7 @@ export default {
     currentGender: {
       get() {
         return this.gender_options.find(
-          genderArray => genderArray.id === this.user.gender.toString()
+          (genderArray) => genderArray.id === this.user.gender.toString()
         );
       },
       set(value) {
@@ -236,12 +236,12 @@ export default {
         let currentFootShapeObj;
         try {
           currentFootShapeObj = this.foot_shape_options.find(
-            footShapeArray => footShapeArray.id === this.user.foot_shape.toString()
+            (footShapeArray) => footShapeArray.id === this.user.foot_shape.toString()
           );
         } catch {
           // return the default case
           currentFootShapeObj = this.foot_shape_options.find(
-            footShapeArray => footShapeArray.id === '0'
+            (footShapeArray) => footShapeArray.id === '0'
           );
         }
         return currentFootShapeObj;
@@ -256,12 +256,12 @@ export default {
         let currentSplitObj;
         try {
           currentSplitObj = this.split_shoe_sizing_options.find(
-            splitShoeArray => splitShoeArray.id === this.user.split_shoe_info.toString()
+            (splitShoeArray) => splitShoeArray.id === this.user.split_shoe_info.toString()
           );
         } catch {
           // return the default case
           currentSplitObj = this.split_shoe_sizing_options.find(
-            splitShoeArray => splitShoeArray.id === '0'
+            (splitShoeArray) => splitShoeArray.id === '0'
           );
         }
         return currentSplitObj;
@@ -273,7 +273,7 @@ export default {
     currentBoulderingSkill: {
       get() {
         return this.boulder_options.find(
-          boulderArray => boulderArray.id === this.user.climbing_boulder.toString()
+          (boulderArray) => boulderArray.id === this.user.climbing_boulder.toString()
         );
       },
       set(value) {
@@ -283,7 +283,7 @@ export default {
     currentSportSkill: {
       get() {
         return this.sport_trad_options.find(
-          sportArray => sportArray.id === this.user.climbing_sport.toString()
+          (sportArray) => sportArray.id === this.user.climbing_sport.toString()
         );
       },
       set(value) {
@@ -293,7 +293,7 @@ export default {
     currentTradSkill: {
       get() {
         return this.sport_trad_options.find(
-          tradArray => tradArray.id === this.user.climbing_trad.toString()
+          (tradArray) => tradArray.id === this.user.climbing_trad.toString()
         );
       },
       set(value) {
@@ -302,7 +302,7 @@ export default {
     },
   },
   created() {
-    this.originalUserValues = Object.assign({}, this.user);
+    this.originalUserValues = { ...this.user };
   },
   methods: {
     closeAndReset() {
@@ -352,7 +352,7 @@ export default {
           climbingSport: this.user.climbing_sport,
           climbingTrad: this.user.climbing_trad,
         })
-        .then(response => {
+        .then((response) => {
           if (response.data.status === 'success') {
             window.location.href = response.data.new_url;
           }
@@ -362,7 +362,7 @@ export default {
             editUserDetailsModalComponent.error_email = response.data.email;
           }
         })
-        .catch(error => {
+        .catch((error) => {
           // eslint-disable-next-line no-console
           console.log(error);
         })

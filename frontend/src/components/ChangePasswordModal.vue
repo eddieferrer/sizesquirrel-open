@@ -128,7 +128,7 @@ export default {
           newPassword: changePasswordModalComponent.new_password,
           newPasswordConfirm: changePasswordModalComponent.new_password_confirm,
         })
-        .then(response => {
+        .then((response) => {
           if (response.data.status === 'success') {
             changePasswordModalComponent.$emit('close');
             changePasswordModalComponent.$store.dispatch('SHOW_FLASH_MESSAGE', {
@@ -152,7 +152,7 @@ export default {
             changePasswordModalComponent.formErrors = true;
           }
         })
-        .catch(error => {
+        .catch((error) => {
           // eslint-disable-next-line no-console
           console.log(error);
         })

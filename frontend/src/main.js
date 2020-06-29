@@ -25,11 +25,11 @@ if (process.env.NODE_ENV === 'production') {
 Vue.config.productionTip = false;
 
 axios.interceptors.response.use(
-  response => {
+  (response) => {
     // intercept the global error
     return response;
   },
-  error => {
+  (error) => {
     if (error.response && error.response.status) {
       // const originalRequest = error.config;
       if (error.response.status === 401) {
@@ -117,9 +117,7 @@ Vue.mixin({
         port = ':5000';
         appId = '944781472301006';
       }
-      const redirecturi = `${protocol}://${
-        window.location.hostname
-      }${port}/facebookcallback_${formType}/`;
+      const redirecturi = `${protocol}://${window.location.hostname}${port}/facebookcallback_${formType}/`;
       const stateParam = new Date().getUTCDate();
 
       const facebookURL = `https://www.facebook.com/v5.0/dialog/oauth?client_id=${appId}&redirect_uri=${redirecturi}&response_type=token&scope=email&state=${stateParam}`;
@@ -170,5 +168,5 @@ new Vue({
   },
   router,
   store,
-  render: h => h(App),
+  render: (h) => h(App),
 }).$mount('#app');

@@ -210,11 +210,11 @@
 import { mapGetters } from 'vuex';
 import { capitalize } from '@/filters';
 
+import ComponentLoader from '@/components/ComponentLoader';
 import EditItemModal from './EditItemModal';
 import ConfirmDeleteModal from './ConfirmDeleteModal';
 import ItemListSearchSort from './ItemListSearchSort';
 import ProfileAddItemForm from './ProfileAddItemForm';
-import ComponentLoader from '@/components/ComponentLoader';
 
 export default {
   name: 'ProfileItems',
@@ -308,10 +308,10 @@ export default {
     },
   },
   created() {
-    this.$on('sortOrder', value => {
+    this.$on('sortOrder', (value) => {
       this.sort_order = value;
     });
-    this.$on('sortItems', value => {
+    this.$on('sortItems', (value) => {
       this.sort = value;
     });
   },

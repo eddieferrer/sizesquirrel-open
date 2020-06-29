@@ -163,7 +163,7 @@ export default {
     }
     if (this.$route.query.gender) {
       this.queryParams.gender = Array.isArray(this.$route.query.gender)
-        ? this.$route.query.gender.map(gender => Number(gender))
+        ? this.$route.query.gender.map((gender) => Number(gender))
         : [Number(this.$route.query.gender)];
     }
 
@@ -189,7 +189,7 @@ export default {
 
     if (this.$route.query.brand) {
       this.queryParams.brand = Array.isArray(this.$route.query.brand)
-        ? this.$route.query.brand.map(brand => Number(brand))
+        ? this.$route.query.brand.map((brand) => Number(brand))
         : [Number(this.$route.query.brand)];
     }
 
@@ -230,14 +230,14 @@ export default {
     this.$store
       .dispatch('POST_LIST_ITEMS', {
         target: this.target,
-        queryParams: Object.assign({}, this.queryParams),
+        queryParams: { ...this.queryParams },
       })
-      .then(response => {
+      .then((response) => {
         this.items = response.data.items;
         this.total_items = response.data.count;
         this.items_per_page = response.data.items_per_page;
       })
-      .catch(error => {
+      .catch((error) => {
         this.$store.dispatch('SHOW_FLASH_MESSAGE', {
           class: 'has-background-danger',
           message: error,
@@ -248,7 +248,7 @@ export default {
         this.isLoadingComponent = false;
       });
 
-    this.$on('allFilterValues', filterValues => {
+    this.$on('allFilterValues', (filterValues) => {
       this.queryParams.brand = filterValues.brand;
       this.queryParams.gender = filterValues.gender;
       this.queryParams.max_price = filterValues.max_price;
@@ -276,19 +276,19 @@ export default {
       this.updateRoute();
     });
 
-    this.$on('filterItems', filterValues => {
+    this.$on('filterItems', (filterValues) => {
       this.queryParams.search = filterValues.search;
       this.queryParams.page = 1;
       this.updateRoute();
     });
 
-    this.$on('sortValue', sortValues => {
+    this.$on('sortValue', (sortValues) => {
       this.queryParams.sort = sortValues.sort;
       this.queryParams.page = 1;
       this.updateRoute();
     });
 
-    this.$on('sortOrderValue', sortValues => {
+    this.$on('sortOrderValue', (sortValues) => {
       this.queryParams.sortOrder = sortValues.sortOrder;
       this.queryParams.page = 1;
       this.updateRoute();

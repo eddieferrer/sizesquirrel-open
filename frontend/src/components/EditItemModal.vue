@@ -71,14 +71,14 @@
 </template>
 
 <script>
+import SizeOptions from '@/mixins/SizeOptions';
+import RatingOptions from '@/mixins/RatingOptions';
+import FitOptions from '@/mixins/FitOptions';
 import MultiSelectSize from './MultiSelectSize';
 import MultiSelectRating from './MultiSelectRating';
 import MultiSelectFit from './MultiSelectFit';
 
 import Modal from './Modal';
-import SizeOptions from '@/mixins/SizeOptions';
-import RatingOptions from '@/mixins/RatingOptions';
-import FitOptions from '@/mixins/FitOptions';
 
 export default {
   name: 'EditItemModal',
@@ -110,7 +110,9 @@ export default {
           const reducedArray = this.size_option_groups[0].sizes.concat(
             this.size_option_groups[1].sizes
           );
-          return reducedArray.filter(sizeArray => sizeArray.value === this.item.size.toString())[0];
+          return reducedArray.filter(
+            (sizeArray) => sizeArray.value === this.item.size.toString()
+          )[0];
         }
         return {};
       },
@@ -122,7 +124,7 @@ export default {
       get() {
         if (this.item.rating) {
           return this.rating_options.filter(
-            ratingArray => ratingArray.id === this.item.rating.toString()
+            (ratingArray) => ratingArray.id === this.item.rating.toString()
           )[0];
         }
         return {};
@@ -134,7 +136,7 @@ export default {
     currentFit: {
       get() {
         if (this.item.fit) {
-          return this.fit_options.filter(fitArray => fitArray.id === this.item.fit.toString())[0];
+          return this.fit_options.filter((fitArray) => fitArray.id === this.item.fit.toString())[0];
         }
         return {};
       },
@@ -146,7 +148,7 @@ export default {
   watch: {
     item(newVal) {
       // store value for reset
-      this.originalItemValue = Object.assign({}, newVal);
+      this.originalItemValue = { ...newVal };
     },
   },
   methods: {
@@ -174,14 +176,14 @@ export default {
           fit: this.item.fit,
           comments: this.item.comments,
         })
-        .then(response => {
+        .then((response) => {
           if (response.data.status === 'success') {
             // update properties of item
             editItemModalComponent.item.fit_descriptor = response.data.user_item.fit_descriptor;
             editItemModalComponent.close();
           }
         })
-        .catch(error => {
+        .catch((error) => {
           // eslint-disable-next-line no-console
           console.log(error);
         })

@@ -112,7 +112,7 @@ export default {
           const nextRoute = this.getParameterByName('redirect') || '/my_profile/';
           this.$router.push({ path: nextRoute });
         })
-        .catch(error => {
+        .catch((error) => {
           this.login_error = error.response.data.message || error;
         })
         .finally(() => {

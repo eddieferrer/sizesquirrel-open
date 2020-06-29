@@ -60,7 +60,7 @@ export default {
           .then(() => {
             this.navigateAfterLogin();
           })
-          .catch(error => {
+          .catch((error) => {
             this.fb_login_error = error.response.data.message || error;
           })
           .finally(() => {
@@ -72,7 +72,7 @@ export default {
           .then(() => {
             this.navigateAfterLogin();
           })
-          .catch(error => {
+          .catch((error) => {
             this.fb_login_error = error.response.data.message || error;
           })
           .finally(() => {

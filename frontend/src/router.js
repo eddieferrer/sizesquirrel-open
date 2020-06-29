@@ -3,8 +3,8 @@ import Router from 'vue-router';
 import Meta from 'vue-meta';
 import * as Sentry from '@sentry/browser';
 import VueAnalytics from 'vue-analytics';
-import Home from './views/Home.vue';
 import store from '@/store/store';
+import Home from './views/Home.vue';
 
 Vue.use(Router);
 Vue.use(Meta);
@@ -246,7 +246,7 @@ const router = new Router({
   ],
   scrollBehavior(to, from, savedPosition) {
     if (to.hash) {
-      return new Promise(resolve => {
+      return new Promise((resolve) => {
         setTimeout(() => {
           resolve({ selector: to.hash, offset: { x: 0, y: -350 } });
         }, 1500);

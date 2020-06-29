@@ -68,7 +68,7 @@
               <span v-show="accordionPrice" class="is-pulled-right fi-minus"></span>
             </label>
           </div>
-          <div v-show="accordionPrice" class="field accordion-content  is-clearfix">
+          <div v-show="accordionPrice" class="field accordion-content is-clearfix">
             <label class="text price">
               Min
               <input

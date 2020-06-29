@@ -71,7 +71,7 @@ export default {
         .dispatch('FORGOT_PASSWORD', {
           email: vm.email,
         })
-        .then(response => {
+        .then((response) => {
           if (response.data.status === 'success') {
             vm.status = 'success';
             vm.message = response.data.message;
@@ -81,7 +81,7 @@ export default {
             vm.password_request_error = response.data.message;
           }
         })
-        .catch(error => {
+        .catch((error) => {
           // eslint-disable-next-line no-console
           console.log(error);
         })

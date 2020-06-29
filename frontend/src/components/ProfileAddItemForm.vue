@@ -133,7 +133,7 @@ export default {
           fit: this.fit.id,
           size: this.size.value,
         })
-        .then(response => {
+        .then((response) => {
           if (response.data.status === 'success') {
             addItemComponent.$store.dispatch('SHOW_FLASH_MESSAGE', {
               class: 'has-background-success',
@@ -144,7 +144,7 @@ export default {
             addItemComponent.itemSelectKey = Math.random();
           }
         })
-        .catch(error => {
+        .catch((error) => {
           // eslint-disable-next-line no-console
           console.log(error);
         })
