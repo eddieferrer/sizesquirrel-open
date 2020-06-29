@@ -19,7 +19,7 @@ Jinja2==2.10.3
 kiwisolver==1.1.0
 Mako==1.1.0
 MarkupSafe==1.1.1
-matplotlib==3.1.2
+matplotlib==3.2.2
 numpy==1.18.1
 passlib==1.7.2
 pyparsing==2.4.6
