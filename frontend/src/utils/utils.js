@@ -1,4 +1,4 @@
-const isEmpty = obj => {
+const isEmpty = (obj) => {
   if (Object.keys(obj).length === 0) {
     return true;
   }

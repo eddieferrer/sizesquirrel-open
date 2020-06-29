@@ -60,7 +60,7 @@ export default {
       const confirmDeleteModalComponent = this;
       this.$store
         .dispatch('REMOVE_PROFILE_ITEM', itemid)
-        .then(response => {
+        .then((response) => {
           if (response.data.status === 'success') {
             confirmDeleteModalComponent.$store.dispatch('SHOW_FLASH_MESSAGE', {
               class: 'has-background-success',
@@ -70,7 +70,7 @@ export default {
             confirmDeleteModalComponent.$emit('close');
           }
         })
-        .catch(error => {
+        .catch((error) => {
           // eslint-disable-next-line no-console
           console.log(error);
         })

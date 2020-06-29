@@ -60,7 +60,7 @@ export default {
       const deleteAccountModalComponent = this;
       this.$store
         .dispatch('DELETE_ACCOUNT', deleteAccountModalComponent.userId)
-        .then(response => {
+        .then((response) => {
           if (response.data.status === 'success') {
             deleteAccountModalComponent.$emit('close');
             const endUrl = response.data.new_url;
@@ -69,7 +69,7 @@ export default {
             });
           }
         })
-        .catch(error => {
+        .catch((error) => {
           // eslint-disable-next-line no-console
           console.log(error);
         })

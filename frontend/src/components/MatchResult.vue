@@ -38,8 +38,8 @@
         <div
           v-if="
             index === matchResultsLength - 1 &&
-              matchResultsLength > 1 &&
-              matchResults[0].percentage == matchResults[1].percentage
+            matchResultsLength > 1 &&
+            matchResults[0].percentage == matchResults[1].percentage
           "
           :key="index"
           class="size_line has-text-centered"
@@ -154,7 +154,7 @@
               <div :key="index">
                 <div
                   v-if="matchResults[0].percentage == result.percentage"
-                  style="margin-top: .5em;"
+                  style="margin-top: 0.5em;"
                 >
                   <h6>
                     Recommended Size:
@@ -184,8 +184,8 @@
                   <h6
                     v-if="
                       matchResultsLength > 1 &&
-                        matchResults[0].percentage == matchResults[1].percentage &&
-                        matchResults[1].percentage
+                      matchResults[0].percentage == matchResults[1].percentage &&
+                      matchResults[1].percentage
                     "
                   >
                     Accuracy:
@@ -204,9 +204,9 @@
                   <h6
                     v-else-if="
                       matchResults[0].occurences > 10 &&
-                        matchResults[0].occurences < 15 &&
-                        matchResults[0].percentage > 30 &&
-                        matchResults[0].percentage < 70
+                      matchResults[0].occurences < 15 &&
+                      matchResults[0].percentage > 30 &&
+                      matchResults[0].percentage < 70
                     "
                   >
                     Accuracy:
@@ -231,8 +231,8 @@
                   <em
                     v-if="
                       matchResultsLength > 1 &&
-                        matchResults[0].percentage == matchResults[1].percentage &&
-                        matchResults[1].percentage
+                      matchResults[0].percentage == matchResults[1].percentage &&
+                      matchResults[1].percentage
                     "
                     >We're unsure which of the sizes above will work.</em
                   >

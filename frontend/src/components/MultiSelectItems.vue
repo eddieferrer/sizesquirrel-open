@@ -107,13 +107,13 @@ export default {
         .dispatch('ITEM_SEARCH', {
           query,
         })
-        .then(response => {
+        .then((response) => {
           this.items = response.data.items;
           this.isLoading = false;
         });
     },
     // eslint-disable-next-line func-names
-    debouncedSearch: debounce(function(query) {
+    debouncedSearch: debounce(function (query) {
       this.searchForItem(query);
     }, 750),
     asyncFind(query) {

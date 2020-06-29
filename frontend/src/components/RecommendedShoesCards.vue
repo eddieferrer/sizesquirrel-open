@@ -158,7 +158,7 @@
           </div>
         </div>
       </div>
-      <div v-if="index == 1" :key="index" class="column is-11 ">
+      <div v-if="index == 1" :key="index" class="column is-11">
         <h3 class="is-size-5 has-text-centered has-text-primary">Also Consider</h3>
         <div class="card scale-small">
           <div class="card-content">
