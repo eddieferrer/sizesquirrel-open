@@ -1,0 +1,18 @@
+# Basic dependabot.yml file with
+# minimum configuration for two package managers
+
+version: 2
+updates:
+  # Enable version updates for NPM
+  - package-ecosystem: "npm"
+    directory: "/frontend/"
+    # Check the npm registry for updates every day (weekdays)
+    schedule:
+      interval: "weekly"
+
+  # Enable version updates for Python
+  - package-ecosystem: "pip"
+    directory: "/backend/"
+    # Check for updates once a week
+    schedule:
+      interval: "monthly"
