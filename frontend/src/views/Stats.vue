@@ -248,8 +248,8 @@ export default {
     };
   },
   created() {
-    this.$store.dispatch('GET_ADMIN_STATS').then(response => {
-      Object.keys(response.data).map(key => {
+    this.$store.dispatch('GET_ADMIN_STATS').then((response) => {
+      Object.keys(response.data).map((key) => {
         this[key] = response.data[key];
         return true;
       });

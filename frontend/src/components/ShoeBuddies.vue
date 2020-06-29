@@ -85,7 +85,7 @@ export default {
     this.isLoadingComponent = true;
     this.$store
       .dispatch('GET_SHOE_BUDDIES', this.targetUserId)
-      .then(response => {
+      .then((response) => {
         this.shoe_buddies = response.data.shoe_buddies;
         this.best_shoe_buddies = response.data.best_shoe_buddies;
       })

@@ -41,10 +41,10 @@
 </template>
 
 <script>
+import { capitalize } from '@/filters';
 import AffiliatePriceBlock from './AffiliatePriceBlock';
 import AvantLinkAd from './AvantLinkAd';
 import AmazonAd from './AmazonAd';
-import { capitalize } from '@/filters';
 
 export default {
   name: 'ShoeSaleLinks',

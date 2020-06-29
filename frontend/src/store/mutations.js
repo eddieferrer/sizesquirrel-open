@@ -1,23 +1,23 @@
 const SET_FLASH_MESSAGE = (state, payload) => {
   state.context_flash_message = payload;
 };
-const STATE_STATUS_LOADING = state => {
+const STATE_STATUS_LOADING = (state) => {
   state.status = 'loading';
 };
-const STATE_STATUS_DONE = state => {
+const STATE_STATUS_DONE = (state) => {
   state.status = 'success';
 };
-const STATE_STATUS_ERROR = state => {
+const STATE_STATUS_ERROR = (state) => {
   state.status = 'error';
 };
 
-const STATE_INIT_LOADING = state => {
+const STATE_INIT_LOADING = (state) => {
   state.init = 'loading';
 };
-const STATE_INIT_DONE = state => {
+const STATE_INIT_DONE = (state) => {
   state.init = 'success';
 };
-const STATE_INIT_ERROR = state => {
+const STATE_INIT_ERROR = (state) => {
   state.init = 'error';
 };
 const AUTH_SUCCESS = (state, token) => {
@@ -25,7 +25,7 @@ const AUTH_SUCCESS = (state, token) => {
   state.token = token;
 };
 
-const AUTH_LOGOUT = state => {
+const AUTH_LOGOUT = (state) => {
   state.status = '';
   state.token = '';
   state.user = {};
@@ -53,7 +53,7 @@ const SET_ALL_BRANDS = (state, payload) => {
 };
 const SET_SHOE = (state, payload) => {
   const shoesArray = [];
-  payload.forEach(item => {
+  payload.forEach((item) => {
     const { shoe } = item;
     shoe.stats = item.shoe.stats;
     shoe.shoe_comments = item.shoe_comments;

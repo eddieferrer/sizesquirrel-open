@@ -204,14 +204,14 @@ export default {
           password,
           username,
         })
-        .then(response => {
+        .then((response) => {
           this.$router.push({
             name: 'profile',
             params: { username: response.data.username },
             query: { new: '1' },
           });
         })
-        .catch(error => {
+        .catch((error) => {
           this.registration_error = 'Registration error';
           this.field_errors = error.response.data.message || error;
         })

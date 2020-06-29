@@ -73,7 +73,7 @@ export default {
         .dispatch('FORGOT_USERNAME', {
           email: vm.email,
         })
-        .then(response => {
+        .then((response) => {
           if (response.data.status === 'success') {
             vm.status = 'success';
             vm.message = response.data.message;

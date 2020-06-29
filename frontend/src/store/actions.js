@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { isEmpty } from '@/utils/utils';
 
-const INITIALIZE_APP = context =>
+const INITIALIZE_APP = (context) =>
   new Promise((resolve, reject) => {
     context.commit('STATE_INIT_LOADING');
     axios({
@@ -9,7 +9,7 @@ const INITIALIZE_APP = context =>
       data: { url: window.location.href },
       method: 'POST',
     })
-      .then(resp => {
+      .then((resp) => {
         context.commit('SET_CONTEXT', resp.data);
 
         const promiseArray = [];
@@ -26,30 +26,30 @@ const INITIALIZE_APP = context =>
 
         return Promise.all(promiseArray);
       })
-      .then(resp => {
+      .then((resp) => {
         context.commit('STATE_INIT_DONE');
         resolve(resp);
       })
-      .catch(error => {
+      .catch((error) => {
         context.commit('STATE_INIT_ERROR', error);
         reject(error);
       });
   });
 
 const GET_SHOE = (context, payload) =>
-  new Promise(resolve => {
+  new Promise((resolve) => {
     const responses = [];
     const promiseArray = [];
-    payload.forEach(element => {
+    payload.forEach((element) => {
       promiseArray.push(
         // eslint-disable-next-line no-shadow
         new Promise((resolve, reject) => {
           axios({ url: `/apiv2/item/details/${element}`, method: 'GET' })
-            .then(resp => {
+            .then((resp) => {
               responses.push(resp.data);
               resolve(resp);
             })
-            .catch(error => {
+            .catch((error) => {
               reject(error);
             });
         })
@@ -64,24 +64,24 @@ const GET_SHOE = (context, payload) =>
 const GET_BRAND = (context, payload) =>
   new Promise((resolve, reject) => {
     axios({ url: `/apiv2/brand/${payload}`, method: 'GET' })
-      .then(resp => {
+      .then((resp) => {
         context.commit('SET_BRAND', resp.data);
         resolve(resp);
       })
-      .catch(error => {
+      .catch((error) => {
         reject(error);
       });
   });
 
-const GET_USER = context => {
+const GET_USER = (context) => {
   return new Promise((resolve, reject) => {
     if (isEmpty(context.state.user)) {
       axios({ url: '/apiv2/auth/user/', method: 'GET' })
-        .then(resp => {
+        .then((resp) => {
           context.commit('SET_USER', resp.data);
           resolve(resp);
         })
-        .catch(error => {
+        .catch((error) => {
           reject(error);
         });
     } else {
@@ -95,24 +95,24 @@ const GET_USER = context => {
 const GET_PROFILE = (context, payload) =>
   new Promise((resolve, reject) => {
     axios({ url: `/apiv2/user/details/${payload}`, method: 'GET' })
-      .then(resp => {
+      .then((resp) => {
         context.commit('SET_PROFILE', resp.data);
         resolve(resp);
       })
-      .catch(error => {
+      .catch((error) => {
         reject(error);
       });
   });
 
-const GET_ALL_BRANDS = context => {
+const GET_ALL_BRANDS = (context) => {
   return new Promise((resolve, reject) => {
     if (context.state.allbrands.length === 0) {
       axios({ url: '/apiv2/brands/', method: 'GET' })
-        .then(resp => {
+        .then((resp) => {
           context.commit('SET_ALL_BRANDS', resp.data);
           resolve(resp);
         })
-        .catch(error => {
+        .catch((error) => {
           reject(error);
         });
     } else {
@@ -126,10 +126,10 @@ const GET_ALL_BRANDS = context => {
 const GET_SHOE_BUDDIES = (context, payload) =>
   new Promise((resolve, reject) => {
     axios({ url: `/apiv2/user/shoebuddies/${payload}`, method: 'GET' })
-      .then(resp => {
+      .then((resp) => {
         resolve(resp);
       })
-      .catch(error => {
+      .catch((error) => {
         reject(error);
       });
   });
@@ -139,7 +139,7 @@ const SHOW_FLASH_MESSAGE = (context, payload) => {
   context.commit('SET_FLASH_MESSAGE', payload);
 };
 
-const RESET_FLASH_MESSAGE = context => {
+const RESET_FLASH_MESSAGE = (context) => {
   context.commit('SET_FLASH_MESSAGE', {});
 };
 
@@ -147,13 +147,13 @@ const FB_REGISTER = (context, payload) =>
   new Promise((resolve, reject) => {
     // The Promise used for router redirect in login
     axios({ url: '/apiv2/auth/facebookregister/', data: payload, method: 'POST' })
-      .then(resp => {
+      .then((resp) => {
         localStorage.setItem('user-token', resp.data.token); // store the resp.data.token in localstorage
         axios.defaults.headers.common.Authorization = `Bearer ${resp.data.token}`;
         context.commit('AUTH_SUCCESS', resp.data.token);
         resolve(resp);
       })
-      .catch(error => {
+      .catch((error) => {
         localStorage.removeItem('user-token'); // if the request fails, remove any possible user token if possible
         reject(error);
       });
@@ -163,13 +163,13 @@ const AUTH_FB_LOGIN = (context, payload) =>
   new Promise((resolve, reject) => {
     // The Promise used for router redirect in login
     axios({ url: '/apiv2/auth/facebooklogin/', data: payload, method: 'POST' })
-      .then(resp => {
+      .then((resp) => {
         localStorage.setItem('user-token', resp.data.token); // store the resp.data.token in localstorage
         axios.defaults.headers.common.Authorization = `Bearer ${resp.data.token}`;
         context.commit('AUTH_SUCCESS', resp.data.token);
         resolve(resp);
       })
-      .catch(error => {
+      .catch((error) => {
         localStorage.removeItem('user-token'); // if the request fails, remove any possible user token if possible
         reject(error);
       });
@@ -187,19 +187,19 @@ const WAIT = (context, payload) =>
 const REGISTER = (context, payload) =>
   new Promise((resolve, reject) => {
     axios({ url: '/apiv2/auth/register/', data: payload, method: 'POST' })
-      .then(resp => {
+      .then((resp) => {
         localStorage.setItem('user-token', resp.data.token); // store the resp.data.token in localstorage
         axios.defaults.headers.common.Authorization = `Bearer ${resp.data.token}`;
         context.commit('AUTH_SUCCESS', resp.data.token);
         resolve(resp);
       })
-      .catch(error => {
+      .catch((error) => {
         localStorage.removeItem('user-token'); // if the request fails, remove any possible user token if possible
         reject(error);
       });
   });
 
-const AUTH_LOGOUT = context =>
+const AUTH_LOGOUT = (context) =>
   new Promise((resolve, reject) => {
     axios({ url: '/apiv2/auth/logout/', method: 'GET' })
       .then(() => {
@@ -208,7 +208,7 @@ const AUTH_LOGOUT = context =>
         delete axios.defaults.headers.common.Authorization;
         resolve();
       })
-      .catch(err => {
+      .catch((err) => {
         localStorage.removeItem('user-token'); // if the request fails, remove any possible user token if possible
         reject(err);
       });
@@ -217,13 +217,13 @@ const AUTH_LOGOUT = context =>
 const AUTH_REQUEST = (context, payload) =>
   new Promise((resolve, reject) => {
     axios({ url: '/apiv2/auth/login/', data: payload, method: 'POST' })
-      .then(resp => {
+      .then((resp) => {
         localStorage.setItem('user-token', resp.data.token); // store the resp.data.token in localstorage
         axios.defaults.headers.common.Authorization = `Bearer ${resp.data.token}`;
         context.commit('AUTH_SUCCESS', resp.data.token);
         resolve(resp);
       })
-      .catch(error => {
+      .catch((error) => {
         localStorage.removeItem('user-token'); // if the request fails, remove any possible user token if possible
         reject(error);
       });
@@ -236,10 +236,10 @@ const POST_LIST_ITEMS = (context, { target, queryParams }) =>
       method: 'POST',
       data: queryParams,
     })
-      .then(resp => {
+      .then((resp) => {
         resolve(resp);
       })
-      .catch(error => {
+      .catch((error) => {
         reject(error);
       });
   });
@@ -250,10 +250,10 @@ const GET_LIST_ITEMS = (context, { target }) =>
       url: `/apiv2/items/${target}/`,
       method: 'GET',
     })
-      .then(resp => {
+      .then((resp) => {
         resolve(resp);
       })
-      .catch(error => {
+      .catch((error) => {
         reject(error);
       });
   });
