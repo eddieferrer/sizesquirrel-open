@@ -11,8 +11,8 @@
     "eslint-check": "eslint --print-config . | eslint-config-prettier-check"
   },
   "dependencies": {
-    "@sentry/browser": "^5.12.4",
-    "@sentry/integrations": "^5.12.4",
+    "@sentry/browser": "^5.18.1",
+    "@sentry/integrations": "^5.18.1",
     "axios": "^0.19.2",
     "bulma": "^0.7.5",
     "bulma-divider": "^0.2.0",
@@ -28,7 +28,7 @@
     "vue-meta": "^2.4.0",
     "vue-multiselect": "^2.1.6",
     "vue-router": "^3.0.7",
-    "vuex": "^3.4.0"
+    "vuex": "^3.5.1"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^4.4.6",
