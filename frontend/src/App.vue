@@ -110,7 +110,10 @@
                   <RouterLink to="/faq">FAQ</RouterLink>
                 </li>
                 <li>
-                  <RouterLink to="/terms_privacy">Terms &amp; Privacy</RouterLink>
+                  <RouterLink to="/terms">Terms</RouterLink>
+                </li>
+                <li>
+                  <RouterLink to="/privacy">Privacy</RouterLink>
                 </li>
                 <li>
                   <a href="https://www.facebook.com/sizesquirrel/">Facebook</a>
