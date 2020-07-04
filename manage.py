@@ -10,7 +10,7 @@ parent_path = os.path.abspath(os.path.join(basedir, os.pardir))
 os.environ['SETTINGS_FILE'] = os.path.join(basedir, 'dev_settings.py')
 
 from backend import app, db
-from backend.avantlink.process_data_feeds import process_data_feeds, item_list, outfile, process_missing_items
+from backend.avantlink.process_data_feeds import process_data_feeds, item_list, outfile
 from backend.avantlink.get_data_feeds import get_data_feeds
 from backend.scripts.plot_user_registrations import plot_user_registrations
 from backend.scripts.sanitize_dev_database import sanitize_dev_database
@@ -34,12 +34,10 @@ def make_outfile():
     outfile()
 
 @manager.option('-f', '--feed')
-def process_feeds(feed):
-    process_data_feeds(feed)
-
-@manager.option('-f', '--feed')
-def process_missing(feed):
-    process_missing_items(feed)
+@manager.option('-d', '--sendDiscountItems', default=False)
+@manager.option('-m', '--sendMissingItems', default=False)
+def process_feeds(feed, sendDiscountItems, sendMissingItems):
+    process_data_feeds(feed, sendDiscountItems == 'True', sendMissingItems == 'True')
 
 @manager.option('-i', '--item')
 def set_stats_item(item):
