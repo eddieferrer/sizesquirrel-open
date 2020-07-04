@@ -139,6 +139,15 @@ const router = new Router({
       meta: { requiresAuth: false },
     },
     {
+      path: '/privacy',
+      name: 'privacy',
+      component: () => import(/* webpackChunkName: "termsPrivacy" */ './views/Privacy.vue'),
+      meta: {
+        requiresAuth: false,
+        hideItemMatchForm: true,
+      },
+    },
+    {
       path: '/profile/:username',
       name: 'profile',
       component: () => import(/* webpackChunkName: "profile" */ './views/Profile.vue'),
@@ -222,9 +231,9 @@ const router = new Router({
       },
     },
     {
-      path: '/terms_privacy',
-      name: 'termsPrivacy',
-      component: () => import(/* webpackChunkName: "termsPrivacy" */ './views/TermsPrivacy.vue'),
+      path: '/terms',
+      name: 'terms',
+      component: () => import(/* webpackChunkName: "termsPrivacy" */ './views/Terms.vue'),
       meta: {
         requiresAuth: false,
         hideItemMatchForm: true,

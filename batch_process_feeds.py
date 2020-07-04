@@ -21,6 +21,7 @@ argument_list = [
     '--feed=rei',     
     '--feed=theclymb'
 ]
+
 currentDate = datetime.datetime.today()
 print(currentDate)
 print("Making Item List...")

@@ -137,7 +137,7 @@
               <div class="column">
                 <small
                   >By registering for an account you agree to our
-                  <RouterLink to="/terms_privacy/">Terms Of Use</RouterLink>
+                  <RouterLink to="/terms/">Terms Of Use</RouterLink>
                 </small>
               </div>
             </div>

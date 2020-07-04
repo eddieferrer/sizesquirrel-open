@@ -150,14 +150,14 @@ def outfile():
     with open(app.config['ROOT_URL'] + 'outfile', 'wb') as fp:
         pickle.dump(items_filtered, fp, protocol=-1)
 
-def process_data_feeds(target_feed):
+def process_data_feeds(target_feed, sendDiscountItems = False, sendMissingItems = False):
     print("-" * 25)
     print("Processing Feed: " + target_feed)
-
     with open(current_app.config['ROOT_URL'] + 'itemslist', 'rb') as fp:
         raw_items = pickle.load(fp)
 
     target_feed = [feed for feed in DATA_FEED_INFO_ARRAY if feed['retailer_short_name'] == target_feed]
+
     feed = target_feed[0]
     feed = clean_up_feed(feed)
     print("Number of products: " + str(len(feed["datafeed"])))
@@ -226,18 +226,21 @@ def process_data_feeds(target_feed):
                     })
                 product["SSMatch"] = True
 
-    print("Finished Processing Feed")
-
-    send_admin_discount_items(target_feed)
-
     with open(app.config['ROOT_URL'] + 'itemslist', 'wb') as fp:
         pickle.dump(raw_items, fp, protocol=-1)
+    print("Finished Processing Feed")
 
-def send_admin_discount_items(raw_data_feed):
+    if sendDiscountItems is True:
+        print("Sending Discount Items")
+        send_admin_discount_items(feed)
+
+    if sendMissingItems is True:
+        print("Sending Missing Items")
+        send_admin_missing_items(feed)
+
+def send_admin_discount_items(feed):
     # discount items
     discount_items = []
-    feed = raw_data_feed[0]
-    feed = clean_up_feed(feed)
 
     for product in feed["datafeed"]:
         if product.get('SSMatch') is not None:
@@ -294,13 +297,11 @@ def send_admin_discount_items(raw_data_feed):
                                    time=datetime.datetime.now().strftime("%m-%d-%Y %H:%M")),
                    render_template("emails/admin_discount_items.html", discount_items=discount_items, time=datetime.datetime.now().strftime("%m-%d-%Y %H:%M")))
 
-def send_admin_missing_items(raw_data_feed):
+def send_admin_missing_items(feed):
     # make a list of missing items and send to admin
     missing_items = []
     missing_brands = []
 
-    feed = raw_data_feed[0]
-    feed = clean_up_feed(feed)
     for product in feed["datafeed"]:
         if product.get('SSMatch') is None:
             # print product["Product_Name"]
@@ -393,14 +394,6 @@ def clean_product_list(product):
         product["Variants"] = new_Variants
 
     return product
-
-def process_missing_items(target_feed):
-    print("-" * 25)
-    print("Processing Missing Items: " + target_feed)
-
-    target_feed = [feed for feed in DATA_FEED_INFO_ARRAY if feed['retailer_short_name'] == target_feed]
-
-    send_admin_missing_items(target_feed)
 
 def clean_up_feed(feed):
     # takes in a raw data feed and cleans it up
