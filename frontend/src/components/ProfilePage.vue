@@ -68,6 +68,7 @@
     <!-- modals -->
 
     <EditUserDetailsModal
+      v-if="isMyProfile"
       :show="showEditUserDetailsModal"
       :user="user"
       @close="showEditUserDetailsModal = false"
