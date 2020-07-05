@@ -23,6 +23,14 @@
           {{ version }}
         </p>
       </div>
+      <div class="column">
+        <p>
+          <strong>Current Hash</strong>
+        </p>
+        <p>
+          {{ hash }}
+        </p>
+      </div>
     </div>
   </div>
 </template>
@@ -38,6 +46,7 @@ export default {
     return {
       gitbranch: process.env.VUE_APP_GITBRANCH,
       version: process.env.VUE_APP_GITVERSION,
+      hash: process.env.VUE_APP_GITHASH,
     };
   },
 };
