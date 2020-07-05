@@ -13,6 +13,7 @@ const nicelyFormattedTime = `${nicelyFormattedHour}${d.getMinutes()}`;
 
 process.env.VUE_APP_GITBRANCH = gitRevisionPlugin.branch();
 process.env.VUE_APP_GITVERSION = gitRevisionPlugin.version();
+process.env.VUE_APP_GITHASH = gitRevisionPlugin.commithash();
 
 process.env.VUE_APP_RELEASE_TAG = isProd
   ? `${gitHash}-${nicelyFormattedDate}_${nicelyFormattedTime}`
