@@ -121,6 +121,9 @@
                 <li>
                   <a href="https://www.instagram.com/sizesquirrel/">Instagram</a>
                 </li>
+                <li>
+                  <a href="https://github.com/eddieferrer/sizesquirrel-open">GitHub</a>
+                </li>
               </ul>
             </nav>
           </div>
