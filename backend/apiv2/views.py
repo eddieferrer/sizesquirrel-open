@@ -89,9 +89,12 @@ def get_context():
 
     profile_id = ''
     brand_id = ''
-    match = {
-        'want_item_id': '',
-        'have_item_id': '',
+    matchQueryParams = {
+        'size': '',
+        'want_item_id': "",
+        'have_item_id': ""
+    }
+    matchResponse = {
         'size': '',
         'want_item': None,
         'have_item': None
@@ -125,46 +128,35 @@ def get_context():
             # @app.route('/match/', methods=["GET"])
             # @app.route('/public_match/', methods=["GET"])
             urlQuery = urlParsed.query.split('&')
-            # print "urlQuery"
-            # print urlQuery is None
-            # print len(urlQuery)
+
             try:
                 if len(urlQuery) > 0:
                     query0 = urlQuery[0].split('=')
-                    match[query0[0]] = query0[1]
+                    matchQueryParams[query0[0]] = query0[1]
                 if len(urlQuery) > 1:
                     query1 = urlQuery[1].split('=')
-                    match[query1[0]] = query1[1]
+                    matchQueryParams[query1[0]] = query1[1]
                 if len(urlQuery) > 2:
                     query2 = urlQuery[2].split('=')
-                    match[query2[0]] = query2[1]
-                model_id_list = [match['want_item_id']]
+                    matchQueryParams[query2[0]] = query2[1]
+                model_id_list = [matchQueryParams['want_item_id']]
             except:
                 model_id_list = []
-            # print match
-            # match['want_id'] = want_id_query_segment
-            # if len(queries) > 1:
-            #     want_id_query_segment = urlQuery[1]
-            #     want_id = want_id_query_segment
-        if match['want_item_id'] != '':
-            model1 = Item.query.filter_by(id=match['want_item_id']).first().serialize()
-            match['want_item'] = model1
-        if match['have_item_id'] != '':
-            model2 = Item.query.filter_by(id=match['have_item_id']).first().serialize()
-            match['have_item'] = model2
-    # print "model_id_list"
-    # print model_id_list
-    # print "brand_id"
-    # print brand_id
-    # print "profile_id"
-    # print profile_id
+
+        matchResponse['size'] = matchQueryParams['size']
+        if matchQueryParams['want_item_id'] != '':
+            model1 = Item.query.filter_by(id=matchQueryParams['want_item_id']).first().serialize()
+            matchResponse['want_item'] = model1
+        if matchQueryParams['have_item_id'] != '':
+            model2 = Item.query.filter_by(id=matchQueryParams['have_item_id']).first().serialize()
+            matchResponse['have_item'] = model2
     return jsonify({
         'status': 'success',
         'message': '',
         'profile_id': profile_id,
         'brand_id': brand_id,
         'model_id_list': model_id_list,
-        'match': match,
+        'match': matchResponse,
     })
 
 # /apiv2/match/
