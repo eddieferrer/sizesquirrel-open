@@ -66,22 +66,6 @@ export default {
         this.$store.commit('SET_CONTEXT_MATCH_SIZE', size.value);
       },
     },
-    isFormDisabled() {
-      try {
-        if (!this.isAuthenticated) {
-          if (this.wantitem === null || this.haveitem === null || this.size === null) {
-            return true;
-          }
-          return false;
-        }
-        if (this.wantitem === null) {
-          return true;
-        }
-        return false;
-      } catch {
-        return true;
-      }
-    },
     wantitem: {
       // getter
       get() {
@@ -102,15 +86,56 @@ export default {
         this.$store.commit('SET_CONTEXT_MATCH_HAVE_ITEM', newValue);
       },
     },
+    isFormDisabled() {
+      // conditions for form to be disabled for authorized users
+      if (this.isAuthenticated) {
+        // form is missing required fields
+        if (this.wantitem === null) {
+          return true;
+        }
+        // form hasn't been touched and has same values as route
+        if (this.$route.query.want_item_id === this.wantitem.id.toString()) {
+          return true;
+        }
+      }
+      // conditions for form to be disabled for not authorized users
+      if (!this.isAuthenticated) {
+        // form is missing required fields
+        if (this.wantitem === null || this.haveitem === null || this.itemSize === null) {
+          return true;
+        }
+        // form hasn't been touched and has same values as route
+        if (
+          this.$route.query.want_item_id === this.wantitem.id.toString() &&
+          this.$route.query.have_item_id === this.haveitem.id.toString() &&
+          this.$route.query.size === this.urlContextMatch.size.toString()
+        ) {
+          return true;
+        }
+      }
+      return false;
+    },
   },
   methods: {
     formAction() {
+      // TODO fix this route to pass values into component
+      // TODO remove this casting
+      // When doing a hard refresh on browser,
+      // these values are coming from $route.query as strings
       if (this.isAuthenticated) {
-        this.$router.push(`/match/?want_item_id=${this.urlContextMatch.want_item.id}`);
+        this.$router.push({
+          path: '/match',
+          query: { want_item_id: this.wantitem.id.toString() },
+        });
       } else {
-        this.$router.push(
-          `/public_match/?have_item_id=${this.urlContextMatch.have_item.id}&size=${this.urlContextMatch.size}&want_item_id=${this.urlContextMatch.want_item.id}`
-        );
+        this.$router.push({
+          path: '/public_match',
+          query: {
+            want_item_id: this.wantitem.id.toString(),
+            have_item_id: this.haveitem.id.toString(),
+            size: this.urlContextMatch.size.toString(),
+          },
+        });
       }
     },
   },

@@ -112,7 +112,6 @@ const router = new Router({
           // the above state is not available here, since it
           // it is resolved asynchronously in the store action
           const { username } = store.getters.user;
-          // router.push({ path: '/profile/' + username });
           next(`/profile/${username}`);
         });
       },
