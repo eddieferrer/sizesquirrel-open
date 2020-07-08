@@ -28,15 +28,29 @@
       <div class="navbar-start">
         <span v-if="!isActive" class="navbar-item navbar-item-brand">SizeSquirrel</span>
         <span v-if="isActive" class="navbar-item navbar-item-brand">&nbsp;</span>
-        <RouterLink class="navbar-item" to="/">Home</RouterLink>
-        <RouterLink v-if="isAuthenticated" to="/browse" class="navbar-item"
+        <RouterLink class="navbar-item" to="/" @click.native="isActive = !isActive"
+          >Home</RouterLink
+        >
+        <RouterLink
+          v-if="isAuthenticated"
+          to="/browse"
+          class="navbar-item"
+          @click.native="isActive = !isActive"
           >Browse Shoes</RouterLink
         >
-        <RouterLink v-if="isAuthenticated" to="/my_profile" class="navbar-item"
+        <RouterLink
+          v-if="isAuthenticated"
+          to="/my_profile"
+          class="navbar-item"
+          @click.native="isActive = !isActive"
           >My Profile</RouterLink
         >
-        <RouterLink to="/sales" class="navbar-item">Shoes On Sale</RouterLink>
-        <RouterLink to="/recommend" class="navbar-item">Recommend A Shoe</RouterLink>
+        <RouterLink to="/sales" class="navbar-item" @click.native="isActive = !isActive"
+          >Shoes On Sale</RouterLink
+        >
+        <RouterLink to="/recommend" class="navbar-item" @click.native="isActive = !isActive"
+          >Recommend A Shoe</RouterLink
+        >
       </div>
       <div class="navbar-end">
         <a v-if="isAuthenticated" href="#" class="navbar-item" @click.prevent.stop="logout()"
@@ -44,10 +58,19 @@
         >
         <div class="navbar-item">
           <div class="buttons">
-            <RouterLink v-if="!isAuthenticated" to="/register" class="button is-info">
+            <RouterLink
+              v-if="!isAuthenticated"
+              to="/register"
+              class="button is-info"
+              @click.native="isActive = !isActive"
+            >
               <strong>Sign up</strong>
             </RouterLink>
-            <RouterLink v-if="!isAuthenticated" to="/login" class="button is-light"
+            <RouterLink
+              v-if="!isAuthenticated"
+              to="/login"
+              class="button is-light"
+              @click.native="isActive = !isActive"
               >Log in</RouterLink
             >
           </div>
