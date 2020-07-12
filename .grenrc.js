@@ -1,5 +1,5 @@
 module.exports = {
-    "dataSource": "commits",
+    "dataSource": "prs",
     "prefix": "v",
     "changelogFilename": "CHANGELOG.md"
 }
