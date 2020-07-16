@@ -16,7 +16,8 @@
           href="#"
           class="cryptedmail"
           onclick="window.location.href = 'mailto:' + this.dataset.name + '@' + this.dataset.domain + '.' + this.dataset.tld"
-        ></a>
+          >email</a
+        >
         and we will add the shoe to the site.
       </p>
 
@@ -58,7 +59,8 @@
           href="#"
           class="cryptedmail"
           onclick="window.location.href = 'mailto:' + this.dataset.name + '@' + this.dataset.domain + '.' + this.dataset.tld"
-        ></a>
+          >email</a
+        >
       </p>
     </div>
   </div>

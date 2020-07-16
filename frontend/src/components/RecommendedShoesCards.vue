@@ -14,6 +14,7 @@
                     <span>
                       <img
                         class="lazyload"
+                        loading="lazy"
                         :src="'/static/images/placeholder_' + shoe.type + '.png'"
                         :data-src="shoe.shoe_image"
                         :alt="shoe.brand.name + shoe.model"
@@ -170,6 +171,7 @@
                     <span>
                       <img
                         class="lazyload"
+                        loading="lazy"
                         :src="'/static/images/placeholder_' + shoe.type + '.png'"
                         :data-src="shoe.shoe_image"
                         :alt="shoe.brand.name + shoe.model"

@@ -25,6 +25,7 @@
                   <span>
                     <img
                       class="lazyload"
+                      loading="lazy"
                       :src="'/static/images/placeholder_' + recommendation.item.type + '.png'"
                       :data-src="recommendation.item.shoe_image"
                       :alt="recommendation.item.brand['name'] + ' ' + recommendation.item.model"

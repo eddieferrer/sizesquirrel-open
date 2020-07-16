@@ -26,8 +26,8 @@
 
     <div id="navbarBasic" class="navbar-menu" :class="{ 'is-active': isActive }">
       <div class="navbar-start">
-        <span v-if="!isActive" class="navbar-item navbar-item-brand">SizeSquirrel</span>
-        <span v-if="isActive" class="navbar-item navbar-item-brand">&nbsp;</span>
+        <span class="navbar-item navbar-item-brand is-hidden-touch">SizeSquirrel</span>
+        <span class="navbar-item navbar-item-brand is-hidden-desktop pt-2">&nbsp;</span>
         <RouterLink class="navbar-item" to="/" @click.native="isActive = !isActive"
           >Home</RouterLink
         >
@@ -121,11 +121,11 @@ $squirrelDarkGray: #131313;
   background-color: $ss-transparent-gray;
 }
 .navbar-item-brand {
-  font-family: 'Helvetica Neue', Helvetica, Roboto, Arial, sans-serif;
-  font-weight: 800;
+  font-family: Lato, 'Helvetica Neue', Helvetica, Roboto, Arial, sans-serif;
+  font-weight: 900;
   font-variant: small-caps;
   letter-spacing: 0.05em;
-  font-size: 1.2rem;
+  font-size: 1.3rem;
 }
 .navbar-item.brandlogo {
   overflow: visible;
@@ -147,5 +147,8 @@ $squirrelDarkGray: #131313;
 }
 a.navbar-item:hover {
   color: $white;
+}
+.pt-2 {
+  padding-top: 2rem;
 }
 </style>
