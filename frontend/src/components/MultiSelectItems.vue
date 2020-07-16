@@ -26,6 +26,7 @@
           <div class="option_img">
             <img
               class="lazyload"
+              loading="lazy"
               :src="'/static/images/placeholder_' + props.option.type + '.png'"
               :data-src="props.option.shoe_image"
               :alt="props.option.brand['name'] + ' ' + props.option.model"
