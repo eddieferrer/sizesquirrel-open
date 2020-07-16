@@ -60,6 +60,7 @@
               <span>
                 <img
                   class="lazyload"
+                  loading="lazy"
                   :src="'/static/images/placeholder_' + targetItem.type + '.png'"
                   :data-src="targetItem.shoe_image"
                   :alt="targetItem.brand['name'] + ' ' + targetItem.model"

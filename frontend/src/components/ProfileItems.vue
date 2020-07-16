@@ -35,6 +35,7 @@
                       <span>
                         <img
                           class="lazyload"
+                          loading="lazy"
                           :src="
                             '/static/images/placeholder_' + user_item.user_item.item.type + '.png'
                           "

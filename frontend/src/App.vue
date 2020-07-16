@@ -92,7 +92,8 @@
                   href="#"
                   class="cryptedmail"
                   onclick="window.location.href = 'mailto:' + this.dataset.name + '@' + this.dataset.domain + '.' + this.dataset.tld"
-                ></a>
+                  >email</a
+                >
               </p>
             </div>
           </div>
