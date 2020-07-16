@@ -87,7 +87,7 @@ export default {
   }
 
   .sales_retailer_price {
-    font-family: 'Helvetica Neue', Helvetica, Roboto, Arial, sans-serif;
+    font-family: Lato, 'Helvetica Neue', Helvetica, Roboto, Arial, sans-serif;
     font-weight: bold;
     width: 76px;
     text-align: left;
@@ -105,7 +105,7 @@ export default {
       border-right: 20px solid $amazon_red;
       margin-left: -20px;
     }
-    font-family: 'Helvetica Neue', Helvetica, Roboto, Arial, sans-serif;
+    font-family: Lato, 'Helvetica Neue', Helvetica, Roboto, Arial, sans-serif;
     width: 58px;
     text-align: left;
     color: $white;
