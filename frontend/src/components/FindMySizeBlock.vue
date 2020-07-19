@@ -52,7 +52,9 @@
       <!-- add this to make full screen -->
       <!-- column is-clearfix is-half-tablet is-one-quarter-desktop -->
       <div class="column is-clearfix is-6">
-        <i class="fi-torso large icon"></i>
+        <span class="icon-wrapper">
+          <svg-icon icon="fi-torso" :has-fill="true"></svg-icon>
+        </span>
         <div class="info">
           <span class="info-label is-size-6 has-text-grey">Popularity</span>
           <span>
@@ -63,7 +65,9 @@
       </div>
       <div class="column is-clearfix is-6">
         <div>
-          <i class="fi-star large icon"></i>
+          <span class="icon-wrapper">
+            <svg-icon icon="fi-star" :has-fill="true"></svg-icon>
+          </span>
           <div class="info">
             <span class="info-label is-size-6 has-text-grey">Average Rating</span>
             <span>
@@ -75,7 +79,9 @@
         </div>
       </div>
       <div class="column is-clearfix is-6">
-        <img src="/static/images/icon_fit.png" alt class="icon" />
+        <span class="icon-wrapper">
+          <img src="/static/images/icon_fit.png" alt="shoe fit icon" />
+        </span>
         <div class="info">
           <span class="info-label is-size-6 has-text-grey">Most Common Fit</span>
           <span>
@@ -84,7 +90,9 @@
         </div>
       </div>
       <div class="column is-clearfix is-6">
-        <img src="/static/images/icon_footshape.png" alt class="icon footshape" />
+        <span class="icon-wrapper">
+          <img src="/static/images/icon_footshape.png" alt="foot shape icon" class="footshape" />
+        </span>
         <div class="info">
           <span class="info-label is-size-6 has-text-grey">Recommended For</span>
           <strong>{{ shoe.stats.highest_rated_foot_shape }}</strong> Feet
@@ -121,7 +129,9 @@
       </div>
       <!-- shoe stats -->
       <div v-if="showShapeStats" class="column is-no-top-padding is-12">
-        <img src="/static/images/icon_footshape.png" alt class="icon footshape" />
+        <span class="icon-wrapper">
+          <img src="/static/images/icon_footshape.png" alt="foot shape icon" class="footshape" />
+        </span>
         <div class="info_footshape">
           <span class="info-label is-size-6 has-text-grey">Rating by Foot shape&nbsp;</span>
           <ul class="is-clearfix">
@@ -173,11 +183,12 @@
 <script>
 import { mapGetters } from 'vuex';
 
+import SvgIcon from '@/components/SvgIcon';
 import AffiliatePriceBlock from './AffiliatePriceBlock';
 
 export default {
   name: 'FindMySizeBlock',
-  components: { AffiliatePriceBlock },
+  components: { AffiliatePriceBlock, SvgIcon },
   props: {
     showShapeStats: {
       type: Boolean,
@@ -235,13 +246,6 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.icon {
-  font-size: 32px;
-  float: left;
-  color: $aqua;
-  opacity: 0.25;
-  width: 25px;
-}
 .info,
 .info_footshape {
   float: left;
@@ -273,9 +277,6 @@ span.info-label {
   display: block;
   clear: both;
 }
-img.icon {
-  margin-top: 12px;
-}
 .item_block_image {
   margin: 0 auto;
   margin-top: 0.5em;
@@ -302,10 +303,5 @@ img.icon {
     width: 100%;
     overflow: hidden;
   }
-}
-.icon.footshape {
-  height: 34px;
-  width: auto;
-  margin-top: 8px !important;
 }
 </style>

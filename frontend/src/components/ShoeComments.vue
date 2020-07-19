@@ -44,7 +44,9 @@
               </div>
               <div class="columns is-mobile">
                 <div class="column is-narrow is-no-top-padding">
-                  <i class="fi-star large icon"></i>
+                  <span class="icon-wrapper">
+                    <svg-icon icon="fi-star" :has-fill="true"></svg-icon>
+                  </span>
                   <div class="info">
                     <span class="info_label has-text-grey">Rating&nbsp;</span>
                     <span>
@@ -54,7 +56,9 @@
                   </div>
                 </div>
                 <div class="column is-narrow is-no-top-padding">
-                  <img src="/static/images/icon_fit.png" alt class="icon" />
+                  <span class="icon-wrapper">
+                    <img src="/static/images/icon_fit.png" alt="shoe fit icon" />
+                  </span>
                   <div class="info">
                     <span class="info_label has-text-grey">Fit&nbsp;</span>
                     <span>
@@ -63,7 +67,13 @@
                   </div>
                 </div>
                 <div class="column is-narrow is-no-top-padding">
-                  <img src="/static/images/icon_footshape.png" alt class="icon footshape" />
+                  <span class="icon-wrapper">
+                    <img
+                      src="/static/images/icon_footshape.png"
+                      alt="foot shape icon"
+                      class="footshape"
+                    />
+                  </span>
                   <div class="info">
                     <span class="info_label has-text-grey">Foot shape&nbsp;</span>
                     <span>
@@ -125,12 +135,14 @@
 <script>
 import { mapGetters } from 'vuex';
 
+import SvgIcon from '@/components/SvgIcon';
 import ComponentLoader from '@/components/ComponentLoader';
+
 import ItemListSearchSort from './ItemListSearchSort';
 
 export default {
   name: 'ShoeComments',
-  components: { ItemListSearchSort, ComponentLoader },
+  components: { ItemListSearchSort, ComponentLoader, SvgIcon },
   props: {
     comments: {
       type: Array,
@@ -251,14 +263,6 @@ export default {
     font-weight: bold;
     font-size: 32px;
   }
-  // @media only screen and (min-width: 648px) and (max-width: 775px) {
-  //   .size {
-  //     height: 65px;
-  //     width: 65px;
-  //     font-size: 29px;
-  //     line-height: 46px;
-  //   }
-  // }
 }
 .size_gender {
   // padding: 0px;
@@ -279,12 +283,10 @@ export default {
     font-size: 90%;
     margin-bottom: 0px;
   }
-  .icon {
-    font-size: 32px;
-    float: left;
-    color: $aqua;
-    opacity: 0.25;
-    width: 25px;
+  .icon-wrapper {
+    .footshape {
+      height: 34px;
+    }
   }
   .info {
     float: left;
@@ -294,13 +296,5 @@ export default {
     display: block;
     clear: both;
   }
-  img.icon {
-    margin-top: 12px;
-  }
-}
-.icon.footshape {
-  height: 28px;
-  width: auto;
-  margin-top: 8px !important;
 }
 </style>

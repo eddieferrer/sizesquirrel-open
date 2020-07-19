@@ -359,7 +359,6 @@ footer {
 
 <style lang="scss">
 @import '~vue-loading-overlay/dist/vue-loading.css';
-@import '@/scss/vendor/foundation-icons/foundation-icons.scss';
 @import '@/scss/custom_bulma.scss';
 // Global SizeSquirrel Styles
 body {
@@ -403,5 +402,21 @@ hr.thin-hr {
 progress {
   margin-top: 0.25em;
   margin-bottom: 0.25em;
+}
+
+// Icons
+.icon-wrapper {
+  font-size: 32px;
+  float: left;
+  color: $aqua;
+  fill: $aqua;
+  opacity: 0.25;
+  width: 25px;
+  .footshape {
+    height: 34px;
+    width: auto;
+    margin-top: 7px !important;
+    float: right !important;
+  }
 }
 </style>
