@@ -5,7 +5,9 @@
         <div class="card has-equal-height">
           <div class="card-content content">
             <div class="box-icon">
-              <span class="fi-magnifying-glass"></span>
+              <span class="icon-wrapper">
+                <svg-icon icon="fi-magnifying-glass" :has-fill="true"></svg-icon>
+              </span>
             </div>
             <div class="info_homepage has-text-centered">
               <h4 class="step"></h4>
@@ -27,7 +29,9 @@
         <div class="card has-equal-height">
           <div class="card-content">
             <div class="box-icon">
-              <span class="fi-pricetag-multiple"></span>
+              <span class="icon-wrapper">
+                <svg-icon icon="fi-pricetag-multiple" :has-fill="true"></svg-icon>
+              </span>
             </div>
             <div class="info_homepage has-text-centered">
               <h4 class="step"></h4>
@@ -46,7 +50,9 @@
         <div class="card has-equal-height">
           <div class="card-content content">
             <div class="box-icon">
-              <span class="fi-results-demographics"></span>
+              <span class="icon-wrapper">
+                <svg-icon icon="fi-results-demographics" :has-fill="true"></svg-icon>
+              </span>
             </div>
             <div class="info_homepage has-text-centered">
               <h4 class="step"></h4>
@@ -68,7 +74,9 @@
         <div class="card has-equal-height">
           <div class="card-content content">
             <div class="box-icon">
-              <span class="fi-results-demographics"></span>
+              <span class="icon-wrapper">
+                <svg-icon icon="fi-results-demographics" :has-fill="true"></svg-icon>
+              </span>
             </div>
             <div class="info_homepage has-text-centered">
               <h4 class="step">Step 1</h4>
@@ -85,7 +93,9 @@
         <div class="card has-equal-height">
           <div class="card-content">
             <div class="box-icon">
-              <span class="fi-plus"></span>
+              <span class="icon-wrapper">
+                <svg-icon icon="fi-plus" :has-fill="true"></svg-icon>
+              </span>
             </div>
             <div class="info_homepage has-text-centered">
               <h4 class="step">Step 2</h4>
@@ -103,7 +113,9 @@
         <div class="card has-equal-height">
           <div class="card-content content">
             <div class="box-icon">
-              <span class="fi-magnifying-glass"></span>
+              <span class="icon-wrapper">
+                <svg-icon icon="fi-magnifying-glass" :has-fill="true"></svg-icon>
+              </span>
             </div>
             <div class="info_homepage has-text-centered">
               <h4 class="step">Step 3</h4>
@@ -132,10 +144,13 @@
 
 <script>
 import { mapGetters } from 'vuex';
+import SvgIcon from '@/components/SvgIcon';
 
 export default {
   name: 'HomeCards',
-  components: {},
+  components: {
+    SvgIcon,
+  },
   computed: {
     ...mapGetters(['isAuthenticated']),
   },
@@ -166,11 +181,12 @@ export default {
   width: 100px;
   margin-top: -61px;
   font-size: 3rem;
-  span {
+  span.icon-wrapper {
     color: $white;
     display: table-cell;
     text-align: center;
     vertical-align: middle;
+    fill: $white;
   }
 }
 

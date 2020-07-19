@@ -12,7 +12,9 @@
 
       <div v-if="isMyProfile" class="columns">
         <div class="column is-narrow">
-          <i class="fi-torso is-size-1 icon"></i>
+          <span class="icon-wrapper">
+            <svg-icon icon="fi-torso" :has-fill="true"></svg-icon>
+          </span>
         </div>
         <div class="column">
           <div class="field">
@@ -133,7 +135,9 @@
 
       <div v-if="!isMyProfile" class="columns">
         <div class="column is-narrow">
-          <i class="fi-torso is-size-1 icon"></i>
+          <span class="icon-wrapper">
+            <svg-icon icon="fi-torso" :has-fill="true"></svg-icon>
+          </span>
         </div>
         <div class="column">
           <div class="field">
@@ -253,6 +257,8 @@
 <script>
 import { mapGetters } from 'vuex';
 
+import SvgIcon from '@/components/SvgIcon';
+
 import FootShapeModal from './FootShapeModal';
 import ChangePasswordModal from './ChangePasswordModal';
 import DeleteAccountModal from './DeleteAccountModal';
@@ -263,6 +269,7 @@ export default {
     FootShapeModal,
     ChangePasswordModal,
     DeleteAccountModal,
+    SvgIcon,
   },
   data() {
     return {
@@ -294,10 +301,6 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.icon {
-  color: $aqua;
-  opacity: 0.25;
-}
 .info {
   float: left;
   margin-left: 0.55em;
@@ -305,9 +308,6 @@ export default {
 span.info-label {
   display: block;
   clear: both;
-}
-img.icon {
-  margin-top: 12px;
 }
 .item_block_image {
   margin: 0 auto;
