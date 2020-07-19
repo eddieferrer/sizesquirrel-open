@@ -20,7 +20,7 @@ kiwisolver==1.1.0
 Mako==1.1.0
 MarkupSafe==1.1.1
 matplotlib==3.2.2
-numpy==1.18.1
+numpy==1.19.0
 passlib==1.7.2
 pyparsing==2.4.6
 python-dateutil==2.8.1
