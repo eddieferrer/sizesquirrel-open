@@ -102,7 +102,9 @@
             <hr class="thin-hr" />
             <div class="columns is-multiline">
               <div class="column is-clearfix is-6">
-                <i class="fi-torso large icon"></i>
+                <span class="icon-wrapper">
+                  <svg-icon icon="fi-torso" :has-fill="true"></svg-icon>
+                </span>
                 <div class="info">
                   <span class="info-label muted">Popularity</span>
                   <span>
@@ -111,7 +113,9 @@
                 </div>
               </div>
               <div class="column is-clearfix is-6">
-                <i class="fi-star large icon"></i>
+                <span class="icon-wrapper">
+                  <svg-icon icon="fi-star" :has-fill="true"></svg-icon>
+                </span>
                 <div class="info">
                   <span class="info-label muted">Average Rating</span>
                   <span>
@@ -124,7 +128,9 @@
                 </div>
               </div>
               <div class="column is-clearfix is-6">
-                <img src="/static/images/icon_fit.png" alt class="icon" />
+                <span class="icon-wrapper">
+                  <img src="/static/images/icon_fit.png" alt="shoe fit icon" />
+                </span>
                 <div class="info">
                   <span class="info-label muted">Most Common Fit</span>
                   <span>
@@ -133,7 +139,13 @@
                 </div>
               </div>
               <div class="column is-clearfix is-6">
-                <img src="/static/images/icon_footshape.png" alt class="icon footshape" />
+                <span class="icon-wrapper">
+                  <img
+                    src="/static/images/icon_footshape.png"
+                    alt="foot shape icon"
+                    class="footshape"
+                  />
+                </span>
                 <div class="info">
                   <span class="info-label is-size-6 has-text-grey">Recommended For</span>
                   <strong>{{ targetItem.stats.highest_rated_foot_shape }}</strong> Feet
@@ -292,10 +304,11 @@
 <script>
 import { mapGetters } from 'vuex';
 import { capitalize, titleCase } from '@/filters';
+import SvgIcon from '@/components/SvgIcon';
 
 export default {
   name: 'MatchResult',
-  components: {},
+  components: { SvgIcon },
   filters: {
     capitalize,
     titleCase,
@@ -324,13 +337,6 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.icon {
-  font-size: 32px;
-  float: left;
-  color: $aqua;
-  opacity: 0.25;
-  width: 25px;
-}
 .info {
   float: left;
   margin-left: 0.55em;
@@ -338,9 +344,6 @@ export default {
 span.info-label {
   display: block;
   clear: both;
-}
-img.icon {
-  margin-top: 12px;
 }
 .item_block_image {
   margin: 0 auto;
@@ -422,24 +425,9 @@ ul {
 .item_block_info.result_item_block,
 .comment_info_block,
 .user_details {
-  .icon {
-    font-size: 32px;
-    float: left;
-    color: $aqua;
-    opacity: 0.25;
-    width: 25px;
-  }
   .info {
     float: left;
     margin-left: 0.65em;
   }
-  img.icon {
-    margin-top: 12px;
-  }
-}
-.icon.footshape {
-  height: 34px;
-  width: auto;
-  margin-top: 8px !important;
 }
 </style>
