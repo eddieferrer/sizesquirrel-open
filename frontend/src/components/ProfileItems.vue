@@ -105,7 +105,9 @@
 
                     <div class="columns is-multiline is-mobile">
                       <div class="column is-4">
-                        <i class="fi-star large icon"></i>
+                        <span class="icon-wrapper">
+                          <svg-icon icon="fi-torso" :has-fill="true"></svg-icon>
+                        </span>
                         <div class="info">
                           <span class="info-label is-size-6 has-text-grey">Rating&nbsp;</span>
                           <span>
@@ -115,7 +117,9 @@
                         </div>
                       </div>
                       <div class="column is-4">
-                        <img src="/static/images/icon_fit.png" alt class="icon" />
+                        <span class="icon-wrapper">
+                          <img src="/static/images/icon_fit.png" alt="shoe fit icon" />
+                        </span>
                         <div class="info">
                           <span class="has-text-grey">Fit&nbsp;</span>
                           <h5 style="clear: both;">
@@ -212,6 +216,8 @@ import { mapGetters } from 'vuex';
 import { capitalize } from '@/filters';
 
 import ComponentLoader from '@/components/ComponentLoader';
+import SvgIcon from '@/components/SvgIcon';
+
 import EditItemModal from './EditItemModal';
 import ConfirmDeleteModal from './ConfirmDeleteModal';
 import ItemListSearchSort from './ItemListSearchSort';
@@ -228,6 +234,7 @@ export default {
     ConfirmDeleteModal,
     ItemListSearchSort,
     ProfileAddItemForm,
+    SvgIcon,
   },
   props: [],
   data() {
@@ -333,13 +340,6 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.icon {
-  font-size: 32px;
-  float: left;
-  color: $aqua;
-  opacity: 0.25;
-  width: 25px;
-}
 .info {
   float: left;
   margin-left: 0.55em;
@@ -347,9 +347,6 @@ export default {
 span.info-label {
   display: block;
   clear: both;
-}
-img.icon {
-  margin-top: 12px;
 }
 .item_block_image {
   margin: 0 auto;
@@ -430,13 +427,6 @@ img.icon {
     font-size: 90%;
     margin-bottom: 0px;
   }
-  .icon {
-    font-size: 32px;
-    float: left;
-    color: $aqua;
-    opacity: 0.25;
-    width: 25px;
-  }
   .info {
     float: left;
     margin-left: 0.65em;
@@ -444,9 +434,6 @@ img.icon {
   span.info_label {
     display: block;
     clear: both;
-  }
-  img.icon {
-    margin-top: 12px;
   }
 }
 </style>

@@ -16,7 +16,9 @@
           </div>
           <div class="control">
             <a class="button is-info" @click="filterValue">
-              <span class="fi-magnifying-glass"></span>
+              <span class="icon-wrapper">
+                <svg-icon icon="fi-magnifying-glass" :has-fill="true"></svg-icon>
+              </span>
             </a>
           </div>
         </div>
@@ -77,9 +79,11 @@
 </template>
 
 <script>
+import SvgIcon from '@/components/SvgIcon';
+
 export default {
   name: 'ItemListSearchSortServer',
-  components: {},
+  components: { SvgIcon },
   props: {
     pagetype: {
       type: String,

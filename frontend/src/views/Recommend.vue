@@ -48,7 +48,9 @@
             :class="{ 'is-active': currentStep == 3, 'has-gaps': currentStep <= 3 }"
           >
             <span class="steps-marker">
-              <i class="fi-check large icon"></i>
+              <span>
+                <svg-icon icon="fi-check" :has-fill="true"></svg-icon>
+              </span>
             </span>
             <div class="steps-content">
               <h4 class="step-heading">Your Shoe</h4>
@@ -277,6 +279,7 @@ import FootShapeModal from '@/components/FootShapeModal';
 
 import MultiSelectMinimal from '@/components/MultiSelectMinimal';
 import RecommendedShoesCards from '@/components/RecommendedShoesCards';
+import SvgIcon from '@/components/SvgIcon';
 
 import SportTradOptions from '@/mixins/SportTradOptions';
 import BoulderOptions from '@/mixins/BoulderOptions';
@@ -285,7 +288,7 @@ import GenderOptions from '@/mixins/GenderOptions';
 
 export default {
   name: 'Recommend',
-  components: { MultiSelectMinimal, FootShapeModal, RecommendedShoesCards },
+  components: { MultiSelectMinimal, FootShapeModal, RecommendedShoesCards, SvgIcon },
   mixins: [SportTradOptions, BoulderOptions, FootShapeOptions, GenderOptions],
   data() {
     return {
@@ -375,5 +378,11 @@ h4.step-heading {
 }
 h3 {
   margin-bottom: 0.75rem;
+}
+.is-active {
+  .steps-marker {
+    color: $white;
+    fill: $white;
+  }
 }
 </style>
