@@ -5,7 +5,7 @@
         <div class="card has-equal-height">
           <div class="card-content content">
             <div class="box-icon">
-              <span class="icon-wrapper">
+              <span class="icon-wrapper-home-cards">
                 <svg-icon icon="fi-magnifying-glass" :has-fill="true"></svg-icon>
               </span>
             </div>
@@ -29,7 +29,7 @@
         <div class="card has-equal-height">
           <div class="card-content">
             <div class="box-icon">
-              <span class="icon-wrapper">
+              <span class="icon-wrapper-home-cards">
                 <svg-icon icon="fi-pricetag-multiple" :has-fill="true"></svg-icon>
               </span>
             </div>
@@ -50,7 +50,7 @@
         <div class="card has-equal-height">
           <div class="card-content content">
             <div class="box-icon">
-              <span class="icon-wrapper">
+              <span class="icon-wrapper-home-cards">
                 <svg-icon icon="fi-results-demographics" :has-fill="true"></svg-icon>
               </span>
             </div>
@@ -74,7 +74,7 @@
         <div class="card has-equal-height">
           <div class="card-content content">
             <div class="box-icon">
-              <span class="icon-wrapper">
+              <span class="icon-wrapper-home-cards">
                 <svg-icon icon="fi-results-demographics" :has-fill="true"></svg-icon>
               </span>
             </div>
@@ -93,7 +93,7 @@
         <div class="card has-equal-height">
           <div class="card-content">
             <div class="box-icon">
-              <span class="icon-wrapper">
+              <span class="icon-wrapper-home-cards">
                 <svg-icon icon="fi-plus" :has-fill="true"></svg-icon>
               </span>
             </div>
@@ -113,7 +113,7 @@
         <div class="card has-equal-height">
           <div class="card-content content">
             <div class="box-icon">
-              <span class="icon-wrapper">
+              <span class="icon-wrapper-home-cards">
                 <svg-icon icon="fi-magnifying-glass" :has-fill="true"></svg-icon>
               </span>
             </div>
@@ -181,7 +181,7 @@ export default {
   width: 100px;
   margin-top: -61px;
   font-size: 3rem;
-  span.icon-wrapper {
+  span.icon-wrapper-home-cards {
     color: $white;
     display: table-cell;
     text-align: center;
