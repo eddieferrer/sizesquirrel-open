@@ -112,7 +112,7 @@ const router = new Router({
           // the above state is not available here, since it
           // it is resolved asynchronously in the store action
           const { username } = store.getters.user;
-          next(`/profile/${username}`);
+          next(`/profile/${username}`).catch(() => {});
         });
       },
       meta: { requiresAuth: true },
@@ -126,7 +126,7 @@ const router = new Router({
           // it is resolved asynchronously in the store action
           const { username } = store.getters.user;
           // router.push({ path: '/profile/' + username });
-          next(`/profile/${username}#user_details`);
+          next(`/profile/${username}#user_details`).catch(() => {});
         });
       },
       meta: { requiresAuth: true },
@@ -265,6 +265,33 @@ const router = new Router({
     }
     return { x: 0, y: 0 };
   },
+});
+
+router.beforeEach((to, from, next) => {
+  if (to.matched.some((record) => record.meta.requiresAuth)) {
+    // this route requires auth, check if logged in
+    // if not, redirect to login page.
+    if (!store.getters.isAuthenticated) {
+      next({
+        path: '/login',
+        query: { redirect: to.fullPath },
+      });
+    } else {
+      next();
+    }
+  } else if (to.matched.some((record) => record.meta.requiresAdmin)) {
+    store.dispatch('GET_USER').then(() => {
+      if (!store.getters.isAdmin) {
+        next({
+          path: '/notauthorized',
+        });
+      } else {
+        next();
+      }
+    });
+  } else {
+    next(); // make sure to always call next()!
+  }
 });
 
 const isProd = process.env.NODE_ENV === 'production';
