@@ -150,36 +150,8 @@ import PWAUpdateButton from '@/components/PWAUpdateButton';
 import NavBar from '@/components/NavBar';
 import ItemMatchForm from '@/components/ItemMatchForm';
 import ShoeBuddies from '@/components/ShoeBuddies';
-import store from '@/store/store';
 
 import router from '@/router';
-
-router.beforeEach((to, from, next) => {
-  if (to.matched.some((record) => record.meta.requiresAuth)) {
-    // this route requires auth, check if logged in
-    // if not, redirect to login page.
-    if (!store.getters.isAuthenticated) {
-      next({
-        path: '/login',
-        query: { redirect: to.fullPath },
-      });
-    } else {
-      next();
-    }
-  } else if (to.matched.some((record) => record.meta.requiresAdmin)) {
-    store.dispatch('GET_USER').then(() => {
-      if (!store.getters.isAdmin) {
-        next({
-          path: '/notauthorized',
-        });
-      } else {
-        next();
-      }
-    });
-  } else {
-    next(); // make sure to always call next()!
-  }
-});
 
 export default {
   name: 'App',
