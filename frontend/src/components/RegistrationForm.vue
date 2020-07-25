@@ -205,11 +205,13 @@ export default {
           username,
         })
         .then((response) => {
-          this.$router.push({
-            name: 'profile',
-            params: { username: response.data.username },
-            query: { new: '1' },
-          });
+          this.$router
+            .push({
+              name: 'profile',
+              params: { username: response.data.username },
+              query: { new: '1' },
+            })
+            .catch(() => {});
         })
         .catch((error) => {
           this.registration_error = 'Registration error';

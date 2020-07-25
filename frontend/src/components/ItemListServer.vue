@@ -295,12 +295,14 @@ export default {
     });
 
     this.$on('resetAll', () => {
-      this.$router.push({
-        name: this.pagetype,
-        query: {
-          page: 1,
-        },
-      });
+      this.$router
+        .push({
+          name: this.pagetype,
+          query: {
+            page: 1,
+          },
+        })
+        .catch(() => {});
     });
   },
   methods: {
@@ -309,10 +311,12 @@ export default {
       this.updateRoute();
     },
     updateRoute() {
-      this.$router.push({
-        name: this.pagetype,
-        query: this.queryParams,
-      });
+      this.$router
+        .push({
+          name: this.pagetype,
+          query: this.queryParams,
+        })
+        .catch(() => {});
     },
     resetPages() {
       this.changePage(1);
