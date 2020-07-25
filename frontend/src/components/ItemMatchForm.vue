@@ -123,19 +123,23 @@ export default {
       // When doing a hard refresh on browser,
       // these values are coming from $route.query as strings
       if (this.isAuthenticated) {
-        this.$router.push({
-          path: '/match',
-          query: { want_item_id: this.wantitem.id.toString() },
-        });
+        this.$router
+          .push({
+            path: '/match',
+            query: { want_item_id: this.wantitem.id.toString() },
+          })
+          .catch(() => {});
       } else {
-        this.$router.push({
-          path: '/public_match',
-          query: {
-            want_item_id: this.wantitem.id.toString(),
-            have_item_id: this.haveitem.id.toString(),
-            size: this.urlContextMatch.size.toString(),
-          },
-        });
+        this.$router
+          .push({
+            path: '/public_match',
+            query: {
+              want_item_id: this.wantitem.id.toString(),
+              have_item_id: this.haveitem.id.toString(),
+              size: this.urlContextMatch.size.toString(),
+            },
+          })
+          .catch(() => {});
       }
     },
   },
