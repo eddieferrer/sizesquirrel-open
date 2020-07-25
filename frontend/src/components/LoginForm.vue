@@ -110,7 +110,7 @@ export default {
         .dispatch('AUTH_REQUEST', { username, password })
         .then(() => {
           const nextRoute = this.getParameterByName('redirect') || '/my_profile/';
-          this.$router.push({ path: nextRoute });
+          this.$router.push({ path: nextRoute }).catch(() => {});
         })
         .catch((error) => {
           this.login_error = error.response.data.message || error;
