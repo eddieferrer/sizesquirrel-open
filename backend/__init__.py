@@ -1,7 +1,10 @@
 import os
 import logging
 import sentry_sdk
+
 from sentry_sdk.integrations.logging import LoggingIntegration
+from sentry_sdk.integrations.flask import FlaskIntegration
+from sentry_sdk.integrations.sqlalchemy import SqlalchemyIntegration
 
 from logging.handlers import RotatingFileHandler
 from flask import Flask, current_app
@@ -24,7 +27,7 @@ if app.debug is not True:
     )
     sentry_sdk.init(
         dsn=app.config['SENTRY_DSN'],
-        integrations=[sentry_logging]
+        integrations=[sentry_logging, FlaskIntegration(), SqlalchemyIntegration()]
     )
 
 # Initialize Cache
