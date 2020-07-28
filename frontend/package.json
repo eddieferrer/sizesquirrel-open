@@ -12,7 +12,7 @@
   },
   "dependencies": {
     "@sentry/browser": "^5.20.1",
-    "@sentry/integrations": "^5.18.1",
+    "@sentry/integrations": "^5.20.1",
     "axios": "^0.19.2",
     "bulma": "^0.7.5",
     "bulma-divider": "^0.2.0",
