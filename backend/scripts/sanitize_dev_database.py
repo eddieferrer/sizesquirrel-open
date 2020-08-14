@@ -31,7 +31,11 @@ def sanitize_dev_database():
         if user_item.user_id > 1500:
             db.session.delete(user_item)
         else:
-            user_item.comments = ' '.join(random.sample(words, random.randint(4,140)))
+            # Leave some comments blank
+            if (random.randint(0,10) < 8):
+                user_item.comments = ' '.join(random.sample(words, random.randint(4,140)));
+            else:
+                 user_item.comments = '';
 
     # Randomize user name, username, emails, password hash, tokens, and provider_id
     users = User.query.all()
@@ -39,7 +43,7 @@ def sanitize_dev_database():
         mailSuffixes = ['@gmail.com', '@outlook.com', '@hotmail.com', '@mail.com']
         first_name = name_words[random.randint(0, len(name_words))-1] 
         last_name = name_words[random.randint(0, len(name_words))-1] 
-        rand_email = str.lower(last_name) + str(random.randint(0,100)) + mailSuffixes[random.randint(0, len(mailSuffixes))-1]
+        rand_email = str.lower(last_name) + str(random.randint(0,200)) + mailSuffixes[random.randint(0, len(mailSuffixes))-1]
         username = username_words[random.randint(0, len(username_words))-1] + str(random.randint(0,100));
         
         user.username = username;
