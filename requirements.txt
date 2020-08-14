@@ -25,7 +25,7 @@ passlib==1.7.2
 pyparsing==2.4.7
 python-dateutil==2.8.1
 python-editor==1.0.4
-regex==2020.1.8
+regex==2020.7.14
 requests==2.22.0
 sentry-sdk==0.16.2
 six==1.13.0
