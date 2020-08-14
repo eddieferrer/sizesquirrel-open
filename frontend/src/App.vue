@@ -391,4 +391,9 @@ progress {
     float: right !important;
   }
 }
+.icon-wrapper-search {
+  color: $white;
+  fill: $white;
+  font-size: 25px;
+}
 </style>
