@@ -16,7 +16,7 @@
           </div>
           <div class="control">
             <a class="button is-info" @click="filterValue">
-              <span class="icon-wrapper">
+              <span class="icon-wrapper-search">
                 <svg-icon icon="fi-magnifying-glass" :has-fill="true"></svg-icon>
               </span>
             </a>
@@ -198,9 +198,5 @@ form {
 .select select,
 .textarea {
   height: 2.5em;
-}
-.fi-magnifying-glass {
-  font-size: 25px;
-  margin-top: 2px;
 }
 </style>
