@@ -48,16 +48,16 @@ DATA_FEED_INFO_ARRAY = [
         'retailer_short_name': 'backcountry'
     },
     {
-        'datafeed': get_datafeed('blackdiamondequipment'),
-        'retailer_logo': 'https://static.avantlink.com/merchant-logos/16109.png',
-        'retailer_name': 'Black Diamond Equipment',
-        'retailer_short_name': 'blackdiamondequipment'
-    },
-    {
         'datafeed': get_datafeed('bentgate'),
         'retailer_logo': 'https://static.avantlink.com/merchant-logos/11741.png',
         'retailer_name': 'Bent Gate',
         'retailer_short_name': 'bentgate'
+    },
+    {
+        'datafeed': get_datafeed('blackdiamondequipment'),
+        'retailer_logo': 'https://static.avantlink.com/merchant-logos/16109.png',
+        'retailer_name': 'Black Diamond Equipment',
+        'retailer_short_name': 'blackdiamondequipment'
     },
     {
         'datafeed': get_datafeed('campsaver'),
@@ -88,6 +88,18 @@ DATA_FEED_INFO_ARRAY = [
         'retailer_logo': 'https://static.avantlink.com/merchant-logos/10086.png',
         'retailer_name': 'Moosejaw',
         'retailer_short_name': 'moosejaw'
+    },
+    {
+        'datafeed': get_datafeed('mountainsteals'),
+        'retailer_logo': 'https://static.avantlink.com/merchant-logos/14683.png',
+        'retailer_name': 'Mountain Steals',
+        'retailer_short_name': 'mountainsteals'
+    },
+    {
+        'datafeed': get_datafeed('outdoorgearexchange'),
+        'retailer_logo': 'https://static.avantlink.com/merchant-logos/14967.png',
+        'retailer_name': 'Outdoor Gear Exchange',
+        'retailer_short_name': 'outdoorgearexchange'
     },
     {
         'datafeed': get_datafeed('rei'),
@@ -214,6 +226,16 @@ def process_data_feeds(target_feed, sendDiscountItems = False, sendMissingItems 
                         data_feed_info["Product"]["Retail_Price"] == product["Retail_Price"] and \
                         data_feed_info["Product"]["Brand_Name"] == product["Brand_Name"] and \
                         data_feed_info["Product"]["SKU"][0:7] == product["SKU"][0:7]:
+                        productAlreadyAdded = True   
+
+                    # Takes care of some datafeeds which have 1 product with different names per size and skus
+                    # for example Outdoor Gear Exchange
+                    if data_feed_info["Retailer_Name"] == 'Outdoor Gear Exchange' and \
+                        feed["retailer_name"] == 'Outdoor Gear Exchange' and \
+                        data_feed_info["Product"]["Sale_Price"] == product["Sale_Price"] and \
+                        data_feed_info["Product"]["Retail_Price"] == product["Retail_Price"] and \
+                        data_feed_info["Product"]["Brand_Name"] == product["Brand_Name"] and \
+                        data_feed_info["Product"]["SKU"][0:5] == product["SKU"][0:5]:
                         productAlreadyAdded = True                        
                 # end special code for feeds that have 2 entries for same product
 
@@ -409,7 +431,7 @@ def clean_up_feed(feed):
 
     if feed["retailer_short_name"] == 'lasportiva':
         for product in feed["datafeed"][:]:
-            # fix missing brand name in BD feed
+            # fix missing brand name in La Sportiva feed
             product["Brand_Name"] = 'La Sportiva'
             # remove non climbing items
             if "Long_Description" in product and \
@@ -420,13 +442,14 @@ def clean_up_feed(feed):
 
     if feed["retailer_short_name"] == 'adidas_outdoor':
         for product in feed["datafeed"][:]:
-            # remove non climbing items
+            # remove non shoe items
             if "SHOE" not in product["Product_Name"] and \
                 "Shoe" not in product["Product_Name"] and \
                 "Boot" not in product["Product_Name"] and \
                 "BOOT" not in product["Product_Name"]:
                 feed["datafeed"].remove(product)
     # End Fix Feeds
+
     if feed["retailer_name"] == 'rei':
         for product in feed["datafeed"]:
             # REI messed up their datafeed, including 2 properties BrandName per product, this hack fixes that

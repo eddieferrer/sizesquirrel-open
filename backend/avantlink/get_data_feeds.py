@@ -26,16 +26,19 @@ def get_data_feeds():
     # Eastern Mountain Sports
     urlOpener.retrieve("http://datafeed.avantlink.com/download_feed.php?id=247395&auth=" + current_app.config['AVANT_LINK_AUTH_TOKEN'],
                        current_app.config['DATAFEED_PATH'] + "/ems_datafeed.xml")
+    # LaSportiva
+    urlOpener.retrieve("http://datafeed.avantlink.com/download_feed.php?id=262033&auth=" + current_app.config['AVANT_LINK_AUTH_TOKEN'],
+                       current_app.config['DATAFEED_PATH'] + "/lasportiva_datafeed.xml")
     # Left Lane Sports
     urlOpener.retrieve("http://datafeed.avantlink.com/download_feed.php?id=255397&auth=" + current_app.config['AVANT_LINK_AUTH_TOKEN'],
                        current_app.config['DATAFEED_PATH'] + "/leftlanesports_datafeed.xml")
     # Moosejaw
     urlOpener.retrieve("http://datafeed.avantlink.com/download_feed.php?id=247387&auth=" + current_app.config['AVANT_LINK_AUTH_TOKEN'],
                        current_app.config['DATAFEED_PATH'] + "/moosejaw_datafeed.xml")
-    # TODO Mountain Steals
+    # Mountain Steals
     urlOpener.retrieve("http://datafeed.avantlink.com/download_feed.php?id=259517&auth=" + current_app.config['AVANT_LINK_AUTH_TOKEN'],
                        current_app.config['DATAFEED_PATH'] + "/mountainsteals_datafeed.xml")
-    # TODO Outdoor Gear Exchange
+    # Outdoor Gear Exchange
     urlOpener.retrieve("http://datafeed.avantlink.com/download_feed.php?id=249021&auth=" + current_app.config['AVANT_LINK_AUTH_TOKEN'],
                        current_app.config['DATAFEED_PATH'] + "/outdoorgearexchange_datafeed.xml")
     # REI
@@ -44,10 +47,5 @@ def get_data_feeds():
     # The Clymb
     urlOpener.retrieve("http://datafeed.avantlink.com/download_feed.php?id=255401&auth=" + current_app.config['AVANT_LINK_AUTH_TOKEN'],
                        current_app.config['DATAFEED_PATH'] + "/theclymb_datafeed.xml")
-    # TODO US Outdoor Store
-    urlOpener.retrieve("http://datafeed.avantlink.com/download_feed.php?id=249137&auth=" + current_app.config['AVANT_LINK_AUTH_TOKEN'],
-                       current_app.config['DATAFEED_PATH'] + "/usoutdoorstore_datafeed.xml")
-    # LaSportiva
-    urlOpener.retrieve("http://datafeed.avantlink.com/download_feed.php?id=262033&auth=" + current_app.config['AVANT_LINK_AUTH_TOKEN'],
-                       current_app.config['DATAFEED_PATH'] + "/lasportiva_datafeed.xml")
+
     print("Done Getting Data Feeds...")
