@@ -11,13 +11,15 @@ else:
 argument_list = [
     '--feed=adidas_outdoor', 
     '--feed=backcountry',
-    '--feed=blackdiamondequipment',
     '--feed=bentgate', 
+    '--feed=blackdiamondequipment',
     '--feed=campsaver',     
     '--feed=ems', 
     '--feed=lasportiva', 
     '--feed=leftlanesports',     
     '--feed=moosejaw', 
+    '--feed=mountainsteals', 
+    '--feed=outdoorgearexchange',
     '--feed=rei',     
     '--feed=theclymb'
 ]
