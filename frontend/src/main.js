@@ -2,12 +2,14 @@ import Vue from 'vue';
 import axios from 'axios';
 import * as Sentry from '@sentry/browser';
 import * as Integrations from '@sentry/integrations';
+import { VLazyImagePlugin } from 'v-lazy-image';
 
 import App from './App.vue';
 import router from './router';
 import store from './store/store';
 import './registerServiceWorker';
-import 'lazysizes';
+
+Vue.use(VLazyImagePlugin);
 
 if (process.env.NODE_ENV === 'production') {
   Sentry.init({

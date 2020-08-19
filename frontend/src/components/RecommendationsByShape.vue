@@ -23,11 +23,13 @@
               <div class="column is-full-mobile is-one-quarter-tablet">
                 <div class="item_block_image">
                   <span>
-                    <img
+                    <v-lazy-image
                       class="lazyload"
                       loading="lazy"
-                      :src="'/static/images/placeholder_' + recommendation.item.type + '.png'"
-                      :data-src="recommendation.item.shoe_image"
+                      :src-placeholder="
+                        '/static/images/placeholder_' + recommendation.item.type + '.png'
+                      "
+                      :src="recommendation.item.shoe_image"
                       :alt="recommendation.item.brand['name'] + ' ' + recommendation.item.model"
                     />
                   </span>

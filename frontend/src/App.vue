@@ -11,6 +11,19 @@
     <PWAUpdateButton></PWAUpdateButton>
 
     <section class="hero">
+      <v-lazy-image
+        class="hero-img"
+        srcset="
+          /static/images/hero_image_1920w.jpg 1920w,
+          /static/images/hero_image_1366w.jpg 1366w,
+          /static/images/hero_image_980w.jpg   980w,
+          /static/images/hero_image_768w.jpg   768w,
+          /static/images/hero_image_360w.jpg   360w
+        "
+        src-placeholder="/static/images/hero_image_lofi.jpg"
+        src="/static/images/hero_image_980w.jpg"
+        alt="SizeSquirrel"
+      />
       <NavBar />
       <div class="hero-body">
         <div class="container">
@@ -286,15 +299,35 @@ $purple: #3e3895;
 
 //homepage
 .hero {
-  // position: relative;
-  background: url('/static/images/hero_image_2019.jpg') #3c3c3c;
-  background-size: cover;
-  background-position: center center;
-  box-shadow: inset 0px 0px 0 2000px rgba(0, 0, 0, 0.4);
+  overflow: hidden;
+  position: relative;
+
+  .hero-body {
+    box-shadow: inset 0px 0px 0 2000px rgba(0, 0, 0, 0.4);
+    position: relative;
+  }
+
+  .hero-img {
+    position: absolute;
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+  }
+
   h4,
   span {
     color: $white;
   }
+}
+
+//lazy hero image
+.v-lazy-image {
+  filter: blur(10px);
+  transition: filter 0.7s;
+}
+
+.v-lazy-image-loaded {
+  filter: blur(0);
 }
 
 .intro-text {
@@ -312,7 +345,7 @@ $purple: #3e3895;
 }
 
 footer {
-  background: url('/static/images/hero_image_2019.jpg');
+  background: url('/static/images/hero_image_footer.jpg');
   box-shadow: inset 0px 0px 0 2000px rgba(0, 0, 0, 0.4);
   background-position: center center;
   background-size: cover;

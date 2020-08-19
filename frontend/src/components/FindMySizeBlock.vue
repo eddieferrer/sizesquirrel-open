@@ -4,11 +4,11 @@
       <div class="column is-full-mobile is-one-fifth-tablet">
         <div class="item_block_image">
           <span>
-            <img
+            <v-lazy-image
               class="lazyload"
               loading="lazy"
-              :src="'/static/images/placeholder_' + shoe.type + '.png'"
-              :data-src="shoe.shoe_image"
+              :src-placeholder="'/static/images/placeholder_' + shoe.type + '.png'"
+              :src="shoe.shoe_image"
               :alt="shoe.brand.name + shoe.model"
             />
           </span>

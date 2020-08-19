@@ -33,13 +33,13 @@
                   <div class="column is-one-fifth-desktop is-one-quarter-tablet is-full-mobile">
                     <div class="item_block_image">
                       <span>
-                        <img
+                        <v-lazy-image
                           class="lazyload"
                           loading="lazy"
-                          :src="
+                          :src-placeholder="
                             '/static/images/placeholder_' + user_item.user_item.item.type + '.png'
                           "
-                          :data-src="user_item.user_item.item.shoe_image"
+                          :src="user_item.user_item.item.shoe_image"
                           :alt="
                             user_item.user_item.item.brand.name + user_item.user_item.item.model
                           "

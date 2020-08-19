@@ -58,11 +58,11 @@
           <div class="column is-full-mobile is-one-quarter-tablet">
             <div class="item_block_image">
               <span>
-                <img
+                <v-lazy-image
                   class="lazyload"
                   loading="lazy"
-                  :src="'/static/images/placeholder_' + targetItem.type + '.png'"
-                  :data-src="targetItem.shoe_image"
+                  :src-placeholder="'/static/images/placeholder_' + targetItem.type + '.png'"
+                  :src="targetItem.shoe_image"
                   :alt="targetItem.brand['name'] + ' ' + targetItem.model"
                 />
               </span>

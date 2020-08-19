@@ -24,11 +24,11 @@
       <template slot="option" slot-scope="props">
         <div class="option_wrapper">
           <div class="option_img">
-            <img
+            <v-lazy-image
               class="lazyload"
               loading="lazy"
-              :src="'/static/images/placeholder_' + props.option.type + '.png'"
-              :data-src="props.option.shoe_image"
+              :src-placeholder="'/static/images/placeholder_' + props.option.type + '.png'"
+              :src="props.option.shoe_image"
               :alt="props.option.brand['name'] + ' ' + props.option.model"
             />
           </div>
