@@ -92,7 +92,7 @@ module.exports = {
     loaderOptions: {
       sass: {
         // Inject these css files into all component styles
-        data: `
+        additionalData: `
           @import '@/scss/colors.scss';
         `,
       },
