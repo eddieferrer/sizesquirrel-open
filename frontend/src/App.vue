@@ -379,10 +379,6 @@ hr.thin-hr {
   // background-color: $grey-lighter !important;
 }
 
-.fb_wrapper {
-  text-align: center;
-}
-
 //used for encrypting email address
 .cryptedmail:after {
   content: attr(data-name) '@' attr(data-domain) '.' attr(data-tld);

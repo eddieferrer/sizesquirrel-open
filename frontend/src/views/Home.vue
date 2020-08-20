@@ -1,6 +1,7 @@
 <template>
   <div>
     <div id="fb-root"></div>
+    <div id="fb-script"></div>
 
     <div class="container">
       <h2 v-if="isAuthenticated" class="is-size-4 has-text-centered has-text-primary">
@@ -23,16 +24,17 @@
           <h2 class="is-size-4 has-text-centered has-text-primary">News</h2>
           <h5 class="is-size-5 has-text-centered">Updates from Facebook</h5>
           <hr />
-          <div class="fb_wrapper">
+          <div class="has-text-centered">
             <div
               class="fb-page"
               data-href="https://www.facebook.com/sizesquirrel/"
               data-tabs="timeline"
-              data-height="300"
-              data-small-header="true"
+              data-width="500"
+              data-height="400"
+              data-small-header="false"
               data-adapt-container-width="true"
-              data-hide-cover="false"
-              data-show-facepile="false"
+              data-hide-cover="true"
+              data-show-facepile="true"
             >
               <blockquote
                 cite="https://www.facebook.com/sizesquirrel/"
@@ -43,6 +45,7 @@
             </div>
           </div>
         </div>
+
         <div class="column">
           <h2 class="is-size-4 has-text-centered has-text-primary">Contact Us</h2>
           <h5 class="is-size-5 has-text-centered">We'd love to hear from you</h5>
@@ -74,6 +77,9 @@
 </template>
 
 <script>
+/* eslint-disable no-useless-escape */
+import postscribe from 'postscribe';
+
 import { mapGetters } from 'vuex';
 
 import PopularShoes from '@/components/PopularShoes';
@@ -93,16 +99,10 @@ export default {
     ...mapGetters(['isAuthenticated']),
   },
   mounted() {
-    // eslint-disable-next-line func-names
-    (function (d, s, id) {
-      const fjs = d.getElementsByTagName(s)[0];
-      if (d.getElementById(id)) return;
-      const js = d.createElement(s);
-      js.id = id;
-      js.src =
-        'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.0&appId=943851385727348&autoLogAppEvents=1';
-      fjs.parentNode.insertBefore(js, fjs);
-    })(document, 'script', 'facebook-jssdk');
+    postscribe(
+      '#fb-script',
+      `<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v8.0&appId=943851385727348&autoLogAppEvents=1" nonce="eIcxmal8"><\/script>`
+    );
   },
 };
 </script>
