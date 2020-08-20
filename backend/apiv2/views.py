@@ -28,12 +28,13 @@ def verify_token(token):
     user = User.query.filter_by(token=token).first()
     if user:
         g.current_user = user
-
         if user.date_last_login < datetime.datetime.utcnow() - datetime.timedelta(1):
             user.date_last_login = datetime.datetime.now()
             db.session.commit()
+        return g.current_user.username
+    else:
+        return False
 
-    return g.current_user is not None
 
 # /apiv2/brand/
 
