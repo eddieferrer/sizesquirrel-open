@@ -5,7 +5,7 @@ function recursivelyRemoveFill(el) {
     return;
   }
   el.removeAttribute('fill');
-  [].forEach.call(el.children, (child) => {
+  [].slice.call(el.children).forEach((child) => {
     recursivelyRemoveFill(child);
   });
 }
