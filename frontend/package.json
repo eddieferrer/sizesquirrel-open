@@ -24,7 +24,7 @@
     "v-lazy-image": "^1.4.0",
     "vue": "^2.6.11",
     "vue-analytics": "^5.22.1",
-    "vue-loading-overlay": "^3.3.2",
+    "vue-loading-overlay": "^3.3.3",
     "vue-meta": "^2.4.0",
     "vue-multiselect": "^2.1.6",
     "vue-router": "^3.4.3",
