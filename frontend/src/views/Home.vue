@@ -66,9 +66,9 @@
               data-tld="com"
               href="#"
               class="cryptedmail"
+              aria-label="email"
               onclick="window.location.href = 'mailto:' + this.dataset.name + '@' + this.dataset.domain + '.' + this.dataset.tld"
-              >email</a
-            >
+            ></a>
           </p>
         </div>
       </div>

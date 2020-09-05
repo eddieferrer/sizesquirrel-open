@@ -70,7 +70,7 @@
                       <div class="columns is-multiline">
                         <div class="column is-full-mobile is-narrow is-clearfix">
                           <span class="icon-wrapper">
-                            <svg-icon icon="fi-torso" :has-fill="true"></svg-icon>
+                            <svg-icon icon="fi-torso"></svg-icon>
                           </span>
                           <div class="info">
                             <span class="info-label is-size-6 has-text-grey">Popularity</span>
@@ -83,7 +83,7 @@
                         <div class="column is-full-mobile is-narrow is-clearfix">
                           <div>
                             <span class="icon-wrapper">
-                              <svg-icon icon="fi-star" :has-fill="true"></svg-icon>
+                              <svg-icon icon="fi-star"></svg-icon>
                             </span>
                             <div class="info">
                               <span class="info-label is-size-6 has-text-grey">Average Rating</span>

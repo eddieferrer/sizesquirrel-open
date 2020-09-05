@@ -13,11 +13,11 @@
           data-name="eddie"
           data-domain="sizesquirrel"
           data-tld="com"
+          aria-label="email"
           href="#"
           class="cryptedmail"
           onclick="window.location.href = 'mailto:' + this.dataset.name + '@' + this.dataset.domain + '.' + this.dataset.tld"
-          >email</a
-        >
+        ></a>
         and we will add the shoe to the site.
       </p>
 
@@ -57,10 +57,10 @@
           data-domain="sizesquirrel"
           data-tld="com"
           href="#"
+          aria-label="email"
           class="cryptedmail"
           onclick="window.location.href = 'mailto:' + this.dataset.name + '@' + this.dataset.domain + '.' + this.dataset.tld"
-          >email</a
-        >
+        ></a>
       </p>
     </div>
   </div>

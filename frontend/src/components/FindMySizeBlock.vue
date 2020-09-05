@@ -53,7 +53,7 @@
       <!-- column is-clearfix is-half-tablet is-one-quarter-desktop -->
       <div class="column is-clearfix is-6">
         <span class="icon-wrapper">
-          <svg-icon icon="fi-torso" :has-fill="true"></svg-icon>
+          <svg-icon icon="fi-torso"></svg-icon>
         </span>
         <div class="info">
           <span class="info-label is-size-6 has-text-grey">Popularity</span>
@@ -66,7 +66,7 @@
       <div class="column is-clearfix is-6">
         <div>
           <span class="icon-wrapper">
-            <svg-icon icon="fi-star" :has-fill="true"></svg-icon>
+            <svg-icon icon="fi-star"></svg-icon>
           </span>
           <div class="info">
             <span class="info-label is-size-6 has-text-grey">Average Rating</span>

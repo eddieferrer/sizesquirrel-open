@@ -6,7 +6,7 @@
           <div class="card-content content">
             <div class="box-icon">
               <span class="icon-wrapper-home-cards">
-                <svg-icon icon="fi-magnifying-glass" :has-fill="true"></svg-icon>
+                <svg-icon icon="fi-magnifying-glass"></svg-icon>
               </span>
             </div>
             <div class="info_homepage has-text-centered">
@@ -30,7 +30,7 @@
           <div class="card-content">
             <div class="box-icon">
               <span class="icon-wrapper-home-cards">
-                <svg-icon icon="fi-pricetag-multiple" :has-fill="true"></svg-icon>
+                <svg-icon icon="fi-pricetag-multiple"></svg-icon>
               </span>
             </div>
             <div class="info_homepage has-text-centered">
@@ -51,7 +51,7 @@
           <div class="card-content content">
             <div class="box-icon">
               <span class="icon-wrapper-home-cards">
-                <svg-icon icon="fi-results-demographics" :has-fill="true"></svg-icon>
+                <svg-icon icon="fi-results-demographics"></svg-icon>
               </span>
             </div>
             <div class="info_homepage has-text-centered">
@@ -75,7 +75,7 @@
           <div class="card-content content">
             <div class="box-icon">
               <span class="icon-wrapper-home-cards">
-                <svg-icon icon="fi-results-demographics" :has-fill="true"></svg-icon>
+                <svg-icon icon="fi-results-demographics"></svg-icon>
               </span>
             </div>
             <div class="info_homepage has-text-centered">
@@ -94,7 +94,7 @@
           <div class="card-content">
             <div class="box-icon">
               <span class="icon-wrapper-home-cards">
-                <svg-icon icon="fi-plus" :has-fill="true"></svg-icon>
+                <svg-icon icon="fi-plus"></svg-icon>
               </span>
             </div>
             <div class="info_homepage has-text-centered">
@@ -114,7 +114,7 @@
           <div class="card-content content">
             <div class="box-icon">
               <span class="icon-wrapper-home-cards">
-                <svg-icon icon="fi-magnifying-glass" :has-fill="true"></svg-icon>
+                <svg-icon icon="fi-magnifying-glass"></svg-icon>
               </span>
             </div>
             <div class="info_homepage has-text-centered">

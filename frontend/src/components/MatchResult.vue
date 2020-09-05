@@ -103,7 +103,7 @@
             <div class="columns is-multiline">
               <div class="column is-clearfix is-6">
                 <span class="icon-wrapper">
-                  <svg-icon icon="fi-torso" :has-fill="true"></svg-icon>
+                  <svg-icon icon="fi-torso"></svg-icon>
                 </span>
                 <div class="info">
                   <span class="info-label muted">Popularity</span>
@@ -114,7 +114,7 @@
               </div>
               <div class="column is-clearfix is-6">
                 <span class="icon-wrapper">
-                  <svg-icon icon="fi-star" :has-fill="true"></svg-icon>
+                  <svg-icon icon="fi-star"></svg-icon>
                 </span>
                 <div class="info">
                   <span class="info-label muted">Average Rating</span>

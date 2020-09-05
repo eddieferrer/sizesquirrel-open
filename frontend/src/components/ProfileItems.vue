@@ -106,7 +106,7 @@
                     <div class="columns is-multiline is-mobile">
                       <div class="column is-4">
                         <span class="icon-wrapper">
-                          <svg-icon icon="fi-torso" :has-fill="true"></svg-icon>
+                          <svg-icon icon="fi-torso"></svg-icon>
                         </span>
                         <div class="info">
                           <span class="info-label is-size-6 has-text-grey">Rating&nbsp;</span>
