@@ -1,14 +1,14 @@
 <!-- eslint-disable vue/no-v-html -->
 <script>
-function recursivelyRemoveFill(el) {
-  if (!el) {
-    return;
-  }
-  el.removeAttribute('fill');
-  [].slice.call(el.children).forEach((child) => {
-    recursivelyRemoveFill(child);
-  });
-}
+// function recursivelyRemoveFill(el) {
+//   if (!el) {
+//     return;
+//   }
+//   el.removeAttribute('fill');
+//   [].slice.call(el.children).forEach((child) => {
+//     recursivelyRemoveFill(child);
+//   });
+// }
 export default {
   name: 'SvgIcon',
   props: {
@@ -34,10 +34,10 @@ export default {
         .split(' ')
         .map((n) => Number(n));
       const widthToHeight = (viewBox[2] / viewBox[3]).toFixed(2);
-      if (this.hasFill) {
-        // recursively remove all fill attribute of element and its nested children
-        recursivelyRemoveFill(svgElement);
-      }
+      // if (this.hasFill) {
+      //   // recursively remove all fill attribute of element and its nested children
+      //   recursivelyRemoveFill(svgElement);
+      // }
       // set width and height relative to font size
       // if growByHeight is true, height set to 1em else width set to 1em and remaining is calculated based on widthToHeight ratio
       if (this.growByHeight) {

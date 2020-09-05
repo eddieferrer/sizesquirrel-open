@@ -9,6 +9,7 @@
           alt="SizeSquirrel"
         />
       </RouterLink>
+      <span class="navbar-item navbar-item-brand">SizeSquirrel</span>
       <a
         role="button"
         class="navbar-burger burger"
@@ -26,7 +27,6 @@
 
     <div id="navbarBasic" class="navbar-menu" :class="{ 'is-active': isActive }">
       <div class="navbar-start">
-        <span class="navbar-item navbar-item-brand is-hidden-touch">SizeSquirrel</span>
         <span class="navbar-item navbar-item-brand is-hidden-desktop pt-2">&nbsp;</span>
         <RouterLink class="navbar-item" to="/" @click.native="isActive = !isActive"
           >Home</RouterLink
