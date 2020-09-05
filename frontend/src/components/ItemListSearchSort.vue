@@ -17,7 +17,7 @@
           <div class="control">
             <a class="button is-info" @click="filterValue">
               <span class="icon-wrapper-search">
-                <svg-icon icon="fi-magnifying-glass" :has-fill="true"></svg-icon>
+                <svg-icon icon="fi-magnifying-glass"></svg-icon>
               </span>
             </a>
           </div>

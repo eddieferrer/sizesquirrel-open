@@ -49,7 +49,7 @@
           >
             <span class="steps-marker">
               <span>
-                <svg-icon icon="fi-check" :has-fill="true"></svg-icon>
+                <svg-icon icon="fi-check"></svg-icon>
               </span>
             </span>
             <div class="steps-content">

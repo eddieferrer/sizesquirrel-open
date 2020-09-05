@@ -13,7 +13,7 @@
       <div v-if="isMyProfile" class="columns">
         <div class="column is-narrow">
           <span class="icon-wrapper">
-            <svg-icon icon="fi-torso" :has-fill="true"></svg-icon>
+            <svg-icon icon="fi-torso"></svg-icon>
           </span>
         </div>
         <div class="column">
@@ -136,7 +136,7 @@
       <div v-if="!isMyProfile" class="columns">
         <div class="column is-narrow">
           <span class="icon-wrapper">
-            <svg-icon icon="fi-torso" :has-fill="true"></svg-icon>
+            <svg-icon icon="fi-torso"></svg-icon>
           </span>
         </div>
         <div class="column">
