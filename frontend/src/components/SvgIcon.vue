@@ -30,7 +30,6 @@ export default {
         svgElement.setAttribute('width', '1em');
         svgElement.setAttribute('height', `${1 / widthToHeight}em`);
       }
-      svgElement.classList.add('svg-class');
     }
   },
 };
@@ -48,8 +47,5 @@ export default {
   display: inline-flex;
   vertical-align: middle;
   margin-top: -0.2em;
-}
-.svg-class {
-  vertical-align: middle;
 }
 </style>
