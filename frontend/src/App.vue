@@ -299,7 +299,6 @@ $purple: #3e3895;
 
 //homepage
 .hero {
-  overflow: hidden;
   position: relative;
 
   .hero-body {
