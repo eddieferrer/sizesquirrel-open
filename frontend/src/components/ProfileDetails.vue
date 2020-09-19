@@ -258,10 +258,9 @@
 import { mapGetters } from 'vuex';
 
 import SvgIcon from '@/components/SvgIcon';
-
-import FootShapeModal from './FootShapeModal';
-import ChangePasswordModal from './ChangePasswordModal';
-import DeleteAccountModal from './DeleteAccountModal';
+import FootShapeModal from '@/components/FootShapeModal';
+import ChangePasswordModal from '@/components/ChangePasswordModal';
+import DeleteAccountModal from '@/components/DeleteAccountModal';
 
 export default {
   name: 'ProfileDetails',

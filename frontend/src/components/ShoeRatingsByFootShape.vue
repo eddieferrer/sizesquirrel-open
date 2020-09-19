@@ -60,7 +60,7 @@
 <script>
 import { mapGetters } from 'vuex';
 
-import FootShapeModal from './FootShapeModal';
+import FootShapeModal from '@/components/FootShapeModal';
 
 export default {
   name: 'ShoeRatingsByFootShape',

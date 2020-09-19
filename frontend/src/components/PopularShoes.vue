@@ -39,8 +39,8 @@
 import { mapGetters } from 'vuex';
 
 import ComponentLoader from '@/components/ComponentLoader';
-import FindMySizeBlock from './FindMySizeBlock';
-import ShoeTiles from './ShoeTiles';
+import FindMySizeBlock from '@/components/FindMySizeBlock';
+import ShoeTiles from '@/components/ShoeTiles';
 
 export default {
   name: 'PopularShoes',

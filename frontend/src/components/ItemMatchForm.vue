@@ -40,8 +40,9 @@
 import { mapGetters } from 'vuex';
 
 import SizeOptions from '@/mixins/SizeOptions';
-import MultiSelectItems from './MultiSelectItems';
-import MultiSelectSize from './MultiSelectSize';
+
+import MultiSelectItems from '@/components/MultiSelectItems';
+import MultiSelectSize from '@/components/MultiSelectSize';
 
 export default {
   name: 'ItemMatchForm',

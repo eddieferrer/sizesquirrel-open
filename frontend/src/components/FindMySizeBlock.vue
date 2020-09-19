@@ -184,7 +184,7 @@
 import { mapGetters } from 'vuex';
 
 import SvgIcon from '@/components/SvgIcon';
-import AffiliatePriceBlock from './AffiliatePriceBlock';
+import AffiliatePriceBlock from '@/components/AffiliatePriceBlock';
 
 export default {
   name: 'FindMySizeBlock',
