@@ -274,6 +274,8 @@ export default {
   methods: {
     async routeChange() {
       try {
+        this.$store.commit('STATE_INIT_LOADING');
+
         const initPromises = [];
         if (router.currentRoute.meta && router.currentRoute.meta.requiresContext) {
           initPromises.push(this.$store.dispatch('INITIALIZE_APP'));
@@ -282,7 +284,9 @@ export default {
           initPromises.push(this.$store.dispatch('GET_USER'));
         }
         await Promise.all(initPromises);
+        this.$store.commit('STATE_INIT_DONE');
       } catch {
+        this.$store.commit('STATE_INIT_ERROR');
         this.$store.dispatch('SHOW_FLASH_MESSAGE', {
           class: 'has-background-danger',
           message: 'There has been a fatal server error. Please reload the page.',
@@ -375,7 +379,6 @@ body {
 hr,
 hr.thin-hr {
   margin: 0.6rem 0 0.9rem 0;
-  // background-color: $grey-lighter !important;
 }
 
 //used for encrypting email address

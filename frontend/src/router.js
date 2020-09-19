@@ -253,7 +253,7 @@ const router = new Router({
     { path: '*', redirect: '/404' },
   ],
   scrollBehavior(to, from, savedPosition) {
-    if (to.hash) {
+    if (to.hash && !to.hash.includes('access_token')) {
       return new Promise((resolve) => {
         setTimeout(() => {
           resolve({ selector: to.hash, offset: { x: 0, y: -350 } });

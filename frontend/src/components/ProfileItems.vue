@@ -217,11 +217,10 @@ import { capitalize } from '@/filters';
 
 import ComponentLoader from '@/components/ComponentLoader';
 import SvgIcon from '@/components/SvgIcon';
-
-import EditItemModal from './EditItemModal';
-import ConfirmDeleteModal from './ConfirmDeleteModal';
-import ItemListSearchSort from './ItemListSearchSort';
-import ProfileAddItemForm from './ProfileAddItemForm';
+import EditItemModal from '@/components/EditItemModal';
+import ConfirmDeleteModal from '@/components/ConfirmDeleteModal';
+import ItemListSearchSort from '@/components/ItemListSearchSort';
+import ProfileAddItemForm from '@/components/ProfileAddItemForm';
 
 export default {
   name: 'ProfileItems',

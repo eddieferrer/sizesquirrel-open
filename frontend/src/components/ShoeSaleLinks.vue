@@ -42,9 +42,9 @@
 
 <script>
 import { capitalize } from '@/filters';
-import AffiliatePriceBlock from './AffiliatePriceBlock';
-import AvantLinkAd from './AvantLinkAd';
-import AmazonAd from './AmazonAd';
+import AffiliatePriceBlock from '@/components/AffiliatePriceBlock';
+import AvantLinkAd from '@/components/AvantLinkAd';
+import AmazonAd from '@/components/AmazonAd';
 
 export default {
   name: 'ShoeSaleLinks',

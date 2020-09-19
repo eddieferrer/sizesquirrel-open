@@ -70,9 +70,9 @@
 
 <script>
 import ComponentLoader from '@/components/ComponentLoader';
-import BrandItemListFilters from './BrandItemListFilters';
-import ItemListSearchSort from './ItemListSearchSort';
-import FindMySizeBlock from './FindMySizeBlock';
+import BrandItemListFilters from '@/components/BrandItemListFilters';
+import ItemListSearchSort from '@/components//ItemListSearchSort';
+import FindMySizeBlock from '@/components/FindMySizeBlock';
 
 export default {
   name: 'BrandItems',

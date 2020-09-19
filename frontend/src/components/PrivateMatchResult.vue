@@ -122,8 +122,8 @@
 import { mapGetters } from 'vuex';
 import { titleCase } from '@/filters';
 
-import ShoeComments from './ShoeComments';
-import ShoeRatingsByFootShape from './ShoeRatingsByFootShape';
+import ShoeComments from '@/components/ShoeComments';
+import ShoeRatingsByFootShape from '@/components/ShoeRatingsByFootShape';
 
 export default {
   name: 'PrivateMatchResult',

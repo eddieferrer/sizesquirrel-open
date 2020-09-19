@@ -1,43 +1,33 @@
 import axios from 'axios';
 import { isEmpty } from '@/utils/utils';
 
-const INITIALIZE_APP = (context) =>
-  new Promise((resolve, reject) => {
-    context.commit('STATE_INIT_LOADING');
-    axios({
+const INITIALIZE_APP = async (context) => {
+  try {
+    const initializeApp = await axios({
       url: '/apiv2/context/',
       data: { url: window.location.href },
       method: 'POST',
-    })
-      .then((resp) => {
-        context.commit('SET_CONTEXT', resp.data);
+    });
+    context.commit('SET_CONTEXT', initializeApp.data);
+    const promiseArray = [];
 
-        const promiseArray = [];
+    if (initializeApp.data.model_id_list) {
+      promiseArray.push(context.dispatch('GET_SHOE', initializeApp.data.model_id_list));
+    }
+    if (initializeApp.data.profile_id) {
+      promiseArray.push(context.dispatch('GET_PROFILE', initializeApp.data.profile_id));
+    }
+    if (initializeApp.data.brand_id) {
+      promiseArray.push(context.dispatch('GET_BRAND', initializeApp.data.brand_id));
+    }
+    return await Promise.all(promiseArray);
+  } catch (error) {
+    throw error;
+  }
+};
 
-        if (resp.data.model_id_list) {
-          promiseArray.push(context.dispatch('GET_SHOE', resp.data.model_id_list));
-        }
-        if (resp.data.profile_id) {
-          promiseArray.push(context.dispatch('GET_PROFILE', resp.data.profile_id));
-        }
-        if (resp.data.brand_id) {
-          promiseArray.push(context.dispatch('GET_BRAND', resp.data.brand_id));
-        }
-
-        return Promise.all(promiseArray);
-      })
-      .then((resp) => {
-        context.commit('STATE_INIT_DONE');
-        resolve(resp);
-      })
-      .catch((error) => {
-        context.commit('STATE_INIT_ERROR', error);
-        reject(error);
-      });
-  });
-
-const GET_SHOE = (context, payload) =>
-  new Promise((resolve) => {
+const GET_SHOE = async (context, payload) => {
+  try {
     const responses = [];
     const promiseArray = [];
     payload.forEach((element) => {
@@ -55,84 +45,85 @@ const GET_SHOE = (context, payload) =>
         })
       );
     });
-    Promise.all(promiseArray).then(() => {
-      context.commit('SET_SHOE', responses);
-      resolve();
+    const getShoe = await Promise.all(promiseArray);
+    context.commit('SET_SHOE', responses);
+    return getShoe;
+  } catch (error) {
+    throw error;
+  }
+};
+
+const GET_BRAND = async (context, payload) => {
+  try {
+    const getBrand = await axios({
+      url: `/apiv2/brand/${payload}`,
+      method: 'GET',
     });
-  });
+    context.commit('SET_BRAND', getBrand.data);
+    return getBrand;
+  } catch (error) {
+    throw error;
+  }
+};
 
-const GET_BRAND = (context, payload) =>
-  new Promise((resolve, reject) => {
-    axios({ url: `/apiv2/brand/${payload}`, method: 'GET' })
-      .then((resp) => {
-        context.commit('SET_BRAND', resp.data);
-        resolve(resp);
-      })
-      .catch((error) => {
-        reject(error);
-      });
-  });
-
-const GET_USER = (context) => {
-  return new Promise((resolve, reject) => {
+const GET_USER = async (context) => {
+  try {
     if (isEmpty(context.state.user)) {
-      axios({ url: '/apiv2/auth/user/', method: 'GET' })
-        .then((resp) => {
-          context.commit('SET_USER', resp.data);
-          resolve(resp);
-        })
-        .catch((error) => {
-          reject(error);
-        });
-    } else {
-      resolve({
-        data: context.state.user,
+      const getUser = await axios({
+        url: '/apiv2/auth/user/',
+        method: 'GET',
       });
+      context.commit('SET_USER', getUser.data);
+      return getUser;
     }
-  });
+    return {
+      data: context.state.user,
+    };
+  } catch (error) {
+    throw error;
+  }
 };
 
-const GET_PROFILE = (context, payload) =>
-  new Promise((resolve, reject) => {
-    axios({ url: `/apiv2/user/details/${payload}`, method: 'GET' })
-      .then((resp) => {
-        context.commit('SET_PROFILE', resp.data);
-        resolve(resp);
-      })
-      .catch((error) => {
-        reject(error);
-      });
-  });
+const GET_PROFILE = async (context, payload) => {
+  try {
+    const getProfile = await axios({
+      url: `/apiv2/user/details/${payload}`,
+      method: 'GET',
+    });
+    context.commit('SET_PROFILE', getProfile.data);
+    return getProfile;
+  } catch (error) {
+    throw error;
+  }
+};
 
-const GET_ALL_BRANDS = (context) => {
-  return new Promise((resolve, reject) => {
+const GET_ALL_BRANDS = async (context) => {
+  try {
     if (context.state.allbrands.length === 0) {
-      axios({ url: '/apiv2/brands/', method: 'GET' })
-        .then((resp) => {
-          context.commit('SET_ALL_BRANDS', resp.data);
-          resolve(resp);
-        })
-        .catch((error) => {
-          reject(error);
-        });
-    } else {
-      resolve({
-        data: context.state.allbrands,
+      const getAllBrands = await axios({
+        url: '/apiv2/brands/',
+        method: 'GET',
       });
+      context.commit('SET_ALL_BRANDS', getAllBrands.data);
+      return getAllBrands;
     }
-  });
+    return { data: context.state.allbrands };
+  } catch (error) {
+    throw error;
+  }
 };
 
-const GET_SHOE_BUDDIES = (context, payload) =>
-  new Promise((resolve, reject) => {
-    axios({ url: `/apiv2/user/shoebuddies/${payload}`, method: 'GET' })
-      .then((resp) => {
-        resolve(resp);
-      })
-      .catch((error) => {
-        reject(error);
-      });
-  });
+const GET_SHOE_BUDDIES = async (context, payload) => {
+  try {
+    const getShoeBuddies = await axios({
+      url: `/apiv2/user/shoebuddies/${payload}`,
+      method: 'GET',
+    });
+    return getShoeBuddies;
+  } catch (error) {
+    throw error;
+  }
+};
 
 const SHOW_FLASH_MESSAGE = (context, payload) => {
   window.scrollTo(0, 0);
@@ -143,120 +134,138 @@ const RESET_FLASH_MESSAGE = (context) => {
   context.commit('SET_FLASH_MESSAGE', {});
 };
 
-const FB_REGISTER = (context, payload) =>
-  new Promise((resolve, reject) => {
-    // The Promise used for router redirect in login
-    axios({ url: '/apiv2/auth/facebookregister/', data: payload, method: 'POST' })
-      .then((resp) => {
-        localStorage.setItem('user-token', resp.data.token); // store the resp.data.token in localstorage
-        axios.defaults.headers.common.Authorization = `Bearer ${resp.data.token}`;
-        context.commit('AUTH_SUCCESS', resp.data.token);
-        resolve(resp);
-      })
-      .catch((error) => {
-        localStorage.removeItem('user-token'); // if the request fails, remove any possible user token if possible
-        reject(error);
-      });
-  });
+const FB_REGISTER = async (context, payload) => {
+  try {
+    const fbRegister = await axios({
+      url: '/apiv2/auth/facebookregister/',
+      data: payload,
+      method: 'POST',
+    });
+    // store the authFBLogin.data.token in localstorage
+    localStorage.setItem('user-token', fbRegister.data.token);
+    axios.defaults.headers.common.Authorization = `Bearer ${fbRegister.data.token}`;
+    context.commit('AUTH_SUCCESS', fbRegister.data.token);
+    return fbRegister;
+  } catch (error) {
+    // if the request fails, remove any possible user token if possible
+    localStorage.removeItem('user-token');
+    throw error;
+  }
+};
 
-const AUTH_FB_LOGIN = (context, payload) =>
-  new Promise((resolve, reject) => {
-    // The Promise used for router redirect in login
-    axios({ url: '/apiv2/auth/facebooklogin/', data: payload, method: 'POST' })
-      .then((resp) => {
-        localStorage.setItem('user-token', resp.data.token); // store the resp.data.token in localstorage
-        axios.defaults.headers.common.Authorization = `Bearer ${resp.data.token}`;
-        context.commit('AUTH_SUCCESS', resp.data.token);
-        resolve(resp);
-      })
-      .catch((error) => {
-        localStorage.removeItem('user-token'); // if the request fails, remove any possible user token if possible
-        reject(error);
-      });
-  });
+const AUTH_FB_LOGIN = async (context, payload) => {
+  try {
+    const authFBLogin = await axios({
+      url: '/apiv2/auth/facebooklogin/',
+      data: payload,
+      method: 'POST',
+    });
+    // store the authFBLogin.data.token in localstorage
+    localStorage.setItem('user-token', authFBLogin.data.token);
+    axios.defaults.headers.common.Authorization = `Bearer ${authFBLogin.data.token}`;
+    context.commit('AUTH_SUCCESS', authFBLogin.data.token);
+    return authFBLogin;
+  } catch (error) {
+    // if the request fails, remove any possible user token if possible
+    localStorage.removeItem('user-token');
+    throw error;
+  }
+};
 
-// eslint-disable-next-line no-unused-vars
-const WAIT = (context, payload) =>
-  new Promise((resolve, reject) => {
-    if (payload.resolve) {
-      return setTimeout(() => resolve(), payload.time * 1000);
-    }
-    return setTimeout(() => reject(), payload.time * 1000);
-  });
+// Utility action that waits
+const WAIT = async (context, { time }) => {
+  // await this.$store.dispatch('WAIT', {
+  //   time: 5,
+  // });
+  try {
+    await new Promise((resolve) => {
+      setTimeout(resolve, time * 1000);
+    });
+  } catch (error) {
+    throw error;
+  }
+};
 
-const REGISTER = (context, payload) =>
-  new Promise((resolve, reject) => {
-    axios({ url: '/apiv2/auth/register/', data: payload, method: 'POST' })
-      .then((resp) => {
-        localStorage.setItem('user-token', resp.data.token); // store the resp.data.token in localstorage
-        axios.defaults.headers.common.Authorization = `Bearer ${resp.data.token}`;
-        context.commit('AUTH_SUCCESS', resp.data.token);
-        resolve(resp);
-      })
-      .catch((error) => {
-        localStorage.removeItem('user-token'); // if the request fails, remove any possible user token if possible
-        reject(error);
-      });
-  });
+const REGISTER = async (context, payload) => {
+  try {
+    const register = await axios({
+      url: '/apiv2/auth/register/',
+      data: payload,
+      method: 'POST',
+    });
+    // store the register.data.token in localstorage
+    localStorage.setItem('user-token', register.data.token);
+    axios.defaults.headers.common.Authorization = `Bearer ${register.data.token}`;
+    context.commit('AUTH_SUCCESS', register.data.token);
+    return register;
+  } catch (error) {
+    // if the request fails, remove any possible user token if possible
+    localStorage.removeItem('user-token');
+    throw error;
+  }
+};
 
-const AUTH_LOGOUT = (context) =>
-  new Promise((resolve, reject) => {
-    axios({ url: '/apiv2/auth/logout/', method: 'GET' })
-      .then(() => {
-        context.commit('AUTH_LOGOUT');
-        localStorage.removeItem('user-token'); // clear your user's token from localstorage
-        delete axios.defaults.headers.common.Authorization;
-        resolve();
-      })
-      .catch((err) => {
-        localStorage.removeItem('user-token'); // if the request fails, remove any possible user token if possible
-        reject(err);
-      });
-  });
+const AUTH_LOGOUT = async (context) => {
+  try {
+    const authLogout = await axios({
+      url: '/apiv2/auth/logout/',
+      method: 'GET',
+    });
+    context.commit('AUTH_LOGOUT');
+    // clear your user's token from localstorage
+    localStorage.removeItem('user-token');
+    delete axios.defaults.headers.common.Authorization;
+    return authLogout;
+  } catch (error) {
+    // if the request fails, remove any possible user token if possible
+    localStorage.removeItem('user-token');
+    throw error;
+  }
+};
 
-const AUTH_REQUEST = (context, payload) =>
-  new Promise((resolve, reject) => {
-    axios({ url: '/apiv2/auth/login/', data: payload, method: 'POST' })
-      .then((resp) => {
-        localStorage.setItem('user-token', resp.data.token); // store the resp.data.token in localstorage
-        axios.defaults.headers.common.Authorization = `Bearer ${resp.data.token}`;
-        context.commit('AUTH_SUCCESS', resp.data.token);
-        resolve(resp);
-      })
-      .catch((error) => {
-        localStorage.removeItem('user-token'); // if the request fails, remove any possible user token if possible
-        reject(error);
-      });
-  });
+const AUTH_REQUEST = async (context, payload) => {
+  try {
+    const authRequest = await axios({
+      url: '/apiv2/auth/login/',
+      data: payload,
+      method: 'POST',
+    });
+    // store the authRequest.data.token in localstorage
+    localStorage.setItem('user-token', authRequest.data.token);
+    axios.defaults.headers.common.Authorization = `Bearer ${authRequest.data.token}`;
+    context.commit('AUTH_SUCCESS', authRequest.data.token);
+    return authRequest;
+  } catch (error) {
+    // if the request fails, remove any possible user token if possible
+    localStorage.removeItem('user-token');
+    throw error;
+  }
+};
 
-const POST_LIST_ITEMS = (context, { target, queryParams }) =>
-  new Promise((resolve, reject) => {
-    axios({
+const POST_LIST_ITEMS = async (context, { target, queryParams }) => {
+  try {
+    const postListItems = await axios({
       url: `/apiv2/items/${target}/`,
       method: 'POST',
       data: queryParams,
-    })
-      .then((resp) => {
-        resolve(resp);
-      })
-      .catch((error) => {
-        reject(error);
-      });
-  });
+    });
+    return postListItems;
+  } catch (error) {
+    throw error;
+  }
+};
 
-const GET_LIST_ITEMS = (context, { target }) =>
-  new Promise((resolve, reject) => {
-    axios({
+const GET_LIST_ITEMS = async (context, { target }) => {
+  try {
+    const getListItems = await axios({
       url: `/apiv2/items/${target}/`,
       method: 'GET',
-    })
-      .then((resp) => {
-        resolve(resp);
-      })
-      .catch((error) => {
-        reject(error);
-      });
-  });
+    });
+    return getListItems;
+  } catch (error) {
+    throw error;
+  }
+};
 
 const GET_ADMIN_STATS = async () => {
   try {
@@ -499,7 +508,6 @@ const RECOMMEND_A_SHOE = async (context, { footShape, gender }) => {
 };
 
 export default {
-  ITEM_SEARCH,
   ADD_PROFILE_ITEM,
   AUTH_FB_LOGIN,
   AUTH_LOGOUT,
@@ -509,21 +517,23 @@ export default {
   EDIT_PROFILE_ITEM,
   EDIT_USER_DETAILS,
   FB_REGISTER,
-  PRIVATE_MATCH,
-  PUBLIC_MATCH,
   FORGOT_PASSWORD,
   FORGOT_USERNAME,
   GET_ADMIN_STATS,
   GET_ALL_BRANDS,
   GET_BRAND,
   GET_LIST_ITEMS,
+  GET_POPULAR_SHOES,
   GET_PROFILE,
   GET_SHOE_BUDDIES,
   GET_SHOE,
   GET_USER,
   INITIALIZE_APP,
+  ITEM_SEARCH,
   POST_ADMIN_MATCH_TEST,
   POST_LIST_ITEMS,
+  PRIVATE_MATCH,
+  PUBLIC_MATCH,
   RECOMMEND_A_SHOE,
   REGISTER,
   REMOVE_PROFILE_ITEM,
@@ -531,5 +541,4 @@ export default {
   RESET_PASSWORD,
   SHOW_FLASH_MESSAGE,
   WAIT,
-  GET_POPULAR_SHOES,
 };

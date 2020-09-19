@@ -85,10 +85,9 @@
 
 <script>
 import ComponentLoader from '@/components/ComponentLoader';
-
-import ItemListFiltersServer from './ItemListFiltersServer';
-import ItemListSearchSortServer from './ItemListSearchSortServer';
-import FindMySizeBlock from './FindMySizeBlock';
+import ItemListFiltersServer from '@/components/ItemListFiltersServer';
+import ItemListSearchSortServer from '@/components/ItemListSearchSortServer';
+import FindMySizeBlock from '@/components/FindMySizeBlock';
 
 export default {
   name: 'ItemListServer',

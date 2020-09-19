@@ -180,9 +180,10 @@ import BoulderOptions from '@/mixins/BoulderOptions';
 import SplitShoeSizingOptions from '@/mixins/SplitShoeSizingOptions';
 import FootShapeOptions from '@/mixins/FootShapeOptions';
 import GenderOptions from '@/mixins/GenderOptions';
-import MultiSelectMinimal from './MultiSelectMinimal';
-import MultiSelectSize from './MultiSelectSize';
-import Modal from './Modal';
+
+import Modal from '@/components/Modal';
+import MultiSelectMinimal from '@/components/MultiSelectMinimal';
+import MultiSelectSize from '@/components/MultiSelectSize';
 
 export default {
   name: 'EditUserDetailsModal',

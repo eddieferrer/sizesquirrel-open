@@ -71,10 +71,10 @@
 <script>
 import { mapGetters } from 'vuex';
 
-import MultiSelectSize from './MultiSelectSize';
-import MultiSelectRating from './MultiSelectRating';
-import MultiSelectFit from './MultiSelectFit';
-import MultiSelectItems from './MultiSelectItems';
+import MultiSelectSize from '@/components/MultiSelectSize';
+import MultiSelectRating from '@/components/MultiSelectRating';
+import MultiSelectFit from '@/components/MultiSelectFit';
+import MultiSelectItems from '@/components/MultiSelectItems';
 
 export default {
   name: 'ProfileAddItemForm',

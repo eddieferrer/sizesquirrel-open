@@ -138,7 +138,7 @@ import { mapGetters } from 'vuex';
 import SvgIcon from '@/components/SvgIcon';
 import ComponentLoader from '@/components/ComponentLoader';
 
-import ItemListSearchSort from './ItemListSearchSort';
+import ItemListSearchSort from '@/components/ItemListSearchSort';
 
 export default {
   name: 'ShoeComments',

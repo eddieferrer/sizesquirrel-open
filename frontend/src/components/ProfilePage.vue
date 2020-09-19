@@ -79,10 +79,10 @@
 <script>
 import { mapGetters } from 'vuex';
 
-import ProfileDetails from './ProfileDetails';
-import ProfileItems from './ProfileItems';
-import RecommendationsByShape from './RecommendationsByShape';
-import EditUserDetailsModal from './EditUserDetailsModal';
+import ProfileDetails from '@/components/ProfileDetails';
+import ProfileItems from '@/components/ProfileItems';
+import RecommendationsByShape from '@/components/RecommendationsByShape';
+import EditUserDetailsModal from '@/components/EditUserDetailsModal';
 
 export default {
   name: 'ProfilePage',

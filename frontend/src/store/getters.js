@@ -10,12 +10,7 @@ const brand = (state) => state.brand;
 const profile = (state) => state.profile;
 
 const isAuthenticated = (state) => !!state.token;
-const isAdmin = (state) => {
-  if (state.user.id === 1 && !!state.token && state.user.email === 'eferrer@gmail.com') {
-    return true;
-  }
-  return false;
-};
+
 const isMyProfile = (state) => {
   if (state.user.id === state.profile.id) {
     return true;
@@ -41,11 +36,10 @@ const allbrands = (state) => state.allbrands;
 const contextFlashMessage = (state) => state.context_flash_message;
 
 export default {
-  allitems,
   allbrands,
+  allitems,
   brand,
   contextFlashMessage,
-  isAdmin,
   isAuthenticated,
   isInitialized,
   isLoading,

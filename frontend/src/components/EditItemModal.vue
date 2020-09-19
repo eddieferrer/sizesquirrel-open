@@ -74,11 +74,11 @@
 import SizeOptions from '@/mixins/SizeOptions';
 import RatingOptions from '@/mixins/RatingOptions';
 import FitOptions from '@/mixins/FitOptions';
-import MultiSelectSize from './MultiSelectSize';
-import MultiSelectRating from './MultiSelectRating';
-import MultiSelectFit from './MultiSelectFit';
 
-import Modal from './Modal';
+import Modal from '@/components/Modal';
+import MultiSelectSize from '@/components/MultiSelectSize';
+import MultiSelectRating from '@/components/MultiSelectRating';
+import MultiSelectFit from '@/components/MultiSelectFit';
 
 export default {
   name: 'EditItemModal',
