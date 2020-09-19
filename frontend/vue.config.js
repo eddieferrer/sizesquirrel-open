@@ -97,6 +97,12 @@ module.exports = {
         `,
       },
     },
+    extract:
+      process.env.NODE_ENV === 'production'
+        ? {
+            ignoreOrder: true,
+          }
+        : false,
   },
   pwa: {
     name: 'SizeSquirrel',
