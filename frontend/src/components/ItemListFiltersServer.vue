@@ -7,8 +7,10 @@
           <div class="field accordion-header" @click.prevent.stop="accordionType = !accordionType">
             <label class="label has-text-grey-dark">
               Shoe Type
-              <span v-show="!accordionType" class="is-pulled-right fi-plus"></span>
-              <span v-show="accordionType" class="is-pulled-right fi-minus"></span>
+              <span class="is-pulled-right icon-wrapper-accordion">
+                <svg-icon v-show="!accordionType" icon="fi-plus"></svg-icon>
+                <svg-icon v-show="accordionType" icon="fi-minus"></svg-icon>
+              </span>
             </label>
           </div>
           <div v-show="accordionType" class="field accordion-content">
@@ -32,8 +34,10 @@
           <div class="field accordion-header" @click.prevent.stop="accordionSale = !accordionSale">
             <label class="label has-text-grey-dark">
               Sale
-              <span v-show="!accordionSale" class="is-pulled-right fi-plus"></span>
-              <span v-show="accordionSale" class="is-pulled-right fi-minus"></span>
+              <span class="is-pulled-right icon-wrapper-accordion">
+                <svg-icon v-show="!accordionSale" icon="fi-plus"></svg-icon>
+                <svg-icon v-show="accordionSale" icon="fi-minus"></svg-icon>
+              </span>
             </label>
           </div>
           <div v-show="accordionSale" class="field accordion-content">
@@ -64,8 +68,10 @@
           >
             <label class="label has-text-grey-dark">
               Price
-              <span v-show="!accordionPrice" class="is-pulled-right fi-plus"></span>
-              <span v-show="accordionPrice" class="is-pulled-right fi-minus"></span>
+              <span class="is-pulled-right icon-wrapper-accordion">
+                <svg-icon v-show="!accordionPrice" icon="fi-plus"></svg-icon>
+                <svg-icon v-show="accordionPrice" icon="fi-minus"></svg-icon>
+              </span>
             </label>
           </div>
           <div v-show="accordionPrice" class="field accordion-content is-clearfix">
@@ -104,8 +110,10 @@
           >
             <label class="label has-text-grey-dark">
               Gender
-              <span v-show="!accordionGender" class="is-pulled-right fi-plus"></span>
-              <span v-show="accordionGender" class="is-pulled-right fi-minus"></span>
+              <span class="is-pulled-right icon-wrapper-accordion">
+                <svg-icon v-show="!accordionGender" icon="fi-plus"></svg-icon>
+                <svg-icon v-show="accordionGender" icon="fi-minus"></svg-icon>
+              </span>
             </label>
           </div>
           <div v-show="accordionGender" class="field accordion-content">
@@ -136,8 +144,10 @@
           >
             <label class="label has-text-grey-dark">
               Average Rating
-              <span v-show="!accordionRating" class="is-pulled-right fi-plus"></span>
-              <span v-show="accordionRating" class="is-pulled-right fi-minus"></span>
+              <span class="is-pulled-right icon-wrapper-accordion">
+                <svg-icon v-show="!accordionRating" icon="fi-plus"></svg-icon>
+                <svg-icon v-show="accordionRating" icon="fi-minus"></svg-icon>
+              </span>
             </label>
           </div>
           <div v-show="accordionRating" class="field accordion-content is-clearfix">
@@ -176,8 +186,10 @@
           >
             <label class="label has-text-grey-dark">
               Most Common Fit
-              <span v-show="!accordionMostCommonFit" class="is-pulled-right fi-plus"></span>
-              <span v-show="accordionMostCommonFit" class="is-pulled-right fi-minus"></span>
+              <span class="is-pulled-right icon-wrapper-accordion">
+                <svg-icon v-show="!accordionMostCommonFit" icon="fi-plus"></svg-icon>
+                <svg-icon v-show="accordionMostCommonFit" icon="fi-minus"></svg-icon>
+              </span>
             </label>
           </div>
           <div v-show="accordionMostCommonFit" class="field accordion-content">
@@ -208,8 +220,10 @@
           >
             <label class="label has-text-grey-dark">
               Recommended Foot Shape
-              <span v-show="!accordionRecommendedFootShape" class="is-pulled-right fi-plus"></span>
-              <span v-show="accordionRecommendedFootShape" class="is-pulled-right fi-minus"></span>
+              <span class="is-pulled-right icon-wrapper-accordion">
+                <svg-icon v-show="!accordionRecommendedFootShape" icon="fi-plus"></svg-icon>
+                <svg-icon v-show="accordionRecommendedFootShape" icon="fi-minus"></svg-icon>
+              </span>
             </label>
           </div>
           <div v-show="accordionRecommendedFootShape" class="field accordion-content">
@@ -248,8 +262,10 @@
           >
             <label class="label has-text-grey-dark">
               Rating By Foot Shape
-              <span v-show="!accordionRatingFootShape" class="is-pulled-right fi-plus"></span>
-              <span v-show="accordionRatingFootShape" class="is-pulled-right fi-minus"></span>
+              <span class="is-pulled-right icon-wrapper-accordion">
+                <svg-icon v-show="!accordionRatingFootShape" icon="fi-plus"></svg-icon>
+                <svg-icon v-show="accordionRatingFootShape" icon="fi-minus"></svg-icon>
+              </span>
             </label>
           </div>
           <div v-show="accordionRatingFootShape" class="field accordion-content is-clearfix">
@@ -312,8 +328,10 @@
           >
             <label class="label has-text-grey-dark">
               Brand
-              <span v-show="!accordionBrands" class="is-pulled-right fi-plus"></span>
-              <span v-show="accordionBrands" class="is-pulled-right fi-minus"></span>
+              <span class="is-pulled-right icon-wrapper-accordion">
+                <svg-icon v-show="!accordionBrands" icon="fi-plus"></svg-icon>
+                <svg-icon v-show="accordionBrands" icon="fi-minus"></svg-icon>
+              </span>
             </label>
           </div>
           <div v-show="accordionBrands" class="field accordion-content">
@@ -332,8 +350,10 @@
           >
             <label class="label has-text-grey-dark">
               Retailers
-              <span v-show="!accordionRetailers" class="is-pulled-right fi-plus"></span>
-              <span v-show="accordionRetailers" class="is-pulled-right fi-minus"></span>
+              <span class="is-pulled-right icon-wrapper-accordion">
+                <svg-icon v-show="!accordionRetailers" icon="fi-plus"></svg-icon>
+                <svg-icon v-show="accordionRetailers" icon="fi-minus"></svg-icon>
+              </span>
             </label>
           </div>
           <div v-show="accordionRetailers" class="field accordion-content">
@@ -356,13 +376,16 @@
     </div>
   </form>
 </template>
+
 <script>
 import { mapGetters } from 'vuex';
 import { titleCase } from '@/filters';
 
+import SvgIcon from '@/components/SvgIcon';
+
 export default {
   name: 'ItemListFiltersServer',
-  components: {},
+  components: { SvgIcon },
   filters: {
     titleCase,
   },

@@ -427,4 +427,8 @@ progress {
   fill: $white;
   font-size: 25px;
 }
+.icon-wrapper-accordion {
+  color: $bulmagray;
+  fill: $bulmagray;
+}
 </style>
