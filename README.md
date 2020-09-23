@@ -1,5 +1,7 @@
 # SizeSquirrel
 
+[![Dependabot badge](https://flat.badgen.net/dependabot/wbkd/webpack-starter?icon=dependabot)](https://dependabot.com/)
+
 Your climbing shoe resource. Climbing shoe sales, find your size for any climbing shoe, recommendations based on foot shape, and more.
 
 ## Instructions for running in development
