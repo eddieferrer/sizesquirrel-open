@@ -1,15 +1,10 @@
 # Utility script that takes a db and sanitizes it of personal information for development
 from backend import app, db
 from backend.models import Item, User_Item, User
-
-import urllib.request
-import random, string
+import random, string, os, sys
 
 # Get a random list of names
-word_url = "http://svnweb.freebsd.org/csrg/share/dict/words?view=co&content-type=text/plain"
-response = urllib.request.urlopen(word_url)
-long_txt = response.read().decode()
-words = long_txt.splitlines()
+words =  open( os.path.join(sys.path[0],  'backend/scripts/words.txt')).read().splitlines()
 upper_words = [word for word in words if word[0].isupper()]
 lower_words = [word for word in words if word[0].islower()]
 name_words  = [word for word in upper_words if not word.isupper() and len(word) > 3 and "'" not in word]
