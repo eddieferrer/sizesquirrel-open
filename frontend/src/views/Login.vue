@@ -1,5 +1,5 @@
 <template>
-  <LoginForm></LoginForm>
+  <LoginForm :redirect="redirect"></LoginForm>
 </template>
 
 <script>
@@ -9,6 +9,12 @@ export default {
   name: 'Login',
   components: {
     LoginForm,
+  },
+  props: {
+    redirect: {
+      type: String,
+      default: '',
+    },
   },
   metaInfo: {
     // title will be injected into parent titleTemplate

@@ -158,7 +158,7 @@
       </div>
     </div>
     <hr class="thin-hr" />
-    <div class="columns">
+    <div class="columns is-clearfix">
       <div class="column">
         <!-- logged in  -->
         <div v-if="isAuthenticated">
