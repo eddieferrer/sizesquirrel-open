@@ -1,17 +1,20 @@
 import Vue from 'vue';
-import axios from 'axios';
 import * as Sentry from '@sentry/browser';
 import * as Integrations from '@sentry/integrations';
 import { VLazyImagePlugin } from 'v-lazy-image';
+import VueAnalytics from 'vue-analytics';
 
 import App from './App.vue';
 import router from './router';
 import store from './store/store';
 import './registerServiceWorker';
+import './axiosConfig';
 
 Vue.use(VLazyImagePlugin);
 
-if (process.env.NODE_ENV === 'production') {
+const isProd = process.env.NODE_ENV === 'production';
+
+if (isProd) {
   Sentry.init({
     dsn: 'https://a9141ca353da483ea41c75d13d949694@sentry.io/830985',
     integrations: [
@@ -22,56 +25,21 @@ if (process.env.NODE_ENV === 'production') {
     ],
     release: process.env.VUE_APP_RELEASE_TAG,
   });
+
+  Vue.use(VueAnalytics, {
+    id: 'UA-75492234-4',
+    router,
+    debug: {
+      enabled: !isProd,
+      sendHitTask: isProd,
+    },
+  });
 }
 
 Vue.config.productionTip = false;
 
-axios.interceptors.response.use(
-  (response) => {
-    // intercept the global error
-    return response;
-  },
-  (error) => {
-    if (error.response && error.response.status) {
-      // const originalRequest = error.config;
-      if (error.response.status === 401) {
-        localStorage.removeItem('user-token'); // clear your user's token from localstorage
-        delete axios.defaults.headers.common.Authorization;
-        window.location.href = '/login?loginagain=1';
-      }
-      if (error.response.status === 404) {
-        if (Sentry) {
-          Sentry.captureMessage(`404 Error API - ${error.config.url}`);
-        }
-      }
-    }
-    // sample code
-    // if (error.response.status === 401 && !originalRequest._retry) { // if the error is 401 and hasent already been retried
-    //   originalRequest._retry = true // now it can be retried
-    //   return Vue.axios.post('/users/token', null).then((data) => {
-    //     store.dispatch('authfalse')
-    //     store.dispatch('authtruth', data.data)
-    //     originalRequest.headers['Authorization'] = 'Bearer ' + store.state.token // new header new token
-    //     return Vue.axios(originalRequest) // retry the request that errored out
-    //   }).catch((error) => {
-    //     for (let i = 0; i < error.response.data.errors.length; i++) {
-    //       if (error.response.data.errors[i] === 'TOKEN-EXPIRED') {
-    //         auth.logout()
-    //         return
-    //       }
-    //     }
-    //   })
-    // }
-    // if (error.response.status === 404 && !originalRequest._retry) {
-    //   originalRequest._retry = true
-    //   window.location.href = '/'
-    //   return
-    // }
-    // Do something with response error
-    return Promise.reject(error);
-  }
-);
-
+// Vue Mixins
+// TODO move these out of this file
 Vue.mixin({
   methods: {
     deepFind(obj, path) {
@@ -108,7 +76,7 @@ Vue.mixin({
       const match = RegExp(`[?&]${name}=([^&]*)`).exec(window.location.search);
       return match && decodeURIComponent(match[1].replace(/\+/g, ' '));
     },
-    openFbLoginDialog(formType) {
+    openFbLoginDialog(formType, redirect) {
       // prod appId
       let appId = '943851385727348';
       let protocol = 'https';
@@ -120,17 +88,15 @@ Vue.mixin({
         appId = '944781472301006';
       }
       const redirecturi = `${protocol}://${window.location.hostname}${port}/facebookcallback_${formType}/`;
-      const stateParam = new Date().getUTCDate();
+      const stateParams = {
+        redirect,
+        time: new Date().getTime(), // Not currently used
+      };
 
-      const facebookURL = `https://www.facebook.com/v5.0/dialog/oauth?client_id=${appId}&redirect_uri=${redirecturi}&response_type=token&scope=email&state=${stateParam}`;
+      const facebookURL = `https://www.facebook.com/v5.0/dialog/oauth?client_id=${appId}&redirect_uri=${redirecturi}&response_type=token&scope=email&state=${JSON.stringify(
+        stateParams
+      )}`;
       window.location.href = facebookURL;
-    },
-    getUrlVars() {
-      const vars = {};
-      window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, (m, key, value) => {
-        vars[key] = value;
-      });
-      return vars;
     },
   },
 });
@@ -143,11 +109,6 @@ Vue.mixin({
     };
   },
 });
-
-const token = localStorage.getItem('user-token');
-if (token) {
-  axios.defaults.headers.common.Authorization = `Bearer ${token}`;
-}
 
 new Vue({
   beforeCreate() {

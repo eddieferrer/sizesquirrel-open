@@ -2,12 +2,26 @@ import Vue from 'vue';
 import Router from 'vue-router';
 import Meta from 'vue-meta';
 import * as Sentry from '@sentry/browser';
-import VueAnalytics from 'vue-analytics';
 import store from '@/store/store';
 import Home from './views/Home.vue';
 
 Vue.use(Router);
 Vue.use(Meta);
+
+// All Possible Route Properties:
+// Default is false
+// requiresAdmin: true,
+// requiresAuth: true
+// requiresContext: true,
+// hideItemMatchForm: true,
+
+const getUrlVarsFromHash = (hash) => {
+  const vars = {};
+  `?${hash}`.replace(/[?&]+([^=&]+)=([^&]*)/gi, (m, key, value) => {
+    vars[key] = value;
+  });
+  return vars;
+};
 
 const router = new Router({
   mode: 'history',
@@ -48,10 +62,19 @@ const router = new Router({
       component: () =>
         import(/* webpackChunkName: "facebookcallback" */ './views/FacebookCallback.vue'),
       meta: {
-        requiresAuth: false,
         hideItemMatchForm: true,
       },
-      props: { formType: 'register' },
+      props: (route) => {
+        // facebook call back url starts with '#access_token`
+        // which causes vue router to treat it all as hash and ignore
+        // query params that come after '#access_token`
+        const hashObj = getUrlVarsFromHash(route.hash);
+        return {
+          state: hashObj.state,
+          formType: 'register',
+          accessToken: hashObj['#access_token'],
+        };
+      },
     },
     {
       path: '/facebookcallback_login',
@@ -61,14 +84,23 @@ const router = new Router({
       meta: {
         hideItemMatchForm: true,
       },
-      props: { formType: 'login' },
+      props: (route) => {
+        // facebook call back url starts with '#access_token`
+        // which causes vue router to treat it all as hash and ignore
+        // query params that come after '#access_token`
+        const hashObj = getUrlVarsFromHash(route.hash);
+        return {
+          state: hashObj.state,
+          formType: 'register',
+          accessToken: hashObj['#access_token'],
+        };
+      },
     },
     {
       path: '/faq',
       name: 'faq',
       component: () => import(/* webpackChunkName: "faq" */ './views/Faq.vue'),
       meta: {
-        requiresAuth: false,
         hideItemMatchForm: true,
       },
     },
@@ -77,23 +109,23 @@ const router = new Router({
       name: 'forgotPassword',
       component: () =>
         import(/* webpackChunkName: "forgotPassword" */ './views/ForgotPassword.vue'),
-      meta: { requiresAuth: false },
+      meta: {},
     },
     {
       path: '/forgot_username',
       name: 'forgotUsername',
       component: () =>
         import(/* webpackChunkName: "forgotUsername" */ './views/ForgotUsername.vue'),
-      meta: { requiresAuth: false },
+      meta: {},
     },
     {
       path: '/login',
       name: 'login',
       component: () => import(/* webpackChunkName: "login" */ './views/Login.vue'),
       meta: {
-        requiresAuth: false,
         hideItemMatchForm: true,
       },
+      props: (route) => ({ redirect: route.query.redirect }),
     },
     {
       path: '/match',
@@ -103,6 +135,11 @@ const router = new Router({
         requiresAuth: true,
         requiresContext: true,
       },
+      props: (route) => ({
+        wantItemId: route.query.want_item_id,
+        size: route.query.size,
+        haveItemId: route.query.have_item_id,
+      }),
     },
     {
       path: '/my_profile',
@@ -125,7 +162,6 @@ const router = new Router({
           // the above state is not available here, since it
           // it is resolved asynchronously in the store action
           const { username } = store.getters.user;
-          // router.push({ path: '/profile/' + username });
           next(`/profile/${username}#user_details`);
         });
       },
@@ -135,14 +171,13 @@ const router = new Router({
       path: '/notauthorized',
       name: 'notAuthorized',
       component: () => import(/* webpackChunkName: "notAuthorized" */ './views/NotAuthorized.vue'),
-      meta: { requiresAuth: false },
+      meta: {},
     },
     {
       path: '/privacy',
       name: 'privacy',
       component: () => import(/* webpackChunkName: "termsPrivacy" */ './views/Privacy.vue'),
       meta: {
-        requiresAuth: false,
         hideItemMatchForm: true,
       },
     },
@@ -151,7 +186,6 @@ const router = new Router({
       name: 'profile',
       component: () => import(/* webpackChunkName: "profile" */ './views/Profile.vue'),
       meta: {
-        requiresAuth: false,
         requiresContext: true,
       },
     },
@@ -160,16 +194,19 @@ const router = new Router({
       name: 'publicMatch',
       component: () => import(/* webpackChunkName: "match" */ './views/Match.vue'),
       meta: {
-        requiresAuth: false,
         requiresContext: true,
       },
+      props: (route) => ({
+        wantItemId: route.query.want_item_id,
+        size: route.query.size,
+        haveItemId: route.query.have_item_id,
+      }),
     },
     {
       path: '/recommend',
       name: 'recommend',
       component: () => import(/* webpackChunkName: "recommend" */ './views/Recommend.vue'),
       meta: {
-        requiresAuth: false,
         hideItemMatchForm: true,
       },
     },
@@ -178,7 +215,6 @@ const router = new Router({
       name: 'register',
       component: () => import(/* webpackChunkName: "register" */ './views/Register.vue'),
       meta: {
-        requiresAuth: false,
         hideItemMatchForm: true,
       },
     },
@@ -186,14 +222,13 @@ const router = new Router({
       path: '/reset_password',
       name: 'reset_password',
       component: () => import(/* webpackChunkName: "reset_password" */ './views/ResetPassword.vue'),
-      meta: { requiresAuth: false },
+      meta: {},
     },
     {
       path: '/release',
       name: 'release',
       component: () => import(/* webpackChunkName: "release" */ './views/Release.vue'),
       meta: {
-        requiresAuth: false,
         hideItemMatchForm: true,
       },
     },
@@ -201,7 +236,7 @@ const router = new Router({
       path: '/sales',
       name: 'sales',
       component: () => import(/* webpackChunkName: "sales" */ './views/Sales.vue'),
-      meta: { requiresAuth: false },
+      meta: {},
     },
     {
       path: '/shoe/:shoe_brand',
@@ -212,7 +247,6 @@ const router = new Router({
       name: 'brand',
       component: () => import(/* webpackChunkName: "brand" */ './views/Brand.vue'),
       meta: {
-        requiresAuth: false,
         requiresContext: true,
       },
     },
@@ -225,7 +259,6 @@ const router = new Router({
       name: 'shoe',
       component: () => import(/* webpackChunkName: "shoe" */ './views/Shoe.vue'),
       meta: {
-        requiresAuth: false,
         requiresContext: true,
       },
     },
@@ -234,7 +267,6 @@ const router = new Router({
       name: 'terms',
       component: () => import(/* webpackChunkName: "termsPrivacy" */ './views/Terms.vue'),
       meta: {
-        requiresAuth: false,
         hideItemMatchForm: true,
       },
     },
@@ -248,7 +280,7 @@ const router = new Router({
         }
         next();
       },
-      meta: { requiresAuth: false },
+      meta: {},
     },
     { path: '*', redirect: '/404' },
   ],
@@ -267,16 +299,13 @@ const router = new Router({
   },
 });
 
-const isProd = process.env.NODE_ENV === 'production';
-if (isProd) {
-  Vue.use(VueAnalytics, {
-    id: 'UA-75492234-4',
-    router,
-    debug: {
-      enabled: !isProd,
-      sendHitTask: isProd,
-    },
-  });
-}
+// Authentication Guard
+router.beforeEach((to, from, next) => {
+  if ((to.meta.requiresAuth || to.meta.requiresAdmin) && !store.getters.isAuthenticated) {
+    next({ name: 'login', query: { redirect: to.path } });
+  } else {
+    next();
+  }
+});
 
 export default router;

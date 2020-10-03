@@ -64,6 +64,20 @@ export default {
   filters: {
     titleCase,
   },
+  props: {
+    wantItemId: {
+      type: String,
+      default: '',
+    },
+    size: {
+      type: String,
+      default: '',
+    },
+    haveItemId: {
+      type: String,
+      default: '',
+    },
+  },
   data() {
     return {
       matchResults: [],
@@ -113,30 +127,16 @@ export default {
   created() {
     this.isLoadingComponent = true;
 
-    const vm = this;
-
-    function getUrlParam(parameter) {
-      let urlparameter = '';
-      if (window.location.href.indexOf(parameter) > -1) {
-        urlparameter = vm.getUrlVars()[parameter];
-      }
-      return urlparameter;
-    }
-
-    const urlWantItemId = getUrlParam('want_item_id');
-    const urlSize = getUrlParam('size');
-    const urlHaveItemId = getUrlParam('have_item_id');
-
-    if (vm.isAuthenticated) {
+    if (this.isAuthenticated) {
       this.$store
         .dispatch('PRIVATE_MATCH', {
-          wantItemId: urlWantItemId,
+          wantItemId: this.wantItemId,
         })
         .then((response) => {
-          vm.matchResults = response.data.match_results;
-          vm.targetItem = response.data.target_item;
-          vm.groupedMatchUsers = response.data.grouped_match_users;
-          vm.streetResults = response.data.street_results;
+          this.matchResults = response.data.match_results;
+          this.targetItem = response.data.target_item;
+          this.groupedMatchUsers = response.data.grouped_match_users;
+          this.streetResults = response.data.street_results;
         })
         .catch(() => {
           this.hasComponentFailedToLoad = true;
@@ -147,13 +147,13 @@ export default {
     } else {
       this.$store
         .dispatch('PUBLIC_MATCH', {
-          wantItemId: urlWantItemId,
-          haveItemId: urlHaveItemId,
-          size: urlSize,
+          wantItemId: this.wantItemId,
+          haveItemId: this.haveItemId,
+          size: this.size,
         })
         .then((response) => {
-          vm.matchResults = response.data.match_results;
-          vm.targetItem = response.data.target_item;
+          this.matchResults = response.data.match_results;
+          this.targetItem = response.data.target_item;
         })
         .catch(() => {
           this.hasComponentFailedToLoad = true;

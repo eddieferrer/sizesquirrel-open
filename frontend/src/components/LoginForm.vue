@@ -11,7 +11,7 @@
             <p class="has-text-grey">
               <em>Using your Facebook account</em>
             </p>
-            <a class="button is-normal is-info" @click="openFbLoginDialog('login')">
+            <a class="button is-normal is-info" @click="openFbLoginDialog('login', redirect)">
               <span id="fbicon" class="icon is-medium">
                 <img src="/static/images/icons/facebook32.png" alt />
               </span>
@@ -92,7 +92,12 @@ export default {
   filters: {
     capitalize,
   },
-  props: [],
+  props: {
+    redirect: {
+      type: String,
+      default: '',
+    },
+  },
   data() {
     return {
       username: '',
@@ -109,7 +114,7 @@ export default {
       this.$store
         .dispatch('AUTH_REQUEST', { username, password })
         .then(() => {
-          const nextRoute = this.getParameterByName('redirect') || '/my_profile/';
+          const nextRoute = this.redirect || '/my_profile/';
           this.$router.push({ path: nextRoute }).catch(() => {});
         })
         .catch((error) => {
