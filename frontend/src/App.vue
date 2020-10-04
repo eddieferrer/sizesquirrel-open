@@ -44,7 +44,7 @@
           </div>
           <div class="columns is-centered">
             <div class="column is-full-mobile is-two-thirds-desktop is-three-quarters-tablet">
-              <ItemMatchForm v-if="showHomePageForm"></ItemMatchForm>
+              <ItemMatchForm v-if="showHomePageForm" :key="$route.fullPath"></ItemMatchForm>
             </div>
           </div>
         </div>
@@ -257,41 +257,14 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(['profile', 'user', 'shoe', 'brand', 'isAuthenticated', 'isInitialized']),
+    ...mapGetters(['profile', 'user', 'isAuthenticated', 'isInitialized']),
     currentYear() {
       return new Date().getFullYear();
     },
   },
   watch: {
     $route() {
-      this.routeChange();
       this.showHomePageForm = !router.currentRoute.meta.hideItemMatchForm;
-    },
-  },
-  mounted() {
-    this.routeChange();
-  },
-  methods: {
-    async routeChange() {
-      try {
-        this.$store.commit('STATE_INIT_LOADING');
-
-        const initPromises = [];
-        if (router.currentRoute.meta && router.currentRoute.meta.requiresContext) {
-          initPromises.push(this.$store.dispatch('INITIALIZE_APP'));
-        }
-        if (this.isAuthenticated) {
-          initPromises.push(this.$store.dispatch('GET_USER'));
-        }
-        await Promise.all(initPromises);
-        this.$store.commit('STATE_INIT_DONE');
-      } catch {
-        this.$store.commit('STATE_INIT_ERROR');
-        this.$store.dispatch('SHOW_FLASH_MESSAGE', {
-          class: 'has-background-danger',
-          message: 'There has been a fatal server error. Please reload the page.',
-        });
-      }
     },
   },
 };

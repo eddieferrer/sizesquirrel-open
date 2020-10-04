@@ -70,7 +70,7 @@ Vue.mixin({
       return 'is-danger';
     },
     notEmptyObject(someObject) {
-      return Object.keys(someObject).length;
+      return Object.keys(someObject).length !== 0;
     },
     getParameterByName(name) {
       const match = RegExp(`[?&]${name}=([^&]*)`).exec(window.location.search);

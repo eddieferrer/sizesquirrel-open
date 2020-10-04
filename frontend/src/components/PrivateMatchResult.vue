@@ -42,10 +42,7 @@
 
       <div class="columns">
         <div class="column">
-          <ShoeRatingsByFootShape
-            v-if="urlContextModelIdList[0]"
-            :stats="targetItem.stats"
-          ></ShoeRatingsByFootShape>
+          <ShoeRatingsByFootShape :stats="targetItem.stats"></ShoeRatingsByFootShape>
         </div>
       </div>
 
@@ -173,7 +170,7 @@ export default {
       }
       return 0;
     },
-    ...mapGetters(['isAuthenticated', 'urlContextModelIdList']),
+    ...mapGetters(['isAuthenticated']),
   },
 };
 </script>

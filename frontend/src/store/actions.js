@@ -246,6 +246,19 @@ const GET_LIST_ITEMS = async (context, { target }) => {
   }
 };
 
+const GET_MATCH_INFO = async (context, { key, id }) => {
+  try {
+    const getMatchInfo = await axios({
+      url: `/apiv2/item/details/${id}`,
+      method: 'GET',
+    });
+    context.commit('SET_MATCH_INFO', { key, shoe: getMatchInfo.data.shoe });
+    return getMatchInfo;
+  } catch (error) {
+    throw error;
+  }
+};
+
 const GET_POPULAR_SHOES = async () => {
   try {
     const popularShoes = await axios({
@@ -328,14 +341,13 @@ const GET_USER = async (context) => {
   }
 };
 
-const INITIALIZE_APP = async (context) => {
+const INITIALIZE_APP = async (context, { url }) => {
   try {
     const initializeApp = await axios({
       url: '/apiv2/context/',
-      data: { url: window.location.href },
+      data: { url },
       method: 'POST',
     });
-    context.commit('SET_CONTEXT', initializeApp.data);
     const promiseArray = [];
 
     if (initializeApp.data.model_id_list) {
@@ -523,6 +535,7 @@ export default {
   GET_ALL_BRANDS,
   GET_BRAND,
   GET_LIST_ITEMS,
+  GET_MATCH_INFO,
   GET_POPULAR_SHOES,
   GET_PROFILE,
   GET_SHOE_BUDDIES,

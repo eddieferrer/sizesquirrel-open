@@ -92,6 +92,12 @@ export default {
     RecommendationsByShape,
     EditUserDetailsModal,
   },
+  metaInfo() {
+    return {
+      // title will be injected into parent titleTemplate
+      title: this.isMyProfile ? 'My Profile' : this.profile.username,
+    };
+  },
   data() {
     return {
       showEditUserDetailsModal: false,

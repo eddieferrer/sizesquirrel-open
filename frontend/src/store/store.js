@@ -14,24 +14,20 @@ const store = new Vuex.Store({
       message: '',
     },
     token: localStorage.getItem('user-token') || '',
-    status: '',
+
     init: '',
-    url_context: {
-      profile_id: '',
-      brand_id: '',
-      model_id_list: [],
-      match: {
-        want_item: null,
-        have_item: null,
-        size: '',
-      },
-    },
+
     user: {},
     profile: {},
     shoe: [],
     brand: {},
     allitems: [],
     allbrands: [],
+    match: {
+      want: null,
+      have: null,
+      size: null,
+    },
   },
   actions,
   getters,

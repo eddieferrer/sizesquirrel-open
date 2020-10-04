@@ -1,35 +1,38 @@
 <template>
-  <div>
-    <NotFoundBlock v-cloak v-if="profileNotFound"></NotFoundBlock>
-    <ProfilePage v-cloak v-if="profile.id"></ProfilePage>
-  </div>
+  <ProfilePage v-cloak></ProfilePage>
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
-
 import ProfilePage from '@/components/ProfilePage';
-import NotFoundBlock from '@/components/NotFoundBlock';
+import store from '@/store/store';
+
+const getData = (to, from, next) => {
+  return store
+    .dispatch('INITIALIZE_APP', {
+      url: to.fullPath,
+    })
+    .then(() => {
+      if (store.getters.hasProfile) {
+        next();
+      } else {
+        next(`/404`);
+      }
+    })
+    .catch(() => {
+      store.commit('STATE_INIT_ERROR');
+    });
+};
 
 export default {
   name: 'Profile',
   components: {
     ProfilePage,
-    NotFoundBlock,
   },
-  metaInfo() {
-    return {
-      // title will be injected into parent titleTemplate
-      title: 'My Profile',
-    };
+  beforeRouteEnter(to, from, next) {
+    getData(to, from, next);
   },
-  computed: {
-    ...mapGetters(['isInitialized', 'profile', 'urlContextProfileId']),
-    profileNotFound() {
-      return (
-        !this.notEmptyObject(this.profile) && this.isInitialized && this.urlContextProfileId === ''
-      );
-    },
+  beforeRouteUpdate(to, from, next) {
+    getData(to, from, next);
   },
 };
 </script>

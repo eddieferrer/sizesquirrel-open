@@ -1,17 +1,10 @@
 <template>
-  <div>
-    <NotFoundBlock v-cloak v-if="!notEmptyObject(brand) && isInitialized"></NotFoundBlock>
-    <div v-if="notEmptyObject(brand)" v-cloak class="columns">
-      <div class="column">
-        <h2 class="is-size-4 has-text-centered has-text-primary">{{ brand.name | titleCase }}</h2>
-        <h5 class="is-size-5 has-text-centered">All of the {{ brand.name | titleCase }} shoes</h5>
-        <hr />
-        <BrandItems
-          v-if="urlContextBrandId"
-          v-cloak
-          :target="'brand/' + urlContextBrandId"
-        ></BrandItems>
-      </div>
+  <div v-cloak class="columns">
+    <div class="column">
+      <h2 class="is-size-4 has-text-centered has-text-primary">{{ brand.name | titleCase }}</h2>
+      <h5 class="is-size-5 has-text-centered">All of the {{ brand.name | titleCase }} shoes</h5>
+      <hr />
+      <BrandItems v-cloak :target="'brand/' + brand.id"></BrandItems>
     </div>
   </div>
 </template>
@@ -19,15 +12,37 @@
 <script>
 import { mapGetters } from 'vuex';
 import { titleCase } from '@/filters';
+import store from '@/store/store';
 
 import BrandItems from '@/components/BrandItems';
-import NotFoundBlock from '@/components/NotFoundBlock';
+
+const getData = (to, from, next) => {
+  store
+    .dispatch('INITIALIZE_APP', {
+      url: to.fullPath,
+    })
+    .then(() => {
+      if (store.getters.hasBrand) {
+        next();
+      } else {
+        next(`/404`);
+      }
+    })
+    .catch(() => {
+      store.commit('STATE_INIT_ERROR');
+    });
+};
 
 export default {
   name: 'Brand',
   components: {
     BrandItems,
-    NotFoundBlock,
+  },
+  beforeRouteEnter(to, from, next) {
+    getData(to, from, next);
+  },
+  beforeRouteUpdate(to, from, next) {
+    getData(to, from, next);
   },
   filters: {
     titleCase,
@@ -47,7 +62,7 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(['isInitialized', 'brand', 'urlContextBrandId']),
+    ...mapGetters(['brand']),
     brandName() {
       return this.$options.filters.titleCase(this.brand.name);
     },
