@@ -133,8 +133,6 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
-
 import SvgIcon from '@/components/SvgIcon';
 import ComponentLoader from '@/components/ComponentLoader';
 
@@ -168,7 +166,6 @@ export default {
     numberOfPages() {
       return Math.ceil(this.getComments.length / 10);
     },
-    ...mapGetters(['urlContextModelIdList']),
     startIndex() {
       return (this.active_page - 1) * 10;
     },

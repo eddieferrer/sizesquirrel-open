@@ -1,5 +1,6 @@
 import * as Sentry from '@sentry/browser';
 import axios from 'axios';
+import store from '@/store/store';
 
 // Axios settings
 axios.interceptors.response.use(
@@ -20,6 +21,10 @@ axios.interceptors.response.use(
           Sentry.captureMessage(`404 Error API - ${error.config.url}`);
         }
       }
+      store.dispatch('SHOW_FLASH_MESSAGE', {
+        class: 'has-background-danger',
+        message: 'There has been a fatal server error. Please reload the page.',
+      });
     }
     // Do something with response error
     return Promise.reject(error);

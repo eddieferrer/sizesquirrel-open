@@ -1,24 +1,20 @@
-const status = (state) => state.status;
-const urlContextBrandId = (state) => state.url_context.brand_id;
-const urlContextMatch = (state) => state.url_context.match;
-const urlContextModelIdList = (state) => state.url_context.model_id_list;
-const urlContextProfileId = (state) => state.url_context.profile_id;
+// utility functions
+const isEmptyObject = (someObject) => Object.keys(someObject).length === 0;
 
+// getters
 const user = (state) => state.user;
 const shoe = (state) => state.shoe;
 const brand = (state) => state.brand;
 const profile = (state) => state.profile;
 
+const hasBrand = (state) => !isEmptyObject(state.brand);
+const hasProfile = (state) => !isEmptyObject(state.profile);
+const hasShoe = (state) => !isEmptyObject(state.shoe);
+
 const isAuthenticated = (state) => !!state.token;
 
 const isMyProfile = (state) => {
   if (state.user.id === state.profile.id) {
-    return true;
-  }
-  return false;
-};
-const isLoading = (state) => {
-  if (state.status === 'loading') {
     return true;
   }
   return false;
@@ -35,21 +31,25 @@ const allbrands = (state) => state.allbrands;
 
 const contextFlashMessage = (state) => state.context_flash_message;
 
+const matchInfoSize = (state) => state.match.size;
+const matchInfoWant = (state) => state.match.want;
+const matchInfoHave = (state) => state.match.have;
+
 export default {
   allbrands,
   allitems,
   brand,
   contextFlashMessage,
+  hasBrand,
+  hasProfile,
+  hasShoe,
   isAuthenticated,
   isInitialized,
-  isLoading,
   isMyProfile,
+  matchInfoSize,
+  matchInfoWant,
+  matchInfoHave,
   profile,
   shoe,
-  status,
-  urlContextBrandId,
-  urlContextMatch,
-  urlContextModelIdList,
-  urlContextProfileId,
   user,
 };

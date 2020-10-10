@@ -12,7 +12,6 @@ Vue.use(Meta);
 // Default is false
 // requiresAdmin: true,
 // requiresAuth: true
-// requiresContext: true,
 // hideItemMatchForm: true,
 
 const getUrlVarsFromHash = (hash) => {
@@ -133,7 +132,6 @@ const router = new Router({
       component: () => import(/* webpackChunkName: "match" */ './views/Match.vue'),
       meta: {
         requiresAuth: true,
-        requiresContext: true,
       },
       props: (route) => ({
         wantItemId: route.query.want_item_id,
@@ -185,17 +183,13 @@ const router = new Router({
       path: '/profile/:username',
       name: 'profile',
       component: () => import(/* webpackChunkName: "profile" */ './views/Profile.vue'),
-      meta: {
-        requiresContext: true,
-      },
+      meta: {},
     },
     {
       path: '/public_match',
       name: 'publicMatch',
       component: () => import(/* webpackChunkName: "match" */ './views/Match.vue'),
-      meta: {
-        requiresContext: true,
-      },
+      meta: {},
       props: (route) => ({
         wantItemId: route.query.want_item_id,
         size: route.query.size,
@@ -246,9 +240,7 @@ const router = new Router({
       path: '/shoes/:shoe_brand',
       name: 'brand',
       component: () => import(/* webpackChunkName: "brand" */ './views/Brand.vue'),
-      meta: {
-        requiresContext: true,
-      },
+      meta: {},
     },
     {
       path: '/shoe/:shoe_brand/:shoe_model',
@@ -258,9 +250,7 @@ const router = new Router({
       path: '/shoes/:shoe_brand/:shoe_model',
       name: 'shoe',
       component: () => import(/* webpackChunkName: "shoe" */ './views/Shoe.vue'),
-      meta: {
-        requiresContext: true,
-      },
+      meta: {},
     },
     {
       path: '/terms',
@@ -284,6 +274,7 @@ const router = new Router({
     },
     { path: '*', redirect: '/404' },
   ],
+  // Scroll behavior
   scrollBehavior(to, from, savedPosition) {
     if (to.hash && !to.hash.includes('access_token')) {
       return new Promise((resolve) => {
@@ -299,13 +290,31 @@ const router = new Router({
   },
 });
 
+// Loading
+router.beforeEach((to, from, next) => {
+  if (to.name) {
+    store.commit('STATE_INIT_LOADING');
+  }
+  next();
+});
+
 // Authentication Guard
 router.beforeEach((to, from, next) => {
+  // User is not authenticated and should be
   if ((to.meta.requiresAuth || to.meta.requiresAdmin) && !store.getters.isAuthenticated) {
     next({ name: 'login', query: { redirect: to.path } });
+  } else if (store.getters.isAuthenticated) {
+    // Get user info in state
+    store.dispatch('GET_USER').then(() => {
+      next();
+    });
   } else {
     next();
   }
+});
+
+router.afterEach(() => {
+  store.commit('STATE_INIT_DONE');
 });
 
 export default router;

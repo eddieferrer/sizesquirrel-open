@@ -1,13 +1,8 @@
 <template>
   <div>
-    <NotFoundBlock v-cloak v-if="shoe.length === 0 && isInitialized" />
-    <div v-if="shoe.length !== 0" class="columns">
+    <div v-cloak class="columns">
       <div class="column">
-        <h2
-          v-if="urlContextModelIdList[0] && shoe[0]"
-          v-cloak
-          class="is-size-4 has-text-centered has-text-primary"
-        >
+        <h2 v-cloak class="is-size-4 has-text-centered has-text-primary">
           {{ shoe[0].brand.name | titleCase }} {{ shoe[0].model | titleCase }}
         </h2>
         <h5 class="is-size-5 has-text-centered">More information about this shoe</h5>
@@ -15,10 +10,7 @@
       </div>
     </div>
     <!-- dual shoes display -->
-    <div
-      v-if="urlContextModelIdList[0] && urlContextModelIdList[1] && shoe[0] && shoe[1]"
-      class="columns is-centered"
-    >
+    <div v-if="shoe[0] && shoe[1]" class="columns is-centered">
       <div class="column is-5">
         <FindMySizeBlock :shoe="shoe[0]" />
         <ShoeRatingsByFootShape :stats="shoe[0].stats" />
@@ -33,10 +25,7 @@
       </div>
     </div>
     <!-- single shoe display -->
-    <div
-      v-if="urlContextModelIdList[0] && !urlContextModelIdList[1] && shoe[0] && !shoe[1]"
-      class="columns is-centered"
-    >
+    <div v-if="shoe[0] && !shoe[1]" class="columns is-centered">
       <div class="column is-half-desktop">
         <FindMySizeBlock :shoe="shoe[0]" />
         <ShoeRatingsByFootShape :stats="shoe[0].stats" />
@@ -50,12 +39,29 @@
 <script>
 import { mapGetters } from 'vuex';
 import { titleCase } from '@/filters';
+import store from '@/store/store';
 
 import FindMySizeBlock from '@/components/FindMySizeBlock';
 import ShoeComments from '@/components/ShoeComments';
 import ShoeRatingsByFootShape from '@/components/ShoeRatingsByFootShape';
 import ShoeSaleLinks from '@/components/ShoeSaleLinks';
-import NotFoundBlock from '@/components/NotFoundBlock';
+
+const getData = (to, from, next) => {
+  store
+    .dispatch('INITIALIZE_APP', {
+      url: to.fullPath,
+    })
+    .then(() => {
+      if (store.getters.hasShoe) {
+        next();
+      } else {
+        next(`/404`);
+      }
+    })
+    .catch(() => {
+      store.commit('STATE_INIT_ERROR');
+    });
+};
 
 export default {
   name: 'Shoe',
@@ -64,7 +70,12 @@ export default {
     ShoeComments,
     ShoeRatingsByFootShape,
     ShoeSaleLinks,
-    NotFoundBlock,
+  },
+  beforeRouteEnter(to, from, next) {
+    getData(to, from, next);
+  },
+  beforeRouteUpdate(to, from, next) {
+    getData(to, from, next);
   },
   filters: {
     titleCase,
@@ -87,7 +98,7 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(['isInitialized', 'urlContextModelIdList', 'shoe', 'brand']),
+    ...mapGetters(['isInitialized', 'shoe', 'brand']),
     shoe_image() {
       if (this.shoe[0]) {
         return this.shoe[0].shoe_image;

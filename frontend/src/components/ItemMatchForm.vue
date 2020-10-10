@@ -4,7 +4,7 @@
       <div v-if="!isAuthenticated" class="columns">
         <div class="column is-8">
           <h4 class="is-size-5 has-text-white">Shoe I Have</h4>
-          <MultiSelectItems v-model="haveitem" class="multiselect-large"></MultiSelectItems>
+          <MultiSelectItems v-model="haveItem" class="multiselect-large"></MultiSelectItems>
         </div>
         <div class="column is-4">
           <h4 class="is-size-5 has-text-white">Size</h4>
@@ -18,7 +18,7 @@
       <div class="columns">
         <div class="column is-8">
           <h4 class="is-size-5 has-text-white">Shoe I Want</h4>
-          <MultiSelectItems v-model="wantitem" class="multiselect-large"></MultiSelectItems>
+          <MultiSelectItems v-model="wantItem" class="multiselect-large"></MultiSelectItems>
         </div>
         <div class="column is-4">
           <button
@@ -48,74 +48,49 @@ export default {
   name: 'ItemMatchForm',
   components: { MultiSelectSize, MultiSelectItems },
   mixins: [SizeOptions],
+  data() {
+    return {
+      wantItem: {},
+      haveItem: {},
+      itemSize: {},
+    };
+  },
   computed: {
-    ...mapGetters(['allitems', 'isAuthenticated', 'urlContextMatch']),
-    itemSize: {
-      // getter
-      get() {
-        if (this.urlContextMatch.size) {
-          const reducedArray = this.size_option_groups[0].sizes.concat(
-            this.size_option_groups[1].sizes
-          );
-          return reducedArray.filter(
-            (sizeArray) => sizeArray.value === this.urlContextMatch.size.toString()
-          )[0];
-        }
-        return null;
-      },
-      set(size) {
-        this.$store.commit('SET_CONTEXT_MATCH_SIZE', size.value);
-      },
-    },
-    wantitem: {
-      // getter
-      get() {
-        return this.urlContextMatch.want_item;
-      },
-      // setter
-      set(newValue) {
-        this.$store.commit('SET_CONTEXT_MATCH_WANT_ITEM', newValue);
-      },
-    },
-    haveitem: {
-      // getter
-      get() {
-        return this.urlContextMatch.have_item;
-      },
-      // setter
-      set(newValue) {
-        this.$store.commit('SET_CONTEXT_MATCH_HAVE_ITEM', newValue);
-      },
-    },
+    ...mapGetters(['isAuthenticated', 'matchInfoSize', 'matchInfoWant', 'matchInfoHave']),
     isFormDisabled() {
       // conditions for form to be disabled for authorized users
       if (this.isAuthenticated) {
         // form is missing required fields
-        if (this.wantitem === null) {
+        if (this.wantItem === null) {
           return true;
         }
         // form hasn't been touched and has same values as route
-        if (this.$route.query.want_item_id === this.wantitem.id.toString()) {
+        if (this.$route.query.want_item_id === this.wantItem.id?.toString()) {
           return true;
         }
       }
       // conditions for form to be disabled for not authorized users
       if (!this.isAuthenticated) {
         // form is missing required fields
-        if (this.wantitem === null || this.haveitem === null || this.itemSize === null) {
+        if (this.wantItem === null || this.haveItem === null || this.itemSize === null) {
           return true;
         }
         // form hasn't been touched and has same values as route
         if (
-          this.$route.query.want_item_id === this.wantitem.id.toString() &&
-          this.$route.query.have_item_id === this.haveitem.id.toString() &&
-          this.$route.query.size === this.urlContextMatch.size.toString()
+          this.$route.query.want_item_id === this.wantItem.id?.toString() &&
+          this.$route.query.have_item_id === this.haveItem.id?.toString() &&
+          this.$route.query.size === this.matchInfoSize.toString()
         ) {
           return true;
         }
       }
       return false;
     },
+  },
+  created() {
+    this.wantItem = this.matchInfoWant;
+    this.haveItem = this.matchInfoHave;
+    this.itemSize = this.matchInfoSize;
   },
   methods: {
     formAction() {
@@ -127,7 +102,7 @@ export default {
         this.$router
           .push({
             path: '/match',
-            query: { want_item_id: this.wantitem.id.toString() },
+            query: { want_item_id: this.wantItem.id.toString() },
           })
           .catch(() => {});
       } else {
@@ -135,9 +110,9 @@ export default {
           .push({
             path: '/public_match',
             query: {
-              want_item_id: this.wantitem.id.toString(),
-              have_item_id: this.haveitem.id.toString(),
-              size: this.urlContextMatch.size.toString(),
+              want_item_id: this.wantItem.id.toString(),
+              have_item_id: this.haveItem.id.toString(),
+              size: this.itemSize.value.toString(),
             },
           })
           .catch(() => {});

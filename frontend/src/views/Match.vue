@@ -1,30 +1,23 @@
+/* eslint-disable camelcase */
 <template>
+  <!-- TODO refactor this component, Component loader should be used for MatchResult, ShoeSaleLinks and PrivateMatchResult not wrap all of them -->
   <ComponentLoader
     :loading-component="isLoadingComponent"
     :failed-to-load="hasComponentFailedToLoad"
   >
-    <MatchResult
-      v-if="urlContextModelIdList[0]"
-      :match-results="matchResults"
-      :target-item="targetItem"
-    ></MatchResult>
+    <MatchResult :match-results="matchResults" :target-item="targetItem"></MatchResult>
 
     <div class="columns is-centered" style="margin-top: 1em;">
       <div class="column is-full-tablet is-three-quarters-desktop">
-        <ShoeSaleLinks
-          v-if="urlContextModelIdList[0] && shoe[0]"
-          :shoe="shoe[0]"
-          :sale-links="shoe[0].shoe_sale_links"
-          page="match"
-        ></ShoeSaleLinks>
+        <ShoeSaleLinks :shoe="shoe" :sale-links="saleLinks" page="match"></ShoeSaleLinks>
       </div>
     </div>
 
     <div v-if="isAuthenticated" class="columns is-centered">
       <div class="column is-full-tablet is-three-quarters-desktop">
         <PrivateMatchResult
-          v-if="urlContextModelIdList[0] && shoe[0]"
-          :comments="shoe[0].shoe_comments"
+          v-if="shoe"
+          :comments="shoeComments"
           :match-results="matchResults"
           :target-item="targetItem"
           :grouped-match-users="groupedMatchUsers"
@@ -47,11 +40,52 @@
 <script>
 import { mapGetters } from 'vuex';
 import { titleCase } from '@/filters';
+import store from '@/store/store';
+import { sizeOptions } from '@/utils/utils';
 
 import ShoeSaleLinks from '@/components/ShoeSaleLinks';
 import MatchResult from '@/components/MatchResult';
 import PrivateMatchResult from '@/components/PrivateMatchResult';
 import ComponentLoader from '@/components/ComponentLoader';
+
+const getData = (to, from, next) => {
+  const promises = [];
+
+  if (to.query.want_item_id) {
+    promises.push(
+      store.dispatch('GET_MATCH_INFO', {
+        key: 'want',
+        id: to.query.want_item_id,
+      })
+    );
+  }
+
+  if (to.query.have_item_id) {
+    promises.push(
+      store.dispatch('GET_MATCH_INFO', {
+        key: 'have',
+        id: to.query.have_item_id,
+      })
+    );
+  }
+
+  if (to.query.size) {
+    const sizesArray = sizeOptions();
+    const reducedArray = sizesArray[0].sizes.concat(sizesArray[1].sizes);
+    store.commit(
+      'SET_MATCH_SIZE',
+      reducedArray.filter((sizeArray) => sizeArray.value === to.query.size.toString())[0]
+    );
+  }
+
+  Promise.all(promises)
+    .then(() => {
+      next();
+    })
+    .catch(() => {
+      store.commit('STATE_INIT_ERROR');
+    });
+};
 
 export default {
   name: 'Match',
@@ -60,6 +94,12 @@ export default {
     MatchResult,
     PrivateMatchResult,
     ComponentLoader,
+  },
+  beforeRouteEnter(to, from, next) {
+    getData(to, from, next);
+  },
+  beforeRouteUpdate(to, from, next) {
+    getData(to, from, next);
   },
   filters: {
     titleCase,
@@ -84,6 +124,9 @@ export default {
       targetItem: {},
       groupedMatchUsers: [],
       streetResults: [],
+      shoe: {},
+      shoeComments: [],
+      saleLinks: [],
     };
   },
   metaInfo() {
@@ -104,64 +147,60 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(['isAuthenticated', 'urlContextModelIdList', 'shoe']),
+    ...mapGetters(['isAuthenticated']),
     shoe_image() {
-      if (this.shoe[0]) {
-        return this.shoe[0].shoe_image;
-      }
-      return '';
+      // eslint-disable-next-line camelcase
+      return this.shoe.shoe?.shoe_image;
     },
     brand() {
-      if (this.shoe[0]) {
-        return this.$options.filters.titleCase(this.shoe[0].brand.name);
-      }
-      return '';
+      return this.$options.filters.titleCase(this.shoe.shoe?.brand?.name || '');
     },
     model() {
-      if (this.shoe[0]) {
-        return this.$options.filters.titleCase(this.shoe[0].model);
-      }
-      return '';
+      return this.$options.filters.titleCase(this.shoe.model);
     },
   },
   created() {
     this.isLoadingComponent = true;
 
+    let getMatch;
+
     if (this.isAuthenticated) {
-      this.$store
-        .dispatch('PRIVATE_MATCH', {
-          wantItemId: this.wantItemId,
-        })
-        .then((response) => {
-          this.matchResults = response.data.match_results;
-          this.targetItem = response.data.target_item;
-          this.groupedMatchUsers = response.data.grouped_match_users;
-          this.streetResults = response.data.street_results;
-        })
-        .catch(() => {
-          this.hasComponentFailedToLoad = true;
-        })
-        .finally(() => {
-          this.isLoadingComponent = false;
-        });
+      getMatch = this.$store.dispatch('PRIVATE_MATCH', {
+        wantItemId: this.wantItemId,
+      });
     } else {
-      this.$store
-        .dispatch('PUBLIC_MATCH', {
-          wantItemId: this.wantItemId,
-          haveItemId: this.haveItemId,
-          size: this.size,
-        })
-        .then((response) => {
-          this.matchResults = response.data.match_results;
-          this.targetItem = response.data.target_item;
-        })
-        .catch(() => {
-          this.hasComponentFailedToLoad = true;
-        })
-        .finally(() => {
-          this.isLoadingComponent = false;
-        });
+      getMatch = this.$store.dispatch('PUBLIC_MATCH', {
+        wantItemId: this.wantItemId,
+        haveItemId: this.haveItemId,
+        size: this.size,
+      });
     }
+
+    const getShoeDetails = this.$store.dispatch('GET_SHOE', [this.wantItemId]);
+
+    // TODO remove duplicate calls for match page with item match form
+    Promise.all([getMatch, getShoeDetails])
+      .then((response) => {
+        const [matchResponse, shoeResponse] = response;
+        const shoe = shoeResponse[0].data;
+
+        this.shoe = shoe.shoe;
+        this.shoeComments = shoe.shoe_comments;
+        this.saleLinks = shoe.shoe_sale_links;
+
+        this.matchResults = matchResponse.data.match_results;
+        this.targetItem = matchResponse.data.target_item;
+        this.groupedMatchUsers = matchResponse.data.grouped_match_users;
+        this.streetResults = matchResponse.data.street_results;
+
+        // eslint-disable-next-line no-console
+      })
+      .catch(() => {
+        this.hasComponentFailedToLoad = true;
+      })
+      .finally(() => {
+        this.isLoadingComponent = false;
+      });
   },
 };
 </script>
