@@ -101,15 +101,6 @@ Vue.mixin({
   },
 });
 
-Vue.mixin({
-  data() {
-    return {
-      isLoadingComponent: false,
-      hasComponentFailedToLoad: false,
-    };
-  },
-});
-
 new Vue({
   beforeCreate() {
     // Safari, in Private Browsing Mode, looks like it supports localStorage but all calls to setItem

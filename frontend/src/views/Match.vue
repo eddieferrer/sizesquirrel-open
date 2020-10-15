@@ -1,10 +1,6 @@
-/* eslint-disable camelcase */
 <template>
   <!-- TODO refactor this component, Component loader should be used for MatchResult, ShoeSaleLinks and PrivateMatchResult not wrap all of them -->
-  <ComponentLoader
-    :loading-component="isLoadingComponent"
-    :failed-to-load="hasComponentFailedToLoad"
-  >
+  <ComponentLoader :component-state="componentState">
     <MatchResult :match-results="matchResults" :target-item="targetItem"></MatchResult>
 
     <div class="columns is-centered" style="margin-top: 1em;">
@@ -127,6 +123,7 @@ export default {
       shoe: {},
       shoeComments: [],
       saleLinks: [],
+      componentState: '',
     };
   },
   metaInfo() {
@@ -147,7 +144,7 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(['isAuthenticated']),
+    ...mapGetters(['isAuthenticated', 'matchInfoWant']),
     shoe_image() {
       // eslint-disable-next-line camelcase
       return this.shoe.shoe?.shoe_image;
@@ -160,7 +157,7 @@ export default {
     },
   },
   created() {
-    this.isLoadingComponent = true;
+    this.componentState = 'loading';
 
     let getMatch;
 
@@ -176,30 +173,23 @@ export default {
       });
     }
 
-    const getShoeDetails = this.$store.dispatch('GET_SHOE', [this.wantItemId]);
-
-    // TODO remove duplicate calls for match page with item match form
-    Promise.all([getMatch, getShoeDetails])
+    Promise.all([getMatch])
       .then((response) => {
-        const [matchResponse, shoeResponse] = response;
-        const shoe = shoeResponse[0].data;
+        const [matchResponse] = response;
 
-        this.shoe = shoe.shoe;
-        this.shoeComments = shoe.shoe_comments;
-        this.saleLinks = shoe.shoe_sale_links;
+        this.shoe = this.matchInfoWant.shoe;
+        this.shoeComments = this.matchInfoWant.shoe_comments;
+        this.saleLinks = this.matchInfoWant.shoe_sale_links;
 
         this.matchResults = matchResponse.data.match_results;
         this.targetItem = matchResponse.data.target_item;
         this.groupedMatchUsers = matchResponse.data.grouped_match_users;
         this.streetResults = matchResponse.data.street_results;
 
-        // eslint-disable-next-line no-console
+        this.componentState = 'done';
       })
       .catch(() => {
-        this.hasComponentFailedToLoad = true;
-      })
-      .finally(() => {
-        this.isLoadingComponent = false;
+        this.componentState = 'error';
       });
   },
 };

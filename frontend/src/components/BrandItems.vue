@@ -1,8 +1,5 @@
 <template>
-  <ComponentLoader
-    :loading-component="isLoadingComponent"
-    :failed-to-load="hasComponentFailedToLoad"
-  >
+  <ComponentLoader :component-state="componentState">
     <div class="columns">
       <div class="column is-3">
         <BrandItemListFilters></BrandItemListFilters>
@@ -90,6 +87,7 @@ export default {
   },
   data() {
     return {
+      componentState: '',
       filter: '',
       sort: 'stats.count',
       sort_order: 'desc',
@@ -255,21 +253,18 @@ export default {
       return itemsFiltered;
     },
   },
-
   created() {
-    this.isLoadingComponent = true;
+    this.componentState = 'loading';
     this.$store
       .dispatch('GET_LIST_ITEMS', {
         target: this.target,
       })
       .then((response) => {
         this.items = response.data.items;
+        this.componentState = 'done';
       })
       .catch(() => {
-        this.hasComponentFailedToLoad = true;
-      })
-      .finally(() => {
-        this.isLoadingComponent = false;
+        this.componentState = 'error';
       });
 
     this.$on('sortOrder', (value) => {

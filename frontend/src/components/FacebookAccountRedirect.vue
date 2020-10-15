@@ -1,8 +1,5 @@
 <template>
-  <ComponentLoader
-    :loading-component="isLoadingComponent"
-    :failed-to-load="hasComponentFailedToLoad"
-  >
+  <ComponentLoader :component-state="componentState">
     <div class="columns">
       <div class="column">
         <div v-if="fb_login_error != ''" class="level box is-marginless has-background-danger">
@@ -39,6 +36,7 @@ export default {
   data() {
     return {
       fb_login_error: '',
+      componentState: '',
     };
   },
   computed: {
@@ -51,7 +49,7 @@ export default {
     },
   },
   created() {
-    this.isLoadingComponent = true;
+    this.componentState = 'loading';
     const vm = this;
     if (typeof FB !== 'undefined' && window.location.hostname !== 'localhost') {
       FB.getLoginStatus(function fbGetLogin(response) {
@@ -83,9 +81,7 @@ export default {
           })
           .catch((error) => {
             this.fb_login_error = error.response.data.message || error;
-          })
-          .finally(() => {
-            this.isLoadingComponent = false;
+            this.componentState = 'error';
           });
       } else {
         this.$store
@@ -95,9 +91,7 @@ export default {
           })
           .catch((error) => {
             this.fb_login_error = error.response.data.message || error;
-          })
-          .finally(() => {
-            this.isLoadingComponent = false;
+            this.componentState = 'error';
           });
       }
     },

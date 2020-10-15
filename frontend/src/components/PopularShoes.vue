@@ -1,8 +1,5 @@
 <template>
-  <ComponentLoader
-    :loading-component="isLoadingComponent"
-    :failed-to-load="hasComponentFailedToLoad"
-  >
+  <ComponentLoader :component-state="componentState">
     <section class="section">
       <h2 class="is-size-4 has-text-centered has-text-primary">Popular Shoes</h2>
       <hr />
@@ -48,24 +45,24 @@ export default {
   data() {
     return {
       popular_shoes: [],
+      componentState: '',
     };
   },
   computed: {
     ...mapGetters(['isAuthenticated']),
   },
   created() {
-    this.isLoadingComponent = true;
+    this.componentState = 'loading';
     this.$store
       .dispatch('GET_POPULAR_SHOES', this.targetUserId)
       .then((response) => {
         this.popular_shoes = response.data.items;
+        this.componentState = 'done';
       })
       .catch(() => {
         // on error, just displays no popular shoes
         this.hasComponentFailedToLoad = true;
-      })
-      .finally(() => {
-        this.isLoadingComponent = false;
+        this.componentState = 'error';
       });
   },
 };
