@@ -1,8 +1,5 @@
 <template>
-  <ComponentLoader
-    :loading-component="isLoadingComponent"
-    :failed-to-load="hasComponentFailedToLoad"
-  >
+  <ComponentLoader :component-state="componentState">
     <div class="columns">
       <div class="column is-3">
         <ItemListFiltersServer
@@ -116,6 +113,7 @@ export default {
       total_items: 0,
       items_per_page: 0, // this has to match setting in api
       items: [],
+      componentState: '',
 
       queryParams: {
         page: 1,
@@ -225,7 +223,7 @@ export default {
         : [this.$route.query.retailer];
     }
 
-    this.isLoadingComponent = true;
+    this.componentState = 'loading';
     this.$store
       .dispatch('POST_LIST_ITEMS', {
         target: this.target,
@@ -235,16 +233,14 @@ export default {
         this.items = response.data.items;
         this.total_items = response.data.count;
         this.items_per_page = response.data.items_per_page;
+        this.componentState = 'done';
       })
       .catch((error) => {
         this.$store.dispatch('SHOW_FLASH_MESSAGE', {
           class: 'has-background-danger',
           message: error,
         });
-        this.hasComponentFailedToLoad = true;
-      })
-      .finally(() => {
-        this.isLoadingComponent = false;
+        this.componentState = 'error';
       });
 
     this.$on('allFilterValues', (filterValues) => {

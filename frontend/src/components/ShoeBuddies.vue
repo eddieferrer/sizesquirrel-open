@@ -1,8 +1,5 @@
 <template>
-  <ComponentLoader
-    :loading-component="isLoadingComponent"
-    :failed-to-load="hasComponentFailedToLoad"
-  >
+  <ComponentLoader :component-state="componentState">
     <section class="section">
       <div class="columns">
         <div class="column">
@@ -79,22 +76,22 @@ export default {
     return {
       shoe_buddies: [],
       best_shoe_buddies: [],
+      componentState: '',
     };
   },
   created() {
-    this.isLoadingComponent = true;
+    this.componentState = 'loading';
     this.$store
       .dispatch('GET_SHOE_BUDDIES', this.targetUserId)
       .then((response) => {
         this.shoe_buddies = response.data.shoe_buddies;
         this.best_shoe_buddies = response.data.best_shoe_buddies;
+        this.componentState = 'done';
       })
       .catch(() => {
         // on error, just displays no shoe buddies
         this.hasComponentFailedToLoad = true;
-      })
-      .finally(() => {
-        this.isLoadingComponent = false;
+        this.componentState = 'error';
       });
   },
 };

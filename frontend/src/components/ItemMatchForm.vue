@@ -50,9 +50,9 @@ export default {
   mixins: [SizeOptions],
   data() {
     return {
-      wantItem: {},
-      haveItem: {},
-      itemSize: {},
+      wantItem: null,
+      haveItem: null,
+      itemSize: null,
     };
   },
   computed: {
@@ -65,7 +65,7 @@ export default {
           return true;
         }
         // form hasn't been touched and has same values as route
-        if (this.$route.query.want_item_id === this.wantItem.id?.toString()) {
+        if (Number(this.$route.query.want_item_id) === this.wantItem.id) {
           return true;
         }
       }
@@ -77,9 +77,9 @@ export default {
         }
         // form hasn't been touched and has same values as route
         if (
-          this.$route.query.want_item_id === this.wantItem.id?.toString() &&
-          this.$route.query.have_item_id === this.haveItem.id?.toString() &&
-          this.$route.query.size === this.matchInfoSize.toString()
+          Number(this.$route.query.want_item_id) === this.wantItem.id &&
+          Number(this.$route.query.have_item_id) === this.haveItem.id &&
+          this.$route.query.size === this.matchInfoSize.value
         ) {
           return true;
         }
@@ -87,22 +87,24 @@ export default {
       return false;
     },
   },
-  created() {
-    this.wantItem = this.matchInfoWant;
-    this.haveItem = this.matchInfoHave;
-    this.itemSize = this.matchInfoSize;
+  watch: {
+    matchInfoWant(newValue) {
+      this.wantItem = newValue.shoe;
+    },
+    matchInfoHave(newValue) {
+      this.haveItem = newValue.shoe;
+    },
+    matchInfoSize(newValue) {
+      this.itemSize = newValue;
+    },
   },
   methods: {
     formAction() {
-      // TODO fix this route to pass values into component
-      // TODO remove this casting
-      // When doing a hard refresh on browser,
-      // these values are coming from $route.query as strings
       if (this.isAuthenticated) {
         this.$router
           .push({
             path: '/match',
-            query: { want_item_id: this.wantItem.id.toString() },
+            query: { want_item_id: this.wantItem.id },
           })
           .catch(() => {});
       } else {
@@ -110,9 +112,9 @@ export default {
           .push({
             path: '/public_match',
             query: {
-              want_item_id: this.wantItem.id.toString(),
-              have_item_id: this.haveItem.id.toString(),
-              size: this.itemSize.value.toString(),
+              want_item_id: this.wantItem.id,
+              have_item_id: this.haveItem.id,
+              size: this.itemSize.value,
             },
           })
           .catch(() => {});

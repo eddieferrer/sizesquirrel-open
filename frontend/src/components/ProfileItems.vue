@@ -1,151 +1,145 @@
 <template>
-  <ComponentLoader :loading-component="false" :failed-to-load="false">
-    <div class="columns">
-      <div class="column">
-        <template v-if="isMyProfile">
-          <h2 class="is-size-4 has-text-centered has-text-primary">Your Shoes</h2>
-          <h5 class="is-size-5 has-text-centered">Shoes you own</h5>
-          <hr />
-        </template>
-        <template v-if="!isMyProfile">
-          <h2 class="is-size-4 has-text-centered has-text-primary">
-            {{ profile.username }}'s Shoes
-          </h2>
-          <h5 class="is-size-5 has-text-centered">Shoes they own</h5>
-          <hr />
-          <div v-if="getItems.length == 0" class="columns">
-            <div class="column">
-              <p>{{ profile.username }} doesn't have any shoes.</p>
-            </div>
-          </div>
-        </template>
-        <div v-if="getItems.length !== 0" class="columns">
+  <div class="columns">
+    <div class="column">
+      <template v-if="isMyProfile">
+        <h2 class="is-size-4 has-text-centered has-text-primary">Your Shoes</h2>
+        <h5 class="is-size-5 has-text-centered">Shoes you own</h5>
+        <hr />
+      </template>
+      <template v-if="!isMyProfile">
+        <h2 class="is-size-4 has-text-centered has-text-primary">{{ profile.username }}'s Shoes</h2>
+        <h5 class="is-size-5 has-text-centered">Shoes they own</h5>
+        <hr />
+        <div v-if="getItems.length == 0" class="columns">
           <div class="column">
-            <ItemListSearchSort pagetype="profile" :sort-order="sort_order"></ItemListSearchSort>
-            <div class="columns is-multiline">
-              <div
-                v-for="user_item in paginatedItems"
-                :id="'item_' + user_item.user_item.id"
-                :key="user_item.user_item.id"
-                class="column is-full"
-              >
-                <div class="columns">
-                  <div class="column is-one-fifth-desktop is-one-quarter-tablet is-full-mobile">
-                    <div class="item_block_image">
-                      <span>
-                        <v-lazy-image
-                          class="lazyload"
-                          loading="lazy"
-                          :src-placeholder="
-                            '/static/images/placeholder_' + user_item.user_item.item.type + '.png'
-                          "
-                          :src="user_item.user_item.item.shoe_image"
-                          :alt="
-                            user_item.user_item.item.brand.name + user_item.user_item.item.model
-                          "
-                        />
-                      </span>
+            <p>{{ profile.username }} doesn't have any shoes.</p>
+          </div>
+        </div>
+      </template>
+      <div v-if="getItems.length !== 0" class="columns">
+        <div class="column">
+          <ItemListSearchSort pagetype="profile" :sort-order="sort_order"></ItemListSearchSort>
+          <div class="columns is-multiline">
+            <div
+              v-for="user_item in paginatedItems"
+              :id="'item_' + user_item.user_item.id"
+              :key="user_item.user_item.id"
+              class="column is-full"
+            >
+              <div class="columns">
+                <div class="column is-one-fifth-desktop is-one-quarter-tablet is-full-mobile">
+                  <div class="item_block_image">
+                    <span>
+                      <v-lazy-image
+                        class="lazyload"
+                        loading="lazy"
+                        :src-placeholder="
+                          '/static/images/placeholder_' + user_item.user_item.item.type + '.png'
+                        "
+                        :src="user_item.user_item.item.shoe_image"
+                        :alt="user_item.user_item.item.brand.name + user_item.user_item.item.model"
+                      />
+                    </span>
+                  </div>
+                </div>
+                <div class="column">
+                  <div class="columns">
+                    <div class="column">
+                      <h2 class="is-size-4 is-capitalized has-text-centered-mobile">
+                        <RouterLink
+                          class="has-text-info"
+                          :to="{
+                            name: 'shoe',
+                            params: {
+                              shoe_brand: user_item.user_item.item.brand.name_slug,
+                              shoe_model: user_item.user_item.item.model_slug,
+                            },
+                          }"
+                          >{{ user_item.user_item.item.model }}</RouterLink
+                        >
+                      </h2>
+                      <h4 class="is-size-5 is-capitalized has-text-centered-mobile">
+                        <RouterLink
+                          class="has-text-info"
+                          :to="{
+                            name: 'brand',
+                            params: { shoe_brand: user_item.user_item.item.brand.name_slug },
+                          }"
+                          >{{ user_item.user_item.item.brand.name }}</RouterLink
+                        >
+                      </h4>
+                      <h4 class="shoe_type has-text-grey is-italic has-text-centered-mobile">
+                        {{ user_item.user_item.item.gender.name_pretty }}
+                        {{ user_item.user_item.item.type | capitalize }} Shoe
+                      </h4>
+                      <hr />
+                      <div class="columns is-mobile">
+                        <div class="column is-narrow size_gender has-text-centered">
+                          <span class="size">{{ user_item.user_item.size }}</span>
+                          <span class="is-size-7"
+                            >{{ user_item.user_item.size_standard }}
+                            {{ user_item.user_item.item.gender['name_pretty'] }}</span
+                          >
+                        </div>
+                        <div class="column">
+                          <p v-if="user_item.user_item.comments.length > 0">
+                            &quot;
+                            <em>
+                              <span>{{ user_item.user_item.comments }}</span> </em
+                            >&quot;
+                          </p>
+                          <p v-if="user_item.user_item.comments.length == 0">
+                            <em>
+                              <span class="has-text-grey">No Comment</span>
+                            </em>
+                          </p>
+                        </div>
+                      </div>
                     </div>
                   </div>
-                  <div class="column">
-                    <div class="columns">
-                      <div class="column">
-                        <h2 class="is-size-4 is-capitalized has-text-centered-mobile">
-                          <RouterLink
-                            class="has-text-info"
-                            :to="{
-                              name: 'shoe',
-                              params: {
-                                shoe_brand: user_item.user_item.item.brand.name_slug,
-                                shoe_model: user_item.user_item.item.model_slug,
-                              },
-                            }"
-                            >{{ user_item.user_item.item.model }}</RouterLink
-                          >
-                        </h2>
-                        <h4 class="is-size-5 is-capitalized has-text-centered-mobile">
-                          <RouterLink
-                            class="has-text-info"
-                            :to="{
-                              name: 'brand',
-                              params: { shoe_brand: user_item.user_item.item.brand.name_slug },
-                            }"
-                            >{{ user_item.user_item.item.brand.name }}</RouterLink
-                          >
-                        </h4>
-                        <h4 class="shoe_type has-text-grey is-italic has-text-centered-mobile">
-                          {{ user_item.user_item.item.gender.name_pretty }}
-                          {{ user_item.user_item.item.type | capitalize }} Shoe
-                        </h4>
-                        <hr />
-                        <div class="columns is-mobile">
-                          <div class="column is-narrow size_gender has-text-centered">
-                            <span class="size">{{ user_item.user_item.size }}</span>
-                            <span class="is-size-7"
-                              >{{ user_item.user_item.size_standard }}
-                              {{ user_item.user_item.item.gender['name_pretty'] }}</span
-                            >
-                          </div>
-                          <div class="column">
-                            <p v-if="user_item.user_item.comments.length > 0">
-                              &quot;
-                              <em>
-                                <span>{{ user_item.user_item.comments }}</span> </em
-                              >&quot;
-                            </p>
-                            <p v-if="user_item.user_item.comments.length == 0">
-                              <em>
-                                <span class="has-text-grey">No Comment</span>
-                              </em>
-                            </p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
 
-                    <div class="columns is-multiline is-mobile">
-                      <div class="column is-4">
-                        <span class="icon-wrapper">
-                          <svg-icon icon="fi-torso"></svg-icon>
+                  <div class="columns is-multiline is-mobile">
+                    <div class="column is-4">
+                      <span class="icon-wrapper">
+                        <svg-icon icon="fi-torso"></svg-icon>
+                      </span>
+                      <div class="info">
+                        <span class="info-label is-size-6 has-text-grey">Rating&nbsp;</span>
+                        <span>
+                          <strong>{{ user_item.user_item.rating }}&nbsp;</strong>
+                          <span class="has-text-grey">/ 5</span>
                         </span>
-                        <div class="info">
-                          <span class="info-label is-size-6 has-text-grey">Rating&nbsp;</span>
-                          <span>
-                            <strong>{{ user_item.user_item.rating }}&nbsp;</strong>
-                            <span class="has-text-grey">/ 5</span>
-                          </span>
-                        </div>
-                      </div>
-                      <div class="column is-4">
-                        <span class="icon-wrapper">
-                          <img src="/static/images/icon_fit.png" alt="shoe fit icon" />
-                        </span>
-                        <div class="info">
-                          <span class="has-text-grey">Fit&nbsp;</span>
-                          <h5 style="clear: both;">
-                            <strong>{{ user_item.user_item.fit_descriptor }}</strong>
-                          </h5>
-                        </div>
                       </div>
                     </div>
-                    <hr class="thin_hr" />
-                    <div v-if="isMyProfile" class="columns is-multiline is-mobile">
-                      <div class="column">
-                        <a
-                          type="button"
-                          class="link edit_item"
-                          @click.prevent.stop="prepareEditItemModal(user_item.user_item)"
-                          >Edit</a
-                        >
+                    <div class="column is-4">
+                      <span class="icon-wrapper">
+                        <img src="/static/images/icon_fit.png" alt="shoe fit icon" />
+                      </span>
+                      <div class="info">
+                        <span class="has-text-grey">Fit&nbsp;</span>
+                        <h5 style="clear: both;">
+                          <strong>{{ user_item.user_item.fit_descriptor }}</strong>
+                        </h5>
                       </div>
-                      <div class="column">
-                        <a
-                          type="button"
-                          class="delete_item is-pulled-right"
-                          @click.prevent.stop="prepareConfirmDeleteModal(user_item.user_item)"
-                          >Delete</a
-                        >
-                      </div>
+                    </div>
+                  </div>
+                  <hr class="thin_hr" />
+                  <div v-if="isMyProfile" class="columns is-multiline is-mobile">
+                    <div class="column">
+                      <a
+                        type="button"
+                        class="link edit_item"
+                        @click.prevent.stop="prepareEditItemModal(user_item.user_item)"
+                        >Edit</a
+                      >
+                    </div>
+                    <div class="column">
+                      <a
+                        type="button"
+                        class="delete_item is-pulled-right"
+                        @click.prevent.stop="prepareConfirmDeleteModal(user_item.user_item)"
+                        >Delete</a
+                      >
                     </div>
                   </div>
                 </div>
@@ -153,69 +147,68 @@
             </div>
           </div>
         </div>
-        <div v-if="numberOfPages > 1" class="columns is-centered">
-          <div class="column is-10 has-text-centered">
-            Showing {{ startIndex + 1 }} - {{ endIndex }} of {{ getItems.length }} items
-            <nav class="pagination is-centered" role="navigation" aria-label="pagination">
-              <ul class="pagination-list">
-                <li>
-                  <a
-                    class="pagination-link"
-                    aria-label="Go to previous"
-                    :disabled="active_page == 1 ? true : false"
-                    @click.prevent.stop="
-                      active_page != 1 ? (active_page = active_page - 1) : (active_page = 1)
-                    "
-                    >&laquo;</a
-                  >
-                </li>
-                <li v-for="page_number in numberOfPages" :key="page_number">
-                  <a
-                    class="pagination-link"
-                    :class="{ 'is-current': page_number == active_page }"
-                    :aria-label="'Goto page ' + page_number"
-                    @click.prevent.stop="active_page = page_number"
-                    >{{ page_number }}</a
-                  >
-                </li>
-                <li>
-                  <a
-                    class="pagination-link"
-                    aria-label="Go to next"
-                    :disabled="active_page == numberOfPages ? true : false"
-                    @click.prevent.stop="active_page = active_page + 1"
-                    >&raquo;</a
-                  >
-                </li>
-              </ul>
-            </nav>
-          </div>
-        </div>
-
-        <template v-if="isMyProfile">
-          <ProfileAddItemForm></ProfileAddItemForm>
-          <!-- modals -->
-          <ConfirmDeleteModal
-            :show="showConfirmDeleteModal"
-            :item="selectedItem"
-            @close="showConfirmDeleteModal = false"
-          ></ConfirmDeleteModal>
-          <EditItemModal
-            :show="showEditItemModal"
-            :item="selectedItem"
-            @close="showEditItemModal = false"
-          ></EditItemModal>
-        </template>
       </div>
+      <div v-if="numberOfPages > 1" class="columns is-centered">
+        <div class="column is-10 has-text-centered">
+          Showing {{ startIndex + 1 }} - {{ endIndex }} of {{ getItems.length }} items
+          <nav class="pagination is-centered" role="navigation" aria-label="pagination">
+            <ul class="pagination-list">
+              <li>
+                <a
+                  class="pagination-link"
+                  aria-label="Go to previous"
+                  :disabled="active_page == 1 ? true : false"
+                  @click.prevent.stop="
+                    active_page != 1 ? (active_page = active_page - 1) : (active_page = 1)
+                  "
+                  >&laquo;</a
+                >
+              </li>
+              <li v-for="page_number in numberOfPages" :key="page_number">
+                <a
+                  class="pagination-link"
+                  :class="{ 'is-current': page_number == active_page }"
+                  :aria-label="'Goto page ' + page_number"
+                  @click.prevent.stop="active_page = page_number"
+                  >{{ page_number }}</a
+                >
+              </li>
+              <li>
+                <a
+                  class="pagination-link"
+                  aria-label="Go to next"
+                  :disabled="active_page == numberOfPages ? true : false"
+                  @click.prevent.stop="active_page = active_page + 1"
+                  >&raquo;</a
+                >
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+
+      <template v-if="isMyProfile">
+        <ProfileAddItemForm></ProfileAddItemForm>
+        <!-- modals -->
+        <ConfirmDeleteModal
+          :show="showConfirmDeleteModal"
+          :item="selectedItem"
+          @close="showConfirmDeleteModal = false"
+        ></ConfirmDeleteModal>
+        <EditItemModal
+          :show="showEditItemModal"
+          :item="selectedItem"
+          @close="showEditItemModal = false"
+        ></EditItemModal>
+      </template>
     </div>
-  </ComponentLoader>
+  </div>
 </template>
 
 <script>
 import { mapGetters } from 'vuex';
 import { capitalize } from '@/filters';
 
-import ComponentLoader from '@/components/ComponentLoader';
 import SvgIcon from '@/components/SvgIcon';
 import EditItemModal from '@/components/EditItemModal';
 import ConfirmDeleteModal from '@/components/ConfirmDeleteModal';
@@ -228,7 +221,6 @@ export default {
     capitalize,
   },
   components: {
-    ComponentLoader,
     EditItemModal,
     ConfirmDeleteModal,
     ItemListSearchSort,

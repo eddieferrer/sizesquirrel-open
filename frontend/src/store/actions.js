@@ -252,7 +252,7 @@ const GET_MATCH_INFO = async (context, { key, id }) => {
       url: `/apiv2/item/details/${id}`,
       method: 'GET',
     });
-    context.commit('SET_MATCH_INFO', { key, shoe: getMatchInfo.data.shoe });
+    context.commit('SET_MATCH_INFO', { key, shoe: getMatchInfo.data });
     return getMatchInfo;
   } catch (error) {
     throw error;
