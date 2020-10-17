@@ -1,7 +1,8 @@
 <template>
-  <!-- TODO refactor this component, Component loader should be used for MatchResult, ShoeSaleLinks and PrivateMatchResult not wrap all of them -->
-  <ComponentLoader :component-state="componentState">
-    <MatchResult :match-results="matchResults" :target-item="targetItem"></MatchResult>
+  <div>
+    <ComponentLoader :component-state="componentState">
+      <MatchResult :match-results="matchResults" :target-item="targetItem"></MatchResult>
+    </ComponentLoader>
 
     <div class="columns is-centered" style="margin-top: 1em;">
       <div class="column is-full-tablet is-three-quarters-desktop">
@@ -11,14 +12,15 @@
 
     <div v-if="isAuthenticated" class="columns is-centered">
       <div class="column is-full-tablet is-three-quarters-desktop">
-        <PrivateMatchResult
-          v-if="shoe"
-          :comments="shoeComments"
-          :match-results="matchResults"
-          :target-item="targetItem"
-          :grouped-match-users="groupedMatchUsers"
-          :street-results="streetResults"
-        ></PrivateMatchResult>
+        <ComponentLoader :component-state="componentState">
+          <PrivateMatchResult
+            :comments="shoeComments"
+            :match-results="matchResults"
+            :target-item="targetItem"
+            :grouped-match-users="groupedMatchUsers"
+            :street-results="streetResults"
+          ></PrivateMatchResult>
+        </ComponentLoader>
       </div>
     </div>
 
@@ -30,7 +32,7 @@
         </h4>
       </div>
     </div>
-  </ComponentLoader>
+  </div>
 </template>
 
 <script>
@@ -157,10 +159,13 @@ export default {
     },
   },
   created() {
+    this.shoe = this.matchInfoWant.shoe;
+    this.shoeComments = this.matchInfoWant.shoe_comments;
+    this.saleLinks = this.matchInfoWant.shoe_sale_links;
+
     this.componentState = 'loading';
 
     let getMatch;
-
     if (this.isAuthenticated) {
       getMatch = this.$store.dispatch('PRIVATE_MATCH', {
         wantItemId: this.wantItemId,
@@ -173,18 +178,12 @@ export default {
       });
     }
 
-    Promise.all([getMatch])
-      .then((response) => {
-        const [matchResponse] = response;
-
-        this.shoe = this.matchInfoWant.shoe;
-        this.shoeComments = this.matchInfoWant.shoe_comments;
-        this.saleLinks = this.matchInfoWant.shoe_sale_links;
-
-        this.matchResults = matchResponse.data.match_results;
-        this.targetItem = matchResponse.data.target_item;
-        this.groupedMatchUsers = matchResponse.data.grouped_match_users;
-        this.streetResults = matchResponse.data.street_results;
+    getMatch
+      .then(({ data }) => {
+        this.matchResults = data.match_results;
+        this.targetItem = data.target_item;
+        this.groupedMatchUsers = data.grouped_match_users;
+        this.streetResults = data.street_results;
 
         this.componentState = 'done';
       })
