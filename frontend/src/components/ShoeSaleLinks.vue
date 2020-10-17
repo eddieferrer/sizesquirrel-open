@@ -32,8 +32,7 @@
           </div>
         </div>
         <template v-if="page === 'match'">
-          <AvantLinkAd v-if="randomSeed > 0.5" :number-of-sale-links="saleLinks.length" />
-          <AmazonAd v-if="randomSeed <= 0.5" :search-term="shoe.brand['name'] + ' ' + shoe.model" />
+          <AvantLinkAd :number-of-sale-links="saleLinks.length" />
         </template>
       </div>
     </div>
@@ -44,11 +43,10 @@
 import { capitalize } from '@/filters';
 import AffiliatePriceBlock from '@/components/AffiliatePriceBlock';
 import AvantLinkAd from '@/components/AvantLinkAd';
-import AmazonAd from '@/components/AmazonAd';
 
 export default {
   name: 'ShoeSaleLinks',
-  components: { AffiliatePriceBlock, AvantLinkAd, AmazonAd },
+  components: { AffiliatePriceBlock, AvantLinkAd },
   filters: {
     capitalize,
   },
@@ -68,12 +66,6 @@ export default {
       default() {
         return {};
       },
-    },
-  },
-  computed: {
-    randomSeed() {
-      // number between 0-1
-      return Math.random();
     },
   },
 };

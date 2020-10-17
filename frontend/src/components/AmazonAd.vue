@@ -5,6 +5,7 @@
 </template>
 
 <script>
+// This component is not currently in use
 /* eslint-disable no-useless-escape */
 import postscribe from 'postscribe';
 
