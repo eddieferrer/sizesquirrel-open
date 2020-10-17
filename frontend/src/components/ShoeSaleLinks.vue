@@ -4,7 +4,7 @@
       <h5 class="has-text-weight-bold">Buy This Shoe</h5>
       <hr />
       <div class="columns is-multiline">
-        <div v-if="saleLinks[0]" class="column" :class="{ 'is-12': randomSeed <= 0.5 }">
+        <div v-if="saleLinks[0]" class="column">
           <!-- repeated code -->
           <template v-for="(datafeed, index) in saleLinks[0].datafeeds">
             <!--  if loop.first  -->
