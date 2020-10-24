@@ -92,8 +92,9 @@ def get_context():
                 model_url_segment = urlSegments[2].replace('-', ' ')
                 model_url_segment = model_url_segment.lower()
                 model = Item.query.filter(Item.brand_id == brand_id).filter(func.replace(func.lower(Item.model), '-', ' ') == model_url_segment ).all()
+                model.sort(reverse=False, key=lambda x: getattr(x, 'gender_id'))
                 model_id_list = [x.id for x in model]
-
+                
         if urlSegments[0] == 'profile':
             # @app.route('/profile/<user_username>/')
             if len(urlSegments) > 1:
