@@ -3,7 +3,7 @@
     <div v-cloak class="columns">
       <div class="column">
         <h2 v-cloak class="is-size-4 has-text-centered has-text-primary">
-          {{ shoe[0].brand.name | titleCase }} {{ shoe[0].model | titleCase }}
+          {{ shoe_brand | titleCase }} {{ shoe[0].model | titleCase }}
         </h2>
         <h5 class="is-size-5 has-text-centered">More information about this shoe</h5>
         <hr />
@@ -100,10 +100,11 @@ export default {
   computed: {
     ...mapGetters(['isInitialized', 'shoe', 'brand']),
     shoe_image() {
-      if (this.shoe[0]) {
-        return this.shoe[0].shoe_image;
-      }
-      return '';
+      // eslint-disable-next-line camelcase
+      return this.shoe?.[0]?.shoe_image;
+    },
+    shoe_brand() {
+      return this.shoe?.[0]?.brand?.name;
     },
     brandTitleCase() {
       return this.$options.filters.titleCase(this.brand.name);
