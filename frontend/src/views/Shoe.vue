@@ -3,7 +3,7 @@
     <div v-cloak class="columns">
       <div class="column">
         <h2 v-cloak class="is-size-4 has-text-centered has-text-primary">
-          {{ shoe_brand | titleCase }} {{ shoe[0].model | titleCase }}
+          {{ shoe_brand | titleCase }} {{ shoe_model | titleCase }}
         </h2>
         <h5 class="is-size-5 has-text-centered">More information about this shoe</h5>
         <hr />
@@ -105,6 +105,9 @@ export default {
     },
     shoe_brand() {
       return this.shoe?.[0]?.brand?.name;
+    },
+    shoe_model() {
+      return this.shoe?.[0]?.model;
     },
     brandTitleCase() {
       return this.$options.filters.titleCase(this.brand.name);
