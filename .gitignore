@@ -12,6 +12,9 @@ frontend/dist/
 itemslist
 outfile
 
+# Merchant Feeds
+backend/datafeeds/
+
 # SizeSquirrel Deployment Files
 production-database.db
 wsgi.py
