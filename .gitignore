@@ -25,3 +25,6 @@ logs/*
 
 # Dev database
 dev-database.db
+
+# Temp maintenance file
+maintenance_on.html
