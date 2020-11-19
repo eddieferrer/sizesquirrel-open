@@ -33,6 +33,7 @@ if (isProd) {
       enabled: !isProd,
       sendHitTask: isProd,
     },
+    set: [{ field: 'anonymizeIp', value: true }],
   });
 }
 
