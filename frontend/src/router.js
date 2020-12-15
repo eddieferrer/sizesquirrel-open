@@ -134,10 +134,9 @@ const router = new Router({
         requiresAuth: true,
       },
       beforeEnter: (to, from, next) => {
-        // 404 if query is missing
         // eslint-disable-next-line camelcase
         if (!to.query?.want_item_id) {
-          next('/404');
+          next('/');
         } else {
           next();
         }
@@ -198,10 +197,10 @@ const router = new Router({
       component: () => import(/* webpackChunkName: "match" */ './views/Match.vue'),
       meta: {},
       beforeEnter: (to, from, next) => {
-        // 404 if query is missing
+        // If query is missing, redirect
         // eslint-disable-next-line camelcase
         if (!to.query?.want_item_id || !to.query?.size || !to.query?.have_item_id) {
-          next('/404');
+          next('/');
         } else {
           next();
         }

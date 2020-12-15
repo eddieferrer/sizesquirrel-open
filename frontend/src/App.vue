@@ -44,7 +44,7 @@
           </div>
           <div class="columns is-centered">
             <div class="column is-full-mobile is-two-thirds-desktop is-three-quarters-tablet">
-              <ItemMatchForm v-if="showHomePageForm" :key="$route.fullPath"></ItemMatchForm>
+              <ItemMatchForm v-if="showHomePageForm"></ItemMatchForm>
             </div>
           </div>
         </div>
