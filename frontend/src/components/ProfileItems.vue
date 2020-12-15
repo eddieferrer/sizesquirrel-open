@@ -117,7 +117,7 @@
                       </span>
                       <div class="info">
                         <span class="has-text-grey">Fit&nbsp;</span>
-                        <h5 style="clear: both;">
+                        <h5 style="clear: both">
                           <strong>{{ user_item.user_item.fit_descriptor }}</strong>
                         </h5>
                       </div>

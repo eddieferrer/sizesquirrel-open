@@ -1,4 +1,6 @@
 <template>
+  <!-- TODO - Fix vue lint error -->
+  <!-- eslint-disable vue/no-mutating-props -->
   <Modal :modal-size="modalSize" :show="show" @close="closeAndReset">
     <header class="modal-card-head">
       <p class="modal-card-title">Change User Details</p>
@@ -175,6 +177,8 @@
 </template>
 
 <script>
+/* TODO - Fix vue lint error */
+/* eslint-disable vue/no-mutating-props */
 import SportTradOptions from '@/mixins/SportTradOptions';
 import BoulderOptions from '@/mixins/BoulderOptions';
 import SplitShoeSizingOptions from '@/mixins/SplitShoeSizingOptions';

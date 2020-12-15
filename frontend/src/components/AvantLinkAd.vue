@@ -3,7 +3,7 @@
     <div
       v-if="numberOfSaleLinks > 0"
       id="avantlink_ad_square"
-      style="width: 300px; height: 250px;"
+      style="width: 300px; height: 250px"
       class="ad"
     ></div>
     <div v-if="numberOfSaleLinks === 0" id="avantlink_ad_wide" class="ad"></div>

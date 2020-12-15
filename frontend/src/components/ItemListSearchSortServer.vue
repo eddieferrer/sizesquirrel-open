@@ -38,12 +38,12 @@
                 <option value="model">Model</option>
                 <option v-if="include_brands" value="brand_name">Brand</option>
 
-                <option v-if="pagetype === 'browse'" value="popular_fit_descriptor"
-                  >Most Common Fit</option
-                >
-                <option v-if="pagetype === 'browse'" value="highest_rated_foot_shape"
-                  >Recommended Foot Shape</option
-                >
+                <option v-if="pagetype === 'browse'" value="popular_fit_descriptor">
+                  Most Common Fit
+                </option>
+                <option v-if="pagetype === 'browse'" value="highest_rated_foot_shape">
+                  Recommended Foot Shape
+                </option>
 
                 <option value="avg_rating">Average Rating</option>
                 <option v-if="include_pricing" value="retail_price">Retail Price</option>

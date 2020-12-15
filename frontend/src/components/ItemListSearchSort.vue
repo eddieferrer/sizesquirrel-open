@@ -40,19 +40,20 @@
                 <option
                   v-if="pagetype !== 'profile' && pagetype !== 'comments'"
                   value="stats.avg_rating"
-                  >Rating</option
                 >
+                  Rating
+                </option>
                 <option v-if="pagetype === 'profile'" value="user_item.rating">Rating</option>
                 <option v-if="pagetype === 'comments'" value="rating">Rating</option>
-                <option v-if="pagetype === 'comments'" value="user.get_foot_shape"
-                  >Foot Shape</option
-                >
+                <option v-if="pagetype === 'comments'" value="user.get_foot_shape">
+                  Foot Shape
+                </option>
                 <option v-if="pagetype === 'comments'" value="fit_descriptor">Fit</option>
 
                 <option v-if="pagetype === 'comments'" value="size">Size</option>
-                <option v-if="include_pricing" value="datafeeds.Product.Retail_Price"
-                  >Retail Price</option
-                >
+                <option v-if="include_pricing" value="datafeeds.Product.Retail_Price">
+                  Retail Price
+                </option>
               </select>
             </div>
           </div>

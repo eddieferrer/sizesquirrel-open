@@ -71,14 +71,14 @@ export default {
     ShoeRatingsByFootShape,
     ShoeSaleLinks,
   },
+  filters: {
+    titleCase,
+  },
   beforeRouteEnter(to, from, next) {
     getData(to, from, next);
   },
   beforeRouteUpdate(to, from, next) {
     getData(to, from, next);
-  },
-  filters: {
-    titleCase,
   },
   metaInfo() {
     return {

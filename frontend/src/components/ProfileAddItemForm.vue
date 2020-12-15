@@ -44,7 +44,7 @@
                     name="comments"
                     cols="30"
                     maxlength="700"
-                    style="height: 215px;"
+                    style="height: 215px"
                   ></textarea>
                 </div>
               </div>

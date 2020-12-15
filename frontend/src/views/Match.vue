@@ -4,7 +4,7 @@
       <MatchResult :match-results="matchResults" :target-item="targetItem"></MatchResult>
     </ComponentLoader>
 
-    <div class="columns is-centered" style="margin-top: 1em;">
+    <div class="columns is-centered" style="margin-top: 1em">
       <div class="column is-full-tablet is-three-quarters-desktop">
         <ShoeSaleLinks :shoe="shoe" :sale-links="saleLinks" page="match"></ShoeSaleLinks>
       </div>
@@ -93,14 +93,14 @@ export default {
     PrivateMatchResult,
     ComponentLoader,
   },
+  filters: {
+    titleCase,
+  },
   beforeRouteEnter(to, from, next) {
     getData(to, from, next);
   },
   beforeRouteUpdate(to, from, next) {
     getData(to, from, next);
-  },
-  filters: {
-    titleCase,
   },
   props: {
     wantItemId: {
