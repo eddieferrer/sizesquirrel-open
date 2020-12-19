@@ -171,7 +171,9 @@ export default {
 .has-equal-height .card-footer {
   margin-top: auto;
 }
-
+.card {
+  overflow: visible;
+}
 .box-icon {
   background-color: $aqua;
   border-radius: 50%;

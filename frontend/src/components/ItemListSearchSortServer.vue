@@ -1,7 +1,7 @@
 <template>
   <form @submit="filterValue">
     <div class="columns is-multiline">
-      <div class="column is-offset-3 is-4">
+      <div class="column is-offset-1-tablet is-offset-3-desktop is-4">
         <div class="field">
           <label class="label has-text-grey-dark">Search</label>
         </div>
