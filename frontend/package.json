@@ -56,7 +56,7 @@
     "sass-loader": "^9.0.3",
     "vue-cli-plugin-webpack-bundle-analyzer": "^4.0.0",
     "vue-template-compiler": "^2.6.12",
-    "webpack-bundle-analyzer": "^4.2.0"
+    "webpack-bundle-analyzer": "^4.3.0"
   },
   "husky": {
     "hooks": {
