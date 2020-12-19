@@ -80,6 +80,9 @@ $navbar-item-img-max-height: 38px;
 @import 'bulma/sass/utilities/_all.sass';
 @import 'bulma/sass/base/_all.sass';
 @import 'bulma/sass/grid/_all.sass';
+@import 'bulma/sass/helpers/_all.sass';
+@import 'bulma/sass/form/_all.sass';
+@import 'bulma/sass/layout/_all.sass';
 
 @import 'bulma/sass/elements/box.sass';
 @import 'bulma/sass/elements/button.sass';
@@ -93,9 +96,12 @@ $navbar-item-img-max-height: 38px;
 @import 'bulma/sass/components/pagination.sass';
 @import 'bulma/sass/components/modal.sass';
 
-@import 'bulma/sass/form/_all.sass';
-
-@import 'bulma/sass/layout/_all.sass';
+// Revert bulma variables to 0.7.5 sizes
+$control-height: 2.25em;
+$control-padding-vertical: calc(0.375em - #{$control-border-width});
+$control-padding-horizontal: calc(0.625em - #{$control-border-width});
+$button-padding-vertical: calc(0.375em - #{$button-border-width});
+$button-padding-horizontal: 0.75em;
 
 // Cosmo Overrides
 @import './cosmo_overrides.scss';

@@ -1,7 +1,7 @@
 <template>
   <form>
     <div class="columns is-multiline">
-      <div v-if="include_search" class="column is-offset-3 is-4">
+      <div v-if="include_search" class="column is-offset-1-tablet is-offset-3-desktop is-4">
         <div class="field">
           <label class="label has-text-grey-dark">Search</label>
         </div>
