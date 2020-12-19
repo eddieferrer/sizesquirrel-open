@@ -11,7 +11,7 @@
     "eslint-check": "eslint --print-config . | eslint-config-prettier-check"
   },
   "dependencies": {
-    "@sentry/browser": "^5.29.0",
+    "@sentry/browser": "^5.29.2",
     "@sentry/integrations": "^5.29.2",
     "axios": "^0.21.0",
     "bulma": "^0.9.1",
