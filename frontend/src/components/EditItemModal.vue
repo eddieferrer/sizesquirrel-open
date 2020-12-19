@@ -1,4 +1,6 @@
 <template>
+  <!-- TODO - Fix vue lint error -->
+  <!-- eslint-disable vue/no-mutating-props -->
   <Modal :modal-size="modalSize" :show="show" @close="closeAndReset">
     <header class="modal-card-head">
       <p class="modal-card-title">Edit Shoe</p>
@@ -46,7 +48,7 @@
                   v-model="item.comments"
                   name="comments"
                   maxlength="700"
-                  style="height: 237px;"
+                  style="height: 237px"
                 ></textarea>
               </div>
             </div>
@@ -62,15 +64,15 @@
         >
           Save<span v-if="isFormSubmitting" class="loading"></span>
         </button>
-        <button class="button is-pulled-left" @click.prevent.stop="closeAndReset">
-          Cancel
-        </button>
+        <button class="button is-pulled-left" @click.prevent.stop="closeAndReset">Cancel</button>
       </section>
     </form>
   </Modal>
 </template>
 
 <script>
+/* TODO - Fix vue lint error */
+/* eslint-disable vue/no-mutating-props */
 import SizeOptions from '@/mixins/SizeOptions';
 import RatingOptions from '@/mixins/RatingOptions';
 import FitOptions from '@/mixins/FitOptions';

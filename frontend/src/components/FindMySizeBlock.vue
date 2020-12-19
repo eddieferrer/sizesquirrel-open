@@ -146,8 +146,9 @@
                   :value="rating.avg_rating"
                   :class="progressBarClass(rating)"
                   max="5"
-                  >{{ rating.avg_rating }}%</progress
                 >
+                  {{ rating.avg_rating }}%
+                </progress>
               </div>
               <div class="rating">
                 <span class="is-size-7 has-text-grey">&nbsp;{{ rating.avg_rating }}</span>

@@ -14,9 +14,7 @@
             class="steps-segment"
             :class="{ 'is-active': currentStep == 1, 'has-gaps': currentStep <= 1 }"
           >
-            <span class="steps-marker">
-              1
-            </span>
+            <span class="steps-marker"> 1 </span>
             <div class="steps-content">
               <h4 class="step-heading">Gender</h4>
             </div>
@@ -25,9 +23,7 @@
             class="steps-segment"
             :class="{ 'is-active': currentStep == 2, 'has-gaps': currentStep <= 2 }"
           >
-            <span class="steps-marker">
-              2
-            </span>
+            <span class="steps-marker"> 2 </span>
             <div class="steps-content">
               <h4 class="step-heading">Foot Shape</h4>
             </div>
@@ -83,9 +79,7 @@
                 <div class="is-divider-vertical"></div>
                 <div class="column why-text">
                   <p>Why?</p>
-                  <p>
-                    Some models of shoes are designed with a specific gender in mind.
-                  </p>
+                  <p>Some models of shoes are designed with a specific gender in mind.</p>
                   <p>
                     Male shoes typically tend to accomodate a higher volume foot. Some models will
                     additionally have the 'HV' designation for 'High Volume'. Womens shoes are

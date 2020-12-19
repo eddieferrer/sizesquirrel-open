@@ -157,7 +157,7 @@
       </div>
     </div>
 
-    <div class="columns is-centered" style="margin-top: 1em;">
+    <div class="columns is-centered" style="margin-top: 1em">
       <div class="column is-full-tablet is-three-quarters-desktop">
         <div v-if="matchResultsLength > 0" class="columns is-centered">
           <div class="column">
@@ -167,7 +167,7 @@
               <div :key="index">
                 <div
                   v-if="matchResults[0].percentage == result.percentage"
-                  style="margin-top: 0.5em;"
+                  style="margin-top: 0.5em"
                 >
                   <h6>
                     Recommended Size:
@@ -190,8 +190,9 @@
                     class="progress"
                     :value="result.percentage"
                     max="100"
-                    >{{ result.percentage }}%</progress
                   >
+                    {{ result.percentage }}%
+                  </progress>
                 </div>
                 <template v-if="index === matchResultsLength - 1">
                   <h6

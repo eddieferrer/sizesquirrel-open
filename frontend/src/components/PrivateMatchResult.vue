@@ -20,13 +20,14 @@
             size wear this size.
           </h6>
           <progress
-            style="margin-bottom: 0px;"
+            style="margin-bottom: 0px"
             :class="getClass(streetResults[0].percentage)"
             class="progress"
             :value="streetResults[0].percentage"
             max="100"
-            >{{ streetResults[0].percentage }}%</progress
           >
+            {{ streetResults[0].percentage }}%
+          </progress>
           <h6>
             Accuracy:
             <strong>

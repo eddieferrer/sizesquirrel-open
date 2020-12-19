@@ -1,4 +1,11 @@
-<!-- eslint-disable vue/no-v-html -->
+<template>
+  <!-- eslint-disable vue/no-v-html -->
+  <div
+    class="svg-container"
+    v-html="require(`!html-loader!./../scss/vendor/foundation-icons/svgs/${icon}.svg`)"
+  ></div>
+</template>
+
 <script>
 export default {
   name: 'SvgIcon',
@@ -34,13 +41,6 @@ export default {
   },
 };
 </script>
-
-<template>
-  <div
-    class="svg-container"
-    v-html="require(`!html-loader!./../scss/vendor/foundation-icons/svgs/${icon}.svg`)"
-  ></div>
-</template>
 
 <style lang="scss">
 .svg-container {
