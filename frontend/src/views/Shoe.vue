@@ -92,6 +92,7 @@ export default {
           content: `${this.brandTitleCase} ${this.model} | SizeSquirrel`,
         },
         { vmid: 'og:image', property: 'og:image', content: this.shoe_image },
+        { vmid: 'twitter:image:src', property: 'twitter:image:src', content: this.shoe_image },
         { vmid: 'og:image:width', property: 'og:image:width', content: '300' },
         { vmid: 'og:image:height', property: 'og:image:height', content: '300' },
       ],

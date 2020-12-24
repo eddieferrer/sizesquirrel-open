@@ -27,7 +27,7 @@ module.exports = {
       '^/apiv2': {
         target: 'http://localhost:5000',
         ws: true,
-        changeOrigin: true,
+        changeOrigin: false,
       },
     },
     hot: false,
