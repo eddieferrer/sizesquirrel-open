@@ -196,7 +196,7 @@ export default {
         // The list of types is available here: http://ogp.me/#types
         { property: 'og:type', content: 'website' },
         // Should the the same as your canonical link, see below.
-        { property: 'og:url', content: 'https://www.sizesquirrel.com' },
+        { property: 'og:url', content: `https://www.sizesquirrel.com${this.$route.path}` },
         {
           vmid: 'og:image',
           property: 'og:image',
