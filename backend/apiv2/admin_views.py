@@ -178,7 +178,7 @@ def get_admin_stats():
     else:
         return jsonify({
         'status': 'error',
-        'message': 'You are not authorized to view this pages.'
+        'message': 'You are not authorized to view this page.'
     }), 401
 
 
@@ -212,6 +212,6 @@ def get_admin_matchtest():
     else:
         return jsonify({
         'status': 'error',
-        'message': 'You are not authorized to view this pages.'
+        'message': 'You are not authorized to view this page.'
     }), 401
 
