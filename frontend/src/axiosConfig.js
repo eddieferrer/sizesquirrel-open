@@ -21,10 +21,23 @@ axios.interceptors.response.use(
           Sentry.captureMessage(`404 Error API - ${error.config.url}`);
         }
       }
-      store.dispatch('SHOW_FLASH_MESSAGE', {
-        class: 'has-background-danger',
-        message: 'There has been a fatal server error. Please reload the page.',
-      });
+      if (error.response.status === 400) {
+        if (Sentry) {
+          Sentry.captureMessage(`400 Error - ${error.config.url} - ${error.config.url}`);
+        }
+      }
+
+      const errorMessage = error.response?.data?.message;
+      const errorMessageFeedback = errorMessage
+        ? Object.values(errorMessage).filter((entry) => entry.trim() !== '')?.length > 0
+        : undefined;
+
+      if (error.response.status === 400 && (!errorMessage || !errorMessageFeedback)) {
+        store.dispatch('SHOW_FLASH_MESSAGE', {
+          class: 'has-background-danger',
+          message: 'There has been a fatal server error. Please reload the page.',
+        });
+      }
     }
     // Do something with response error
     return Promise.reject(error);
