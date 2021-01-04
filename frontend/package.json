@@ -18,7 +18,7 @@
     "bulma-divider": "^0.2.0",
     "bulma-steps-component": "^0.5.3",
     "connect-history-api-fallback": "^1.6.0",
-    "core-js": "^3.8.1",
+    "core-js": "^3.8.2",
     "express": "^4.17.1",
     "lodash.debounce": "^4.0.8",
     "postscribe": "^2.0.8",
