@@ -7,18 +7,19 @@ import LoginForm from '@/components/LoginForm';
 
 export default {
   name: 'Login',
+  layout: 'no-homepage-form',
   components: {
     LoginForm,
   },
-  props: {
-    redirect: {
-      type: String,
-      default: '',
-    },
+  data() {
+    return {
+      redirect: this.$route.query.redirect,
+    };
   },
-  metaInfo: {
-    // title will be injected into parent titleTemplate
-    title: 'Login',
+  head() {
+    return {
+      title: 'Login',
+    };
   },
 };
 </script>

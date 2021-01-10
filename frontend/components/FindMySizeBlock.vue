@@ -17,31 +17,36 @@
       <div class="column">
         <div class="columns is-marginless">
           <h2 class="is-size-4 is-capitalized has-text-centered-mobile">
-            <RouterLink
+            <NuxtLink
               class="has-text-info"
               :to="{
                 name: 'shoe',
-                params: { shoe_brand: shoe.brand.name_slug, shoe_model: shoe.model_slug },
+                params: {
+                  shoe_brand: shoe.brand.name_slug,
+                  shoe_model: shoe.model_slug,
+                },
               }"
-              >{{ shoe.model }}</RouterLink
+              >{{ shoe.model }}</NuxtLink
             >
           </h2>
         </div>
 
         <div class="columns is-marginless">
           <h4 class="is-size-5 is-capitalized has-text-centered-mobile">
-            <RouterLink
+            <NuxtLink
               class="has-text-info"
               :to="{
                 name: 'brand',
                 params: { shoe_brand: shoe.brand.name_slug },
               }"
-              >{{ shoe.brand.name }}</RouterLink
+              >{{ shoe.brand.name }}</NuxtLink
             >
           </h4>
         </div>
 
-        <h4 class="is-size-6 is-capitalized is-italic has-text-grey has-text-centered-mobile">
+        <h4
+          class="is-size-6 is-capitalized is-italic has-text-grey has-text-centered-mobile"
+        >
           {{ shoe.gender.name_pretty }} {{ shoe.type }} Shoe
         </h4>
       </div>
@@ -69,11 +74,17 @@
             <svg-icon icon="fi-star"></svg-icon>
           </span>
           <div class="info">
-            <span class="info-label is-size-6 has-text-grey">Average Rating</span>
+            <span class="info-label is-size-6 has-text-grey"
+              >Average Rating</span
+            >
             <span>
-              <strong v-if="shoe.stats.count > 0">{{ shoe.stats.avg_rating }}</strong>
+              <strong v-if="shoe.stats.count > 0">{{
+                shoe.stats.avg_rating
+              }}</strong>
               <strong v-if="shoe.stats.count == 0">Not Available</strong>
-              <span v-if="shoe.stats.count > 0" class="has-text-grey">&nbsp;/ 5</span>
+              <span v-if="shoe.stats.count > 0" class="has-text-grey"
+                >&nbsp;/ 5</span
+              >
             </span>
           </div>
         </div>
@@ -83,7 +94,9 @@
           <img src="/images/icon_fit.png" alt="shoe fit icon" />
         </span>
         <div class="info">
-          <span class="info-label is-size-6 has-text-grey">Most Common Fit</span>
+          <span class="info-label is-size-6 has-text-grey"
+            >Most Common Fit</span
+          >
           <span>
             <strong>{{ shoe.stats.popular_fit_descriptor }}</strong>
           </span>
@@ -91,10 +104,16 @@
       </div>
       <div class="column is-clearfix is-6">
         <span class="icon-wrapper">
-          <img src="/images/icon_footshape.png" alt="foot shape icon" class="footshape" />
+          <img
+            src="/images/icon_footshape.png"
+            alt="foot shape icon"
+            class="footshape"
+          />
         </span>
         <div class="info">
-          <span class="info-label is-size-6 has-text-grey">Recommended For</span>
+          <span class="info-label is-size-6 has-text-grey"
+            >Recommended For</span
+          >
           <strong>{{ shoe.stats.highest_rated_foot_shape }}</strong> Feet
         </div>
       </div>
@@ -102,7 +121,11 @@
       <div v-if="shoe.datafeeds" class="column is-no-top-padding is-12">
         <template v-for="(datafeed, index) in shoe.datafeeds">
           <!--  if loop.first  -->
-          <div v-if="index === 0" :key="index + '_1'" class="columns is-marginless">
+          <div
+            v-if="index === 0"
+            :key="index + '_1'"
+            class="columns is-marginless"
+          >
             <div class="column is-paddingless is-12">
               <h6 class="is-pulled-right">
                 <strong>Retail Price&nbsp;</strong>
@@ -113,13 +136,20 @@
           <!--  endif  -->
           <div :key="index + '_2'" class="column is-12 is-paddingless">
             <AffiliatePriceBlock
-              v-if="retailers.length == 0 || retailers.indexOf(datafeed.Retailer_Name) > -1"
+              v-if="
+                retailers.length == 0 ||
+                retailers.indexOf(datafeed.Retailer_Name) > -1
+              "
               :key="index + '_2'"
               :datafeed="datafeed"
             ></AffiliatePriceBlock>
           </div>
           <!--  if loop.last  -->
-          <div v-if="index === shoe.datafeeds.length - 1" :key="index + '_3'" class="columns">
+          <div
+            v-if="index === shoe.datafeeds.length - 1"
+            :key="index + '_3'"
+            class="columns"
+          >
             <div class="column is-12">
               <hr class="thin-hr" />
             </div>
@@ -130,10 +160,16 @@
       <!-- shoe stats -->
       <div v-if="showShapeStats" class="column is-no-top-padding is-12">
         <span class="icon-wrapper">
-          <img src="/images/icon_footshape.png" alt="foot shape icon" class="footshape" />
+          <img
+            src="/images/icon_footshape.png"
+            alt="foot shape icon"
+            class="footshape"
+          />
         </span>
         <div class="info_footshape">
-          <span class="info-label is-size-6 has-text-grey">Rating by Foot shape&nbsp;</span>
+          <span class="info-label is-size-6 has-text-grey"
+            >Rating by Foot shape&nbsp;</span
+          >
           <ul class="is-clearfix">
             <li v-for="(rating, index) in shoe.stats.ratings" :key="index">
               <div class="shape">
@@ -151,7 +187,9 @@
                 </progress>
               </div>
               <div class="rating">
-                <span class="is-size-7 has-text-grey">&nbsp;{{ rating.avg_rating }}</span>
+                <span class="is-size-7 has-text-grey"
+                  >&nbsp;{{ rating.avg_rating }}</span
+                >
               </div>
             </li>
           </ul>
@@ -165,15 +203,18 @@
         <div v-if="isAuthenticated">
           <form :id="'form_' + shoe.id" action="/match/" method="get">
             <input type="hidden" name="want_item_id" :value="shoe.id" />
-            <button type="submit" class="button is-info is-normal is-marginless is-pulled-right">
+            <button
+              type="submit"
+              class="button is-info is-normal is-marginless is-pulled-right"
+            >
               Find My Size
             </button>
           </form>
         </div>
         <!-- anonymous -->
         <div v-if="!isAuthenticated">
-          <RouterLink to="/register" class="has-text-info is-pulled-right"
-            >Sign up now to find your size!</RouterLink
+          <NuxtLink to="/register" class="has-text-info is-pulled-right"
+            >Sign up now to find your size!</NuxtLink
           >
         </div>
       </div>
@@ -216,7 +257,11 @@ export default {
   },
   methods: {
     titleString(rating) {
-      if (this.shoe.stats.highest_rated_foot_shape.includes(rating.foot_shape_descriptor)) {
+      if (
+        this.shoe.stats.highest_rated_foot_shape.includes(
+          rating.foot_shape_descriptor
+        )
+      ) {
         return 'Recommended Foot Shape';
       }
       if (rating.count <= 5) {
@@ -225,7 +270,11 @@ export default {
       return rating.avg_rating;
     },
     progressBarClass(rating) {
-      if (this.shoe.stats.highest_rated_foot_shape.includes(rating.foot_shape_descriptor)) {
+      if (
+        this.shoe.stats.highest_rated_foot_shape.includes(
+          rating.foot_shape_descriptor
+        )
+      ) {
         return 'is-success';
       }
       if (rating.count <= 5) {

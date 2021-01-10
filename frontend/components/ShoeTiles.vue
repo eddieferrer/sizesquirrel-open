@@ -24,5 +24,3 @@ export default {
   name: 'ShoeTiles',
 };
 </script>
-
-<style scoped lang="scss"></style>

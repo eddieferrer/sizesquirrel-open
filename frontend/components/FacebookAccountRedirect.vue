@@ -2,7 +2,10 @@
   <ComponentLoader :component-state="componentState">
     <div class="columns">
       <div class="column">
-        <div v-if="fb_login_error != ''" class="level box is-marginless has-background-danger">
+        <div
+          v-if="fb_login_error != ''"
+          class="level box is-marginless has-background-danger"
+        >
           <span class="has-text-white">{{ fb_login_error | capitalize }}</span>
         </div>
       </div>
@@ -48,7 +51,7 @@ export default {
       }
     },
   },
-  created() {
+  mounted() {
     this.componentState = 'loading';
     const vm = this;
     if (typeof FB !== 'undefined' && window.location.hostname !== 'localhost') {
@@ -66,7 +69,6 @@ export default {
   methods: {
     navigateAfterLogin() {
       const nextRoute = this.redirect || '/my_profile/';
-
       this.$router.push({ path: nextRoute }).catch(() => {
         // the new version of vue router sends an error here
         // so lets catch and do nothing
@@ -110,5 +112,3 @@ export default {
   },
 };
 </script>
-
-<style scoped></style>

@@ -1,14 +1,14 @@
 <template>
   <nav class="navbar is-dark" role="navigation" aria-label="main navigation">
     <div class="navbar-brand">
-      <RouterLink class="navbar-item brandlogo nohover" to="/">
+      <NuxtLink class="navbar-item brandlogo nohover" to="/">
         <img
           src="/images/SizeSquirrelLogoMainSquare.svg"
           height="88"
           width="80"
           alt="SizeSquirrel"
         />
-      </RouterLink>
+      </NuxtLink>
       <span class="navbar-item navbar-item-brand">SizeSquirrel</span>
       <a
         role="button"
@@ -34,37 +34,37 @@
         <span class="navbar-item navbar-item-brand is-hidden-desktop pt-2"
           >&nbsp;</span
         >
-        <RouterLink
+        <NuxtLink
           class="navbar-item"
           to="/"
           @click.native="isActive = !isActive"
-          >Home</RouterLink
+          >Home</NuxtLink
         >
-        <RouterLink
+        <NuxtLink
           v-if="isAuthenticated"
           to="/browse"
           class="navbar-item"
           @click.native="isActive = !isActive"
-          >Browse Shoes</RouterLink
+          >Browse Shoes</NuxtLink
         >
-        <RouterLink
+        <NuxtLink
           v-if="isAuthenticated"
           to="/my_profile"
           class="navbar-item"
           @click.native="isActive = !isActive"
-          >My Profile</RouterLink
+          >My Profile</NuxtLink
         >
-        <RouterLink
+        <NuxtLink
           to="/sales"
           class="navbar-item"
           @click.native="isActive = !isActive"
-          >Shoes On Sale</RouterLink
+          >Shoes On Sale</NuxtLink
         >
-        <RouterLink
+        <NuxtLink
           to="/recommend"
           class="navbar-item"
           @click.native="isActive = !isActive"
-          >Recommend A Shoe</RouterLink
+          >Recommend A Shoe</NuxtLink
         >
       </div>
       <div class="navbar-end">
@@ -77,20 +77,20 @@
         >
         <div class="navbar-item">
           <div class="buttons">
-            <RouterLink
+            <NuxtLink
               v-if="!isAuthenticated"
               to="/register"
               class="button is-info"
               @click.native="isActive = !isActive"
             >
               <strong>Sign up</strong>
-            </RouterLink>
-            <RouterLink
+            </NuxtLink>
+            <NuxtLink
               v-if="!isAuthenticated"
               to="/login"
               class="button is-light"
               @click.native="isActive = !isActive"
-              >Log in</RouterLink
+              >Log in</NuxtLink
             >
           </div>
         </div>

@@ -22,9 +22,9 @@
       <hr />
     </div>
 
-    <!-- <HomeCards></HomeCards>
+    <HomeCards></HomeCards>
 
-    <PopularShoes></PopularShoes> -->
+    <PopularShoes></PopularShoes>
 
     <section class="section">
       <div class="columns">
@@ -94,15 +94,15 @@
 /* eslint-disable no-useless-escape */
 import { mapGetters } from 'vuex';
 
-// import PopularShoes from '@/components/PopularShoes';
-// import HomeCards from '@/components/HomeCards';
+import PopularShoes from '@/components/PopularShoes';
+import HomeCards from '@/components/HomeCards';
 
 export default {
   name: 'Index',
   layout: 'homepage-form',
   components: {
-    // PopularShoes,
-    // HomeCards,
+    PopularShoes,
+    HomeCards,
   },
   computed: {
     ...mapGetters(['isAuthenticated']),

@@ -18,12 +18,12 @@
             >
               <p>
                 You have {{ buddy.count_shoes }} shoes in common with
-                <RouterLink
+                <NuxtLink
                   :to="{
                     name: 'profile',
                     params: { username: buddy.username },
                   }"
-                  >{{ buddy.username }}</RouterLink
+                  >{{ buddy.username }}</NuxtLink
                 >.
               </p>
             </div>
@@ -46,23 +46,23 @@
             >
               <p>
                 You and
-                <RouterLink
+                <NuxtLink
                   :to="{
                     name: 'profile',
                     params: { username: buddy.username },
                   }"
-                  >{{ buddy.username }}</RouterLink
+                  >{{ buddy.username }}</NuxtLink
                 >
                 wear {{ buddy['count_shoes'] }}
                 <span v-if="buddy.count_shoes == 1">shoe</span>
                 <span v-if="buddy.count_shoes > 1">shoes</span>&nbsp;
                 <em>in the same size.</em> Check out their
-                <RouterLink
+                <NuxtLink
                   :to="{
                     name: 'profile',
                     params: { username: buddy.username },
                   }"
-                  >profile</RouterLink
+                  >profile</NuxtLink
                 >.
               </p>
             </div>

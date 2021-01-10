@@ -2,7 +2,9 @@
   <!-- eslint-disable vue/no-v-html -->
   <div
     class="svg-container"
-    v-html="require(`!html-loader!./../scss/vendor/foundation-icons/svgs/${icon}.svg`)"
+    v-html="
+      require(`!html-loader!./../assets/scss/vendor/foundation-icons/svgs/${icon}.svg`)
+    "
   ></div>
 </template>
 

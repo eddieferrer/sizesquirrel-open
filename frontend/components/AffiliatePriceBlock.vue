@@ -5,9 +5,13 @@
       :href="datafeed.Product.Buy_Link"
       target="_blank"
       class="is-clearfix"
-      :onclick="'return gtag_report_conversion(\'' + datafeed.Product.Buy_Link + '\');'"
+      :onclick="
+        'return gtag_report_conversion(\'' + datafeed.Product.Buy_Link + '\');'
+      "
     >
-      <span class="sales_red sales_retailer_price">${{ datafeed.Product.Sale_Price }}</span>
+      <span class="sales_red sales_retailer_price"
+        >${{ datafeed.Product.Sale_Price }}</span
+      >
       <span
         class="sales_retailer_logo"
         :style="{ 'background-image': 'url(' + datafeed.Retailer_Logo + ')' }"
@@ -105,6 +109,7 @@ export default {
       border-right: 20px solid $amazon_red;
       margin-left: -20px;
     }
+
     font-family: Lato, 'Helvetica Neue', Helvetica, Roboto, Arial, sans-serif;
     width: 58px;
     text-align: left;

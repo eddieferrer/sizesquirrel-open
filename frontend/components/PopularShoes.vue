@@ -1,7 +1,9 @@
 <template>
   <ComponentLoader :component-state="componentState">
     <section class="section">
-      <h2 class="is-size-4 has-text-centered has-text-primary">Popular Shoes</h2>
+      <h2 class="is-size-4 has-text-centered has-text-primary">
+        Popular Shoes
+      </h2>
       <hr />
       <ShoeTiles>
         <FindMySizeBlock
@@ -15,16 +17,22 @@
       <br />
       <!-- logged in  -->
       <h4 v-if="isAuthenticated" class="has-text-centered is-size-5">
-        <RouterLink to="/browse">See Detailed Stats on More Shoes</RouterLink>
+        <NuxtLink to="/browse">See Detailed Stats on More Shoes</NuxtLink>
       </h4>
       <!-- not logged in  -->
       <div class="columns is-centered">
         <div class="column is-8">
-          <h4 v-if="!isAuthenticated" class="has-text-centered box has-background-light is-size-5">
-            Want to see detailed stats like these for other shoes? Registered users have the ability
-            to browse shoes.
-            <!-- <RouterLink to="/browse">See More</RouterLink> -->
-            <RouterLink to="/register" class="has-text-info">Sign up for an account.</RouterLink>
+          <h4
+            v-if="!isAuthenticated"
+            class="has-text-centered box has-background-light is-size-5"
+          >
+            <strong
+              >Want to see detailed stats like these for other shoes?</strong
+            ><br />
+            Registered users have the ability to browse shoes.
+            <NuxtLink to="/register" class="has-text-info"
+              >Sign up for an account.</NuxtLink
+            >
           </h4>
         </div>
       </div>
@@ -67,5 +75,3 @@ export default {
   },
 };
 </script>
-
-<style scoped lang="scss"></style>

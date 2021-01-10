@@ -55,7 +55,7 @@ if (!Vue.__my_mixin__) {
           if (window.location.hostname === 'localhost') {
             // dev appId
             protocol = 'http';
-            port = ':5000';
+            port = ':3000';
             appId = '944781472301006';
           }
           const redirecturi = `${protocol}://${window.location.hostname}${port}/facebookcallback_${formType}/`;

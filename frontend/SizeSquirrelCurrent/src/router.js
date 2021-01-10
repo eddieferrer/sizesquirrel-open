@@ -3,7 +3,6 @@ import Router from 'vue-router';
 import Meta from 'vue-meta';
 import * as Sentry from '@sentry/browser';
 import store from '@/store/store';
-import Home from './views/Home.vue';
 
 Vue.use(Router);
 Vue.use(Meta);
@@ -14,14 +13,6 @@ Vue.use(Meta);
 // requiresAuth: true
 // hideItemMatchForm: true,
 
-const getUrlVarsFromHash = (hash) => {
-  const vars = {};
-  `?${hash}`.replace(/[?&]+([^=&]+)=([^&]*)/gi, (m, key, value) => {
-    vars[key] = value;
-  });
-  return vars;
-};
-
 const router = new Router({
   mode: 'history',
   base: process.env.BASE_URL,
@@ -29,12 +20,14 @@ const router = new Router({
     {
       path: '/',
       name: 'home',
-      component: Home,
+      component: () =>
+        import(/* webpackChunkName: "admin" */ './views/Home.vue'),
     },
     {
       path: '/admin/stats',
       name: 'stats',
-      component: () => import(/* webpackChunkName: "admin" */ './views/Stats.vue'),
+      component: () =>
+        import(/* webpackChunkName: "admin" */ './views/Stats.vue'),
       meta: {
         requiresAdmin: true,
         hideItemMatchForm: true,
@@ -43,7 +36,8 @@ const router = new Router({
     {
       path: '/admin/matchtest',
       name: 'matchtest',
-      component: () => import(/* webpackChunkName: "admin" */ './views/MatchTest.vue'),
+      component: () =>
+        import(/* webpackChunkName: "admin" */ './views/MatchTest.vue'),
       meta: {
         requiresAdmin: true,
         hideItemMatchForm: true,
@@ -52,49 +46,11 @@ const router = new Router({
     {
       path: '/browse',
       name: 'browse',
-      component: () => import(/* webpackChunkName: "browse" */ './views/Browse.vue'),
+      component: () =>
+        import(/* webpackChunkName: "browse" */ './views/Browse.vue'),
       meta: { requiresAuth: true },
     },
-    {
-      path: '/facebookcallback_register',
-      name: 'facebookcallback_register',
-      component: () =>
-        import(/* webpackChunkName: "facebookcallback" */ './views/FacebookCallback.vue'),
-      meta: {
-        hideItemMatchForm: true,
-      },
-      props: (route) => {
-        // facebook call back url starts with '#access_token`
-        // which causes vue router to treat it all as hash and ignore
-        // query params that come after '#access_token`
-        const hashObj = getUrlVarsFromHash(route.hash);
-        return {
-          state: hashObj.state,
-          formType: 'register',
-          accessToken: hashObj['#access_token'],
-        };
-      },
-    },
-    {
-      path: '/facebookcallback_login',
-      name: 'facebookcallback_login',
-      component: () =>
-        import(/* webpackChunkName: "facebookcallback" */ './views/FacebookCallback.vue'),
-      meta: {
-        hideItemMatchForm: true,
-      },
-      props: (route) => {
-        // facebook call back url starts with '#access_token`
-        // which causes vue router to treat it all as hash and ignore
-        // query params that come after '#access_token`
-        const hashObj = getUrlVarsFromHash(route.hash);
-        return {
-          state: hashObj.state,
-          formType: 'register',
-          accessToken: hashObj['#access_token'],
-        };
-      },
-    },
+
     {
       path: '/faq',
       name: 'faq',
@@ -107,20 +63,25 @@ const router = new Router({
       path: '/forgot_password',
       name: 'forgotPassword',
       component: () =>
-        import(/* webpackChunkName: "forgotPassword" */ './views/ForgotPassword.vue'),
+        import(
+          /* webpackChunkName: "forgotPassword" */ './views/ForgotPassword.vue'
+        ),
       meta: {},
     },
     {
       path: '/forgot_username',
       name: 'forgotUsername',
       component: () =>
-        import(/* webpackChunkName: "forgotUsername" */ './views/ForgotUsername.vue'),
+        import(
+          /* webpackChunkName: "forgotUsername" */ './views/ForgotUsername.vue'
+        ),
       meta: {},
     },
     {
       path: '/login',
       name: 'login',
-      component: () => import(/* webpackChunkName: "login" */ './views/Login.vue'),
+      component: () =>
+        import(/* webpackChunkName: "login" */ './views/Login.vue'),
       meta: {
         hideItemMatchForm: true,
       },
@@ -129,7 +90,8 @@ const router = new Router({
     {
       path: '/match',
       name: 'privateMatch',
-      component: () => import(/* webpackChunkName: "match" */ './views/Match.vue'),
+      component: () =>
+        import(/* webpackChunkName: "match" */ './views/Match.vue'),
       meta: {
         requiresAuth: true,
       },
@@ -174,13 +136,17 @@ const router = new Router({
     {
       path: '/notauthorized',
       name: 'notAuthorized',
-      component: () => import(/* webpackChunkName: "notAuthorized" */ './views/NotAuthorized.vue'),
+      component: () =>
+        import(
+          /* webpackChunkName: "notAuthorized" */ './views/NotAuthorized.vue'
+        ),
       meta: {},
     },
     {
       path: '/privacy',
       name: 'privacy',
-      component: () => import(/* webpackChunkName: "termsPrivacy" */ './views/Privacy.vue'),
+      component: () =>
+        import(/* webpackChunkName: "termsPrivacy" */ './views/Privacy.vue'),
       meta: {
         hideItemMatchForm: true,
       },
@@ -188,18 +154,24 @@ const router = new Router({
     {
       path: '/profile/:username',
       name: 'profile',
-      component: () => import(/* webpackChunkName: "profile" */ './views/Profile.vue'),
+      component: () =>
+        import(/* webpackChunkName: "profile" */ './views/Profile.vue'),
       meta: {},
     },
     {
       path: '/public_match',
       name: 'publicMatch',
-      component: () => import(/* webpackChunkName: "match" */ './views/Match.vue'),
+      component: () =>
+        import(/* webpackChunkName: "match" */ './views/Match.vue'),
       meta: {},
       beforeEnter: (to, from, next) => {
         // If query is missing, redirect
         // eslint-disable-next-line camelcase
-        if (!to.query?.want_item_id || !to.query?.size || !to.query?.have_item_id) {
+        if (
+          !to.query?.want_item_id ||
+          !to.query?.size ||
+          !to.query?.have_item_id
+        ) {
           next('/');
         } else {
           next();
@@ -214,7 +186,8 @@ const router = new Router({
     {
       path: '/recommend',
       name: 'recommend',
-      component: () => import(/* webpackChunkName: "recommend" */ './views/Recommend.vue'),
+      component: () =>
+        import(/* webpackChunkName: "recommend" */ './views/Recommend.vue'),
       meta: {
         hideItemMatchForm: true,
       },
@@ -222,7 +195,8 @@ const router = new Router({
     {
       path: '/register',
       name: 'register',
-      component: () => import(/* webpackChunkName: "register" */ './views/Register.vue'),
+      component: () =>
+        import(/* webpackChunkName: "register" */ './views/Register.vue'),
       meta: {
         hideItemMatchForm: true,
       },
@@ -230,13 +204,17 @@ const router = new Router({
     {
       path: '/reset_password',
       name: 'reset_password',
-      component: () => import(/* webpackChunkName: "reset_password" */ './views/ResetPassword.vue'),
+      component: () =>
+        import(
+          /* webpackChunkName: "reset_password" */ './views/ResetPassword.vue'
+        ),
       meta: {},
     },
     {
       path: '/release',
       name: 'release',
-      component: () => import(/* webpackChunkName: "release" */ './views/Release.vue'),
+      component: () =>
+        import(/* webpackChunkName: "release" */ './views/Release.vue'),
       meta: {
         hideItemMatchForm: true,
       },
@@ -244,7 +222,8 @@ const router = new Router({
     {
       path: '/sales',
       name: 'sales',
-      component: () => import(/* webpackChunkName: "sales" */ './views/Sales.vue'),
+      component: () =>
+        import(/* webpackChunkName: "sales" */ './views/Sales.vue'),
       meta: {},
     },
     {
@@ -254,7 +233,8 @@ const router = new Router({
     {
       path: '/shoes/:shoe_brand',
       name: 'brand',
-      component: () => import(/* webpackChunkName: "brand" */ './views/Brand.vue'),
+      component: () =>
+        import(/* webpackChunkName: "brand" */ './views/Brand.vue'),
       meta: {},
     },
     {
@@ -264,13 +244,15 @@ const router = new Router({
     {
       path: '/shoes/:shoe_brand/:shoe_model',
       name: 'shoe',
-      component: () => import(/* webpackChunkName: "shoe" */ './views/Shoe.vue'),
+      component: () =>
+        import(/* webpackChunkName: "shoe" */ './views/Shoe.vue'),
       meta: {},
     },
     {
       path: '/terms',
       name: 'terms',
-      component: () => import(/* webpackChunkName: "termsPrivacy" */ './views/Terms.vue'),
+      component: () =>
+        import(/* webpackChunkName: "termsPrivacy" */ './views/Terms.vue'),
       meta: {
         hideItemMatchForm: true,
       },
@@ -278,7 +260,8 @@ const router = new Router({
     {
       path: '/404',
       name: 'notFound',
-      component: () => import(/* webpackChunkName: "notFound" */ './views/NotFound.vue'),
+      component: () =>
+        import(/* webpackChunkName: "notFound" */ './views/NotFound.vue'),
       beforeEnter: (to, from, next) => {
         if (Sentry) {
           Sentry.captureMessage(`404 Error Not Found - ${to.redirectedFrom}`);
@@ -316,7 +299,10 @@ router.beforeEach((to, from, next) => {
 // Authentication Guard
 router.beforeEach((to, from, next) => {
   // User is not authenticated and should be
-  if ((to.meta.requiresAuth || to.meta.requiresAdmin) && !store.getters.isAuthenticated) {
+  if (
+    (to.meta.requiresAuth || to.meta.requiresAdmin) &&
+    !store.getters.isAuthenticated
+  ) {
     next({ name: 'login', query: { redirect: to.path } });
   } else if (store.getters.isAuthenticated) {
     // Get user info in state

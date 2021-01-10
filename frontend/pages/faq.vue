@@ -72,6 +72,7 @@
 export default {
   name: 'Faq',
   layout: 'no-homepage-form',
+  middleware: ['auth'],
   head() {
     return {
       title: 'Frequently Asked Questions',

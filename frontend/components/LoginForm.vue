@@ -46,8 +46,8 @@
                     />
                   </div>
                   <p class="help is-primary">
-                    <RouterLink to="/forgot_username/"
-                      >Forgot your username?</RouterLink
+                    <NuxtLink to="/forgot_username/"
+                      >Forgot your username?</NuxtLink
                     >
                   </p>
                 </div>
@@ -64,8 +64,8 @@
                     />
                   </div>
                   <p class="help is-primary">
-                    <RouterLink to="/forgot_password/"
-                      >Forgot your password?</RouterLink
+                    <NuxtLink to="/forgot_password/"
+                      >Forgot your password?</NuxtLink
                     >
                   </p>
                 </div>

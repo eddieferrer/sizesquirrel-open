@@ -125,47 +125,7 @@
       </div>
     </section>
 
-    <footer class="footer">
-      <div class="container">
-        <div class="columns">
-          <div class="column is-narrow">
-            <nav class="breadcrumb has-dot-separator" aria-label="breadcrumbs">
-              <ul>
-                <li>
-                  <NuxtLink to="/faq">FAQ</NuxtLink>
-                </li>
-                <li>
-                  <!-- <RouterLink to="/terms">Terms</RouterLink> -->
-                </li>
-                <li>
-                  <!-- <RouterLink to="/privacy">Privacy</RouterLink> -->
-                </li>
-                <li>
-                  <a href="https://www.facebook.com/sizesquirrel/">Facebook</a>
-                </li>
-                <li>
-                  <a href="https://www.instagram.com/sizesquirrel/"
-                    >Instagram</a
-                  >
-                </li>
-                <li>
-                  <a href="https://github.com/eddieferrer/sizesquirrel-open"
-                    >GitHub</a
-                  >
-                </li>
-              </ul>
-            </nav>
-          </div>
-          <div class="column">
-            <p class="is-pulled-right">
-              We love your shoes
-              <br />
-              © {{ currentYear }} SizeSquirrel
-            </p>
-          </div>
-        </div>
-      </div>
-    </footer>
+    <Footer />
   </div>
 </template>
 
@@ -177,10 +137,12 @@ import FlashMessage from '@/components/FlashMessage';
 // import PWAUpdateButton from '@/components/PWAUpdateButton';
 import NavBar from '@/components/NavBar';
 import ShoeBuddies from '@/components/ShoeBuddies';
+import Footer from '@/components/Footer';
 
 export default {
   components: {
     FlashMessage,
+    Footer,
     Loading,
     NavBar,
     // PWAUpdateButton,
@@ -191,9 +153,6 @@ export default {
   },
   computed: {
     ...mapGetters(['profile', 'user', 'isAuthenticated', 'isInitialized']),
-    currentYear() {
-      return new Date().getFullYear();
-    },
   },
 };
 </script>
@@ -243,22 +202,5 @@ export default {
   font-weight: 900;
   text-transform: capitalize;
   font-family: 'Lato', sans-serif;
-}
-
-footer {
-  background: url('/images/hero_image_footer.jpg');
-  box-shadow: inset 0 0 0 2000px rgba(0, 0, 0, 0.4);
-  background-position: center center;
-  background-size: cover;
-  color: $white;
-  a {
-    color: $white;
-    &:hover {
-      color: $purple;
-    }
-  }
-  li {
-    line-height: 32px;
-  }
 }
 </style>

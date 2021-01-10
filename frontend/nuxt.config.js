@@ -26,6 +26,8 @@ const config = {
     VUE_APP_GITBRANCH: gitRevisionPlugin.branch(),
     VUE_APP_GITVERSION: gitRevisionPlugin.version(),
     VUE_APP_GITHASH: gitRevisionPlugin.commithash(),
+    isProd: process.env.NODE_ENV === 'production',
+    isDev: process.env.NODE_ENV !== 'production',
   },
 
   // Global page headers (https://go.nuxtjs.dev/config-head)
@@ -171,6 +173,7 @@ const config = {
     { src: '~/plugins/mixins' },
     { src: '~/plugins/lazy-image' },
     { src: '~/plugins/sentry' },
+    '~/plugins/axios',
   ],
 
   // Auto import components (https://go.nuxtjs.dev/config-components)
@@ -213,6 +216,8 @@ const config = {
     // https://go.nuxtjs.dev/pwa
     '@nuxtjs/pwa',
     '@nuxtjs/style-resources',
+    '@nuxtjs/proxy',
+    'cookie-universal-nuxt',
   ],
 
   styleResources: {
@@ -220,7 +225,7 @@ const config = {
   },
 
   // Axios module configuration (https://go.nuxtjs.dev/config-axios)
-  axios: {},
+  // axios: {},
 
   // Build Configuration (https://go.nuxtjs.dev/config-build)
   build: {
@@ -239,18 +244,66 @@ const config = {
       theme_color: '#0776bc',
     },
   },
+
+  router: {
+    extendRoutes(routes, resolve) {
+      routes.push({
+        path: '/facebookcallback_register',
+        name: 'facebookcallback_register',
+        component: resolve(__dirname, 'views/FacebookCallback.vue'),
+        props: (route) => {
+          const getUrlVarsFromHash = (hash) => {
+            const vars = {};
+            `?${hash}`.replace(/[?&]+([^=&]+)=([^&]*)/gi, (m, key, value) => {
+              vars[key] = value;
+            });
+            return vars;
+          };
+          // facebook call back url starts with '#access_token`
+          // which causes vue router to treat it all as hash and ignore
+          // query params that come after '#access_token`
+          const hashObj = getUrlVarsFromHash(route.hash);
+          return {
+            state: hashObj.state,
+            formType: 'register',
+            accessToken: hashObj['#access_token'],
+          };
+        },
+      });
+      routes.push({
+        path: '/facebookcallback_login',
+        name: 'facebookcallback_login',
+        component: resolve(__dirname, 'views/FacebookCallback.vue'),
+        props: (route) => {
+          const getUrlVarsFromHash = (hash) => {
+            const vars = {};
+            `?${hash}`.replace(/[?&]+([^=&]+)=([^&]*)/gi, (m, key, value) => {
+              vars[key] = value;
+            });
+            return vars;
+          };
+          // facebook call back url starts with '#access_token`
+          // which causes vue router to treat it all as hash and ignore
+          // query params that come after '#access_token`
+          const hashObj = getUrlVarsFromHash(route.hash);
+          return {
+            state: hashObj.state,
+            formType: 'login',
+            accessToken: hashObj['#access_token'],
+          };
+        },
+      });
+    },
+  },
 };
 
 if (isDev) {
-  config.modules.push([
-    '@nuxtjs/proxy',
-    {
-      '/apiv2': {
-        target: 'http://localhost:5000',
-        changeOrigin: false,
-      },
+  config.proxy = {
+    '/apiv2': {
+      target: 'http://localhost:5000',
+      changeOrigin: false,
     },
-  ]);
+  };
 }
 
 export default config;

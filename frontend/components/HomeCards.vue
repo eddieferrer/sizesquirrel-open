@@ -17,8 +17,10 @@
                 <em>just for you</em>
               </p>
               <p class="has-text-centered">
-                <RouterLink to="/browse" class="button is-info is-normal is-marginless"
-                  >Browse Shoes</RouterLink
+                <NuxtLink
+                  to="/browse"
+                  class="button is-info is-normal is-marginless"
+                  >Browse Shoes</NuxtLink
                 >
               </p>
             </div>
@@ -36,10 +38,14 @@
             <div class="info_homepage has-text-centered">
               <h4 class="step"></h4>
               <h4>Climbing Shoes On Sale</h4>
-              <p>See climbing shoes on sale, from all major online retailers.</p>
+              <p>
+                See climbing shoes on sale, from all major online retailers.
+              </p>
               <p class="has-text-centered">
-                <RouterLink to="/sales" class="button is-info is-normal is-marginless"
-                  >Shoes On Sale</RouterLink
+                <NuxtLink
+                  to="/sales"
+                  class="button is-info is-normal is-marginless"
+                  >Shoes On Sale</NuxtLink
                 >
               </p>
             </div>
@@ -57,10 +63,15 @@
             <div class="info_homepage has-text-centered">
               <h4 class="step"></h4>
               <h4>Visit Your Profile</h4>
-              <p>Add shoes, delete shoes, see your shoe buddies or change user details.</p>
+              <p>
+                Add shoes, delete shoes, see your shoe buddies or change user
+                details.
+              </p>
               <p class="has-text-centered">
-                <RouterLink to="/my_profile" class="button is-info is-normal is-marginless"
-                  >My Profile</RouterLink
+                <NuxtLink
+                  to="/my_profile"
+                  class="button is-info is-normal is-marginless"
+                  >My Profile</NuxtLink
                 >
               </p>
             </div>
@@ -82,8 +93,8 @@
               <h4 class="step">Step 1</h4>
               <h4>Register for an account. Its completely free.</h4>
               <p>
-                We wont spam you. We wont sell your information. All you need is an email address,
-                or log in with your Facebook account.
+                We wont spam you. We wont sell your information. All you need is
+                an email address, or log in with your Facebook account.
               </p>
             </div>
           </div>
@@ -101,9 +112,10 @@
               <h4 class="step">Step 2</h4>
               <h4>Add shoes that you already own to your profile.</h4>
               <p>
-                SizeSquirrel will use this information to find the sizes for the shoes you
-                <em>don't</em> own. The more shoes you add to your profile, the more accurate your
-                results will be.
+                SizeSquirrel will use this information to find the sizes for the
+                shoes you
+                <em>don't</em> own. The more shoes you add to your profile, the
+                more accurate your results will be.
               </p>
             </div>
           </div>
@@ -119,11 +131,13 @@
             </div>
             <div class="info_homepage has-text-centered">
               <h4 class="step">Step 3</h4>
-              <h4>SizeSquirrel finds the perfect size for the shoes you don't own.</h4>
+              <h4>
+                SizeSquirrel finds the perfect size for the shoes you don't own.
+              </h4>
               <p>
                 Using
-                <em>math</em> we give you a best guess of what size you'll be for the shoes you
-                don't own.
+                <em>math</em> we give you a best guess of what size you'll be
+                for the shoes you don't own.
               </p>
             </div>
           </div>
@@ -133,8 +147,8 @@
     <div v-if="!isAuthenticated" class="columns is-centered">
       <div class="column is-one-quarter">
         <p class="has-text-centered">
-          <RouterLink to="/register" class="button is-info is-medium is-fullwidth"
-            >Sign Up</RouterLink
+          <NuxtLink to="/register" class="button is-info is-medium is-fullwidth"
+            >Sign Up</NuxtLink
           >
         </p>
       </div>

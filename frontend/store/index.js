@@ -6,18 +6,13 @@ import getters from './getters';
 import mutations from './mutations';
 
 Vue.use(Vuex);
-
-const userToken = process.browser
-  ? localStorage.getItem('user-token') || ''
-  : '';
-
 const state = () => {
   return {
     context_flash_message: {
       class: '',
       message: '',
     },
-    token: userToken,
+    token: '',
 
     init: '',
 

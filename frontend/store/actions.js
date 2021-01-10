@@ -1,12 +1,12 @@
-import axios from 'axios';
+// import axios from 'axios';
 import { isEmpty } from '@/utils/utils';
 
-const ADD_PROFILE_ITEM = async (
+const ADD_PROFILE_ITEM = async function (
   context,
   { itemId, rating, comments, fit, size }
-) => {
+) {
   try {
-    const addProfileItem = await axios({
+    const addProfileItem = await this.$axios({
       url: '/apiv2/item/add/',
       method: 'POST',
       data: { itemId, rating, comments, fit, size },
@@ -18,68 +18,75 @@ const ADD_PROFILE_ITEM = async (
   }
 };
 
-const AUTH_FB_LOGIN = async (context, payload) => {
-  try {
-    const authFBLogin = await axios({
-      url: '/apiv2/auth/facebooklogin/',
-      data: payload,
-      method: 'POST',
-    });
-    // store the authFBLogin.data.token in localstorage
-    localStorage.setItem('user-token', authFBLogin.data.token);
-    axios.defaults.headers.common.Authorization = `Bearer ${authFBLogin.data.token}`;
-    context.commit('AUTH_SUCCESS', authFBLogin.data.token);
-    return authFBLogin;
-  } catch (error) {
-    // if the request fails, remove any possible user token if possible
-    localStorage.removeItem('user-token');
-    throw error;
-  }
+const AUTH_FB_LOGIN = async function (context, payload) {
+  // try {
+  const authFBLogin = await this.$axios({
+    url: '/apiv2/auth/facebooklogin/',
+    data: payload,
+    method: 'POST',
+  });
+  // eslint-disable-next-line no-console
+  console.log('authFBLogin', authFBLogin);
+  // store the authFBLogin.data.token in cookie
+  window.$nuxt.$cookies.set('user-token', authFBLogin.data.token);
+  // set global axios token
+  window.$nuxt.$axios.setToken(
+    window.$nuxt.$cookies.get('user-token'),
+    'Bearer'
+  );
+  context.commit('AUTH_SUCCESS', authFBLogin.data.token);
+  return authFBLogin;
+  // } catch (error) {
+  // if the request fails, remove any possible user token if possible
+  // window.$nuxt.$cookies.remove('user-token');
+  // throw error;
+  // }
 };
 
-const AUTH_LOGOUT = async (context) => {
+const AUTH_LOGOUT = async function (context) {
   try {
-    const authLogout = await axios({
+    const authLogout = await this.$axios({
       url: '/apiv2/auth/logout/',
       method: 'GET',
     });
     context.commit('AUTH_LOGOUT');
     // clear your user's token from localstorage
-    localStorage.removeItem('user-token');
-    delete axios.defaults.headers.common.Authorization;
+    window.$nuxt.$cookies.remove('user-token');
+    window.$nuxt.$axios.setToken(false);
     return authLogout;
   } catch (error) {
     // if the request fails, remove any possible user token if possible
-    localStorage.removeItem('user-token');
+    window.$nuxt.$cookies.remove('user-token');
     throw error;
   }
 };
 
-const AUTH_REQUEST = async (context, payload) => {
+const AUTH_REQUEST = async function (context, payload) {
   try {
-    const authRequest = await axios({
+    const authRequest = await this.$axios({
       url: '/apiv2/auth/login/',
       data: payload,
       method: 'POST',
     });
-    // store the authRequest.data.token in localstorage
-    localStorage.setItem('user-token', authRequest.data.token);
-    axios.defaults.headers.common.Authorization = `Bearer ${authRequest.data.token}`;
+    // store the authRequest.data.token in cookie
+    window.$nuxt.$cookies.set('user-token', authRequest.data.token);
+    // set global axios token
+    this.$axios.setToken(window.$nuxt.$cookies.get('user-token'), 'Bearer');
     context.commit('AUTH_SUCCESS', authRequest.data.token);
     return authRequest;
   } catch (error) {
     // if the request fails, remove any possible user token if possible
-    localStorage.removeItem('user-token');
+    window.$nuxt.$cookies.remove('user-token');
     throw error;
   }
 };
 
-const CHANGE_PASSWORD = async (
+const CHANGE_PASSWORD = async function (
   context,
   { currentPassword, newPassword, newPasswordConfirm }
-) => {
+) {
   try {
-    const changePassword = await axios({
+    const changePassword = await this.$axios({
       url: '/apiv2/user/changepassword/',
       method: 'POST',
       data: { currentPassword, newPassword, newPasswordConfirm },
@@ -90,9 +97,9 @@ const CHANGE_PASSWORD = async (
   }
 };
 
-const DELETE_ACCOUNT = async (context, accountId) => {
+const DELETE_ACCOUNT = async function (context, accountId) {
   try {
-    const deleteAccount = await axios({
+    const deleteAccount = await this.$axios({
       url: `/apiv2/user/deleteaccount/`,
       method: 'POST',
       data: {
@@ -105,12 +112,12 @@ const DELETE_ACCOUNT = async (context, accountId) => {
   }
 };
 
-const EDIT_PROFILE_ITEM = async (
+const EDIT_PROFILE_ITEM = async function (
   context,
   { userItemId, rating, size, fit, comments }
-) => {
+) {
   try {
-    const editProfileItem = await axios({
+    const editProfileItem = await this.$axios({
       url: `/apiv2/item/edit/`,
       method: 'POST',
       data: { userItemId, rating, size, fit, comments },
@@ -121,7 +128,7 @@ const EDIT_PROFILE_ITEM = async (
   }
 };
 
-const EDIT_USER_DETAILS = async (
+const EDIT_USER_DETAILS = async function (
   context,
   {
     username,
@@ -134,9 +141,9 @@ const EDIT_USER_DETAILS = async (
     climbingSport,
     climbingTrad,
   }
-) => {
+) {
   try {
-    const editUserDetails = await axios({
+    const editUserDetails = await this.$axios({
       url: `/apiv2/user/details/change/`,
       method: 'POST',
       data: {
@@ -157,28 +164,29 @@ const EDIT_USER_DETAILS = async (
   }
 };
 
-const FB_REGISTER = async (context, payload) => {
+const FB_REGISTER = async function (context, payload) {
   try {
-    const fbRegister = await axios({
+    const fbRegister = await this.$axios({
       url: '/apiv2/auth/facebookregister/',
       data: payload,
       method: 'POST',
     });
-    // store the authFBLogin.data.token in localstorage
-    localStorage.setItem('user-token', fbRegister.data.token);
-    axios.defaults.headers.common.Authorization = `Bearer ${fbRegister.data.token}`;
+    // store the fbRegister.data.token in cookie
+    window.$nuxt.$cookies.set('user-token', fbRegister.data.token);
+    // set global axios token
+    this.$axios.setToken(window.$nuxt.$cookies.get('user-token'), 'Bearer');
     context.commit('AUTH_SUCCESS', fbRegister.data.token);
     return fbRegister;
   } catch (error) {
     // if the request fails, remove any possible user token if possible
-    localStorage.removeItem('user-token');
+    window.$nuxt.$cookies.remove('user-token');
     throw error;
   }
 };
 
-const FORGOT_PASSWORD = async (context, { email }) => {
+const FORGOT_PASSWORD = async function (context, { email }) {
   try {
-    const forgotPassword = await axios({
+    const forgotPassword = await this.$axios({
       url: '/apiv2/user/forgotpassword/',
       method: 'POST',
       data: { email },
@@ -189,9 +197,9 @@ const FORGOT_PASSWORD = async (context, { email }) => {
   }
 };
 
-const FORGOT_USERNAME = async (context, { email }) => {
+const FORGOT_USERNAME = async function (context, { email }) {
   try {
-    const forgotUsername = await axios({
+    const forgotUsername = await this.$axios({
       url: '/apiv2/user/forgotusername/',
       method: 'POST',
       data: { email },
@@ -202,9 +210,9 @@ const FORGOT_USERNAME = async (context, { email }) => {
   }
 };
 
-const GET_ADMIN_STATS = async () => {
+const GET_ADMIN_STATS = async function () {
   try {
-    const adminStats = await axios({
+    const adminStats = await this.$axios({
       url: `/apiv2/admin/stats/`,
       method: 'GET',
     });
@@ -214,10 +222,10 @@ const GET_ADMIN_STATS = async () => {
   }
 };
 
-const GET_ALL_BRANDS = async (context) => {
+const GET_ALL_BRANDS = async function (context) {
   try {
     if (context.state.allbrands.length === 0) {
-      const getAllBrands = await axios({
+      const getAllBrands = await this.$axios({
         url: '/apiv2/brands/',
         method: 'GET',
       });
@@ -230,9 +238,9 @@ const GET_ALL_BRANDS = async (context) => {
   }
 };
 
-const GET_BRAND = async (context, payload) => {
+const GET_BRAND = async function (context, payload) {
   try {
-    const getBrand = await axios({
+    const getBrand = await this.$axios({
       url: `/apiv2/brand/${payload}`,
       method: 'GET',
     });
@@ -243,9 +251,9 @@ const GET_BRAND = async (context, payload) => {
   }
 };
 
-const GET_LIST_ITEMS = async (context, { target }) => {
+const GET_LIST_ITEMS = async function (context, { target }) {
   try {
-    const getListItems = await axios({
+    const getListItems = await this.$axios({
       url: `/apiv2/items/${target}/`,
       method: 'GET',
     });
@@ -255,9 +263,9 @@ const GET_LIST_ITEMS = async (context, { target }) => {
   }
 };
 
-const GET_MATCH_INFO = async (context, { key, id }) => {
+const GET_MATCH_INFO = async function (context, { key, id }) {
   try {
-    const getMatchInfo = await axios({
+    const getMatchInfo = await this.$axios({
       url: `/apiv2/item/details/${id}`,
       method: 'GET',
     });
@@ -268,9 +276,9 @@ const GET_MATCH_INFO = async (context, { key, id }) => {
   }
 };
 
-const GET_POPULAR_SHOES = async () => {
+const GET_POPULAR_SHOES = async function () {
   try {
-    const popularShoes = await axios({
+    const popularShoes = await this.$axios({
       url: `/apiv2/items/popular/`,
       method: 'GET',
     });
@@ -280,9 +288,9 @@ const GET_POPULAR_SHOES = async () => {
   }
 };
 
-const GET_PROFILE = async (context, payload) => {
+const GET_PROFILE = async function (context, payload) {
   try {
-    const getProfile = await axios({
+    const getProfile = await this.$axios({
       url: `/apiv2/user/details/${payload}`,
       method: 'GET',
     });
@@ -293,9 +301,9 @@ const GET_PROFILE = async (context, payload) => {
   }
 };
 
-const GET_SHOE_BUDDIES = async (context, payload) => {
+const GET_SHOE_BUDDIES = async function (context, payload) {
   try {
-    const getShoeBuddies = await axios({
+    const getShoeBuddies = await this.$axios({
       url: `/apiv2/user/shoebuddies/${payload}`,
       method: 'GET',
     });
@@ -305,7 +313,7 @@ const GET_SHOE_BUDDIES = async (context, payload) => {
   }
 };
 
-const GET_SHOE = async (context, payload) => {
+const GET_SHOE = async function (context, payload) {
   try {
     const responses = [];
     const promiseArray = [];
@@ -313,7 +321,7 @@ const GET_SHOE = async (context, payload) => {
       promiseArray.push(
         // eslint-disable-next-line no-shadow
         new Promise((resolve, reject) => {
-          axios({ url: `/apiv2/item/details/${element}`, method: 'GET' })
+          this.$axios({ url: `/apiv2/item/details/${element}`, method: 'GET' })
             .then((resp) => {
               responses.push(resp.data);
               resolve(resp);
@@ -332,10 +340,10 @@ const GET_SHOE = async (context, payload) => {
   }
 };
 
-const GET_USER = async (context) => {
+const GET_USER = async function (context) {
   try {
     if (isEmpty(context.state.user)) {
-      const getUser = await axios({
+      const getUser = await this.$axios({
         url: '/apiv2/auth/user/',
         method: 'GET',
       });
@@ -350,9 +358,9 @@ const GET_USER = async (context) => {
   }
 };
 
-const INITIALIZE_APP = async (context, { url }) => {
+const INITIALIZE_APP = async function (context, { url }) {
   try {
-    const initializeApp = await axios({
+    const initializeApp = await this.$axios({
       url: '/apiv2/context/',
       data: { url },
       method: 'POST',
@@ -380,9 +388,9 @@ const INITIALIZE_APP = async (context, { url }) => {
   }
 };
 
-const ITEM_SEARCH = async (context, { query }) => {
+const ITEM_SEARCH = async function (context, { query }) {
   try {
-    const itemSearch = await axios({
+    const itemSearch = await this.$axios({
       url: `/apiv2/items/search/`,
       method: 'POST',
       data: {
@@ -395,9 +403,9 @@ const ITEM_SEARCH = async (context, { query }) => {
   }
 };
 
-const POST_ADMIN_MATCH_TEST = async (context, matchTestItemId) => {
+const POST_ADMIN_MATCH_TEST = async function (context, matchTestItemId) {
   try {
-    const adminMatchTest = await axios({
+    const adminMatchTest = await this.$axios({
       url: `/apiv2/admin/matchtest/`,
       method: 'POST',
       data: matchTestItemId,
@@ -408,9 +416,9 @@ const POST_ADMIN_MATCH_TEST = async (context, matchTestItemId) => {
   }
 };
 
-const POST_LIST_ITEMS = async (context, { target, queryParams }) => {
+const POST_LIST_ITEMS = async function (context, { target, queryParams }) {
   try {
-    const postListItems = await axios({
+    const postListItems = await this.$axios({
       url: `/apiv2/items/${target}/`,
       method: 'POST',
       data: queryParams,
@@ -421,9 +429,9 @@ const POST_LIST_ITEMS = async (context, { target, queryParams }) => {
   }
 };
 
-const PRIVATE_MATCH = async (context, { wantItemId }) => {
+const PRIVATE_MATCH = async function (context, { wantItemId }) {
   try {
-    const privateMatch = await axios({
+    const privateMatch = await this.$axios({
       url: '/apiv2/match/private/',
       method: 'POST',
       data: { wantItemId },
@@ -434,9 +442,12 @@ const PRIVATE_MATCH = async (context, { wantItemId }) => {
   }
 };
 
-const PUBLIC_MATCH = async (context, { wantItemId, haveItemId, size }) => {
+const PUBLIC_MATCH = async function (
+  context,
+  { wantItemId, haveItemId, size }
+) {
   try {
-    const privateMatch = await axios({
+    const privateMatch = await this.$axios({
       url: '/apiv2/match/public/',
       method: 'POST',
       data: { wantItemId, haveItemId, size },
@@ -447,9 +458,9 @@ const PUBLIC_MATCH = async (context, { wantItemId, haveItemId, size }) => {
   }
 };
 
-const RECOMMEND_A_SHOE = async (context, { footShape, gender }) => {
+const RECOMMEND_A_SHOE = async function (context, { footShape, gender }) {
   try {
-    const recommendAShoe = await axios({
+    const recommendAShoe = await this.$axios({
       url: `/apiv2/recommend/`,
       method: 'POST',
       data: {
@@ -463,28 +474,29 @@ const RECOMMEND_A_SHOE = async (context, { footShape, gender }) => {
   }
 };
 
-const REGISTER = async (context, payload) => {
+const REGISTER = async function (context, payload) {
   try {
-    const register = await axios({
+    const register = await this.$axios({
       url: '/apiv2/auth/register/',
       data: payload,
       method: 'POST',
     });
-    // store the register.data.token in localstorage
-    localStorage.setItem('user-token', register.data.token);
-    axios.defaults.headers.common.Authorization = `Bearer ${register.data.token}`;
+    // store the register.data.token in cookie
+    window.$nuxt.$cookies.set('user-token', register.data.token);
+    // set global axios token
+    this.$axios.setToken(window.$nuxt.$cookies.get('user-token'), 'Bearer');
     context.commit('AUTH_SUCCESS', register.data.token);
     return register;
   } catch (error) {
     // if the request fails, remove any possible user token if possible
-    localStorage.removeItem('user-token');
+    window.$nuxt.$cookies.remove('user-token');
     throw error;
   }
 };
 
-const REMOVE_PROFILE_ITEM = async (context, itemId) => {
+const REMOVE_PROFILE_ITEM = async function (context, itemId) {
   try {
-    const removeProfileItem = await axios({
+    const removeProfileItem = await this.$axios({
       url: `/apiv2/item/remove/`,
       method: 'POST',
       data: {
@@ -498,16 +510,16 @@ const REMOVE_PROFILE_ITEM = async (context, itemId) => {
   }
 };
 
-const RESET_FLASH_MESSAGE = (context) => {
+const RESET_FLASH_MESSAGE = function (context) {
   context.commit('SET_FLASH_MESSAGE', {});
 };
 
-const RESET_PASSWORD = async (
+const RESET_PASSWORD = async function (
   context,
   { password, confirmPassword, token }
-) => {
+) {
   try {
-    const resetPassword = await axios({
+    const resetPassword = await this.$axios({
       url: '/apiv2/user/resetpassword/',
       method: 'POST',
       data: { password, confirmPassword, token },
@@ -518,13 +530,13 @@ const RESET_PASSWORD = async (
   }
 };
 
-const SHOW_FLASH_MESSAGE = (context, payload) => {
+const SHOW_FLASH_MESSAGE = function (context, payload) {
   window.scrollTo(0, 0);
   context.commit('SET_FLASH_MESSAGE', payload);
 };
 
 // Utility action that waits
-const WAIT = async (context, { time }) => {
+const WAIT = async function (context, { time }) {
   // await this.$store.dispatch('WAIT', {
   //   time: 5,
   // });
@@ -537,7 +549,15 @@ const WAIT = async (context, { time }) => {
   }
 };
 
+const nuxtServerInit = function (context) {
+  if (window.$nuxt.$cookies.get('user-token')) {
+    this.$axios.setToken(window.$nuxt.$cookies.get('user-token'), 'Bearer');
+    context.commit('AUTH_SUCCESS', window.$nuxt.$cookies.get('user-token'));
+  }
+};
+
 export default {
+  nuxtServerInit,
   ADD_PROFILE_ITEM,
   AUTH_FB_LOGIN,
   AUTH_LOGOUT,
