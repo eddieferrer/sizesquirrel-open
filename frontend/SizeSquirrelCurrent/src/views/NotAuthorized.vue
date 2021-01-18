@@ -5,7 +5,7 @@
       <h5 class="is-size-5 has-text-centered">We're sorry</h5>
       <hr />
       <p>You are not authorized to view this page.</p>
-      <RouterLink to="/">Return to Homepage</RouterLink>
+      <NuxtLink to="/">Return to Homepage</NuxtLink>
     </div>
   </div>
 </template>

@@ -7,28 +7,41 @@
       <form id="user_item_form" @submit.prevent="addProfileItem">
         <div class="columns is-centered">
           <div class="column is-two-thirds-desktop">
-            <MultiSelectItems :key="itemSelectKey" v-model="item"></MultiSelectItems>
+            <MultiSelectItems
+              :key="itemSelectKey"
+              v-model="item"
+            ></MultiSelectItems>
           </div>
         </div>
         <div v-if="item" class="user_item_form_step2">
           <div class="columns">
             <div class="column">
               <div class="field">
-                <label class="label has-text-weight-normal has-text-grey">Size</label>
+                <label class="label has-text-weight-normal has-text-grey"
+                  >Size</label
+                >
                 <div class="control">
                   <MultiSelectSize v-model="size"></MultiSelectSize>
-                  <p class="help is-default">Use your keyboard to quickly input a size</p>
+                  <p class="help is-default">
+                    Use your keyboard to quickly input a size
+                  </p>
                 </div>
               </div>
               <div class="field">
-                <label class="label has-text-weight-normal has-text-grey">Rating</label>
+                <label class="label has-text-weight-normal has-text-grey"
+                  >Rating</label
+                >
                 <div class="control">
                   <MultiSelectRating v-model="rating"></MultiSelectRating>
                 </div>
-                <p class="help is-default">Your subjective overall rating of these shoes</p>
+                <p class="help is-default">
+                  Your subjective overall rating of these shoes
+                </p>
               </div>
               <div class="field">
-                <label class="label has-text-weight-normal has-text-grey">Fit</label>
+                <label class="label has-text-weight-normal has-text-grey"
+                  >Fit</label
+                >
                 <div class="control">
                   <MultiSelectFit v-model="fit"></MultiSelectFit>
                 </div>
@@ -36,7 +49,9 @@
             </div>
             <div class="column">
               <div class="field">
-                <label class="label has-text-weight-normal has-text-grey">Comments</label>
+                <label class="label has-text-weight-normal has-text-grey"
+                  >Comments</label
+                >
                 <div class="control">
                   <textarea
                     v-model="comments"
@@ -155,5 +170,3 @@ export default {
   },
 };
 </script>
-
-<style scoped></style>

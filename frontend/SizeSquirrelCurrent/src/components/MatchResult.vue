@@ -71,7 +71,7 @@
           <div class="column">
             <div class="columns is-marginless">
               <h2 class="is-size-4 is-capitalized has-text-centered-mobile">
-                <RouterLink
+                <NuxtLink
                   class="has-text-info"
                   :to="{
                     name: 'shoe',
@@ -80,19 +80,19 @@
                       shoe_model: targetItem.model_slug,
                     },
                   }"
-                  >{{ targetItem.model }}</RouterLink
+                  >{{ targetItem.model }}</NuxtLink
                 >
               </h2>
             </div>
             <div class="columns is-marginless">
               <h4 class="is-size-5 is-capitalized has-text-centered-mobile">
-                <RouterLink
+                <NuxtLink
                   class="has-text-info"
                   :to="{
                     name: 'brand',
                     params: { shoe_brand: targetItem.brand['name_slug'] },
                   }"
-                  >{{ targetItem.brand['name'] | titleCase }}</RouterLink
+                  >{{ targetItem.brand['name'] | titleCase }}</NuxtLink
                 >
               </h4>
             </div>
@@ -266,19 +266,19 @@
               <li v-if="isAuthenticated">
                 <strong>
                   Add shoes to your
-                  <RouterLink to="/my_profile">profile</RouterLink>&nbsp;!
+                  <NuxtLink to="/my_profile">profile</NuxtLink>&nbsp;!
                 </strong>
               </li>
               <li v-if="isAuthenticated">
                 <strong>
                   Add your
-                  <RouterLink to="/my_user_details"
-                    >street shoe size in your user details</RouterLink
+                  <NuxtLink to="/my_user_details"
+                    >street shoe size in your user details</NuxtLink
                   >&nbsp;!
                 </strong>
               </li>
               <li v-if="!isAuthenticated">
-                <RouterLink to="/register">Sign up</RouterLink>
+                <NuxtLink to="/register">Sign up</NuxtLink>
                 &nbsp;for an account and fill out your profile.
               </li>
               <li>
@@ -377,7 +377,7 @@ span.info-label {
   margin-top: 0.65em;
 }
 .is-no-top-padding {
-  padding-top: 0px;
+  padding-top: 0;
 }
 .size_gender,
 .match_size_wrapper {
@@ -407,12 +407,12 @@ span.info-label {
   // }
 }
 .size_gender {
-  // padding: 0px;
+  // padding: 0;
   .size {
     height: 55px;
     width: 55px;
     line-height: 55px;
-    padding: 0px;
+    padding: 0;
     font-size: 24px;
   }
 }

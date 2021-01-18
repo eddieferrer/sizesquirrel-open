@@ -31,12 +31,12 @@
                   <em>{{ comment.comments }}</em
                   >&quot;
                   <br />
-                  <RouterLink
+                  <NuxtLink
                     :to="{
                       name: 'profile',
                       params: { username: comment.user.username },
                     }"
-                    >{{ comment.user.username }}</RouterLink
+                    >{{ comment.user.username }}</NuxtLink
                   >
                 </p>
               </div>
@@ -237,7 +237,7 @@ export default {
   margin-top: 0.65em;
 }
 .is-no-top-padding {
-  padding-top: 0px;
+  padding-top: 0;
 }
 .size_gender,
 .match_size_wrapper {
@@ -259,12 +259,12 @@ export default {
   }
 }
 .size_gender {
-  // padding: 0px;
+  // padding: 0;
   .size {
     height: 55px;
     width: 55px;
     line-height: 55px;
-    padding: 0px;
+    padding: 0;
     font-size: 24px;
   }
 }
@@ -275,7 +275,7 @@ export default {
 .user_details {
   .info_label {
     font-size: 90%;
-    margin-bottom: 0px;
+    margin-bottom: 0;
   }
   .icon-wrapper {
     .footshape {

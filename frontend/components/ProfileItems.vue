@@ -7,7 +7,9 @@
         <hr />
       </template>
       <template v-if="!isMyProfile">
-        <h2 class="is-size-4 has-text-centered has-text-primary">{{ profile.username }}'s Shoes</h2>
+        <h2 class="is-size-4 has-text-centered has-text-primary">
+          {{ profile.username }}'s Shoes
+        </h2>
         <h5 class="is-size-5 has-text-centered">Shoes they own</h5>
         <hr />
         <div v-if="getItems.length == 0" class="columns">
@@ -18,7 +20,10 @@
       </template>
       <div v-if="getItems.length !== 0" class="columns">
         <div class="column">
-          <ItemListSearchSort pagetype="profile" :sort-order="sort_order"></ItemListSearchSort>
+          <ItemListSearchSort
+            pagetype="profile"
+            :sort-order="sort_order"
+          ></ItemListSearchSort>
           <div class="columns is-multiline">
             <div
               v-for="user_item in paginatedItems"
@@ -27,17 +32,24 @@
               class="column is-full"
             >
               <div class="columns">
-                <div class="column is-one-fifth-desktop is-one-quarter-tablet is-full-mobile">
+                <div
+                  class="column is-one-fifth-desktop is-one-quarter-tablet is-full-mobile"
+                >
                   <div class="item_block_image">
                     <span>
                       <v-lazy-image
                         class="lazyload"
                         loading="lazy"
                         :src-placeholder="
-                          '/images/placeholder_' + user_item.user_item.item.type + '.png'
+                          '/images/placeholder_' +
+                          user_item.user_item.item.type +
+                          '.png'
                         "
                         :src="user_item.user_item.item.shoe_image"
-                        :alt="user_item.user_item.item.brand.name + user_item.user_item.item.model"
+                        :alt="
+                          user_item.user_item.item.brand.name +
+                          user_item.user_item.item.model
+                        "
                       />
                     </span>
                   </div>
@@ -45,47 +57,65 @@
                 <div class="column">
                   <div class="columns">
                     <div class="column">
-                      <h2 class="is-size-4 is-capitalized has-text-centered-mobile">
-                        <RouterLink
+                      <h2
+                        class="is-size-4 is-capitalized has-text-centered-mobile"
+                      >
+                        <NuxtLink
                           class="has-text-info"
                           :to="{
                             name: 'shoe',
                             params: {
-                              shoe_brand: user_item.user_item.item.brand.name_slug,
+                              shoe_brand:
+                                user_item.user_item.item.brand.name_slug,
                               shoe_model: user_item.user_item.item.model_slug,
                             },
                           }"
-                          >{{ user_item.user_item.item.model }}</RouterLink
+                          >{{ user_item.user_item.item.model }}</NuxtLink
                         >
                       </h2>
-                      <h4 class="is-size-5 is-capitalized has-text-centered-mobile">
-                        <RouterLink
+                      <h4
+                        class="is-size-5 is-capitalized has-text-centered-mobile"
+                      >
+                        <NuxtLink
                           class="has-text-info"
                           :to="{
                             name: 'brand',
-                            params: { shoe_brand: user_item.user_item.item.brand.name_slug },
+                            params: {
+                              shoe_brand:
+                                user_item.user_item.item.brand.name_slug,
+                            },
                           }"
-                          >{{ user_item.user_item.item.brand.name }}</RouterLink
+                          >{{ user_item.user_item.item.brand.name }}</NuxtLink
                         >
                       </h4>
-                      <h4 class="shoe_type has-text-grey is-italic has-text-centered-mobile">
+                      <h4
+                        class="shoe_type has-text-grey is-italic has-text-centered-mobile"
+                      >
                         {{ user_item.user_item.item.gender.name_pretty }}
                         {{ user_item.user_item.item.type | capitalize }} Shoe
                       </h4>
                       <hr />
                       <div class="columns is-mobile">
-                        <div class="column is-narrow size_gender has-text-centered">
-                          <span class="size">{{ user_item.user_item.size }}</span>
+                        <div
+                          class="column is-narrow size_gender has-text-centered"
+                        >
+                          <span class="size">{{
+                            user_item.user_item.size
+                          }}</span>
                           <span class="is-size-7"
                             >{{ user_item.user_item.size_standard }}
-                            {{ user_item.user_item.item.gender['name_pretty'] }}</span
+                            {{
+                              user_item.user_item.item.gender['name_pretty']
+                            }}</span
                           >
                         </div>
                         <div class="column">
                           <p v-if="user_item.user_item.comments.length > 0">
                             &quot;
                             <em>
-                              <span>{{ user_item.user_item.comments }}</span> </em
+                              <span>{{
+                                user_item.user_item.comments
+                              }}</span> </em
                             >&quot;
                           </p>
                           <p v-if="user_item.user_item.comments.length == 0">
@@ -104,9 +134,13 @@
                         <svg-icon icon="fi-torso"></svg-icon>
                       </span>
                       <div class="info">
-                        <span class="info-label is-size-6 has-text-grey">Rating&nbsp;</span>
+                        <span class="info-label is-size-6 has-text-grey"
+                          >Rating&nbsp;</span
+                        >
                         <span>
-                          <strong>{{ user_item.user_item.rating }}&nbsp;</strong>
+                          <strong
+                            >{{ user_item.user_item.rating }}&nbsp;</strong
+                          >
                           <span class="has-text-grey">/ 5</span>
                         </span>
                       </div>
@@ -118,18 +152,25 @@
                       <div class="info">
                         <span class="has-text-grey">Fit&nbsp;</span>
                         <h5 style="clear: both">
-                          <strong>{{ user_item.user_item.fit_descriptor }}</strong>
+                          <strong>{{
+                            user_item.user_item.fit_descriptor
+                          }}</strong>
                         </h5>
                       </div>
                     </div>
                   </div>
                   <hr class="thin_hr" />
-                  <div v-if="isMyProfile" class="columns is-multiline is-mobile">
+                  <div
+                    v-if="isMyProfile"
+                    class="columns is-multiline is-mobile"
+                  >
                     <div class="column">
                       <a
                         type="button"
                         class="link edit_item"
-                        @click.prevent.stop="prepareEditItemModal(user_item.user_item)"
+                        @click.prevent.stop="
+                          prepareEditItemModal(user_item.user_item)
+                        "
                         >Edit</a
                       >
                     </div>
@@ -137,7 +178,9 @@
                       <a
                         type="button"
                         class="delete_item is-pulled-right"
-                        @click.prevent.stop="prepareConfirmDeleteModal(user_item.user_item)"
+                        @click.prevent.stop="
+                          prepareConfirmDeleteModal(user_item.user_item)
+                        "
                         >Delete</a
                       >
                     </div>
@@ -150,8 +193,13 @@
       </div>
       <div v-if="numberOfPages > 1" class="columns is-centered">
         <div class="column is-10 has-text-centered">
-          Showing {{ startIndex + 1 }} - {{ endIndex }} of {{ getItems.length }} items
-          <nav class="pagination is-centered" role="navigation" aria-label="pagination">
+          Showing {{ startIndex + 1 }} - {{ endIndex }} of
+          {{ getItems.length }} items
+          <nav
+            class="pagination is-centered"
+            role="navigation"
+            aria-label="pagination"
+          >
             <ul class="pagination-list">
               <li>
                 <a
@@ -159,7 +207,9 @@
                   aria-label="Go to previous"
                   :disabled="active_page == 1 ? true : false"
                   @click.prevent.stop="
-                    active_page != 1 ? (active_page = active_page - 1) : (active_page = 1)
+                    active_page != 1
+                      ? (active_page = active_page - 1)
+                      : (active_page = 1)
                   "
                   >&laquo;</a
                 >
@@ -277,8 +327,14 @@ export default {
           itemsFiltered = itemsFiltered.sort((a, b) => {
             if (vueSort === 'model' || vueSort === 'brand.name') {
               // sort alpha
-              const textA = this.deepFind(a, `user_item.item.${vueSort}`).toUpperCase();
-              const textB = this.deepFind(b, `user_item.item.${vueSort}`).toUpperCase();
+              const textA = this.deepFind(
+                a,
+                `user_item.item.${vueSort}`
+              ).toUpperCase();
+              const textB = this.deepFind(
+                b,
+                `user_item.item.${vueSort}`
+              ).toUpperCase();
               if (textA > textB) return -1;
               if (textA < textB) return 1;
               return 0;
@@ -291,8 +347,14 @@ export default {
           itemsFiltered = itemsFiltered.sort((a, b) => {
             if (vueSort === 'model' || vueSort === 'brand.name') {
               // sort alpha
-              const textA = this.deepFind(a, `user_item.item.${vueSort}`).toUpperCase();
-              const textB = this.deepFind(b, `user_item.item.${vueSort}`).toUpperCase();
+              const textA = this.deepFind(
+                a,
+                `user_item.item.${vueSort}`
+              ).toUpperCase();
+              const textB = this.deepFind(
+                b,
+                `user_item.item.${vueSort}`
+              ).toUpperCase();
               if (textA < textB) return -1;
               if (textA > textB) return 1;
               return 0;
@@ -370,7 +432,7 @@ span.info-label {
   margin-top: 0.65em;
 }
 .is-no-top-padding {
-  padding-top: 0px;
+  padding-top: 0;
 }
 .size_gender,
 .match_size_wrapper {
@@ -400,12 +462,12 @@ span.info-label {
   // }
 }
 .size_gender {
-  // padding: 0px;
+  // padding: 0;
   .size {
     height: 55px;
     width: 55px;
     line-height: 55px;
-    padding: 0px;
+    padding: 0;
     font-size: 24px;
   }
 }
@@ -416,7 +478,7 @@ span.info-label {
 .user_details {
   .info_label {
     font-size: 90%;
-    margin-bottom: 0px;
+    margin-bottom: 0;
   }
   .info {
     float: left;

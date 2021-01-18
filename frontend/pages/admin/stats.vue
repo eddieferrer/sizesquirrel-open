@@ -2,7 +2,9 @@
   <div>
     <div class="columns">
       <div class="column">
-        <h2 class="is-size-4 has-text-centered has-text-primary">Admin Stats</h2>
+        <h2 class="is-size-4 has-text-centered has-text-primary">
+          Admin Stats
+        </h2>
         <hr />
       </div>
     </div>
@@ -17,7 +19,7 @@
         <h5>Popular Shoes:</h5>
         <ul>
           <li v-for="item in user_item_count" :key="item.item.id">
-            <RouterLink
+            <NuxtLink
               :to="{
                 name: 'shoe',
                 params: {
@@ -25,19 +27,22 @@
                   shoe_model: item.item.model_slug,
                 },
               }"
-              >{{ item.item.model }}</RouterLink
+              >{{ item.item.model }}</NuxtLink
             >
             <br />
             Count:
             {{ item.count }} Id: {{ item.item.id }}
             <br />
-            <small>{{ item.item.gender['name_pretty'] }} {{ item.item.type | capitalize }}</small>
+            <small
+              >{{ item.item.gender['name_pretty'] }}
+              {{ item.item.type | capitalize }}</small
+            >
           </li>
         </ul>
         <h5>Popular Shoes - Not Rock:</h5>
         <ul>
           <li v-for="item in user_item_count_not_rock" :key="item.item.id">
-            <RouterLink
+            <NuxtLink
               :to="{
                 name: 'shoe',
                 params: {
@@ -45,13 +50,16 @@
                   shoe_model: item.item.model_slug,
                 },
               }"
-              >{{ item.item.model }}</RouterLink
+              >{{ item.item.model }}</NuxtLink
             >
             <br />
             Count:
             {{ item.count }} Id: {{ item.item.id }}
             <br />
-            <small>{{ item.item.gender['name_pretty'] }} {{ item.item.type | capitalize }}</small>
+            <small
+              >{{ item.item.gender['name_pretty'] }}
+              {{ item.item.type | capitalize }}</small
+            >
           </li>
         </ul>
         <hr />
@@ -61,9 +69,15 @@
         <span>{{ average_count_per_user }}</span>
         <hr />
         <h5>Split sizing:</h5>
-        <span>Left Shoe Slightly Larger Than Right: {{ users_with_split_shoes_1 }}</span>
+        <span
+          >Left Shoe Slightly Larger Than Right:
+          {{ users_with_split_shoes_1 }}</span
+        >
         <br />
-        <span>Right Shoe Slightly Larger Than Left: {{ users_with_split_shoes_2 }}</span>
+        <span
+          >Right Shoe Slightly Larger Than Left:
+          {{ users_with_split_shoes_2 }}</span
+        >
         <hr />
         <h5>Gender:</h5>
         <span>Prefer not to say: {{ users_with_gender_0 }}</span>
@@ -76,9 +90,13 @@
         <h5>Users with most shoes:</h5>
         <ul>
           <li v-for="user in users_with_the_most_items" :key="user.user.id">
-            <RouterLink :to="{ name: 'profile', params: { username: user.user.username } }">{{
-              user.user.username
-            }}</RouterLink>
+            <NuxtLink
+              :to="{
+                name: 'profile',
+                params: { username: user.user.username },
+              }"
+              >{{ user.user.username }}</NuxtLink
+            >
             <br />
             <span>Shoes: {{ user.count }}</span>
             <br />
@@ -126,12 +144,12 @@
           <template v-for="(item, index) in user_items_popular1">
             <li v-if="index == 0" :key="index">
               <h5>
-                Most Common Shoe for Users who have {{ item.item.brand['name'] }}
-                {{ item.item.model }}:
+                Most Common Shoe for Users who have
+                {{ item.item.brand['name'] }} {{ item.item.model }}:
               </h5>
             </li>
             <li v-if="index != 0" :key="index">
-              <RouterLink
+              <NuxtLink
                 :to="{
                   name: 'shoe',
                   params: {
@@ -139,13 +157,16 @@
                     shoe_model: item.item.model_slug,
                   },
                 }"
-                >{{ item.item.model_slug }}</RouterLink
+                >{{ item.item.model_slug }}</NuxtLink
               >
               <br />
               Count:
               {{ item.count }} Id: {{ item.item.id }}
               <br />
-              <small>{{ item.item.gender['name_pretty'] }} {{ item.item.type | capitalize }}</small>
+              <small
+                >{{ item.item.gender['name_pretty'] }}
+                {{ item.item.type | capitalize }}</small
+              >
             </li>
           </template>
         </ul>
@@ -153,12 +174,12 @@
           <template v-for="(item, index) in user_items_popular2">
             <li v-if="index == 0" :key="index">
               <h5>
-                Most Common Shoe for Users who have {{ item.item.brand['name'] }}
-                {{ item.item.model }}:
+                Most Common Shoe for Users who have
+                {{ item.item.brand['name'] }} {{ item.item.model }}:
               </h5>
             </li>
             <li v-if="index != 0" :key="index">
-              <RouterLink
+              <NuxtLink
                 :to="{
                   name: 'shoe',
                   params: {
@@ -166,13 +187,16 @@
                     shoe_model: item.item.model_slug,
                   },
                 }"
-                >{{ item.item.model_slug }}</RouterLink
+                >{{ item.item.model_slug }}</NuxtLink
               >
               <br />
               Count:
               {{ item.count }} Id: {{ item.item.id }}
               <br />
-              <small>{{ item.item.gender['name_pretty'] }} {{ item.item.type | capitalize }}</small>
+              <small
+                >{{ item.item.gender['name_pretty'] }}
+                {{ item.item.type | capitalize }}</small
+              >
             </li>
           </template>
         </ul>
@@ -180,12 +204,12 @@
           <template v-for="(item, index) in user_items_popular3">
             <li v-if="index == 0" :key="index">
               <h5>
-                Most Common Shoe for Users who have {{ item.item.brand['name'] }}
-                {{ item.item.model }}:
+                Most Common Shoe for Users who have
+                {{ item.item.brand['name'] }} {{ item.item.model }}:
               </h5>
             </li>
             <li v-if="index != 0" :key="index">
-              <RouterLink
+              <NuxtLink
                 :to="{
                   name: 'shoe',
                   params: {
@@ -193,13 +217,16 @@
                     shoe_model: item.item.model_slug,
                   },
                 }"
-                >{{ item.item.model_slug }}</RouterLink
+                >{{ item.item.model_slug }}</NuxtLink
               >
               <br />
               Count:
               {{ item.count }} Id: {{ item.item.id }}
               <br />
-              <small>{{ item.item.gender['name_pretty'] }} {{ item.item.type | capitalize }}</small>
+              <small
+                >{{ item.item.gender['name_pretty'] }}
+                {{ item.item.type | capitalize }}</small
+              >
             </li>
           </template>
         </ul>
@@ -213,13 +240,11 @@ import { capitalize } from '@/filters';
 
 export default {
   name: 'Stats',
+  middleware: ['auth'],
   filters: {
     capitalize,
   },
-  metaInfo: {
-    // title will be injected into parent titleTemplate
-    title: 'Admin',
-  },
+  layout: 'no-homepage-form',
   data() {
     return {
       shoes_count: 0,
@@ -254,6 +279,11 @@ export default {
         return true;
       });
     });
+  },
+  head() {
+    return {
+      title: 'Admin',
+    };
   },
 };
 </script>

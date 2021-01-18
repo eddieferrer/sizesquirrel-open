@@ -2,26 +2,26 @@
   <multiselect
     v-model="multiSelectValue"
     :allow-empty="false"
-    :options="options"
+    :options="rating_options"
     :placeholder="placeholder"
     :multiple="false"
     track-by="id"
     label="text"
     :show-labels="false"
-    :name="name"
-    :max-height="maxHeight"
-    :searchable="false"
-    :open-direction="openDirection"
+    name="rating"
+    :max-height="140"
     @input="updateValue"
   ></multiselect>
 </template>
 
 <script>
 import Multiselect from 'vue-multiselect';
+import RatingOptions from '@/mixins/RatingOptions';
 
 export default {
-  name: 'MultiSelectMinimal',
+  name: 'MultiSelectRating',
   components: { Multiselect },
+  mixins: [RatingOptions],
   props: {
     value: {
       type: Object,
@@ -29,27 +29,9 @@ export default {
         return {};
       },
     },
-    maxHeight: {
-      type: Number,
-      default: 140,
-    },
-    options: {
-      type: Array,
-      default() {
-        return [];
-      },
-    },
     placeholder: {
       type: String,
-      default: 'Select',
-    },
-    name: {
-      type: String,
-      default: '',
-    },
-    openDirection: {
-      type: String,
-      default: 'bottom',
+      default: 'Select A Rating',
     },
   },
   data() {
@@ -69,8 +51,3 @@ export default {
   },
 };
 </script>
-
-<style lang="scss">
-@import '~vue-multiselect/dist/vue-multiselect.min.css';
-@import '../scss/custom_multiselect.scss';
-</style>

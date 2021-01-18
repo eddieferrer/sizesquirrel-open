@@ -2,8 +2,12 @@
   <div class="column is-12">
     <a id="user_details" name="user_details"></a>
     <h2 class="is-size-4 has-text-centered has-text-primary">User Details</h2>
-    <h5 v-if="isMyProfile" class="is-size-5 has-text-centered">Information about your account</h5>
-    <h5 v-if="!isMyProfile" class="is-size-5 has-text-centered">Information about this user</h5>
+    <h5 v-if="isMyProfile" class="is-size-5 has-text-centered">
+      Information about your account
+    </h5>
+    <h5 v-if="!isMyProfile" class="is-size-5 has-text-centered">
+      Information about this user
+    </h5>
     <hr />
 
     <div v-if="isMyProfile" class="columns">
@@ -14,7 +18,9 @@
       </div>
       <div class="column">
         <div class="field">
-          <label class="label has-text-weight-normal has-text-grey">Username</label>
+          <label class="label has-text-weight-normal has-text-grey"
+            >Username</label
+          >
           <div class="control">
             <strong>{{ user.username }}</strong>
           </div>
@@ -26,31 +32,41 @@
           </div>
         </div>
         <div class="field">
-          <label class="label has-text-weight-normal has-text-grey">Email</label>
+          <label class="label has-text-weight-normal has-text-grey"
+            >Email</label
+          >
           <div class="control">
             <strong>{{ user.email }}</strong>
           </div>
         </div>
         <div class="field">
-          <label class="label has-text-weight-normal has-text-grey">Member Since</label>
+          <label class="label has-text-weight-normal has-text-grey"
+            >Member Since</label
+          >
           <div class="control">
             <strong>{{ user.date_created_readable }}</strong>
           </div>
         </div>
         <div class="field">
-          <label class="label has-text-weight-normal has-text-grey">Gender</label>
+          <label class="label has-text-weight-normal has-text-grey"
+            >Gender</label
+          >
           <div class="control">
             <strong>{{ user.get_gender }}</strong>
           </div>
         </div>
         <div class="field">
-          <label class="label has-text-weight-normal has-text-grey">Number Of Shoes</label>
+          <label class="label has-text-weight-normal has-text-grey"
+            >Number Of Shoes</label
+          >
           <div class="control">
             <strong>{{ itemCount }}</strong>
           </div>
         </div>
         <div class="field">
-          <label class="label has-text-weight-normal has-text-grey">Foot Shape</label>
+          <label class="label has-text-weight-normal has-text-grey"
+            >Foot Shape</label
+          >
           <div class="control">
             <div class="columns">
               <div v-if="user.foot_shape > 0" class="column is-narrow">
@@ -64,7 +80,9 @@
                 <strong>{{ user.get_foot_shape }}</strong>
                 <br />
                 <small>
-                  <a type="button" @click.prevent.stop="showFootShapeModal = true"
+                  <a
+                    type="button"
+                    @click.prevent.stop="showFootShapeModal = true"
                     >More information about foot shapes</a
                   >
                 </small>
@@ -73,17 +91,22 @@
           </div>
         </div>
         <div class="field">
-          <label class="label has-text-weight-normal has-text-grey">Street Shoe Size</label>
+          <label class="label has-text-weight-normal has-text-grey"
+            >Street Shoe Size</label
+          >
           <div class="control">
             <span v-if="user.street_shoe_size_in">
               <span>
-                <strong>{{ user.street_shoe_size['EUR'] }} EUR</strong>&nbsp;|&nbsp;
+                <strong>{{ user.street_shoe_size['EUR'] }} EUR</strong
+                >&nbsp;|&nbsp;
               </span>
               <span>
-                <strong>{{ user.street_shoe_size['USM'] }} USM</strong>&nbsp;|&nbsp;
+                <strong>{{ user.street_shoe_size['USM'] }} USM</strong
+                >&nbsp;|&nbsp;
               </span>
               <span>
-                <strong>{{ user.street_shoe_size['USW'] }} USW</strong>&nbsp;|&nbsp;
+                <strong>{{ user.street_shoe_size['USW'] }} USW</strong
+                >&nbsp;|&nbsp;
               </span>
               <span>
                 <strong>{{ user.street_shoe_size['UK'] }} UK</strong>&nbsp;
@@ -97,13 +120,17 @@
           </div>
         </div>
         <div class="field">
-          <label class="label has-text-weight-normal has-text-grey">Split shoe sizing?</label>
+          <label class="label has-text-weight-normal has-text-grey"
+            >Split shoe sizing?</label
+          >
           <div class="control">
             <strong>{{ user.get_split_shoe_info }}</strong>
           </div>
         </div>
         <div class="field">
-          <label class="label has-text-weight-normal has-text-grey">Climbing Skill</label>
+          <label class="label has-text-weight-normal has-text-grey"
+            >Climbing Skill</label
+          >
           <div class="control">
             <span>
               <strong>Boulder {{ user.get_climbing_boulder }}</strong
@@ -122,7 +149,9 @@
           <div class="column">
             <hr />
             <p>
-              <a type="button" @click.prevent.stop="$emit('open-details')">Change User Details</a>
+              <a type="button" @click.prevent.stop="$emit('open-details')"
+                >Change User Details</a
+              >
             </p>
           </div>
         </div>
@@ -137,31 +166,41 @@
       </div>
       <div class="column">
         <div class="field">
-          <label class="label has-text-weight-normal has-text-grey">Username</label>
+          <label class="label has-text-weight-normal has-text-grey"
+            >Username</label
+          >
           <div class="control">
             <strong>{{ profile.username }}</strong>
           </div>
         </div>
         <div class="field">
-          <label class="label has-text-weight-normal has-text-grey">Member Since</label>
+          <label class="label has-text-weight-normal has-text-grey"
+            >Member Since</label
+          >
           <div class="control">
             <strong>{{ profile.date_created_readable }}</strong>
           </div>
         </div>
         <div class="field">
-          <label class="label has-text-weight-normal has-text-grey">Gender</label>
+          <label class="label has-text-weight-normal has-text-grey"
+            >Gender</label
+          >
           <div class="control">
             <strong>{{ profile.get_gender }}</strong>
           </div>
         </div>
         <div class="field">
-          <label class="label has-text-weight-normal has-text-grey">Number Of Shoes</label>
+          <label class="label has-text-weight-normal has-text-grey"
+            >Number Of Shoes</label
+          >
           <div class="control">
             <strong>{{ itemCount }}</strong>
           </div>
         </div>
         <div class="field">
-          <label class="label has-text-weight-normal has-text-grey">Foot Shape</label>
+          <label class="label has-text-weight-normal has-text-grey"
+            >Foot Shape</label
+          >
           <div class="control">
             <div class="columns">
               <div v-if="profile.foot_shape > 0" class="column is-narrow">
@@ -175,7 +214,9 @@
                 <strong>{{ profile.get_foot_shape }}</strong>
                 <br />
                 <small>
-                  <a type="button" @click.prevent.stop="showFootShapeModal = true"
+                  <a
+                    type="button"
+                    @click.prevent.stop="showFootShapeModal = true"
                     >More information about foot shapes</a
                   >
                 </small>
@@ -184,17 +225,22 @@
           </div>
         </div>
         <div class="field">
-          <label class="label has-text-weight-normal has-text-grey">Street Shoe Size</label>
+          <label class="label has-text-weight-normal has-text-grey"
+            >Street Shoe Size</label
+          >
           <div class="control">
             <span v-if="profile.street_shoe_size_in">
               <span>
-                <strong>{{ profile.street_shoe_size['EUR'] }} EUR</strong>&nbsp;|&nbsp;
+                <strong>{{ profile.street_shoe_size['EUR'] }} EUR</strong
+                >&nbsp;|&nbsp;
               </span>
               <span>
-                <strong>{{ profile.street_shoe_size['USM'] }} USM</strong>&nbsp;|&nbsp;
+                <strong>{{ profile.street_shoe_size['USM'] }} USM</strong
+                >&nbsp;|&nbsp;
               </span>
               <span>
-                <strong>{{ profile.street_shoe_size['USW'] }} USW</strong>&nbsp;|&nbsp;
+                <strong>{{ profile.street_shoe_size['USW'] }} USW</strong
+                >&nbsp;|&nbsp;
               </span>
               <span>
                 <strong>{{ profile.street_shoe_size['UK'] }} UK</strong>&nbsp;
@@ -208,13 +254,17 @@
           </div>
         </div>
         <div class="field">
-          <label class="label has-text-weight-normal has-text-grey">Split shoe sizing?</label>
+          <label class="label has-text-weight-normal has-text-grey"
+            >Split shoe sizing?</label
+          >
           <div class="control">
             <strong>{{ profile.get_split_shoe_info }}</strong>
           </div>
         </div>
         <div class="field">
-          <label class="label has-text-weight-normal has-text-grey">Climbing Skill</label>
+          <label class="label has-text-weight-normal has-text-grey"
+            >Climbing Skill</label
+          >
           <div class="control">
             <span>
               <strong>Boulder {{ profile.get_climbing_boulder }}</strong
@@ -233,7 +283,10 @@
     </div>
 
     <!-- modals -->
-    <FootShapeModal :show="showFootShapeModal" @close="showFootShapeModal = false"></FootShapeModal>
+    <FootShapeModal
+      :show="showFootShapeModal"
+      @close="showFootShapeModal = false"
+    ></FootShapeModal>
     <ChangePasswordModal
       :show="showChangePasswordModal"
       @close="showChangePasswordModal = false"

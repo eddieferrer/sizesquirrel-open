@@ -69,10 +69,7 @@ export default {
   methods: {
     navigateAfterLogin() {
       const nextRoute = this.redirect || '/my_profile/';
-      this.$router.push({ path: nextRoute }).catch(() => {
-        // the new version of vue router sends an error here
-        // so lets catch and do nothing
-      });
+      this.$router.push({ path: nextRoute });
     },
     dispatchLogin(token) {
       if (this.formType === 'register') {

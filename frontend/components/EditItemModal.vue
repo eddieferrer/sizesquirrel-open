@@ -1,10 +1,11 @@
 <template>
-  <!-- TODO - Fix vue lint error -->
-  <!-- eslint-disable vue/no-mutating-props -->
   <Modal :modal-size="modalSize" :show="show" @close="closeAndReset">
     <header class="modal-card-head">
       <p class="modal-card-title">Edit Shoe</p>
-      <span class="close-button is-size-4" aria-label="close" @click.prevent.stop="closeAndReset"
+      <span
+        class="close-button is-size-4"
+        aria-label="close"
+        @click.prevent.stop="closeAndReset"
         >&#215;</span
       >
     </header>
@@ -20,29 +21,44 @@
         <div class="columns">
           <div class="column">
             <div class="field">
-              <label class="label has-text-weight-normal has-text-grey">Size</label>
+              <label class="label has-text-weight-normal has-text-grey"
+                >Size</label
+              >
               <div class="control">
                 <MultiSelectSize v-model="currentSize"></MultiSelectSize>
-                <p class="help is-default">Use your keyboard to quickly input a size</p>
+                <p class="help is-default">
+                  Use your keyboard to quickly input a size
+                </p>
               </div>
             </div>
             <div class="field">
-              <label class="label has-text-weight-normal has-text-grey">Rating</label>
+              <label class="label has-text-weight-normal has-text-grey"
+                >Rating</label
+              >
               <div class="control">
                 <MultiSelectRating v-model="currentRating"></MultiSelectRating>
               </div>
-              <p class="help is-default">Your subjective overall rating of these shoes</p>
+              <p class="help is-default">
+                Your subjective overall rating of these shoes
+              </p>
             </div>
             <div class="field">
-              <label class="label has-text-weight-normal has-text-grey">Fit</label>
+              <label class="label has-text-weight-normal has-text-grey"
+                >Fit</label
+              >
               <div class="control">
-                <MultiSelectFit v-model="currentFit" open-direction="top"></MultiSelectFit>
+                <MultiSelectFit
+                  v-model="currentFit"
+                  open-direction="top"
+                ></MultiSelectFit>
               </div>
             </div>
           </div>
           <div class="column">
             <div class="field">
-              <label class="label has-text-weight-normal has-text-grey">Comments</label>
+              <label class="label has-text-weight-normal has-text-grey"
+                >Comments</label
+              >
               <div class="control">
                 <textarea
                   v-model="item.comments"
@@ -64,15 +80,18 @@
         >
           Save<span v-if="isFormSubmitting" class="loading"></span>
         </button>
-        <button class="button is-pulled-left" @click.prevent.stop="closeAndReset">Cancel</button>
+        <button
+          class="button is-pulled-left"
+          @click.prevent.stop="closeAndReset"
+        >
+          Cancel
+        </button>
       </section>
     </form>
   </Modal>
 </template>
 
 <script>
-/* TODO - Fix vue lint error */
-/* eslint-disable vue/no-mutating-props */
 import SizeOptions from '@/mixins/SizeOptions';
 import RatingOptions from '@/mixins/RatingOptions';
 import FitOptions from '@/mixins/FitOptions';
@@ -138,7 +157,9 @@ export default {
     currentFit: {
       get() {
         if (this.item.fit) {
-          return this.fit_options.filter((fitArray) => fitArray.id === this.item.fit.toString())[0];
+          return this.fit_options.filter(
+            (fitArray) => fitArray.id === this.item.fit.toString()
+          )[0];
         }
         return {};
       },
@@ -181,7 +202,8 @@ export default {
         .then((response) => {
           if (response.data.status === 'success') {
             // update properties of item
-            editItemModalComponent.item.fit_descriptor = response.data.user_item.fit_descriptor;
+            editItemModalComponent.item.fit_descriptor =
+              response.data.user_item.fit_descriptor;
             editItemModalComponent.close();
           }
         })

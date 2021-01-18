@@ -5,10 +5,13 @@
         <div
           class="level box is-marginless has-text-centered box has-background-warning has-text-white"
         >
-          <p>You don't have any shoes. Use the form below to add shoes to your profile.</p>
+          <p>
+            You don't have any shoes. Use the form below to add shoes to your
+            profile.
+          </p>
           <strong class="has-text-white"
-            >If you do not add any shoes to your profile we will not be able to find your
-            size.</strong
+            >If you do not add any shoes to your profile we will not be able to
+            find your size.</strong
           >
         </div>
       </div>
@@ -27,12 +30,21 @@
       </div>
     </div>
 
-    <div v-if="isMyProfile && profile.get_foot_shape == 'Not specified'" class="columns">
+    <div
+      v-if="isMyProfile && profile.get_foot_shape == 'Not specified'"
+      class="columns"
+    >
       <div class="column">
-        <div class="level box is-marginless has-text-centered box has-background-light">
+        <div
+          class="level box is-marginless has-text-centered box has-background-light"
+        >
           <p>
-            Consider adding your foot shape to your profile for better match results.
-            <a type="button" @click.prevent.stop="showEditUserDetailsModal = true">
+            Consider adding your foot shape to your profile for better match
+            results.
+            <a
+              type="button"
+              @click.prevent.stop="showEditUserDetailsModal = true"
+            >
               Change Foot Shape in User Details
             </a>
           </p>
@@ -41,14 +53,23 @@
     </div>
 
     <div
-      v-if="isMyProfile && profile.get_foot_shape !== 'Not specified' && hasDefaultClimbingSkill"
+      v-if="
+        isMyProfile &&
+        profile.get_foot_shape !== 'Not specified' &&
+        hasDefaultClimbingSkill
+      "
       class="columns"
     >
       <div class="column">
-        <div class="level box is-marginless has-text-centered box has-background-light">
+        <div
+          class="level box is-marginless has-text-centered box has-background-light"
+        >
           <p>
             Consider adding your climbing skill to your profile.
-            <a type="button" @click.prevent.stop="showEditUserDetailsModal = true">
+            <a
+              type="button"
+              @click.prevent.stop="showEditUserDetailsModal = true"
+            >
               Change Climbing Skill in User Details
             </a>
           </p>
@@ -92,12 +113,6 @@ export default {
     RecommendationsByShape,
     EditUserDetailsModal,
   },
-  metaInfo() {
-    return {
-      // title will be injected into parent titleTemplate
-      title: this.isMyProfile ? 'My Profile' : this.profile.username,
-    };
-  },
   data() {
     return {
       showEditUserDetailsModal: false,
@@ -116,7 +131,11 @@ export default {
       return false;
     },
   },
-  created() {},
+  head() {
+    return {
+      title: this.isMyProfile ? 'My Profile' : this.profile.username,
+    };
+  },
 };
 </script>
 

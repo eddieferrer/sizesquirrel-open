@@ -27,7 +27,7 @@
     <div v-if="!isAuthenticated" class="columns is-centered">
       <div class="column is-full-tablet is-three-quarters-desktop">
         <h4 class="has-text-centered box has-background-light is-size-5">
-          <RouterLink to="/register">Sign Up</RouterLink>&nbsp; for an account to see more detailed
+          <NuxtLink to="/register">Sign Up</NuxtLink>&nbsp; for an account to see more detailed
           sizing information, user comments, ratings, recommended foot shape and more.
         </h4>
       </div>

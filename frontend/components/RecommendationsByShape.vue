@@ -2,13 +2,18 @@
   <section v-if="user.recommendations_by_shape.length > 0" class="section">
     <div class="columns">
       <div class="column">
-        <h2 class="is-size-4 has-text-centered has-text-primary">Recommended Shoes</h2>
-        <h5 class="is-size-5 has-text-centered">Recommended shoes just for you</h5>
+        <h2 class="is-size-4 has-text-centered has-text-primary">
+          Recommended Shoes
+        </h2>
+        <h5 class="is-size-5 has-text-centered">
+          Recommended shoes just for you
+        </h5>
         <hr />
         <div class="columns">
           <div class="column">
             <p>
-              These shoes that you do not own, were rated very highly by other users with a
+              These shoes that you do not own, were rated very highly by other
+              users with a
               <em>{{ user.get_foot_shape }}</em> foot shape.
             </p>
           </div>
@@ -27,17 +32,23 @@
                       class="lazyload"
                       loading="lazy"
                       :src-placeholder="
-                        '/images/placeholder_' + recommendation.item.type + '.png'
+                        '/images/placeholder_' +
+                        recommendation.item.type +
+                        '.png'
                       "
                       :src="recommendation.item.shoe_image"
-                      :alt="recommendation.item.brand['name'] + ' ' + recommendation.item.model"
+                      :alt="
+                        recommendation.item.brand['name'] +
+                        ' ' +
+                        recommendation.item.model
+                      "
                     />
                   </span>
                 </div>
               </div>
               <div v-if="recommendation.item.stats.count > 0" class="column">
                 <h4 class="is-size-5 is-capitalized has-text-info">
-                  <RouterLink
+                  <NuxtLink
                     class="has-text-info"
                     :to="{
                       name: 'shoe',
@@ -46,28 +57,42 @@
                         shoe_model: recommendation.item.model_slug,
                       },
                     }"
-                    >{{ recommendation.item.model }}</RouterLink
+                    >{{ recommendation.item.model }}</NuxtLink
                   >
                 </h4>
                 <h5 class="is-size-6 is-capitalized has-text-info">
-                  <RouterLink
+                  <NuxtLink
                     class="has-text-info"
                     :to="{
                       name: 'brand',
-                      params: { shoe_brand: recommendation.item.brand['name_slug'] },
+                      params: {
+                        shoe_brand: recommendation.item.brand['name_slug'],
+                      },
                     }"
                   >
-                    {{ recommendation.item.brand['name'] }}</RouterLink
+                    {{ recommendation.item.brand['name'] }}</NuxtLink
                   >
                 </h5>
                 <h4 class="is-size-6 is-capitalized is-italic has-text-grey">
-                  {{ recommendation.item.gender.name_pretty }} {{ recommendation.item.type }} Shoe
+                  {{ recommendation.item.gender.name_pretty }}
+                  {{ recommendation.item.type }} Shoe
                 </h4>
               </div>
               <div class="column is-narrow">
-                <form :id="'form_' + recommendation.item.id" action="/match/" method="get">
-                  <input type="hidden" name="want_item_id" :value="recommendation.item.id" />
-                  <button type="submit" class="button is-info is-small is-pulled-right">
+                <form
+                  :id="'form_' + recommendation.item.id"
+                  action="/match/"
+                  method="get"
+                >
+                  <input
+                    type="hidden"
+                    name="want_item_id"
+                    :value="recommendation.item.id"
+                  />
+                  <button
+                    type="submit"
+                    class="button is-info is-small is-pulled-right"
+                  >
                     Find My Size
                   </button>
                 </form>

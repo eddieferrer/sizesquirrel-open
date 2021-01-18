@@ -20,7 +20,7 @@
             size wear this size.
           </h6>
           <progress
-            style="margin-bottom: 0px"
+            style="margin-bottom: 0"
             :class="getClass(streetResults[0].percentage)"
             class="progress"
             :value="streetResults[0].percentage"

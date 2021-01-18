@@ -1,7 +1,10 @@
 <template>
   <form>
     <div class="columns is-multiline">
-      <div v-if="include_search" class="column is-offset-1-tablet is-offset-3-desktop is-4">
+      <div
+        v-if="include_search"
+        class="column is-offset-1-tablet is-offset-3-desktop is-4"
+      >
         <div class="field">
           <label class="label has-text-grey-dark">Search</label>
         </div>
@@ -32,9 +35,15 @@
           <div class="control is-expanded">
             <div class="select is-fullwidth">
               <select id="sortSelect" @change="sortValue">
-                <option v-if="include_popularity" value="stats.count">Popularity</option>
-                <option v-if="include_pricing" value="percent_off">Percent Off</option>
-                <option v-if="include_pricing" value="lowest_sale_price">Sale Price</option>
+                <option v-if="include_popularity" value="stats.count">
+                  Popularity
+                </option>
+                <option v-if="include_pricing" value="percent_off">
+                  Percent Off
+                </option>
+                <option v-if="include_pricing" value="lowest_sale_price">
+                  Sale Price
+                </option>
                 <option v-if="include_model" value="model">Model</option>
                 <option v-if="include_brands" value="brand.name">Brand</option>
                 <option
@@ -43,15 +52,29 @@
                 >
                   Rating
                 </option>
-                <option v-if="pagetype === 'profile'" value="user_item.rating">Rating</option>
-                <option v-if="pagetype === 'comments'" value="rating">Rating</option>
-                <option v-if="pagetype === 'comments'" value="user.get_foot_shape">
+                <option v-if="pagetype === 'profile'" value="user_item.rating">
+                  Rating
+                </option>
+                <option v-if="pagetype === 'comments'" value="rating">
+                  Rating
+                </option>
+                <option
+                  v-if="pagetype === 'comments'"
+                  value="user.get_foot_shape"
+                >
                   Foot Shape
                 </option>
-                <option v-if="pagetype === 'comments'" value="fit_descriptor">Fit</option>
+                <option v-if="pagetype === 'comments'" value="fit_descriptor">
+                  Fit
+                </option>
 
-                <option v-if="pagetype === 'comments'" value="size">Size</option>
-                <option v-if="include_pricing" value="datafeeds.Product.Retail_Price">
+                <option v-if="pagetype === 'comments'" value="size">
+                  Size
+                </option>
+                <option
+                  v-if="include_pricing"
+                  value="datafeeds.Product.Retail_Price"
+                >
                   Retail Price
                 </option>
               </select>

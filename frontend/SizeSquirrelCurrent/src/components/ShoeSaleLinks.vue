@@ -73,6 +73,6 @@ export default {
 
 <style scoped lang="scss">
 .is-no-top-padding {
-  padding-top: 0px;
+  padding-top: 0;
 }
 </style>

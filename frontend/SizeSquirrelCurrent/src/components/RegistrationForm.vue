@@ -137,7 +137,7 @@
               <div class="column">
                 <small
                   >By registering for an account you agree to our
-                  <RouterLink to="/terms/">Terms Of Use</RouterLink>
+                  <NuxtLink to="/terms/">Terms Of Use</NuxtLink>
                 </small>
               </div>
             </div>

@@ -31,7 +31,7 @@
                 <div class="column">
                   <div class="columns is-marginless">
                     <h2 class="is-size-4 is-capitalized has-text-centered-mobile">
-                      <RouterLink
+                      <NuxtLink
                         class="has-text-info"
                         :to="{
                           name: 'shoe',
@@ -40,20 +40,20 @@
                             shoe_model: shoe.model_slug,
                           },
                         }"
-                        >{{ shoe.model }}</RouterLink
+                        >{{ shoe.model }}</NuxtLink
                       >
                     </h2>
                   </div>
 
                   <div class="columns is-marginless">
                     <h4 class="is-size-5 is-capitalized has-text-centered-mobile">
-                      <RouterLink
+                      <NuxtLink
                         class="has-text-info"
                         :to="{
                           name: 'brand',
                           params: { shoe_brand: shoe.brand.name_slug },
                         }"
-                        >{{ shoe.brand.name }}</RouterLink
+                        >{{ shoe.brand.name }}</NuxtLink
                       >
                     </h4>
                   </div>
@@ -139,12 +139,12 @@
                     <em>{{ comment.comments }}</em
                     >&quot;
                     <br />
-                    <RouterLink
+                    <NuxtLink
                       :to="{
                         name: 'profile',
                         params: { username: comment.user.username },
                       }"
-                      >{{ comment.user.username }}</RouterLink
+                      >{{ comment.user.username }}</NuxtLink
                     >
                   </p>
                 </div>
@@ -166,8 +166,8 @@
                   </div>
                   <!-- anonymous -->
                   <div v-if="!isAuthenticated">
-                    <RouterLink to="/register" class="has-text-info is-pulled-right"
-                      >Sign up now to find your size!</RouterLink
+                    <NuxtLink to="/register" class="has-text-info is-pulled-right"
+                      >Sign up now to find your size!</NuxtLink
                     >
                   </div>
                 </div>

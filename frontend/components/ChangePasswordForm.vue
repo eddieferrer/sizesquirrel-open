@@ -5,7 +5,7 @@
       <h5 class="is-size-5 has-text-centered">Password reset</h5>
       <hr />
       <p>{{ message }}</p>
-      <RouterLink :to="'login'">Login with your new password</RouterLink>
+      <NuxtLink :to="'login'">Login with your new password</NuxtLink>
     </div>
     <div v-if="status !== 'success'" class="column">
       <h2 class="is-size-4 has-text-centered has-text-primary">Change Password</h2>

@@ -19,28 +19,23 @@ const ADD_PROFILE_ITEM = async function (
 };
 
 const AUTH_FB_LOGIN = async function (context, payload) {
-  // try {
-  const authFBLogin = await this.$axios({
-    url: '/apiv2/auth/facebooklogin/',
-    data: payload,
-    method: 'POST',
-  });
-  // eslint-disable-next-line no-console
-  console.log('authFBLogin', authFBLogin);
-  // store the authFBLogin.data.token in cookie
-  window.$nuxt.$cookies.set('user-token', authFBLogin.data.token);
-  // set global axios token
-  window.$nuxt.$axios.setToken(
-    window.$nuxt.$cookies.get('user-token'),
-    'Bearer'
-  );
-  context.commit('AUTH_SUCCESS', authFBLogin.data.token);
-  return authFBLogin;
-  // } catch (error) {
-  // if the request fails, remove any possible user token if possible
-  // window.$nuxt.$cookies.remove('user-token');
-  // throw error;
-  // }
+  try {
+    const authFBLogin = await this.$axios({
+      url: '/apiv2/auth/facebooklogin/',
+      data: payload,
+      method: 'POST',
+    });
+    // store the authFBLogin.data.token in cookie
+    window.$nuxt.$cookies.set('user-token', authFBLogin.data.token);
+    // set global axios token
+    this.$axios.setToken(authFBLogin.data.token, 'Bearer');
+    context.commit('AUTH_SUCCESS', authFBLogin.data.token);
+    return authFBLogin;
+  } catch (error) {
+    // if the request fails, remove any possible user token if possible
+    window.$nuxt.$cookies.remove('user-token');
+    throw error;
+  }
 };
 
 const AUTH_LOGOUT = async function (context) {
@@ -52,7 +47,7 @@ const AUTH_LOGOUT = async function (context) {
     context.commit('AUTH_LOGOUT');
     // clear your user's token from localstorage
     window.$nuxt.$cookies.remove('user-token');
-    window.$nuxt.$axios.setToken(false);
+    this.$axios.setToken(false);
     return authLogout;
   } catch (error) {
     // if the request fails, remove any possible user token if possible
@@ -71,7 +66,7 @@ const AUTH_REQUEST = async function (context, payload) {
     // store the authRequest.data.token in cookie
     window.$nuxt.$cookies.set('user-token', authRequest.data.token);
     // set global axios token
-    this.$axios.setToken(window.$nuxt.$cookies.get('user-token'), 'Bearer');
+    this.$axios.setToken(authRequest.data.token, 'Bearer');
     context.commit('AUTH_SUCCESS', authRequest.data.token);
     return authRequest;
   } catch (error) {
@@ -174,7 +169,7 @@ const FB_REGISTER = async function (context, payload) {
     // store the fbRegister.data.token in cookie
     window.$nuxt.$cookies.set('user-token', fbRegister.data.token);
     // set global axios token
-    this.$axios.setToken(window.$nuxt.$cookies.get('user-token'), 'Bearer');
+    this.$axios.setToken(fbRegister.data.token, 'Bearer');
     context.commit('AUTH_SUCCESS', fbRegister.data.token);
     return fbRegister;
   } catch (error) {
@@ -484,7 +479,7 @@ const REGISTER = async function (context, payload) {
     // store the register.data.token in cookie
     window.$nuxt.$cookies.set('user-token', register.data.token);
     // set global axios token
-    this.$axios.setToken(window.$nuxt.$cookies.get('user-token'), 'Bearer');
+    this.$axios.setToken(register.data.token, 'Bearer');
     context.commit('AUTH_SUCCESS', register.data.token);
     return register;
   } catch (error) {
@@ -549,10 +544,10 @@ const WAIT = async function (context, { time }) {
   }
 };
 
-const nuxtServerInit = function (context) {
-  if (window.$nuxt.$cookies.get('user-token')) {
-    this.$axios.setToken(window.$nuxt.$cookies.get('user-token'), 'Bearer');
-    context.commit('AUTH_SUCCESS', window.$nuxt.$cookies.get('user-token'));
+const nuxtServerInit = function (context, { app, req }) {
+  if (req.headers?.cookie?.['user-token']) {
+    this.$axios.setToken(req.headers.cookie['user-token'], 'Bearer');
+    context.commit('AUTH_SUCCESS', req.headers.cookie['user-token']);
   }
 };
 

@@ -42,4 +42,7 @@ export default {
 .modal-card {
   overflow-y: auto;
 }
+.modal-card-title {
+  margin-bottom: 0;
+}
 </style>

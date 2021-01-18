@@ -532,13 +532,13 @@ export default {
   }
 }
 .column {
-  padding-top: 0px;
-  padding-bottom: 0px;
+  padding-top: 0;
+  padding-bottom: 0;
 }
 .custom-margin {
   margin-top: 1em;
   @media (min-width: 768px) {
-    margin-top: 0px;
+    margin-top: 0;
   }
 }
 form label.checkbox,

@@ -1,9 +1,16 @@
 <template>
   <Modal :modal-size="modalSize" :show="show" @close="close">
-    <form id="change_password_form" class="modal_form" @submit.prevent="changePassword">
+    <form
+      id="change_password_form"
+      class="modal_form"
+      @submit.prevent="changePassword"
+    >
       <header class="modal-card-head">
         <p class="modal-card-title">Change Password</p>
-        <span class="close-button is-size-4" aria-label="close" @click.prevent.stop="close"
+        <span
+          class="close-button is-size-4"
+          aria-label="close"
+          @click.prevent.stop="close"
           >&#215;</span
         >
       </header>
@@ -11,7 +18,9 @@
         <div v-if="formErrors && showAlert" class="columns">
           <div class="column">
             <div class="level box is-marginless has-background-danger">
-              <span class="has-text-white">There was an error changing your password.</span>
+              <span class="has-text-white"
+                >There was an error changing your password.</span
+              >
             </div>
           </div>
         </div>
@@ -19,7 +28,9 @@
         <div class="columns">
           <div class="column">
             <div class="field">
-              <label class="label has-text-grey has-text-weight-normal">Current Password</label>
+              <label class="label has-text-grey has-text-weight-normal"
+                >Current Password</label
+              >
               <div class="control">
                 <input
                   v-model="current_password"
@@ -39,7 +50,9 @@
         <div class="columns">
           <div class="column">
             <div class="field">
-              <label class="label has-text-grey has-text-weight-normal">New Password</label>
+              <label class="label has-text-grey has-text-weight-normal"
+                >New Password</label
+              >
               <div class="control">
                 <input
                   v-model="new_password"
@@ -59,7 +72,9 @@
         <div class="columns">
           <div class="column">
             <div class="field">
-              <label class="label has-text-grey has-text-weight-normal">Confirm New Password</label>
+              <label class="label has-text-grey has-text-weight-normal"
+                >Confirm New Password</label
+              >
               <div class="control">
                 <input
                   v-model="new_password_confirm"
@@ -77,10 +92,16 @@
         </div>
       </section>
       <section class="modal-card-body">
-        <button type="submit" class="button is-pulled-right is-info" :disabled="isFormSubmitting">
+        <button
+          type="submit"
+          class="button is-pulled-right is-info"
+          :disabled="isFormSubmitting"
+        >
           Change Password<span v-if="isFormSubmitting" class="loading"></span>
         </button>
-        <button class="button is-pulled-left" @click.prevent.stop="close">Cancel</button>
+        <button class="button is-pulled-left" @click.prevent.stop="close">
+          Cancel
+        </button>
       </section>
     </form>
   </Modal>
@@ -163,5 +184,3 @@ export default {
   },
 };
 </script>
-
-<style scoped></style>
