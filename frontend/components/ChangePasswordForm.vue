@@ -8,14 +8,18 @@
       <NuxtLink :to="'login'">Login with your new password</NuxtLink>
     </div>
     <div v-if="status !== 'success'" class="column">
-      <h2 class="is-size-4 has-text-centered has-text-primary">Change Password</h2>
+      <h2 class="is-size-4 has-text-centered has-text-primary">
+        Change Password
+      </h2>
       <h5 class="is-size-5 has-text-centered">Enter your new password</h5>
       <hr />
       <form @submit.prevent="resetPassword">
         <div v-if="password_change_error.general" class="columns">
           <div class="column">
             <div class="level box is-marginless has-background-danger">
-              <span class="message">{{ password_change_error.general | capitalize }}</span>
+              <span class="message">{{
+                password_change_error.general | capitalize
+              }}</span>
             </div>
           </div>
         </div>
@@ -45,10 +49,15 @@
               type="password"
               name="confirmPassword"
               required
-              :class="{ 'is-danger': password_change_error.confirmPassword != '' }"
+              :class="{
+                'is-danger': password_change_error.confirmPassword != '',
+              }"
             />
           </div>
-          <p v-if="password_change_error.confirmPassword != ''" class="help is-danger">
+          <p
+            v-if="password_change_error.confirmPassword != ''"
+            class="help is-danger"
+          >
             {{ password_change_error.confirmPassword | capitalize }}
           </p>
         </div>
@@ -119,7 +128,8 @@ export default {
             vm.status = 'error';
             vm.password_change_error.general = response.data.message.general;
             vm.password_change_error.password = response.data.message.password;
-            vm.password_change_error.confirmPassword = response.data.message.confirmPassword;
+            vm.password_change_error.confirmPassword =
+              response.data.message.confirmPassword;
           }
         })
         .catch((error) => {

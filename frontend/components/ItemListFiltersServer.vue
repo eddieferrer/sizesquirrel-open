@@ -4,7 +4,10 @@
       <div class="column is-full-tablet">
         <!-- shoe type -->
         <div class="accordion" :class="{ active: accordionType }">
-          <div class="field accordion-header" @click.prevent.stop="accordionType = !accordionType">
+          <div
+            class="field accordion-header"
+            @click.prevent.stop="accordionType = !accordionType"
+          >
             <label class="label has-text-grey-dark">
               Shoe Type
               <span class="is-pulled-right icon-wrapper-accordion">
@@ -30,8 +33,15 @@
         </div>
 
         <!-- percent off -->
-        <div v-if="include_pricing" class="accordion" :class="{ active: accordionSale }">
-          <div class="field accordion-header" @click.prevent.stop="accordionSale = !accordionSale">
+        <div
+          v-if="include_pricing"
+          class="accordion"
+          :class="{ active: accordionSale }"
+        >
+          <div
+            class="field accordion-header"
+            @click.prevent.stop="accordionSale = !accordionSale"
+          >
             <label class="label has-text-grey-dark">
               Sale
               <span class="is-pulled-right icon-wrapper-accordion">
@@ -61,7 +71,11 @@
         </div>
 
         <!-- min/max price -->
-        <div v-if="include_pricing" class="accordion" :class="{ active: accordionPrice }">
+        <div
+          v-if="include_pricing"
+          class="accordion"
+          :class="{ active: accordionPrice }"
+        >
           <div
             class="field accordion-header"
             @click.prevent.stop="accordionPrice = !accordionPrice"
@@ -74,7 +88,10 @@
               </span>
             </label>
           </div>
-          <div v-show="accordionPrice" class="field accordion-content is-clearfix">
+          <div
+            v-show="accordionPrice"
+            class="field accordion-content is-clearfix"
+          >
             <label class="text price">
               Min
               <input
@@ -150,7 +167,10 @@
               </span>
             </label>
           </div>
-          <div v-show="accordionRating" class="field accordion-content is-clearfix">
+          <div
+            v-show="accordionRating"
+            class="field accordion-content is-clearfix"
+          >
             <label class="text rating">
               Min
               <input
@@ -182,13 +202,21 @@
         <div class="accordion" :class="{ active: accordionMostCommonFit }">
           <div
             class="field accordion-header"
-            @click.prevent.stop="accordionMostCommonFit = !accordionMostCommonFit"
+            @click.prevent.stop="
+              accordionMostCommonFit = !accordionMostCommonFit
+            "
           >
             <label class="label has-text-grey-dark">
               Most Common Fit
               <span class="is-pulled-right icon-wrapper-accordion">
-                <svg-icon v-show="!accordionMostCommonFit" icon="fi-plus"></svg-icon>
-                <svg-icon v-show="accordionMostCommonFit" icon="fi-minus"></svg-icon>
+                <svg-icon
+                  v-show="!accordionMostCommonFit"
+                  icon="fi-plus"
+                ></svg-icon>
+                <svg-icon
+                  v-show="accordionMostCommonFit"
+                  icon="fi-minus"
+                ></svg-icon>
               </span>
             </label>
           </div>
@@ -198,11 +226,19 @@
               Normal
             </label>
             <label class="checkbox">
-              <input v-model="mostCommonFit" type="checkbox" value="Comfortable" />
+              <input
+                v-model="mostCommonFit"
+                type="checkbox"
+                value="Comfortable"
+              />
               Comfortable
             </label>
             <label class="checkbox">
-              <input v-model="mostCommonFit" type="checkbox" value="Aggressive" />
+              <input
+                v-model="mostCommonFit"
+                type="checkbox"
+                value="Aggressive"
+              />
               Aggressive
             </label>
           </div>
@@ -216,35 +252,66 @@
         >
           <div
             class="field accordion-header"
-            @click.prevent.stop="accordionRecommendedFootShape = !accordionRecommendedFootShape"
+            @click.prevent.stop="
+              accordionRecommendedFootShape = !accordionRecommendedFootShape
+            "
           >
             <label class="label has-text-grey-dark">
               Recommended Foot Shape
               <span class="is-pulled-right icon-wrapper-accordion">
-                <svg-icon v-show="!accordionRecommendedFootShape" icon="fi-plus"></svg-icon>
-                <svg-icon v-show="accordionRecommendedFootShape" icon="fi-minus"></svg-icon>
+                <svg-icon
+                  v-show="!accordionRecommendedFootShape"
+                  icon="fi-plus"
+                ></svg-icon>
+                <svg-icon
+                  v-show="accordionRecommendedFootShape"
+                  icon="fi-minus"
+                ></svg-icon>
               </span>
             </label>
           </div>
-          <div v-show="accordionRecommendedFootShape" class="field accordion-content">
+          <div
+            v-show="accordionRecommendedFootShape"
+            class="field accordion-content"
+          >
             <label class="checkbox">
-              <input v-model="recommendedFootShape" type="checkbox" value="Egyptian" />
+              <input
+                v-model="recommendedFootShape"
+                type="checkbox"
+                value="Egyptian"
+              />
               Egyptian
             </label>
             <label class="checkbox">
-              <input v-model="recommendedFootShape" type="checkbox" value="Roman" />
+              <input
+                v-model="recommendedFootShape"
+                type="checkbox"
+                value="Roman"
+              />
               Roman
             </label>
             <label class="checkbox">
-              <input v-model="recommendedFootShape" type="checkbox" value="Greek" />
+              <input
+                v-model="recommendedFootShape"
+                type="checkbox"
+                value="Greek"
+              />
               Greek
             </label>
             <label class="checkbox">
-              <input v-model="recommendedFootShape" type="checkbox" value="Germanic" />
+              <input
+                v-model="recommendedFootShape"
+                type="checkbox"
+                value="Germanic"
+              />
               Germanic
             </label>
             <label class="checkbox">
-              <input v-model="recommendedFootShape" type="checkbox" value="Celtic" />
+              <input
+                v-model="recommendedFootShape"
+                type="checkbox"
+                value="Celtic"
+              />
               Celtic
             </label>
           </div>
@@ -258,17 +325,28 @@
         >
           <div
             class="field accordion-header"
-            @click.prevent.stop="accordionRatingFootShape = !accordionRatingFootShape"
+            @click.prevent.stop="
+              accordionRatingFootShape = !accordionRatingFootShape
+            "
           >
             <label class="label has-text-grey-dark">
               Rating By Foot Shape
               <span class="is-pulled-right icon-wrapper-accordion">
-                <svg-icon v-show="!accordionRatingFootShape" icon="fi-plus"></svg-icon>
-                <svg-icon v-show="accordionRatingFootShape" icon="fi-minus"></svg-icon>
+                <svg-icon
+                  v-show="!accordionRatingFootShape"
+                  icon="fi-plus"
+                ></svg-icon>
+                <svg-icon
+                  v-show="accordionRatingFootShape"
+                  icon="fi-minus"
+                ></svg-icon>
               </span>
             </label>
           </div>
-          <div v-show="accordionRatingFootShape" class="field accordion-content is-clearfix">
+          <div
+            v-show="accordionRatingFootShape"
+            class="field accordion-content is-clearfix"
+          >
             <div class="field">
               <label class="has-text-grey-dark">Foot Shape</label>
               <div class="control">
@@ -335,7 +413,11 @@
             </label>
           </div>
           <div v-show="accordionBrands" class="field accordion-content">
-            <label v-for="brandItem in sortedBrands" :key="brandItem.id" class="checkbox">
+            <label
+              v-for="brandItem in sortedBrands"
+              :key="brandItem.id"
+              class="checkbox"
+            >
               <input v-model="brand" type="checkbox" :value="brandItem.id" />
               {{ brandItem.name | titleCase }}
             </label>
@@ -343,7 +425,11 @@
         </div>
 
         <!-- retailers -->
-        <div v-if="include_pricing" class="accordion" :class="{ active: accordionRetailers }">
+        <div
+          v-if="include_pricing"
+          class="accordion"
+          :class="{ active: accordionRetailers }"
+        >
           <div
             class="field accordion-header"
             @click.prevent.stop="accordionRetailers = !accordionRetailers"
@@ -351,13 +437,23 @@
             <label class="label has-text-grey-dark">
               Retailers
               <span class="is-pulled-right icon-wrapper-accordion">
-                <svg-icon v-show="!accordionRetailers" icon="fi-plus"></svg-icon>
-                <svg-icon v-show="accordionRetailers" icon="fi-minus"></svg-icon>
+                <svg-icon
+                  v-show="!accordionRetailers"
+                  icon="fi-plus"
+                ></svg-icon>
+                <svg-icon
+                  v-show="accordionRetailers"
+                  icon="fi-minus"
+                ></svg-icon>
               </span>
             </label>
           </div>
           <div v-show="accordionRetailers" class="field accordion-content">
-            <label v-for="(retailerName, index) in allRetailers" :key="index" class="checkbox">
+            <label
+              v-for="(retailerName, index) in allRetailers"
+              :key="index"
+              class="checkbox"
+            >
               <input v-model="retailer" type="checkbox" :value="retailerName" />
               {{ retailerName }}
             </label>
@@ -368,10 +464,14 @@
 
     <div class="columns">
       <div class="column">
-        <a class="button is-text" type="button" @click="resetAllFilters">Clear All Filters</a>
+        <a class="button is-text" type="button" @click="resetAllFilters"
+          >Clear All Filters</a
+        >
       </div>
       <div class="column">
-        <a class="button is-info is-fullwidth" type="button" @click="emitFilter">Filter</a>
+        <a class="button is-info is-fullwidth" type="button" @click="emitFilter"
+          >Filter</a
+        >
       </div>
     </div>
   </form>
@@ -428,7 +528,8 @@ export default {
 
       accordionBrands: this.queryParams.brand.length > 0,
       accordionMostCommonFit: this.queryParams.mostCommonFit.length > 0,
-      accordionRecommendedFootShape: this.queryParams.recommendedFootShape.length > 0,
+      accordionRecommendedFootShape:
+        this.queryParams.recommendedFootShape.length > 0,
       accordionRatingFootShape:
         !!this.queryParams.rating_by_foot_shape_max_rating ||
         !!this.queryParams.rating_by_foot_shape_min_rating,
@@ -446,9 +547,12 @@ export default {
       min_rating: this.queryParams.min_rating,
       mostCommonFit: this.queryParams.mostCommonFit,
       recommendedFootShape: this.queryParams.recommendedFootShape,
-      rating_by_foot_shape_max_rating: this.queryParams.rating_by_foot_shape_max_rating,
-      rating_by_foot_shape_min_rating: this.queryParams.rating_by_foot_shape_min_rating,
-      rating_by_foot_shape_shape: this.queryParams.rating_by_foot_shape_shape || 1,
+      rating_by_foot_shape_max_rating: this.queryParams
+        .rating_by_foot_shape_max_rating,
+      rating_by_foot_shape_min_rating: this.queryParams
+        .rating_by_foot_shape_min_rating,
+      rating_by_foot_shape_shape:
+        this.queryParams.rating_by_foot_shape_shape || 1,
       shoe_type: this.queryParams.shoe_type,
       retailer: this.queryParams.retailer,
     };
@@ -477,7 +581,8 @@ export default {
       .catch(() => {
         this.$store.dispatch('SHOW_FLASH_MESSAGE', {
           class: 'has-background-danger',
-          message: 'There has been a fatal server error. Please reload the page.',
+          message:
+            'There has been a fatal server error. Please reload the page.',
         });
         this.isComponentLoaded = false;
       });
@@ -523,7 +628,7 @@ export default {
 
 <style scoped lang="scss">
 .accordion {
-  margin: 1em 0em;
+  margin: 1em 0;
   .accordion-header {
     padding-right: 1em;
     label {
@@ -548,7 +653,7 @@ form label.radio {
   margin-bottom: 0.25em;
 }
 .radio + .radio {
-  margin-left: 0em;
+  margin-left: 0;
 }
 .is-width-limited {
   max-width: 150px;

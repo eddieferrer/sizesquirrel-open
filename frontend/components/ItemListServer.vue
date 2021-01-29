@@ -34,7 +34,8 @@
         </div>
         <div class="columns is-centered">
           <div v-if="total_items > 0" class="column is-10 has-text-centered">
-            Showing {{ startIndex + 1 }} - {{ endIndex }} of {{ total_items }} items
+            Showing {{ startIndex + 1 }} - {{ endIndex }} of
+            {{ total_items }} items
             <nav
               v-if="numberOfPages > 1"
               class="pagination is-centered"
@@ -48,7 +49,9 @@
                     aria-label="Go to previous"
                     :disabled="queryParams.page == 1 ? true : false"
                     @click.prevent.stop="
-                      queryParams.page != 1 ? changePage(queryParams.page - 1) : null
+                      queryParams.page != 1
+                        ? changePage(queryParams.page - 1)
+                        : null
                     "
                     >&laquo;</a
                   >
@@ -173,13 +176,17 @@ export default {
     }
 
     if (this.$route.query.mostCommonFit) {
-      this.queryParams.mostCommonFit = Array.isArray(this.$route.query.mostCommonFit)
+      this.queryParams.mostCommonFit = Array.isArray(
+        this.$route.query.mostCommonFit
+      )
         ? this.$route.query.mostCommonFit
         : [this.$route.query.mostCommonFit];
     }
 
     if (this.$route.query.recommendedFootShape) {
-      this.queryParams.recommendedFootShape = Array.isArray(this.$route.query.recommendedFootShape)
+      this.queryParams.recommendedFootShape = Array.isArray(
+        this.$route.query.recommendedFootShape
+      )
         ? this.$route.query.recommendedFootShape
         : [this.$route.query.recommendedFootShape];
     }
@@ -261,7 +268,8 @@ export default {
         filterValues.rating_by_foot_shape_max_rating ||
         filterValues.rating_by_foot_shape_min_rating
       ) {
-        this.queryParams.rating_by_foot_shape_shape = filterValues.rating_by_foot_shape_shape;
+        this.queryParams.rating_by_foot_shape_shape =
+          filterValues.rating_by_foot_shape_shape;
       }
       this.queryParams.retailer = filterValues.retailer;
       this.queryParams.shoe_type = filterValues.shoe_type;

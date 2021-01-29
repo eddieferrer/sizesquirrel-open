@@ -24,7 +24,6 @@ from .auth_views import *
 
 @token_auth.verify_token
 def verify_token(token):
-    g.current_user = User.check_token(token) if token else None
     user = User.query.filter_by(token=token).first()
     if user:
         g.current_user = user

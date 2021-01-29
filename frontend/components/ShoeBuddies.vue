@@ -20,7 +20,7 @@
                 You have {{ buddy.count_shoes }} shoes in common with
                 <NuxtLink
                   :to="{
-                    name: 'profile',
+                    name: 'profile-username',
                     params: { username: buddy.username },
                   }"
                   >{{ buddy.username }}</NuxtLink
@@ -48,7 +48,7 @@
                 You and
                 <NuxtLink
                   :to="{
-                    name: 'profile',
+                    name: 'profile-username',
                     params: { username: buddy.username },
                   }"
                   >{{ buddy.username }}</NuxtLink
@@ -59,7 +59,7 @@
                 <em>in the same size.</em> Check out their
                 <NuxtLink
                   :to="{
-                    name: 'profile',
+                    name: 'profile-username',
                     params: { username: buddy.username },
                   }"
                   >profile</NuxtLink

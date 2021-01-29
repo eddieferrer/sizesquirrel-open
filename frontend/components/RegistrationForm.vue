@@ -7,11 +7,16 @@
       <div class="columns">
         <div class="column is-two-thirds-desktop">
           <form @submit.prevent="register">
-            <p class="is-size-6">Register an account for all SizeSquirrel features.</p>
+            <p class="is-size-6">
+              Register an account for all SizeSquirrel features.
+            </p>
             <p class="has-text-grey">
               <em>Create an account using Facebook.</em>
             </p>
-            <a class="button is-normal is-info" @click="openFbLoginDialog('register')">
+            <a
+              class="button is-normal is-info"
+              @click="openFbLoginDialog('register')"
+            >
               <span id="fbicon" class="icon is-medium">
                 <img src="/images/icons/facebook32.png" alt />
               </span>
@@ -24,7 +29,9 @@
             <div v-if="registration_error" class="columns">
               <div class="column">
                 <div class="level box is-marginless has-background-danger">
-                  <span class="message">{{ registration_error | capitalize }}</span>
+                  <span class="message">{{
+                    registration_error | capitalize
+                  }}</span>
                 </div>
               </div>
             </div>
@@ -73,10 +80,15 @@
                       class="input"
                       name="confirmPassword"
                       required
-                      :class="{ 'is-danger': field_errors.confirmPassword != '' }"
+                      :class="{
+                        'is-danger': field_errors.confirmPassword != '',
+                      }"
                     />
                   </div>
-                  <p v-if="field_errors.confirmPassword != ''" class="help is-danger">
+                  <p
+                    v-if="field_errors.confirmPassword != ''"
+                    class="help is-danger"
+                  >
                     {{ field_errors.confirmPassword | capitalize }}
                   </p>
                 </div>
@@ -194,7 +206,14 @@ export default {
     register() {
       this.isFormSubmitting = true;
       this.registration_error = '';
-      const { confirmPassword, email, firstName, lastName, password, username } = this;
+      const {
+        confirmPassword,
+        email,
+        firstName,
+        lastName,
+        password,
+        username,
+      } = this;
       this.$store
         .dispatch('REGISTER', {
           confirmPassword,

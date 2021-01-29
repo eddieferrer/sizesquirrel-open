@@ -7,12 +7,14 @@ import RegistrationForm from '@/components/RegistrationForm';
 
 export default {
   name: 'Register',
+  layout: 'no-homepage-form',
   components: {
     RegistrationForm,
   },
-  metaInfo: {
-    // title will be injected into parent titleTemplate
-    title: 'Register',
+  head() {
+    return {
+      title: 'Register',
+    };
   },
 };
 </script>

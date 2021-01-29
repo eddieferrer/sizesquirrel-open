@@ -1,4 +1,3 @@
-// import axios from 'axios';
 import { isEmpty } from '@/utils/utils';
 
 const ADD_PROFILE_ITEM = async function (
@@ -26,14 +25,18 @@ const AUTH_FB_LOGIN = async function (context, payload) {
       method: 'POST',
     });
     // store the authFBLogin.data.token in cookie
-    window.$nuxt.$cookies.set('user-token', authFBLogin.data.token);
+    this.$cookies.set('user-token', authFBLogin.data.token, {
+      path: '/',
+      maxAge: 604800,
+    });
+
     // set global axios token
     this.$axios.setToken(authFBLogin.data.token, 'Bearer');
     context.commit('AUTH_SUCCESS', authFBLogin.data.token);
     return authFBLogin;
   } catch (error) {
     // if the request fails, remove any possible user token if possible
-    window.$nuxt.$cookies.remove('user-token');
+    this.$cookies.remove('user-token');
     throw error;
   }
 };
@@ -45,13 +48,13 @@ const AUTH_LOGOUT = async function (context) {
       method: 'GET',
     });
     context.commit('AUTH_LOGOUT');
-    // clear your user's token from localstorage
-    window.$nuxt.$cookies.remove('user-token');
+    // clear your user's token from cookies
+    this.$cookies.remove('user-token');
     this.$axios.setToken(false);
     return authLogout;
   } catch (error) {
     // if the request fails, remove any possible user token if possible
-    window.$nuxt.$cookies.remove('user-token');
+    this.$cookies.remove('user-token');
     throw error;
   }
 };
@@ -64,14 +67,17 @@ const AUTH_REQUEST = async function (context, payload) {
       method: 'POST',
     });
     // store the authRequest.data.token in cookie
-    window.$nuxt.$cookies.set('user-token', authRequest.data.token);
+    this.$cookies.set('user-token', authRequest.data.token, {
+      path: '/',
+      maxAge: 604800,
+    });
     // set global axios token
     this.$axios.setToken(authRequest.data.token, 'Bearer');
     context.commit('AUTH_SUCCESS', authRequest.data.token);
     return authRequest;
   } catch (error) {
     // if the request fails, remove any possible user token if possible
-    window.$nuxt.$cookies.remove('user-token');
+    this.$cookies.remove('user-token');
     throw error;
   }
 };
@@ -167,14 +173,17 @@ const FB_REGISTER = async function (context, payload) {
       method: 'POST',
     });
     // store the fbRegister.data.token in cookie
-    window.$nuxt.$cookies.set('user-token', fbRegister.data.token);
+    this.$cookies.set('user-token', fbRegister.data.token, {
+      path: '/',
+      maxAge: 604800,
+    });
     // set global axios token
     this.$axios.setToken(fbRegister.data.token, 'Bearer');
     context.commit('AUTH_SUCCESS', fbRegister.data.token);
     return fbRegister;
   } catch (error) {
     // if the request fails, remove any possible user token if possible
-    window.$nuxt.$cookies.remove('user-token');
+    this.$cookies.remove('user-token');
     throw error;
   }
 };
@@ -477,14 +486,17 @@ const REGISTER = async function (context, payload) {
       method: 'POST',
     });
     // store the register.data.token in cookie
-    window.$nuxt.$cookies.set('user-token', register.data.token);
+    this.$cookies.set('user-token', register.data.token, {
+      path: '/',
+      maxAge: 604800,
+    });
     // set global axios token
     this.$axios.setToken(register.data.token, 'Bearer');
     context.commit('AUTH_SUCCESS', register.data.token);
     return register;
   } catch (error) {
     // if the request fails, remove any possible user token if possible
-    window.$nuxt.$cookies.remove('user-token');
+    this.$cookies.remove('user-token');
     throw error;
   }
 };
@@ -544,10 +556,11 @@ const WAIT = async function (context, { time }) {
   }
 };
 
-const nuxtServerInit = function (context, { app, req }) {
-  if (req.headers?.cookie?.['user-token']) {
-    this.$axios.setToken(req.headers.cookie['user-token'], 'Bearer');
-    context.commit('AUTH_SUCCESS', req.headers.cookie['user-token']);
+const nuxtServerInit = async function (context, { $cookies, store }) {
+  if ($cookies.get('user-token')) {
+    this.$axios.setToken($cookies.get('user-token'), 'Bearer');
+    context.commit('AUTH_SUCCESS', $cookies.get('user-token'));
+    await store.dispatch('GET_USER');
   }
 };
 

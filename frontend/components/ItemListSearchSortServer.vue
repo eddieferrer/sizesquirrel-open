@@ -33,20 +33,32 @@
             <div class="select is-fullwidth">
               <select id="sortSelect" v-model="sort" @change="sortValue">
                 <option value="popularity">Popularity</option>
-                <option v-if="include_pricing" value="percent_off">Percent Off</option>
-                <option v-if="include_pricing" value="lowest_sale_price">Sale Price</option>
+                <option v-if="include_pricing" value="percent_off">
+                  Percent Off
+                </option>
+                <option v-if="include_pricing" value="lowest_sale_price">
+                  Sale Price
+                </option>
                 <option value="model">Model</option>
                 <option v-if="include_brands" value="brand_name">Brand</option>
 
-                <option v-if="pagetype === 'browse'" value="popular_fit_descriptor">
+                <option
+                  v-if="pagetype === 'browse'"
+                  value="popular_fit_descriptor"
+                >
                   Most Common Fit
                 </option>
-                <option v-if="pagetype === 'browse'" value="highest_rated_foot_shape">
+                <option
+                  v-if="pagetype === 'browse'"
+                  value="highest_rated_foot_shape"
+                >
                   Recommended Foot Shape
                 </option>
 
                 <option value="avg_rating">Average Rating</option>
-                <option v-if="include_pricing" value="retail_price">Retail Price</option>
+                <option v-if="include_pricing" value="retail_price">
+                  Retail Price
+                </option>
               </select>
             </div>
           </div>
@@ -63,7 +75,9 @@
             <button
               class="button is-normal"
               :class="
-                queryParams.sortOrder == 'desc' || !queryParams.sortOrder ? 'is-primary' : 'is-info'
+                queryParams.sortOrder == 'desc' || !queryParams.sortOrder
+                  ? 'is-primary'
+                  : 'is-info'
               "
               type="button"
               title="Descending"
