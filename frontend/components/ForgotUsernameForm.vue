@@ -10,7 +10,9 @@
     </div>
     <div v-if="status !== 'success'" class="columns is-centered">
       <div class="column is-two-thirds-desktop">
-        <h2 class="is-size-4 has-text-centered has-text-primary">Forgot Username</h2>
+        <h2 class="is-size-4 has-text-centered has-text-primary">
+          Forgot Username
+        </h2>
         <h5 class="is-size-5 has-text-centered">
           Enter the email address associated with your account
         </h5>
@@ -40,7 +42,10 @@
               name="button"
               :disabled="isFormSubmitting"
             >
-              Send My Username<span v-if="isFormSubmitting" class="loading"></span>
+              Send My Username<span
+                v-if="isFormSubmitting"
+                class="loading"
+              ></span>
             </button>
           </div>
         </form>

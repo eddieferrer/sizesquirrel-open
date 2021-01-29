@@ -10,8 +10,12 @@
     </div>
     <div v-if="status !== 'success'" class="columns is-centered">
       <div class="column is-two-thirds-desktop">
-        <h2 class="is-size-4 has-text-centered has-text-primary">Forgot Password</h2>
-        <h5 class="is-size-5 has-text-centered">Enter your email address to reset your password</h5>
+        <h2 class="is-size-4 has-text-centered has-text-primary">
+          Forgot Password
+        </h2>
+        <h5 class="is-size-5 has-text-centered">
+          Enter your email address to reset your password
+        </h5>
         <hr />
         <form @submit.prevent="forgotPassword">
           <div class="field">
@@ -38,7 +42,10 @@
               name="button"
               :disabled="isFormSubmitting"
             >
-              Send Password Reset Email<span v-if="isFormSubmitting" class="loading"></span>
+              Send Password Reset Email<span
+                v-if="isFormSubmitting"
+                class="loading"
+              ></span>
             </button>
           </div>
         </form>

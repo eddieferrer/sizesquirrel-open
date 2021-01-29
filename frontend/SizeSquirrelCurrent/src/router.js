@@ -17,6 +17,7 @@ const router = new Router({
   mode: 'history',
   base: process.env.BASE_URL,
   routes: [
+    // DONE IN NUXT
     {
       path: '/',
       name: 'home',
@@ -50,7 +51,6 @@ const router = new Router({
         import(/* webpackChunkName: "browse" */ './views/Browse.vue'),
       meta: { requiresAuth: true },
     },
-
     {
       path: '/faq',
       name: 'faq',
@@ -88,52 +88,6 @@ const router = new Router({
       props: (route) => ({ redirect: route.query.redirect }),
     },
     {
-      path: '/match',
-      name: 'privateMatch',
-      component: () =>
-        import(/* webpackChunkName: "match" */ './views/Match.vue'),
-      meta: {
-        requiresAuth: true,
-      },
-      beforeEnter: (to, from, next) => {
-        // eslint-disable-next-line camelcase
-        if (!to.query?.want_item_id) {
-          next('/');
-        } else {
-          next();
-        }
-      },
-      props: (route) => ({
-        wantItemId: route.query.want_item_id,
-      }),
-    },
-    {
-      path: '/my_profile',
-      name: 'myProfile',
-      beforeEnter: (to, from, next) => {
-        store.dispatch('GET_USER').then(() => {
-          // the above state is not available here, since it
-          // it is resolved asynchronously in the store action
-          const { username } = store.getters.user;
-          next(`/profile/${username}`);
-        });
-      },
-      meta: { requiresAuth: true },
-    },
-    {
-      path: '/my_user_details',
-      name: 'myUserDetails',
-      beforeEnter: (to, from, next) => {
-        store.dispatch('GET_USER').then(() => {
-          // the above state is not available here, since it
-          // it is resolved asynchronously in the store action
-          const { username } = store.getters.user;
-          next(`/profile/${username}#user_details`);
-        });
-      },
-      meta: { requiresAuth: true },
-    },
-    {
       path: '/notauthorized',
       name: 'notAuthorized',
       component: () =>
@@ -157,6 +111,94 @@ const router = new Router({
       component: () =>
         import(/* webpackChunkName: "profile" */ './views/Profile.vue'),
       meta: {},
+    },
+    {
+      path: '/my_profile',
+      name: 'myProfile',
+      beforeEnter: (to, from, next) => {
+        store.dispatch('GET_USER').then(() => {
+          // the above state is not available here, since it
+          // it is resolved asynchronously in the store action
+          const { username } = store.getters.user;
+          next(`/profile/${username}`);
+        });
+      },
+      meta: { requiresAuth: true },
+    },
+    {
+      path: '/release',
+      name: 'release',
+      component: () =>
+        import(/* webpackChunkName: "release" */ './views/Release.vue'),
+      meta: {
+        hideItemMatchForm: true,
+      },
+    },
+    {
+      path: '/terms',
+      name: 'terms',
+      component: () =>
+        import(/* webpackChunkName: "termsPrivacy" */ './views/Terms.vue'),
+      meta: {
+        hideItemMatchForm: true,
+      },
+    },
+    {
+      path: '/404',
+      name: 'notFound',
+      component: () =>
+        import(/* webpackChunkName: "notFound" */ './views/NotFound.vue'),
+      beforeEnter: (to, from, next) => {
+        if (Sentry) {
+          Sentry.captureMessage(`404 Error Not Found - ${to.redirectedFrom}`);
+        }
+        next();
+      },
+      meta: {},
+    },
+    { path: '*', redirect: '/404' },
+    {
+      path: '/register',
+      name: 'register',
+      component: () =>
+        import(/* webpackChunkName: "register" */ './views/Register.vue'),
+      meta: {
+        hideItemMatchForm: true,
+      },
+    },
+    // NOT DONE
+    {
+      path: '/match',
+      name: 'privateMatch',
+      component: () =>
+        import(/* webpackChunkName: "match" */ './views/Match.vue'),
+      meta: {
+        requiresAuth: true,
+      },
+      beforeEnter: (to, from, next) => {
+        // eslint-disable-next-line camelcase
+        if (!to.query?.want_item_id) {
+          next('/');
+        } else {
+          next();
+        }
+      },
+      props: (route) => ({
+        wantItemId: route.query.want_item_id,
+      }),
+    },
+    {
+      path: '/my_user_details',
+      name: 'myUserDetails',
+      beforeEnter: (to, from, next) => {
+        store.dispatch('GET_USER').then(() => {
+          // the above state is not available here, since it
+          // it is resolved asynchronously in the store action
+          const { username } = store.getters.user;
+          next(`/profile/${username}#user_details`);
+        });
+      },
+      meta: { requiresAuth: true },
     },
     {
       path: '/public_match',
@@ -193,15 +235,6 @@ const router = new Router({
       },
     },
     {
-      path: '/register',
-      name: 'register',
-      component: () =>
-        import(/* webpackChunkName: "register" */ './views/Register.vue'),
-      meta: {
-        hideItemMatchForm: true,
-      },
-    },
-    {
       path: '/reset_password',
       name: 'reset_password',
       component: () =>
@@ -209,15 +242,6 @@ const router = new Router({
           /* webpackChunkName: "reset_password" */ './views/ResetPassword.vue'
         ),
       meta: {},
-    },
-    {
-      path: '/release',
-      name: 'release',
-      component: () =>
-        import(/* webpackChunkName: "release" */ './views/Release.vue'),
-      meta: {
-        hideItemMatchForm: true,
-      },
     },
     {
       path: '/sales',
@@ -248,29 +272,6 @@ const router = new Router({
         import(/* webpackChunkName: "shoe" */ './views/Shoe.vue'),
       meta: {},
     },
-    {
-      path: '/terms',
-      name: 'terms',
-      component: () =>
-        import(/* webpackChunkName: "termsPrivacy" */ './views/Terms.vue'),
-      meta: {
-        hideItemMatchForm: true,
-      },
-    },
-    {
-      path: '/404',
-      name: 'notFound',
-      component: () =>
-        import(/* webpackChunkName: "notFound" */ './views/NotFound.vue'),
-      beforeEnter: (to, from, next) => {
-        if (Sentry) {
-          Sentry.captureMessage(`404 Error Not Found - ${to.redirectedFrom}`);
-        }
-        next();
-      },
-      meta: {},
-    },
-    { path: '*', redirect: '/404' },
   ],
   // Scroll behavior
   scrollBehavior(to, from, savedPosition) {

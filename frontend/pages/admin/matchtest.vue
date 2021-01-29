@@ -2,7 +2,9 @@
   <div>
     <div class="columns">
       <div class="column">
-        <h2 class="is-size-4 has-text-centered has-text-primary">Admin Match Test</h2>
+        <h2 class="is-size-4 has-text-centered has-text-primary">
+          Admin Match Test
+        </h2>
         <hr />
       </div>
     </div>
@@ -12,7 +14,10 @@
         <MultiSelectItems v-model="item"></MultiSelectItems>
       </div>
       <div class="column is-3">
-        <button class="button is-info is-medium is-fullwidth" @click.prevent.stop="matchTestSubmit">
+        <button
+          class="button is-info is-medium is-fullwidth"
+          @click.prevent.stop="matchTestSubmit"
+        >
           Match
         </button>
       </div>
@@ -48,11 +53,9 @@ import MultiSelectItems from '@/components/MultiSelectItems';
 
 export default {
   name: 'MatchTest',
+  middleware: ['auth'],
   components: { MultiSelectItems },
-  metaInfo: {
-    // title will be injected into parent titleTemplate
-    title: 'Admin',
-  },
+  layout: 'no-homepage-form',
   data() {
     return {
       item: null,
@@ -65,7 +68,12 @@ export default {
   methods: {
     matchTestSubmit() {
       // eslint-disable-next-line no-console
-      console.log('Matching:', this.item.brand.name, this.item.model, this.item.id);
+      console.log(
+        'Matching:',
+        this.item.brand.name,
+        this.item.model,
+        this.item.id
+      );
       this.$store
         .dispatch('POST_ADMIN_MATCH_TEST', {
           matchTestItemId: this.item.id,
@@ -74,6 +82,11 @@ export default {
           this.matchTestItems = response.data.matchTest;
         });
     },
+  },
+  head() {
+    return {
+      title: 'Admin',
+    };
   },
 };
 </script>

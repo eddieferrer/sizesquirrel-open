@@ -10,9 +10,11 @@ export default {
   components: {
     ForgotPasswordForm,
   },
-  metaInfo: {
-    // title will be injected into parent titleTemplate
-    title: 'Forgot Password',
+  layout: 'no-homepage-form',
+  head() {
+    return {
+      title: 'Forgot Password',
+    };
   },
 };
 </script>
