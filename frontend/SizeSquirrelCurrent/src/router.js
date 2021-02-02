@@ -166,6 +166,15 @@ const router = new Router({
         hideItemMatchForm: true,
       },
     },
+    {
+      path: '/reset_password',
+      name: 'reset_password',
+      component: () =>
+        import(
+          /* webpackChunkName: "reset_password" */ './views/ResetPassword.vue'
+        ),
+      meta: {},
+    },
     // NOT DONE
     {
       path: '/match',
@@ -234,15 +243,7 @@ const router = new Router({
         hideItemMatchForm: true,
       },
     },
-    {
-      path: '/reset_password',
-      name: 'reset_password',
-      component: () =>
-        import(
-          /* webpackChunkName: "reset_password" */ './views/ResetPassword.vue'
-        ),
-      meta: {},
-    },
+
     {
       path: '/sales',
       name: 'sales',

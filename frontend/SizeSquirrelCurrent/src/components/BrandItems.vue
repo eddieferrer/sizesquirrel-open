@@ -7,10 +7,16 @@
       <div class="column is-9">
         <div class="columns">
           <div class="column">
-            <ItemListSearchSort pagetype="brand" :sort-order="sort_order"></ItemListSearchSort>
+            <ItemListSearchSort
+              pagetype="brand"
+              :sort-order="sort_order"
+            ></ItemListSearchSort>
             <div v-if="getItems.length !== 0">
               <div class="columns is-multiline">
-                <template v-for="shoe in paginatedItems" :id="'item_' + shoe.item.id">
+                <template
+                  v-for="shoe in paginatedItems"
+                  :id="'item_' + shoe.item.id"
+                >
                   <div :key="shoe.id" class="column is-6">
                     <FindMySizeBlock :shoe="shoe"></FindMySizeBlock>
                   </div>
@@ -24,8 +30,13 @@
         </div>
         <div v-if="numberOfPages > 1" class="columns is-centered">
           <div class="column is-10 has-text-centered">
-            Showing {{ startIndex + 1 }} - {{ endIndex }} of {{ getItems.length }} items
-            <nav class="pagination is-centered" role="navigation" aria-label="pagination">
+            Showing {{ startIndex + 1 }} - {{ endIndex }} of
+            {{ getItems.length }} items
+            <nav
+              class="pagination is-centered"
+              role="navigation"
+              aria-label="pagination"
+            >
               <ul class="pagination-list">
                 <li>
                   <a
@@ -33,7 +44,9 @@
                     aria-label="Go to previous"
                     :disabled="active_page == 1 ? true : false"
                     @click.prevent.stop="
-                      active_page != 1 ? (active_page = active_page - 1) : (active_page = 1)
+                      active_page != 1
+                        ? (active_page = active_page - 1)
+                        : (active_page = 1)
                     "
                     >&laquo;</a
                   >
@@ -124,7 +137,9 @@ export default {
       return this.getItems.slice(this.startIndex, this.endIndex);
     },
     getItems() {
-      let itemsFiltered = this.items;
+      // deep copy of items
+      let itemsFiltered = JSON.parse(JSON.stringify(this.items));
+
       // Filtering
       // model or brand in filter
       if (this.filter !== '') {
@@ -137,17 +152,21 @@ export default {
 
       // shoe_type filter
       if (this.shoe_type.length > 0) {
-        itemsFiltered = itemsFiltered.filter(
-          (item) => this.shoe_type.indexOf(item.type.toLowerCase()) > -1
+        itemsFiltered = itemsFiltered.filter((item) =>
+          this.shoe_type.includes(item.type.toLowerCase())
         );
       }
 
       // rating filter
       if (this.min_rating && !Number.isNaN(this.min_rating)) {
-        itemsFiltered = itemsFiltered.filter((item) => item.stats.avg_rating >= this.min_rating);
+        itemsFiltered = itemsFiltered.filter(
+          (item) => item.stats.avg_rating >= this.min_rating
+        );
       }
       if (this.max_rating && !Number.isNaN(this.max_rating)) {
-        itemsFiltered = itemsFiltered.filter((item) => item.stats.avg_rating <= this.max_rating);
+        itemsFiltered = itemsFiltered.filter(
+          (item) => item.stats.avg_rating <= this.max_rating
+        );
         this.resetPages();
       }
 
@@ -155,7 +174,8 @@ export default {
       if (this.foot_shape.min && !Number.isNaN(this.foot_shape.min)) {
         itemsFiltered = itemsFiltered.filter((item) => {
           const found = item.stats.ratings.find(
-            (rating) => rating.foot_shape_descriptor_id === this.foot_shape.shape
+            (rating) =>
+              rating.foot_shape_descriptor_id === this.foot_shape.shape
           );
           return found.avg_rating >= this.foot_shape.min;
         });
@@ -164,7 +184,8 @@ export default {
       if (this.foot_shape.max && !Number.isNaN(this.foot_shape.max)) {
         itemsFiltered = itemsFiltered.filter((item) => {
           const found = item.stats.ratings.find(
-            (rating) => rating.foot_shape_descriptor_id === this.foot_shape.shape
+            (rating) =>
+              rating.foot_shape_descriptor_id === this.foot_shape.shape
           );
           return found.avg_rating <= this.foot_shape.max;
         });
@@ -173,15 +194,17 @@ export default {
 
       // gender filter
       if (this.gender.length > 0) {
-        itemsFiltered = itemsFiltered.filter(
-          (item) => this.gender.indexOf(item.gender.name.toLowerCase()) > -1
+        itemsFiltered = itemsFiltered.filter((item) =>
+          this.gender.includes(item.gender.name.toLowerCase())
         );
       }
 
       // mostCommonFit filter
       if (this.mostCommonFit.length > 0) {
-        itemsFiltered = itemsFiltered.filter(
-          (item) => this.mostCommonFit.indexOf(item.stats.popular_fit_descriptor.toLowerCase()) > -1
+        itemsFiltered = itemsFiltered.filter((item) =>
+          this.mostCommonFit.includes(
+            item.stats.popular_fit_descriptor.toLowerCase()
+          )
         );
       }
 
@@ -194,15 +217,17 @@ export default {
             .replace(/\s/g, '')
             .trim()
             .split('&');
-          const found = this.recommendedFootShape.some((r) => footshapearr.indexOf(r) >= 0);
+          const found = this.recommendedFootShape.some((r) =>
+            footshapearr.includes(r)
+          );
           return found;
         });
       }
 
       // brand filter
       if (this.brand.length > 0) {
-        itemsFiltered = itemsFiltered.filter(
-          (item) => this.brand.indexOf(item.brand.name.toLowerCase()) > -1
+        itemsFiltered = itemsFiltered.filter((item) =>
+          this.brand.includes(item.brand.name.toLowerCase())
         );
       }
 

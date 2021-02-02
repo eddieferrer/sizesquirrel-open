@@ -15,7 +15,7 @@ from flask_mail import Mail
 basedir = os.path.abspath(os.path.dirname(__file__))
 parent_path = os.path.abspath(os.path.join(basedir, os.pardir))
 
-app = Flask(__name__, static_folder=None, static_url_path=None, template_folder="../frontend/dist")
+app = Flask(__name__, static_folder=None, static_url_path=None, template_folder="../frontend/static")
             
 app.config.from_envvar('SETTINGS_FILE')
 

@@ -2,15 +2,28 @@
   <div class="columns is-multiline is-centered">
     <template v-for="(shoe, index) in shoes">
       <!-- cards -->
-      <div :key="index" class="column" :class="{ 'is-12': index === 0, 'is-11': index === 1 }">
-        <h3 v-if="index == 0" class="is-size-4 has-text-centered has-text-primary">
+      <div
+        :key="index"
+        class="column"
+        :class="{ 'is-12': index === 0, 'is-11': index === 1 }"
+      >
+        <h3
+          v-if="index == 0"
+          class="is-size-4 has-text-centered has-text-primary"
+        >
           Recommended Shoe
         </h3>
-        <h3 v-if="index == 1" class="is-size-5 has-text-centered has-text-primary">
+        <h3
+          v-if="index == 1"
+          class="is-size-5 has-text-centered has-text-primary"
+        >
           Also Consider
         </h3>
 
-        <div class="card" :class="{ 'active-card': index === 0, 'scale-small': index === 1 }">
+        <div
+          class="card"
+          :class="{ 'active-card': index === 0, 'scale-small': index === 1 }"
+        >
           <div class="card-content">
             <div class="content">
               <!-- old card start  -->
@@ -21,7 +34,9 @@
                       <v-lazy-image
                         class="lazyload"
                         loading="lazy"
-                        :src-placeholder="'/images/placeholder_' + shoe.type + '.png'"
+                        :src-placeholder="
+                          '/images/placeholder_' + shoe.type + '.png'
+                        "
                         :src="shoe.shoe_image"
                         :alt="shoe.brand.name + shoe.model"
                       />
@@ -30,7 +45,9 @@
                 </div>
                 <div class="column">
                   <div class="columns is-marginless">
-                    <h2 class="is-size-4 is-capitalized has-text-centered-mobile">
+                    <h2
+                      class="is-size-4 is-capitalized has-text-centered-mobile"
+                    >
                       <NuxtLink
                         class="has-text-info"
                         :to="{
@@ -46,7 +63,9 @@
                   </div>
 
                   <div class="columns is-marginless">
-                    <h4 class="is-size-5 is-capitalized has-text-centered-mobile">
+                    <h4
+                      class="is-size-5 is-capitalized has-text-centered-mobile"
+                    >
                       <NuxtLink
                         class="has-text-info"
                         :to="{
@@ -68,49 +87,72 @@
                   <div class="columns is-clearfix is-centered">
                     <div class="column is-12">
                       <div class="columns is-multiline">
-                        <div class="column is-full-mobile is-narrow is-clearfix">
+                        <div
+                          class="column is-full-mobile is-narrow is-clearfix"
+                        >
                           <span class="icon-wrapper">
                             <svg-icon icon="fi-torso"></svg-icon>
                           </span>
                           <div class="info">
-                            <span class="info-label is-size-6 has-text-grey">Popularity</span>
+                            <span class="info-label is-size-6 has-text-grey"
+                              >Popularity</span
+                            >
                             <span>
                               <strong>{{ shoe.stats.count }}</strong
                               >&nbsp;Profiles
                             </span>
                           </div>
                         </div>
-                        <div class="column is-full-mobile is-narrow is-clearfix">
+                        <div
+                          class="column is-full-mobile is-narrow is-clearfix"
+                        >
                           <div>
                             <span class="icon-wrapper">
                               <svg-icon icon="fi-star"></svg-icon>
                             </span>
                             <div class="info">
-                              <span class="info-label is-size-6 has-text-grey">Average Rating</span>
+                              <span class="info-label is-size-6 has-text-grey"
+                                >Average Rating</span
+                              >
                               <span>
                                 <strong v-if="shoe.stats.count > 0">{{
                                   shoe.stats.avg_rating
                                 }}</strong>
-                                <strong v-if="shoe.stats.count == 0">Not Available</strong>
-                                <span v-if="shoe.stats.count > 0" class="has-text-grey"
+                                <strong v-if="shoe.stats.count == 0"
+                                  >Not Available</strong
+                                >
+                                <span
+                                  v-if="shoe.stats.count > 0"
+                                  class="has-text-grey"
                                   >&nbsp;/ 5</span
                                 >
                               </span>
                             </div>
                           </div>
                         </div>
-                        <div class="column is-full-mobile is-narrow is-clearfix">
+                        <div
+                          class="column is-full-mobile is-narrow is-clearfix"
+                        >
                           <span class="icon-wrapper">
-                            <img src="/images/icon_fit.png" alt="shoe fit icon" />
+                            <img
+                              src="/images/icon_fit.png"
+                              alt="shoe fit icon"
+                            />
                           </span>
                           <div class="info">
-                            <span class="info-label is-size-6 has-text-grey">Most Common Fit</span>
+                            <span class="info-label is-size-6 has-text-grey"
+                              >Most Common Fit</span
+                            >
                             <span>
-                              <strong>{{ shoe.stats.popular_fit_descriptor }}</strong>
+                              <strong>{{
+                                shoe.stats.popular_fit_descriptor
+                              }}</strong>
                             </span>
                           </div>
                         </div>
-                        <div class="column is-full-mobile is-narrow is-clearfix">
+                        <div
+                          class="column is-full-mobile is-narrow is-clearfix"
+                        >
                           <span class="icon-wrapper">
                             <img
                               src="/images/icon_footshape.png"
@@ -119,8 +161,13 @@
                             />
                           </span>
                           <div class="info">
-                            <span class="info-label is-size-6 has-text-grey">Recommended For</span>
-                            <strong>{{ shoe.stats.highest_rated_foot_shape }}</strong> Feet
+                            <span class="info-label is-size-6 has-text-grey"
+                              >Recommended For</span
+                            >
+                            <strong>{{
+                              shoe.stats.highest_rated_foot_shape
+                            }}</strong>
+                            Feet
                           </div>
                         </div>
                       </div>
@@ -141,7 +188,7 @@
                     <br />
                     <NuxtLink
                       :to="{
-                        name: 'profile',
+                        name: 'profile-username',
                         params: { username: comment.user.username },
                       }"
                       >{{ comment.user.username }}</NuxtLink
@@ -155,7 +202,11 @@
                   <!-- logged in  -->
                   <div v-if="isAuthenticated">
                     <form :id="'form_' + shoe.id" action="/match/" method="get">
-                      <input type="hidden" name="want_item_id" :value="shoe.id" />
+                      <input
+                        type="hidden"
+                        name="want_item_id"
+                        :value="shoe.id"
+                      />
                       <button
                         type="submit"
                         class="button is-info is-normal is-marginless is-pulled-right"
@@ -166,7 +217,9 @@
                   </div>
                   <!-- anonymous -->
                   <div v-if="!isAuthenticated">
-                    <NuxtLink to="/register" class="has-text-info is-pulled-right"
+                    <NuxtLink
+                      to="/register"
+                      class="has-text-info is-pulled-right"
                       >Sign up now to find your size!</NuxtLink
                     >
                   </div>
@@ -217,8 +270,8 @@ export default {
   transform: scale(0.975);
 }
 .active-card {
-  box-shadow: 0 8px 12px 0 rgba(122, 122, 122, 0.2), 0 2px 3px rgba(17, 17, 17, 0.1),
-    0 0 0 1px rgba(17, 17, 17, 0.1);
+  box-shadow: 0 8px 12px 0 rgba(122, 122, 122, 0.2),
+    0 2px 3px rgba(17, 17, 17, 0.1), 0 0 0 1px rgba(17, 17, 17, 0.1);
 }
 .info {
   float: left;

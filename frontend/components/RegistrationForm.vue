@@ -226,7 +226,7 @@ export default {
         .then((response) => {
           this.$router
             .push({
-              name: 'profile',
+              name: 'profile-username',
               params: { username: response.data.username },
               query: { new: '1' },
             })

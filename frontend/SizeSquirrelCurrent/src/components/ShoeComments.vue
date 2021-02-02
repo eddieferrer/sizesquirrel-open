@@ -9,7 +9,10 @@
       <template v-if="getComments.length != 0">
         <div class="columns">
           <div class="column">
-            <ItemListSearchSort pagetype="comments" :sort-order="sort_order"></ItemListSearchSort>
+            <ItemListSearchSort
+              pagetype="comments"
+              :sort-order="sort_order"
+            ></ItemListSearchSort>
           </div>
         </div>
         <div
@@ -20,7 +23,8 @@
           <div class="column is-narrow has-text-centered size_gender">
             <span class="size">{{ comment.size }}</span>
             <span class="is-size-7"
-              >{{ comment.size_standard }} {{ shoe.gender['name_pretty'] }}</span
+              >{{ comment.size_standard }}
+              {{ shoe.gender['name_pretty'] }}</span
             >
           </div>
           <div class="column comment_info_block">
@@ -33,7 +37,7 @@
                   <br />
                   <NuxtLink
                     :to="{
-                      name: 'profile',
+                      name: 'profile-username',
                       params: { username: comment.user.username },
                     }"
                     >{{ comment.user.username }}</NuxtLink
@@ -89,8 +93,13 @@
         </div>
         <div v-if="numberOfPages > 1" class="columns is-centered">
           <div class="column is-10 has-text-centered">
-            Showing {{ startIndex + 1 }} - {{ endIndex }} of {{ getComments.length }} comments
-            <nav class="pagination is-centered" role="navigation" aria-label="pagination">
+            Showing {{ startIndex + 1 }} - {{ endIndex }} of
+            {{ getComments.length }} comments
+            <nav
+              class="pagination is-centered"
+              role="navigation"
+              aria-label="pagination"
+            >
               <ul class="pagination-list">
                 <li>
                   <a
@@ -98,7 +107,9 @@
                     aria-label="Go to previous"
                     :disabled="active_page == 1 ? true : false"
                     @click.prevent.stop="
-                      active_page != 1 ? (active_page = active_page - 1) : (active_page = 1)
+                      active_page != 1
+                        ? (active_page = active_page - 1)
+                        : (active_page = 1)
                     "
                     >&laquo;</a
                   >
@@ -182,7 +193,10 @@ export default {
       if (this.sort !== '') {
         const vueSort = this.sort;
         if (this.sort_order === 'desc') {
-          if (vueSort === 'user.get_foot_shape' || vueSort === 'fit_descriptor') {
+          if (
+            vueSort === 'user.get_foot_shape' ||
+            vueSort === 'fit_descriptor'
+          ) {
             // sort alpha
             commentsFiltered = commentsFiltered.sort((a, b) => {
               const textA = this.deepFind(a, vueSort).toUpperCase();
@@ -192,11 +206,16 @@ export default {
               return 0;
             });
           } else {
-            commentsFiltered = commentsFiltered.sort((a, b) => b[vueSort] - a[vueSort]);
+            commentsFiltered = commentsFiltered.sort(
+              (a, b) => b[vueSort] - a[vueSort]
+            );
           }
         }
         if (this.sort_order === 'asc') {
-          if (vueSort === 'user.get_foot_shape' || vueSort === 'fit_descriptor') {
+          if (
+            vueSort === 'user.get_foot_shape' ||
+            vueSort === 'fit_descriptor'
+          ) {
             // sort alpha
             commentsFiltered = commentsFiltered.sort((a, b) => {
               const textA = this.deepFind(a, vueSort).toUpperCase();
@@ -206,7 +225,9 @@ export default {
               return 0;
             });
           } else {
-            commentsFiltered = commentsFiltered.sort((a, b) => a[vueSort] - b[vueSort]);
+            commentsFiltered = commentsFiltered.sort(
+              (a, b) => a[vueSort] - b[vueSort]
+            );
           }
         }
       }

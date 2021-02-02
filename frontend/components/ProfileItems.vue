@@ -317,7 +317,8 @@ export default {
       return this.getItems.slice(this.startIndex, this.endIndex);
     },
     getItems() {
-      let itemsFiltered = this.items;
+      // deep copy of items
+      let itemsFiltered = JSON.parse(JSON.stringify(this.items));
 
       // Sorting
       if (this.sort !== '') {

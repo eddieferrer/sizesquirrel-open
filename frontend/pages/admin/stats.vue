@@ -92,7 +92,7 @@
           <li v-for="user in users_with_the_most_items" :key="user.user.id">
             <NuxtLink
               :to="{
-                name: 'profile',
+                name: 'profile-username',
                 params: { username: user.user.username },
               }"
               >{{ user.user.username }}</NuxtLink
