@@ -3,7 +3,9 @@
     <div class="columns">
       <div class="column">
         <h2 class="is-size-4 has-text-centered has-text-primary">Recommend</h2>
-        <h5 class="is-size-5 has-text-centered">Let us recommend a shoe for you</h5>
+        <h5 class="is-size-5 has-text-centered">
+          Let us recommend a shoe for you
+        </h5>
         <hr />
       </div>
     </div>
@@ -12,7 +14,10 @@
         <ul class="steps is-narrow is-medium is-centered has-content-centered">
           <li
             class="steps-segment"
-            :class="{ 'is-active': currentStep == 1, 'has-gaps': currentStep <= 1 }"
+            :class="{
+              'is-active': currentStep == 1,
+              'has-gaps': currentStep <= 1,
+            }"
           >
             <span class="steps-marker"> 1 </span>
             <div class="steps-content">
@@ -21,7 +26,10 @@
           </li>
           <li
             class="steps-segment"
-            :class="{ 'is-active': currentStep == 2, 'has-gaps': currentStep <= 2 }"
+            :class="{
+              'is-active': currentStep == 2,
+              'has-gaps': currentStep <= 2,
+            }"
           >
             <span class="steps-marker"> 2 </span>
             <div class="steps-content">
@@ -41,7 +49,10 @@
           </li> -->
           <li
             class="steps-segment"
-            :class="{ 'is-active': currentStep == 3, 'has-gaps': currentStep <= 3 }"
+            :class="{
+              'is-active': currentStep == 3,
+              'has-gaps': currentStep <= 3,
+            }"
           >
             <span class="steps-marker">
               <span>
@@ -59,13 +70,18 @@
           @submit.prevent="recommendShoe"
         >
           <!-- Step 1 -->
-          <div v-show="currentStep == 1" class="column is-full-mobile is-three-quarters-tablet">
+          <div
+            v-show="currentStep == 1"
+            class="column is-full-mobile is-three-quarters-tablet"
+          >
             <h3 class="is-size-5 has-text-centered has-text-primary">Step 1</h3>
             <section class="card modal-card-body">
               <div class="columns">
                 <div class="column is-narrow">
                   <div class="field">
-                    <label class="label has-text-weight-normal">Select a Gender</label>
+                    <label class="label has-text-weight-normal"
+                      >Select a Gender</label
+                    >
                     <div class="control">
                       <MultiSelectMinimal
                         v-model="gender"
@@ -79,12 +95,16 @@
                 <div class="is-divider-vertical"></div>
                 <div class="column why-text">
                   <p>Why?</p>
-                  <p>Some models of shoes are designed with a specific gender in mind.</p>
                   <p>
-                    Male shoes typically tend to accomodate a higher volume foot. Some models will
-                    additionally have the 'HV' designation for 'High Volume'. Womens shoes are
-                    typically designed for lower volume and will sometimes have the designation 'LV'
-                    for 'Low Volume'.
+                    Some models of shoes are designed with a specific gender in
+                    mind.
+                  </p>
+                  <p>
+                    Male shoes typically tend to accomodate a higher volume
+                    foot. Some models will additionally have the 'HV'
+                    designation for 'High Volume'. Womens shoes are typically
+                    designed for lower volume and will sometimes have the
+                    designation 'LV' for 'Low Volume'.
                   </p>
                 </div>
               </div>
@@ -103,13 +123,18 @@
             </section>
           </div>
           <!-- Step 2 -->
-          <div v-show="currentStep == 2" class="column is-full-mobile is-three-quarters-tablet">
+          <div
+            v-show="currentStep == 2"
+            class="column is-full-mobile is-three-quarters-tablet"
+          >
             <h3 class="is-size-5 has-text-centered has-text-primary">Step 2</h3>
             <section class="card modal-card-body">
               <div class="columns">
                 <div class="column is-narrow">
                   <div class="field">
-                    <label class="label has-text-weight-normal">Foot Shape</label>
+                    <label class="label has-text-weight-normal"
+                      >Foot Shape</label
+                    >
                     <div class="control">
                       <MultiSelectMinimal
                         v-model="footShape"
@@ -125,15 +150,17 @@
                 <div class="column why-text">
                   <p>Why?</p>
                   <p>
-                    A combination of the last shape, toe box shape, and shoe volume will affect the
-                    way a shoe fits for each foot shape.
+                    A combination of the last shape, toe box shape, and shoe
+                    volume will affect the way a shoe fits for each foot shape.
                   </p>
                   <p>
-                    There are five basic foot shapes: Egyptian, Roman, Greek, Germanic and Celtic.
+                    There are five basic foot shapes: Egyptian, Roman, Greek,
+                    Germanic and Celtic.
                   </p>
                   <p>
-                    Egyptian, Roman and Greek are by far the most popular foot shapes. If your feet
-                    are Germanic or Celtic shaped, we may have trouble recommending a shoe.
+                    Egyptian, Roman and Greek are by far the most popular foot
+                    shapes. If your feet are Germanic or Celtic shaped, we may
+                    have trouble recommending a shoe.
                   </p>
                   <p class="is-info">
                     <a type="button" @click.prevent.stop="openFootShapeModal()"
@@ -155,7 +182,10 @@
                     :disabled="isFormSubmitting"
                     class="button is-pulled-right is-info"
                   >
-                    Recommend A Shoe<span v-if="isFormSubmitting" class="loading"></span>
+                    Recommend A Shoe<span
+                      v-if="isFormSubmitting"
+                      class="loading"
+                    ></span>
                   </button>
                   <!-- <button
                     type="button"
@@ -169,7 +199,7 @@
               </div>
             </section>
           </div>
-          <!-- Step 3 
+          <!-- Step 3
           <div v-show="currentStep == 3" class="column is-full-mobile is-three-quarters-tablet">
             <h3 class="is-size-5 has-text-centered has-text-primary">Step 3</h3>
             <section class="card modal-card-body">
@@ -242,7 +272,10 @@
           </div>
           -->
           <!-- Step 4 -->
-          <div v-show="currentStep == 3" class="column is-full-mobile is-three-quarters-tablet">
+          <div
+            v-show="currentStep == 3"
+            class="column is-full-mobile is-three-quarters-tablet"
+          >
             <section>
               <recommended-shoes-cards :shoes="recommendedShoes" />
               <div class="has-text-centered">
@@ -282,7 +315,13 @@ import GenderOptions from '@/mixins/GenderOptions';
 
 export default {
   name: 'Recommend',
-  components: { MultiSelectMinimal, FootShapeModal, RecommendedShoesCards, SvgIcon },
+  layout: 'no-homepage-form',
+  components: {
+    MultiSelectMinimal,
+    FootShapeModal,
+    RecommendedShoesCards,
+    SvgIcon,
+  },
   mixins: [SportTradOptions, BoulderOptions, FootShapeOptions, GenderOptions],
   data() {
     return {
@@ -296,12 +335,6 @@ export default {
       boulderingSkill: null,
       sportSkill: null,
       tradSkill: null,
-    };
-  },
-  metaInfo() {
-    return {
-      // title will be injected into parent titleTemplate
-      title: 'Recommend A Shoe',
     };
   },
   methods: {
@@ -340,6 +373,11 @@ export default {
           this.isFormSubmitting = false;
         });
     },
+  },
+  head() {
+    return {
+      title: 'Recommend A Shoe',
+    };
   },
 };
 </script>

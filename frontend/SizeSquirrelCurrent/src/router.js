@@ -167,6 +167,15 @@ const router = new Router({
       },
     },
     {
+      path: '/recommend',
+      name: 'recommend',
+      component: () =>
+        import(/* webpackChunkName: "recommend" */ './views/Recommend.vue'),
+      meta: {
+        hideItemMatchForm: true,
+      },
+    },
+    {
       path: '/reset_password',
       name: 'reset_password',
       component: () =>
@@ -234,16 +243,6 @@ const router = new Router({
         haveItemId: route.query.have_item_id,
       }),
     },
-    {
-      path: '/recommend',
-      name: 'recommend',
-      component: () =>
-        import(/* webpackChunkName: "recommend" */ './views/Recommend.vue'),
-      meta: {
-        hideItemMatchForm: true,
-      },
-    },
-
     {
       path: '/sales',
       name: 'sales',
