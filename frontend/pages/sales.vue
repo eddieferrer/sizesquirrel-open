@@ -2,7 +2,9 @@
   <div class="columns">
     <div class="column">
       <h2 class="is-size-4 has-text-centered has-text-primary">Sales</h2>
-      <h5 class="is-size-5 has-text-centered">These shoes are currently on sale</h5>
+      <h5 class="is-size-5 has-text-centered">
+        These shoes are currently on sale
+      </h5>
       <hr />
       <ItemListServer v-cloak target="sales" pagetype="sales"></ItemListServer>
     </div>
@@ -17,7 +19,8 @@ export default {
   components: {
     ItemListServer,
   },
-  metaInfo() {
+  layout: 'homepage-form',
+  head() {
     return {
       // title will be injected into parent titleTemplate
       title: 'Rock Climbing Shoes On Sale',

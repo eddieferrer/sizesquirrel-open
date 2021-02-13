@@ -566,7 +566,9 @@ export default {
         if (a.name > b.name) return 1;
         return 0;
       }
-      const sortedBrandsArray = this.allbrands;
+
+      // deep copy of sortedBrandsArray
+      const sortedBrandsArray = JSON.parse(JSON.stringify(this.allbrands));
       return sortedBrandsArray.sort(compare);
     },
   },

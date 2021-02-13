@@ -184,6 +184,13 @@ const router = new Router({
         ),
       meta: {},
     },
+    {
+      path: '/sales',
+      name: 'sales',
+      component: () =>
+        import(/* webpackChunkName: "sales" */ './views/Sales.vue'),
+      meta: {},
+    },
     // NOT DONE
     {
       path: '/match',
@@ -242,13 +249,6 @@ const router = new Router({
         size: route.query.size,
         haveItemId: route.query.have_item_id,
       }),
-    },
-    {
-      path: '/sales',
-      name: 'sales',
-      component: () =>
-        import(/* webpackChunkName: "sales" */ './views/Sales.vue'),
-      meta: {},
     },
     {
       path: '/shoe/:shoe_brand',
