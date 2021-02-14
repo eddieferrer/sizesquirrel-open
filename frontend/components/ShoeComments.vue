@@ -187,7 +187,8 @@ export default {
       return this.getComments.slice(this.startIndex, this.endIndex);
     },
     getComments() {
-      let commentsFiltered = this.comments;
+      // deep copy of comments
+      let commentsFiltered = JSON.parse(JSON.stringify(this.comments));
 
       // Sorting
       if (this.sort !== '') {

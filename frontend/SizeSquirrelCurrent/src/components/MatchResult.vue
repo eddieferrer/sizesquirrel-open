@@ -83,10 +83,10 @@
                 <NuxtLink
                   class="has-text-info"
                   :to="{
-                    name: 'shoe',
+                    name: 'shoes-brand-model',
                     params: {
-                      shoe_brand: targetItem.brand['name_slug'],
-                      shoe_model: targetItem.model_slug,
+                      brand: targetItem.brand['name_slug'],
+                      model: targetItem.model_slug,
                     },
                   }"
                   >{{ targetItem.model }}</NuxtLink

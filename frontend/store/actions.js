@@ -538,7 +538,7 @@ const RESET_PASSWORD = async function (
 };
 
 const SHOW_FLASH_MESSAGE = function (context, payload) {
-  if (process.client) {
+  if (process.browser) {
     window.scrollTo(0, 0);
   }
   context.commit('SET_FLASH_MESSAGE', payload);

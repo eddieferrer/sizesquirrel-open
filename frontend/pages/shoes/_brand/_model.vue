@@ -5,7 +5,9 @@
         <h2 v-cloak class="is-size-4 has-text-centered has-text-primary">
           {{ shoe_brand | titleCase }} {{ shoe_model | titleCase }}
         </h2>
-        <h5 class="is-size-5 has-text-centered">More information about this shoe</h5>
+        <h5 class="is-size-5 has-text-centered">
+          More information about this shoe
+        </h5>
         <hr />
       </div>
     </div>
@@ -39,29 +41,11 @@
 <script>
 import { mapGetters } from 'vuex';
 import { titleCase } from '@/filters';
-import store from '@/store/store';
 
 import FindMySizeBlock from '@/components/FindMySizeBlock';
 import ShoeComments from '@/components/ShoeComments';
 import ShoeRatingsByFootShape from '@/components/ShoeRatingsByFootShape';
 import ShoeSaleLinks from '@/components/ShoeSaleLinks';
-
-const getData = (to, from, next) => {
-  store
-    .dispatch('INITIALIZE_APP', {
-      url: to.fullPath,
-    })
-    .then(() => {
-      if (store.getters.hasShoe) {
-        next();
-      } else {
-        next(`/404`);
-      }
-    })
-    .catch(() => {
-      store.commit('STATE_INIT_ERROR');
-    });
-};
 
 export default {
   name: 'Shoe',
@@ -71,32 +55,24 @@ export default {
     ShoeRatingsByFootShape,
     ShoeSaleLinks,
   },
+  layout: 'homepage-form',
   filters: {
     titleCase,
   },
-  beforeRouteEnter(to, from, next) {
-    getData(to, from, next);
-  },
-  beforeRouteUpdate(to, from, next) {
-    getData(to, from, next);
-  },
-  metaInfo() {
-    return {
-      // title will be injected into parent titleTemplate
-      title: `${this.brandTitleCase} ${this.model}`,
-      meta: [
-        // OpenGraph data (Most widely used)
-        {
-          vmid: 'og:title',
-          property: 'og:title',
-          content: `${this.brandTitleCase} ${this.model} | SizeSquirrel`,
-        },
-        { vmid: 'og:image', property: 'og:image', content: this.shoe_image },
-        { vmid: 'twitter:image:src', property: 'twitter:image:src', content: this.shoe_image },
-        { vmid: 'og:image:width', property: 'og:image:width', content: '300' },
-        { vmid: 'og:image:height', property: 'og:image:height', content: '300' },
-      ],
-    };
+  asyncData(context) {
+    return context.store
+      .dispatch('INITIALIZE_APP', {
+        url: context.route.fullPath,
+      })
+      .then(() => {
+        if (context.store.getters.hasShoe) {
+        } else {
+          context.redirect(`/404`);
+        }
+      })
+      .catch(() => {
+        context.store.commit('STATE_INIT_ERROR');
+      });
   },
   computed: {
     ...mapGetters(['isInitialized', 'shoe', 'brand']),
@@ -119,6 +95,32 @@ export default {
       }
       return '';
     },
+  },
+  head() {
+    return {
+      // title will be injected into parent titleTemplate
+      title: `${this.brandTitleCase} ${this.model}`,
+      meta: [
+        // OpenGraph data (Most widely used)
+        {
+          vmid: 'og:title',
+          property: 'og:title',
+          content: `${this.brandTitleCase} ${this.model} | SizeSquirrel`,
+        },
+        { vmid: 'og:image', property: 'og:image', content: this.shoe_image },
+        {
+          vmid: 'twitter:image:src',
+          property: 'twitter:image:src',
+          content: this.shoe_image,
+        },
+        { vmid: 'og:image:width', property: 'og:image:width', content: '300' },
+        {
+          vmid: 'og:image:height',
+          property: 'og:image:height',
+          content: '300',
+        },
+      ],
+    };
   },
 };
 </script>

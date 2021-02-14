@@ -21,10 +21,10 @@
           <li v-for="item in user_item_count" :key="item.item.id">
             <NuxtLink
               :to="{
-                name: 'shoe',
+                name: 'shoes-brand-model',
                 params: {
-                  shoe_brand: item.item.brand['name_slug'],
-                  shoe_model: item.item.model_slug,
+                  brand: item.item.brand['name_slug'],
+                  model: item.item.model_slug,
                 },
               }"
               >{{ item.item.model }}</NuxtLink
@@ -44,10 +44,10 @@
           <li v-for="item in user_item_count_not_rock" :key="item.item.id">
             <NuxtLink
               :to="{
-                name: 'shoe',
+                name: 'shoes-brand-model',
                 params: {
-                  shoe_brand: item.item.brand['name_slug'],
-                  shoe_model: item.item.model_slug,
+                  brand: item.item.brand['name_slug'],
+                  model: item.item.model_slug,
                 },
               }"
               >{{ item.item.model }}</NuxtLink
@@ -151,10 +151,10 @@
             <li v-if="index != 0" :key="index">
               <NuxtLink
                 :to="{
-                  name: 'shoe',
+                  name: 'shoes-brand-model',
                   params: {
-                    shoe_brand: item.item.brand['name_slug'],
-                    shoe_model: item.item.model_slug,
+                    brand: item.item.brand['name_slug'],
+                    model: item.item.model_slug,
                   },
                 }"
                 >{{ item.item.model_slug }}</NuxtLink
@@ -181,10 +181,10 @@
             <li v-if="index != 0" :key="index">
               <NuxtLink
                 :to="{
-                  name: 'shoe',
+                  name: 'shoes-brand-model',
                   params: {
-                    shoe_brand: item.item.brand['name_slug'],
-                    shoe_model: item.item.model_slug,
+                    brand: item.item.brand['name_slug'],
+                    model: item.item.model_slug,
                   },
                 }"
                 >{{ item.item.model_slug }}</NuxtLink
@@ -211,10 +211,10 @@
             <li v-if="index != 0" :key="index">
               <NuxtLink
                 :to="{
-                  name: 'shoe',
+                  name: 'shoes-brand-model',
                   params: {
-                    shoe_brand: item.item.brand['name_slug'],
-                    shoe_model: item.item.model_slug,
+                    brand: item.item.brand['name_slug'],
+                    model: item.item.model_slug,
                   },
                 }"
                 >{{ item.item.model_slug }}</NuxtLink

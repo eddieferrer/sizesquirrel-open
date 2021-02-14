@@ -10,9 +10,12 @@
             <!--  if loop.first  -->
             <div v-if="index === 0" :key="index + '_1'" class="columns">
               <div class="column is-12">
-                <h4 class="is-capitalized">{{ shoe.brand['name'] }} {{ shoe.model }}</h4>
+                <h4 class="is-capitalized">
+                  {{ shoe.brand['name'] }} {{ shoe.model }}
+                </h4>
                 <span class="is-size-6 is-capitalized is-italic has-text-grey"
-                  >{{ shoe.gender['name_pretty'] }} {{ shoe.type | capitalize }} Shoe</span
+                  >{{ shoe.gender['name_pretty'] }}
+                  {{ shoe.type | capitalize }} Shoe</span
                 >
                 <h6 class="is-pulled-right">
                   <strong>Retail Price&nbsp;</strong>

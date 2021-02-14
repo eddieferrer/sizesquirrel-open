@@ -8,7 +8,10 @@
           <div :key="ratings.foot_shape_descriptor_id" class="column is-narrow">
             <div
               class="card has-equal-height"
-              :class="{ 'your-size-card': userFootShape == ratings.foot_shape_descriptor_id }"
+              :class="{
+                'your-size-card':
+                  userFootShape == ratings.foot_shape_descriptor_id,
+              }"
             >
               <div class="card-content content">
                 <div class="columns is-mobile">
@@ -37,8 +40,13 @@
                   </div>
                 </div>
               </div>
-              <footer v-if="userFootShape == ratings.foot_shape_descriptor_id" class="card-footer">
-                <h6 class="card-footer-item is-size-7 has-text-centered is-paddingless">
+              <footer
+                v-if="userFootShape == ratings.foot_shape_descriptor_id"
+                class="card-footer"
+              >
+                <h6
+                  class="card-footer-item is-size-7 has-text-centered is-paddingless"
+                >
                   Your Shape
                 </h6>
               </footer>
@@ -53,7 +61,10 @@
       </small>
     </div>
     <!-- modals -->
-    <FootShapeModal :show="showFootShapeModal" @close="showFootShapeModal = false"></FootShapeModal>
+    <FootShapeModal
+      :show="showFootShapeModal"
+      @close="showFootShapeModal = false"
+    ></FootShapeModal>
   </div>
 </template>
 

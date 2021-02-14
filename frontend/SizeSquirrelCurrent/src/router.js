@@ -199,6 +199,10 @@ const router = new Router({
       meta: {},
     },
     {
+      path: '/shoe/:shoe_brand',
+      redirect: '/shoes/:shoe_brand',
+    },
+    {
       path: '/my_user_details',
       name: 'myUserDetails',
       beforeEnter: (to, from, next) => {
@@ -257,10 +261,7 @@ const router = new Router({
         haveItemId: route.query.have_item_id,
       }),
     },
-    {
-      path: '/shoe/:shoe_brand',
-      redirect: '/shoes/:shoe_brand',
-    },
+
     {
       path: '/shoe/:shoe_brand/:shoe_model',
       redirect: '/shoes/:shoe_brand/:shoe_model',

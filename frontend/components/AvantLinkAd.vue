@@ -12,7 +12,6 @@
 
 <script>
 /* eslint-disable no-useless-escape */
-import postscribe from 'postscribe';
 
 export default {
   name: 'AvantLinkAd',
@@ -23,6 +22,7 @@ export default {
     },
   },
   mounted() {
+    const postscribe = require('postscribe');
     if (this.numberOfSaleLinks > 0) {
       postscribe(
         '#avantlink_ad_square',
