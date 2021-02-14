@@ -4,14 +4,18 @@
       <div class="column">
         <div v-if="matchResultsLength > 0" class="columns">
           <div class="column">
-            <h2 class="is-size-4 has-text-centered has-text-primary">Found Your Size!</h2>
+            <h2 class="is-size-4 has-text-centered has-text-primary">
+              Found Your Size!
+            </h2>
             <h5 class="is-size-5 has-text-centered">Recommended Size</h5>
             <hr />
           </div>
         </div>
         <div v-if="matchResultsLength == 0" class="columns">
           <div class="column">
-            <h2 class="is-size-4 has-text-centered has-text-primary">No Size Found</h2>
+            <h2 class="is-size-4 has-text-centered has-text-primary">
+              No Size Found
+            </h2>
             <h5 class="is-size-5 has-text-centered">Oh No.</h5>
             <hr />
           </div>
@@ -26,9 +30,12 @@
           :key="index"
           class="column is-narrow match_size_wrapper has-text-centered"
         >
-          <span class="size">{{ result.size_standard[targetItem.short_size_standard] }}</span>
+          <span class="size">{{
+            result.size_standard[targetItem.short_size_standard]
+          }}</span>
           <span class="ss_color_aqua standard_gender"
-            >{{ targetItem.brand['sizing'] }} {{ targetItem.gender['name_pretty'] }}</span
+            >{{ targetItem.brand['sizing'] }}
+            {{ targetItem.gender['name_pretty'] }}</span
           >
         </div>
       </template>
@@ -61,7 +68,9 @@
                 <v-lazy-image
                   class="lazyload"
                   loading="lazy"
-                  :src-placeholder="'/images/placeholder_' + targetItem.type + '.png'"
+                  :src-placeholder="
+                    '/images/placeholder_' + targetItem.type + '.png'
+                  "
                   :src="targetItem.shoe_image"
                   :alt="targetItem.brand['name'] + ' ' + targetItem.model"
                 />
@@ -89,15 +98,18 @@
                 <NuxtLink
                   class="has-text-info"
                   :to="{
-                    name: 'brand',
-                    params: { shoe_brand: targetItem.brand['name_slug'] },
+                    name: 'shoes-brand',
+                    params: { brand: targetItem.brand['name_slug'] },
                   }"
                   >{{ targetItem.brand['name'] | titleCase }}</NuxtLink
                 >
               </h4>
             </div>
-            <h4 class="is-size-6 is-capitalized is-italic has-text-grey has-text-centered-mobile">
-              {{ targetItem.gender['name_pretty'] }} {{ targetItem.type | capitalize }} Shoe
+            <h4
+              class="is-size-6 is-capitalized is-italic has-text-grey has-text-centered-mobile"
+            >
+              {{ targetItem.gender['name_pretty'] }}
+              {{ targetItem.type | capitalize }} Shoe
             </h4>
             <hr class="thin-hr" />
             <div class="columns is-multiline">
@@ -122,8 +134,14 @@
                     <strong v-if="targetItem.stats.count > 0">{{
                       targetItem.stats.avg_rating
                     }}</strong>
-                    <strong v-if="targetItem.stats.count == 0">Not Available</strong>
-                    <span v-if="targetItem.stats.count > 0" class="has-text-grey">&nbsp;/ 5</span>
+                    <strong v-if="targetItem.stats.count == 0"
+                      >Not Available</strong
+                    >
+                    <span
+                      v-if="targetItem.stats.count > 0"
+                      class="has-text-grey"
+                      >&nbsp;/ 5</span
+                    >
                   </span>
                 </div>
               </div>
@@ -134,7 +152,9 @@
                 <div class="info">
                   <span class="info-label muted">Most Common Fit</span>
                   <span>
-                    <strong>{{ targetItem.stats.popular_fit_descriptor }}</strong>
+                    <strong>{{
+                      targetItem.stats.popular_fit_descriptor
+                    }}</strong>
                   </span>
                 </div>
               </div>
@@ -147,8 +167,13 @@
                   />
                 </span>
                 <div class="info">
-                  <span class="info-label is-size-6 has-text-grey">Recommended For</span>
-                  <strong>{{ targetItem.stats.highest_rated_foot_shape }}</strong> Feet
+                  <span class="info-label is-size-6 has-text-grey"
+                    >Recommended For</span
+                  >
+                  <strong>{{
+                    targetItem.stats.highest_rated_foot_shape
+                  }}</strong>
+                  Feet
                 </div>
               </div>
             </div>
@@ -172,7 +197,9 @@
                   <h6>
                     Recommended Size:
                     <strong
-                      >{{ result.size_standard[targetItem.short_size_standard] }}
+                      >{{
+                        result.size_standard[targetItem.short_size_standard]
+                      }}
                       {{ targetItem.brand['sizing'] }}
                       {{ targetItem.gender['name_pretty'] }}</strong
                     >
@@ -198,7 +225,8 @@
                   <h6
                     v-if="
                       matchResultsLength > 1 &&
-                      matchResults[0].percentage == matchResults[1].percentage &&
+                      matchResults[0].percentage ==
+                        matchResults[1].percentage &&
                       matchResults[1].percentage
                     "
                   >
@@ -208,7 +236,10 @@
                     </strong>
                   </h6>
                   <h6
-                    v-else-if="matchResults[0].occurences <= 10 && matchResults[0].percentage < 45"
+                    v-else-if="
+                      matchResults[0].occurences <= 10 &&
+                      matchResults[0].percentage < 45
+                    "
                   >
                     Accuracy:
                     <strong>
@@ -229,7 +260,10 @@
                     </strong>
                   </h6>
                   <h6
-                    v-else-if="matchResults[0].occurences >= 15 && matchResults[0].percentage > 70"
+                    v-else-if="
+                      matchResults[0].occurences >= 15 &&
+                      matchResults[0].percentage > 70
+                    "
                   >
                     Accuracy:
                     <strong>
@@ -245,7 +279,8 @@
                   <em
                     v-if="
                       matchResultsLength > 1 &&
-                      matchResults[0].percentage == matchResults[1].percentage &&
+                      matchResults[0].percentage ==
+                        matchResults[1].percentage &&
                       matchResults[1].percentage
                     "
                     >We're unsure which of the sizes above will work.</em
@@ -258,8 +293,8 @@
         <div v-if="matchResultsLength == 0" class="columns is-centered">
           <div class="column">
             <p>
-              We just don't have enough data to find your size! Here are some things you can do to
-              help:
+              We just don't have enough data to find your size! Here are some
+              things you can do to help:
             </p>
 
             <ul>
@@ -291,8 +326,8 @@
               </li>
               <li>Let everyone at your climbing gym know about SizeSquirrel</li>
               <li>
-                Tell everyone at the crag how you used SizeSquirrel to get a sweet deal on your
-                shoes
+                Tell everyone at the crag how you used SizeSquirrel to get a
+                sweet deal on your shoes
               </li>
             </ul>
           </div>

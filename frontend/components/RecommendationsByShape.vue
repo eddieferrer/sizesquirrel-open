@@ -64,9 +64,9 @@
                   <NuxtLink
                     class="has-text-info"
                     :to="{
-                      name: 'brand',
+                      name: 'shoes-brand',
                       params: {
-                        shoe_brand: recommendation.item.brand['name_slug'],
+                        brand: recommendation.item.brand['name_slug'],
                       },
                     }"
                   >

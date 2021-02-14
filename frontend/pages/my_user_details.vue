@@ -9,7 +9,7 @@ export default {
         // the above state is not available here, since it
         // it is resolved asynchronously in the store action
         const { username } = store.getters.user;
-        return redirect(`/profile/${username}`);
+        return redirect(`/profile/${username}#user_details`);
       });
     },
   ],

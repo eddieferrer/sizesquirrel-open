@@ -81,7 +81,10 @@
                 </span>
               </label>
             </div>
-            <div v-show="accordionRating" class="field accordion-content is-clearfix">
+            <div
+              v-show="accordionRating"
+              class="field accordion-content is-clearfix"
+            >
               <label class="text rating">
                 Min
                 <input
@@ -113,27 +116,46 @@
           <div class="accordion" :class="{ active: accordionMostCommonFit }">
             <div
               class="field accordion-header"
-              @click.prevent.stop="accordionMostCommonFit = !accordionMostCommonFit"
+              @click.prevent.stop="
+                accordionMostCommonFit = !accordionMostCommonFit
+              "
             >
               <label class="label has-text-grey-dark">
                 Most Common Fit
                 <span class="is-pulled-right icon-wrapper-accordion">
-                  <svg-icon v-show="accordionMostCommonFit" icon="fi-minus"></svg-icon>
-                  <svg-icon v-show="!accordionMostCommonFit" icon="fi-plus"></svg-icon>
+                  <svg-icon
+                    v-show="accordionMostCommonFit"
+                    icon="fi-minus"
+                  ></svg-icon>
+                  <svg-icon
+                    v-show="!accordionMostCommonFit"
+                    icon="fi-plus"
+                  ></svg-icon>
                 </span>
               </label>
             </div>
-            <div v-show="accordionMostCommonFit" class="field accordion-content">
+            <div
+              v-show="accordionMostCommonFit"
+              class="field accordion-content"
+            >
               <label class="checkbox">
                 <input v-model="mostCommonFit" type="checkbox" value="normal" />
                 Normal
               </label>
               <label class="checkbox">
-                <input v-model="mostCommonFit" type="checkbox" value="comfortable" />
+                <input
+                  v-model="mostCommonFit"
+                  type="checkbox"
+                  value="comfortable"
+                />
                 Comfortable
               </label>
               <label class="checkbox">
-                <input v-model="mostCommonFit" type="checkbox" value="aggressive" />
+                <input
+                  v-model="mostCommonFit"
+                  type="checkbox"
+                  value="aggressive"
+                />
                 Aggressive
               </label>
             </div>
@@ -143,10 +165,17 @@
 
       <div class="columns">
         <div class="column">
-          <a class="button is-text" type="button" @click="resetAllFilters">Clear All Filters</a>
+          <a class="button is-text" type="button" @click="resetAllFilters"
+            >Clear All Filters</a
+          >
         </div>
         <div class="column">
-          <a class="button is-info is-fullwidth" type="button" @click="emitFilter">Filter</a>
+          <a
+            class="button is-info is-fullwidth"
+            type="button"
+            @click="emitFilter"
+            >Filter</a
+          >
         </div>
       </div>
     </div>
@@ -200,7 +229,7 @@ export default {
 
 <style scoped lang="scss">
 .accordion {
-  margin: 1em 0em;
+  margin: 1em 0;
   .accordion-header {
     padding-right: 1em;
     label {
@@ -225,7 +254,7 @@ form label.radio {
   margin-bottom: 0.25em;
 }
 .radio + .radio {
-  margin-left: 0em;
+  margin-left: 0;
 }
 .is-width-limited {
   max-width: 150px;

@@ -191,6 +191,26 @@ const router = new Router({
         import(/* webpackChunkName: "sales" */ './views/Sales.vue'),
       meta: {},
     },
+    {
+      path: '/shoes/:shoe_brand',
+      name: 'brand',
+      component: () =>
+        import(/* webpackChunkName: "brand" */ './views/Brand.vue'),
+      meta: {},
+    },
+    {
+      path: '/my_user_details',
+      name: 'myUserDetails',
+      beforeEnter: (to, from, next) => {
+        store.dispatch('GET_USER').then(() => {
+          // the above state is not available here, since it
+          // it is resolved asynchronously in the store action
+          const { username } = store.getters.user;
+          next(`/profile/${username}#user_details`);
+        });
+      },
+      meta: { requiresAuth: true },
+    },
     // NOT DONE
     {
       path: '/match',
@@ -211,19 +231,6 @@ const router = new Router({
       props: (route) => ({
         wantItemId: route.query.want_item_id,
       }),
-    },
-    {
-      path: '/my_user_details',
-      name: 'myUserDetails',
-      beforeEnter: (to, from, next) => {
-        store.dispatch('GET_USER').then(() => {
-          // the above state is not available here, since it
-          // it is resolved asynchronously in the store action
-          const { username } = store.getters.user;
-          next(`/profile/${username}#user_details`);
-        });
-      },
-      meta: { requiresAuth: true },
     },
     {
       path: '/public_match',
@@ -253,13 +260,6 @@ const router = new Router({
     {
       path: '/shoe/:shoe_brand',
       redirect: '/shoes/:shoe_brand',
-    },
-    {
-      path: '/shoes/:shoe_brand',
-      name: 'brand',
-      component: () =>
-        import(/* webpackChunkName: "brand" */ './views/Brand.vue'),
-      meta: {},
     },
     {
       path: '/shoe/:shoe_brand/:shoe_model',
