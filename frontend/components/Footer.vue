@@ -1,8 +1,8 @@
 <template>
   <footer class="footer">
     <div class="container">
-      <div class="columns">
-        <div class="column is-narrow">
+      <div class="columns is-justify-content-space-between">
+        <div class="column is-narrow has-text-centered-mobile">
           <nav class="breadcrumb has-dot-separator" aria-label="breadcrumbs">
             <ul>
               <li>
@@ -27,9 +27,13 @@
               </li>
             </ul>
           </nav>
+          <a href="https://www.buymeacoffee.com/sizesquirrel"
+            ><img
+              src="https://img.buymeacoffee.com/button-api/?text=Buy me a coffee&emoji=&slug=sizesquirrel&button_colour=5F7FFF&font_colour=ffffff&font_family=Cookie&outline_colour=000000&coffee_colour=FFDD00"
+          /></a>
         </div>
-        <div class="column">
-          <p class="is-pulled-right">
+        <div class="column is-narrow has-text-centered-mobile">
+          <p>
             We love your shoes
             <br />
             © {{ currentYear }} SizeSquirrel
