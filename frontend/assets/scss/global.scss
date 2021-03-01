@@ -1,0 +1,63 @@
+// Global SizeSquirrel Styles
+body {
+  background-color: $white-bis;
+}
+
+[v-cloak] {
+  display: none;
+}
+hr,
+hr.thin-hr {
+  margin: 0.6rem 0 0.9rem 0;
+}
+
+//used for encrypting email address
+.cryptedmail::after {
+  content: attr(data-name) '@' attr(data-domain) '.' attr(data-tld);
+}
+.close-button {
+  cursor: pointer;
+}
+.message {
+  color: $white;
+  a:link,
+  a:visited,
+  a:hover,
+  a:active {
+    color: $white;
+    text-decoration: underline;
+  }
+  a:hover {
+    color: #333;
+    opacity: 0.5;
+  }
+}
+progress {
+  margin-top: 0.25em;
+  margin-bottom: 0.25em;
+}
+
+// Icons
+.icon-wrapper {
+  font-size: 32px;
+  float: left;
+  color: $aqua;
+  fill: $aqua;
+  opacity: 0.25;
+  width: 25px;
+  .footshape {
+    height: 34px;
+    width: auto;
+    margin-top: 7px !important;
+    float: right !important;
+  }
+}
+.icon-wrapper-search {
+  color: $white;
+  fill: $white;
+  font-size: 25px;
+}
+.icon-wrapper-accordion {
+  color: $bulmagray;
+  fill: $bulmagray;
+}
