@@ -244,7 +244,7 @@ export default {
   filters: {
     capitalize,
   },
-  layout: 'no-homepage-form',
+  layout: 'noHomepageForm',
   data() {
     return {
       shoes_count: 0,

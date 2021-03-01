@@ -10,7 +10,7 @@ export default {
   components: {
     ForgotUsernameForm,
   },
-  layout: 'no-homepage-form',
+  layout: 'noHomepageForm',
   head() {
     return {
       title: 'Forgot Username',

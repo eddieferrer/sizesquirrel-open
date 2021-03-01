@@ -270,7 +270,7 @@ const GET_LIST_ITEMS = async function (context, { target }) {
 const GET_MATCH_INFO = async function (context, { key, id }) {
   try {
     const getMatchInfo = await this.$axios({
-      url: `/apiv2/item/details/${id}`,
+      url: `/apiv2/item/details/${id}/`,
       method: 'GET',
     });
     context.commit('SET_MATCH_INFO', { key, shoe: getMatchInfo.data });
@@ -295,7 +295,7 @@ const GET_POPULAR_SHOES = async function () {
 const GET_PROFILE = async function (context, payload) {
   try {
     const getProfile = await this.$axios({
-      url: `/apiv2/user/details/${payload}`,
+      url: `/apiv2/user/details/${payload}/`,
       method: 'GET',
     });
     context.commit('SET_PROFILE', getProfile.data);
@@ -325,7 +325,7 @@ const GET_SHOE = async function (context, payload) {
       promiseArray.push(
         // eslint-disable-next-line no-shadow
         new Promise((resolve, reject) => {
-          this.$axios({ url: `/apiv2/item/details/${element}`, method: 'GET' })
+          this.$axios({ url: `/apiv2/item/details/${element}/`, method: 'GET' })
             .then((resp) => {
               responses.push(resp.data);
               resolve(resp);

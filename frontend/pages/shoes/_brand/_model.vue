@@ -55,7 +55,7 @@ export default {
     ShoeRatingsByFootShape,
     ShoeSaleLinks,
   },
-  layout: 'homepage-form',
+  layout: 'homepageForm',
   filters: {
     titleCase,
   },

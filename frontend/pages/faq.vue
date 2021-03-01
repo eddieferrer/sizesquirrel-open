@@ -71,7 +71,7 @@
 <script>
 export default {
   name: 'Faq',
-  layout: 'no-homepage-form',
+  layout: 'noHomepageForm',
   head() {
     return {
       title: 'Frequently Asked Questions',
@@ -80,7 +80,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped lang="scss">
 p {
   margin-bottom: 1em;
 }

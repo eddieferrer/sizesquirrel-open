@@ -116,23 +116,19 @@ export default {
   methods: {
     formAction() {
       if (this.isAuthenticated) {
-        this.$router
-          .push({
-            path: '/match',
-            query: { want_item_id: this.wantItem.id },
-          })
-          .catch(() => {});
+        this.$router.push({
+          path: '/match',
+          query: { want_item_id: this.wantItem.id },
+        });
       } else {
-        this.$router
-          .push({
-            path: '/public_match',
-            query: {
-              want_item_id: this.wantItem.id,
-              have_item_id: this.haveItem.id,
-              size: this.itemSize.value,
-            },
-          })
-          .catch(() => {});
+        this.$router.push({
+          path: '/public_match',
+          query: {
+            want_item_id: this.wantItem.id,
+            have_item_id: this.haveItem.id,
+            size: this.itemSize.value,
+          },
+        });
       }
     },
   },

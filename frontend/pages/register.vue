@@ -7,7 +7,7 @@ import RegistrationForm from '@/components/RegistrationForm';
 
 export default {
   name: 'Register',
-  layout: 'no-homepage-form',
+  layout: 'noHomepageForm',
   components: {
     RegistrationForm,
   },

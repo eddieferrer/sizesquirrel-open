@@ -11,7 +11,7 @@ import FacebookAccountRedirect from '@/components/FacebookAccountRedirect';
 
 export default {
   name: 'FacebookCallback',
-  layout: 'no-homepage-form',
+  layout: 'noHomepageForm',
   components: { FacebookAccountRedirect },
   props: {
     formType: {

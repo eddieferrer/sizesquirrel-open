@@ -10,7 +10,7 @@ export default {
   components: {
     ChangePasswordForm,
   },
-  layout: 'no-homepage-form',
+  layout: 'noHomepageForm',
   head() {
     return {
       title: 'Reset Password',

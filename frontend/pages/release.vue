@@ -40,7 +40,7 @@
 <script>
 export default {
   name: 'Release',
-  layout: 'no-homepage-form',
+  layout: 'noHomepageForm',
   data() {
     return {
       gitbranch: process.env.VUE_APP_GITBRANCH,

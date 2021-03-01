@@ -45,7 +45,7 @@ export default {
       },
     },
   },
-  layout: 'no-homepage-form',
+  layout: 'noHomepageForm',
   computed: {
     pageTitle() {
       if (this.error.statusCode === 404) {

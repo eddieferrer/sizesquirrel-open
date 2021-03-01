@@ -232,7 +232,7 @@
 <script>
 export default {
   name: 'Terms',
-  layout: 'no-homepage-form',
+  layout: 'noHomepageForm',
   head() {
     return {
       title: 'Frequently Asked Questions',
@@ -241,7 +241,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped lang="scss">
 p,
 h5 {
   margin-bottom: 1em;

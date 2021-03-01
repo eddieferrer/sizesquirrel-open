@@ -24,7 +24,7 @@ export default {
   components: {
     BrandItems,
   },
-  layout: 'homepage-form',
+  layout: 'homepageForm',
   filters: {
     titleCase,
   },

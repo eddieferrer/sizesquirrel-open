@@ -55,7 +55,7 @@ export default {
   name: 'MatchTest',
   middleware: ['auth'],
   components: { MultiSelectItems },
-  layout: 'no-homepage-form',
+  layout: 'noHomepageForm',
   data() {
     return {
       item: null,

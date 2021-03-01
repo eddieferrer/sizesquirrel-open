@@ -7,7 +7,7 @@ import LoginForm from '@/components/LoginForm';
 
 export default {
   name: 'Login',
-  layout: 'no-homepage-form',
+  layout: 'noHomepageForm',
   components: {
     LoginForm,
   },

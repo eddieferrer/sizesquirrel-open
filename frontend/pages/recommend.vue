@@ -315,7 +315,7 @@ import GenderOptions from '@/mixins/GenderOptions';
 
 export default {
   name: 'Recommend',
-  layout: 'no-homepage-form',
+  layout: 'noHomepageForm',
   components: {
     MultiSelectMinimal,
     FootShapeModal,

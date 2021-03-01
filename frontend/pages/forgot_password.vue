@@ -10,7 +10,7 @@ export default {
   components: {
     ForgotPasswordForm,
   },
-  layout: 'no-homepage-form',
+  layout: 'noHomepageForm',
   head() {
     return {
       title: 'Forgot Password',

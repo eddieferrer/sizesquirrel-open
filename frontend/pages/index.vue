@@ -99,7 +99,7 @@ import HomeCards from '@/components/HomeCards';
 
 export default {
   name: 'Index',
-  layout: 'homepage-form',
+  layout: 'homepageForm',
   components: {
     PopularShoes,
     HomeCards,

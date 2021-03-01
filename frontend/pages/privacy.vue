@@ -173,7 +173,7 @@
 <script>
 export default {
   name: 'Privacy',
-  layout: 'no-homepage-form',
+  layout: 'noHomepageForm',
   head() {
     return {
       title: 'Privacy',
@@ -182,7 +182,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped lang="scss">
 p,
 h5 {
   margin-bottom: 1em;

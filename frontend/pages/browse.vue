@@ -18,7 +18,7 @@ import ItemListServer from '@/components/ItemListServer';
 
 export default {
   name: 'Browse',
-  layout: 'homepage-form',
+  layout: 'homepageForm',
   middleware: ['auth'],
   components: {
     ItemListServer,

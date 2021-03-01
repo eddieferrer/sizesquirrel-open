@@ -59,7 +59,7 @@ export default {
         if (response.authResponse) {
           vm.checkLoginState(response);
         } else {
-          vm.$router.push({ path: '/login/' }).catch(() => {});
+          vm.$router.push({ path: '/login/' });
         }
       });
     } else {

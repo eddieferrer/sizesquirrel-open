@@ -19,7 +19,7 @@ export default {
   components: {
     ItemListServer,
   },
-  layout: 'homepage-form',
+  layout: 'homepageForm',
   head() {
     return {
       // title will be injected into parent titleTemplate

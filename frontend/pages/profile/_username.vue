@@ -10,7 +10,7 @@ export default {
   components: {
     ProfilePage,
   },
-  layout: 'homepage-form',
+  layout: 'homepageForm',
   asyncData(context) {
     return context.store
       .dispatch('INITIALIZE_APP', {
