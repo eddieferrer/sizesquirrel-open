@@ -27,7 +27,7 @@
     "@nuxtjs/pwa": "^3.0.2",
     "@nuxtjs/style-resources": "^1.0.0",
     "@sentry/browser": "^5.29.2",
-    "@sentry/integrations": "^5.29.2",
+    "@sentry/integrations": "^6.2.1",
     "bulma": "^0.9.1",
     "bulma-divider": "^0.2.0",
     "bulma-steps-component": "^0.5.3",
