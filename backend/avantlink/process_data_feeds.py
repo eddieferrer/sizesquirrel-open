@@ -22,7 +22,7 @@ def get_datafeed(retailer):
             root_elements = obj["Product"] if type(
                 obj) == OrderedDict else [obj["Product"]]
         else:
-            root_elements = {}
+            root_elements = []
 
         if type(root_elements) == OrderedDict:
             root_elements = [root_elements]

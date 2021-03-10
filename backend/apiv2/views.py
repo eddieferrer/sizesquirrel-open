@@ -760,8 +760,9 @@ def get_items_browse():
     if request.json["mostCommonFit"]:
         queries.append(Item.popular_fit_descriptor.in_(request.json["mostCommonFit"]))
         
-    if request.json["recommendedFootShape"]:
-        queries.append(Item.highest_rated_foot_shape.in_(request.json["recommendedFootShape"]))
+    if "recommendedFootShape" in request.json:
+        if request.json["recommendedFootShape"]:
+            queries.append(Item.highest_rated_foot_shape.in_(request.json["recommendedFootShape"]))
 
     items = Item.query.\
         join(Brand).\

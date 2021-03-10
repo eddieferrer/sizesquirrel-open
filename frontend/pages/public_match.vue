@@ -49,7 +49,8 @@ export default {
   filters: {
     titleCase,
   },
-  asyncData(context) {
+  async fetch() {
+    const context = this.$nuxt.context;
     const promises = [];
 
     if (context.route.query.want_item_id) {
@@ -83,8 +84,10 @@ export default {
       );
     }
 
-    return Promise.all(promises)
-      .then(() => {})
+    await Promise.all(promises)
+      .then(() => {
+        this.updateComponent();
+      })
       .catch(() => {
         context.store.commit('STATE_INIT_ERROR');
       });
@@ -97,55 +100,59 @@ export default {
       shoeComments: [],
       saleLinks: [],
       componentState: '',
-      size: this.$route.query.size,
-      haveItemId: this.$route.query.have_item_id,
-      wantItemId: this.$route.query.want_item_id,
     };
   },
   computed: {
     ...mapGetters(['matchInfoWant']),
     shoe_image() {
       // eslint-disable-next-line camelcase
-      return this.shoe.shoe?.shoe_image;
+      return this.shoe?.shoe_image;
     },
     brand() {
-      return this.$options.filters.titleCase(
-        this.shoe.shoe?.brand?.name || 'Unknown Shoe'
-      );
+      const brand = this.shoe?.brand?.name ?? 'Unknown Shoe';
+      return this.$options.filters.titleCase(brand);
     },
     model() {
       return this.$options.filters.titleCase(this.shoe.model);
     },
   },
+  watch: {
+    '$route.query': '$fetch',
+  },
   created() {
-    this.shoe = this.matchInfoWant?.shoe ?? {};
-    this.shoeComments = this.matchInfoWant?.shoe_comments ?? [];
-    this.saleLinks = this.matchInfoWant?.shoe_sale_links ?? [];
+    this.updateComponent();
+  },
+  methods: {
+    updateComponent() {
+      this.shoe = this.matchInfoWant?.shoe ?? {};
+      this.shoeComments = this.matchInfoWant?.shoe_comments ?? [];
+      this.saleLinks = this.matchInfoWant?.shoe_sale_links ?? [];
 
-    this.componentState = 'loading';
+      this.componentState = 'loading';
 
-    const getMatch = this.$store.dispatch('PUBLIC_MATCH', {
-      wantItemId: this.wantItemId,
-      haveItemId: this.haveItemId,
-      size: this.size,
-    });
-
-    getMatch
-      .then(({ data }) => {
-        this.matchResults = data.match_results;
-        this.targetItem = data.target_item;
-
-        this.componentState = 'done';
-      })
-      .catch(() => {
-        this.componentState = 'error';
-        // show error if params missing
-        this.$store.dispatch('SHOW_FLASH_MESSAGE', {
-          class: 'has-background-danger',
-          message:
-            'There has been an error. Please restart the process to find a match.',
-        });
+      const getMatch = this.$store.dispatch('PUBLIC_MATCH', {
+        size: this.$route.query.size,
+        haveItemId: this.$route.query.have_item_id,
+        wantItemId: this.$route.query.want_item_id,
       });
+
+      getMatch
+        .then(({ data }) => {
+          this.matchResults = data.match_results;
+          this.targetItem = data.target_item;
+
+          this.componentState = 'done';
+        })
+        .catch(() => {
+          this.componentState = 'error';
+          // show error if params missing
+          this.$store.dispatch('SHOW_FLASH_MESSAGE', {
+            class: 'has-background-danger',
+            message:
+              'There has been an error. Please restart the process to find a match.',
+          });
+        });
+    },
   },
   head() {
     return {

@@ -15,7 +15,11 @@
             </p>
             <a
               class="button is-normal is-info"
-              @click="openFbLoginDialog('register')"
+              :disabled="isFormSubmitting"
+              @click="
+                openFbLoginDialog('register');
+                isFormSubmitting = true;
+              "
             >
               <span id="fbicon" class="icon is-medium">
                 <img src="/images/icons/facebook32.png" alt />

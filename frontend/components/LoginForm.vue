@@ -12,8 +12,12 @@
               <em>Using your Facebook account</em>
             </p>
             <a
+              :disabled="isFormSubmitting"
               class="button is-normal is-info"
-              @click="openFbLoginDialog('login', redirect)"
+              @click="
+                openFbLoginDialog('login', redirect);
+                isFormSubmitting = true;
+              "
             >
               <span id="fbicon" class="icon is-medium">
                 <img src="/images/icons/facebook32.png" alt />
