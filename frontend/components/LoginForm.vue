@@ -122,7 +122,7 @@ export default {
         .dispatch('AUTH_REQUEST', { username, password })
         .then(() => {
           const nextRoute = this.redirect || '/my_profile/';
-          this.$router.push({ path: nextRoute }).catch(() => {});
+          this.$router.push({ path: nextRoute });
         })
         .catch((error) => {
           this.login_error = error.response.data.message || error;

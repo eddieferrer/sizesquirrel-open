@@ -163,7 +163,7 @@
         </div>
       </div>
 
-      <div class="columns">
+      <div class="columns is-multiline">
         <div class="column">
           <a class="button is-text" type="button" @click="resetAllFilters"
             >Clear All Filters</a

@@ -492,7 +492,7 @@ class Item(db.Model):
         if self.small_image_url is not None:
             return self.small_image_url.replace('http://', 'https://')
         else:
-            return "/static/images/placeholder_"+self.type+".png"
+            return "/images/placeholder_"+self.type+".png"
 
     @property
     def model_slug(self):

@@ -298,14 +298,12 @@ export default {
     });
 
     this.$on('resetAll', () => {
-      this.$router
-        .push({
-          name: this.pagetype,
-          query: {
-            page: 1,
-          },
-        })
-        .catch(() => {});
+      this.$router.push({
+        name: this.pagetype,
+        query: {
+          page: 1,
+        },
+      });
     });
   },
   methods: {
@@ -314,12 +312,10 @@ export default {
       this.updateRoute();
     },
     updateRoute() {
-      this.$router
-        .push({
-          name: this.pagetype,
-          query: this.queryParams,
-        })
-        .catch(() => {});
+      this.$router.push({
+        name: this.pagetype,
+        query: this.queryParams,
+      });
     },
     resetPages() {
       this.changePage(1);
