@@ -83,10 +83,10 @@ def post_auth_facebookregister():
         email = json_data['email']
         name = json_data['name']
 
-    user = User.query.filter_by(provider_id=provider_id).first()
+    existingUser = User.query.filter_by(provider_id=provider_id).first()
 
     # register
-    if not user:
+    if not existingUser:
         if User.query.filter(func.lower(User.username) == username.lower()).first() is not None:
             registration_error = "Username already exists."
             invalid_form = True
@@ -110,13 +110,13 @@ def post_auth_facebookregister():
             'token': token,
         })
     # user already exists
-    if user:
-        user.date_last_login = datetime.datetime.now()
+    if existingUser:
+        existingUser.date_last_login = datetime.datetime.now()
         db.session.commit()
-        token = user.get_token()
+        token = existingUser.get_token()
         return jsonify({
             'status': 'success',
-            'username': user.username,
+            'username': existingUser.username,
             'token': token,
         })
 

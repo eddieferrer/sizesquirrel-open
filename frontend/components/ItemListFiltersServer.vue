@@ -604,6 +604,7 @@ export default {
   },
   methods: {
     emitFilter() {
+      window.scrollTo(0, 0);
       this.$parent.$parent.$emit('allFilterValues', {
         brand: this.brand,
         gender: this.gender,
@@ -622,6 +623,7 @@ export default {
       });
     },
     resetAllFilters() {
+      window.scrollTo(0, 0);
       this.$parent.$parent.$emit('resetAll');
     },
   },
