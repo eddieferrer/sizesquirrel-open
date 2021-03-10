@@ -21,6 +21,7 @@ const envReleaseTag = isProd
 // Common config
 const config = {
   env: {
+    baseUrl: process.env.BASE_URL || 'http://localhost:3000',
     VUE_APP_RELEASE_TAG: envReleaseTag,
     VUE_APP_GITBRANCH: gitRevisionPlugin.branch(),
     VUE_APP_GITVERSION: gitRevisionPlugin.version(),
@@ -226,6 +227,7 @@ const config = {
   // Axios module configuration (https://go.nuxtjs.dev/config-axios)
   axios: {
     proxy: true,
+    baseURL: process.env.BASE_URL || 'http://localhost:3000',
   },
 
   // Build Configuration (https://go.nuxtjs.dev/config-build)
