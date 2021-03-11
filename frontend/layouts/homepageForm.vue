@@ -53,7 +53,9 @@
             <div
               class="column is-full-mobile is-two-thirds-desktop is-three-quarters-tablet"
             >
-              <ItemMatchForm></ItemMatchForm>
+              <client-only>
+                <ItemMatchForm></ItemMatchForm>
+              </client-only>
             </div>
           </div>
         </div>

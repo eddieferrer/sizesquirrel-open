@@ -105,7 +105,6 @@ export default {
   computed: {
     ...mapGetters(['matchInfoWant']),
     shoe_image() {
-      // eslint-disable-next-line camelcase
       return this.shoe?.shoe_image;
     },
     brand() {
