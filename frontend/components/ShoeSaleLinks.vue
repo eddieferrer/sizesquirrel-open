@@ -35,7 +35,9 @@
           </div>
         </div>
         <template v-if="page === 'match'">
-          <AvantLinkAd :number-of-sale-links="saleLinks.length" />
+          <client-only>
+            <AvantLinkAd :number-of-sale-links="saleLinks.length" />
+          </client-only>
         </template>
       </div>
     </div>

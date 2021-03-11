@@ -170,6 +170,7 @@ export default {
         name: this.pagetype,
         query: this.queryParams,
       });
+      window.scrollTo(0, 0);
     },
     updatedComponent() {
       // other params

@@ -562,7 +562,11 @@ const nuxtServerInit = async function (context, { $cookies, store }) {
   if ($cookies.get('user-token')) {
     this.$axios.setToken($cookies.get('user-token'), 'Bearer');
     context.commit('AUTH_SUCCESS', $cookies.get('user-token'));
-    await store.dispatch('GET_USER');
+    await store.dispatch('GET_USER').catch(() => {
+      context.commit('AUTH_LOGOUT');
+      this.$cookies.remove('user-token');
+      this.$axios.setToken(false);
+    });
   }
 };
 
