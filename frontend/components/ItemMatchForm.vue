@@ -91,10 +91,11 @@ export default {
           return true;
         }
         // form hasn't been touched and has same values as route
+        // eslint-disable-next-line no-console
         if (
           Number(this.$route.query.want_item_id) === this.wantItem.id &&
           Number(this.$route.query.have_item_id) === this.haveItem.id &&
-          this.$route.query.size === this.matchInfoSize.value
+          this.$route.query.size === this.itemSize?.value
         ) {
           return true;
         }
@@ -103,14 +104,23 @@ export default {
     },
   },
   watch: {
-    matchInfoWant(newValue) {
-      this.wantItem = newValue.shoe;
+    matchInfoWant: {
+      deep: true,
+      handler(newValue) {
+        this.wantItem = newValue.shoe;
+      },
     },
-    matchInfoHave(newValue) {
-      this.haveItem = newValue.shoe;
+    matchInfoHave: {
+      deep: true,
+      handler(newValue) {
+        this.haveItem = newValue.shoe;
+      },
     },
-    matchInfoSize(newValue) {
-      this.itemSize = newValue;
+    matchInfoSize: {
+      deep: true,
+      handler(newValue) {
+        this.itemSize = newValue;
+      },
     },
   },
   methods: {
