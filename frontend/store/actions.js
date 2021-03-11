@@ -351,8 +351,12 @@ const GET_USER = async function (context) {
         url: '/apiv2/auth/user/',
         method: 'GET',
       });
-      context.commit('SET_USER', getUser.data);
-      return getUser;
+      if (getUser) {
+        context.commit('SET_USER', getUser.data);
+        return getUser.data;
+      } else {
+        throw new Error('User Not Found');
+      }
     }
     return {
       data: context.state.user,

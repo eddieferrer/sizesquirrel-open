@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div v-if="profile.items.length == 0" class="columns">
+    <div v-if="profileItemsLength == 0" class="columns">
       <div class="column">
         <div
           class="level box is-marginless has-text-centered box has-background-warning has-text-white"
@@ -119,6 +119,9 @@ export default {
     };
   },
   computed: {
+    profileItemsLength() {
+      return this.profile?.items?.length ?? 0;
+    },
     ...mapGetters(['profile', 'isAuthenticated', 'isMyProfile', 'user']),
     hasDefaultClimbingSkill() {
       if (
