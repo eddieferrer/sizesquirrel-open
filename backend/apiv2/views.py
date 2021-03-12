@@ -30,7 +30,7 @@ def verify_token(token):
         if user.date_last_login < datetime.datetime.utcnow() - datetime.timedelta(1):
             user.date_last_login = datetime.datetime.now()
             db.session.commit()
-        return g.current_user.username
+        return user
     else:
         return False
 

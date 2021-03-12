@@ -16,7 +16,8 @@ from .views import token_auth
 @app.route('/apiv2/admin/stats/', methods=['GET'])
 @token_auth.login_required
 def get_admin_stats():
-    if g.current_user.email == "eferrer@gmail.com" and g.current_user.id == 1:
+    current_user = token_auth.current_user();
+    if current_user.username == 'squirrel1' and current_user.id == 1:
         all_user_items = User_Item.query.all()
         all_users = User.query.all()
         shoes = Item.query.all()
@@ -185,7 +186,8 @@ def get_admin_stats():
 @app.route('/apiv2/admin/matchtest/', methods=['POST'])
 @token_auth.login_required
 def get_admin_matchtest():
-    if g.current_user.email == "eferrer@gmail.com" and g.current_user.id == 1:
+    current_user = token_auth.current_user();
+    if current_user.username == 'squirrel1' and current_user.id == 1:
         match_test_item_id = request.json.get('matchTestItemId')
         item = Item.query.filter_by(id=match_test_item_id).first().serialize()
 

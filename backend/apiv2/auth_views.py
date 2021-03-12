@@ -244,13 +244,13 @@ def post_auth_register():
 @app.route('/apiv2/auth/token/', methods=['GET'])
 @token_auth.login_required
 def get_auth_token():
-    token = g.current_user.get_token()
+    token = token_auth.current_user().get_token()
     return jsonify({'token': token})
 
 @app.route('/apiv2/auth/user/', methods=['GET'])
 @token_auth.login_required
 def get_auth_user():
-    user = g.current_user.serialize_private()
+    user = token_auth.current_user().serialize_private()
     responseObject = {
         'user': user
     }
