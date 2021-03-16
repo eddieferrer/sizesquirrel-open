@@ -10,16 +10,12 @@
     "lint:js": "eslint --ext .js,.vue --ignore-path .gitignore .",
     "lint:style": "stylelint **/*.{vue,css} --ignore-path .gitignore",
     "lint": "npm run lint:js && npm run lint:style",
-    "test": "jest"
+    "test": "jest",
+    "prepare": "cd .. && husky install frontend/.husky"
   },
   "lint-staged": {
     "*.{js,vue}": "eslint",
     "*.{css,vue}": "stylelint"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
   },
   "dependencies": {
     "@nuxtjs/axios": "^5.12.2",
@@ -34,6 +30,7 @@
     "cookie-universal-nuxt": "^2.1.4",
     "core-js": "^3.6.5",
     "html-loader": "^1.3.2",
+    "husky": "^5.1.3",
     "lodash.debounce": "^4.0.8",
     "nuxt": "^2.14.6",
     "postscribe": "^2.0.8",
@@ -57,7 +54,6 @@
     "eslint-plugin-prettier": "^3.1.4",
     "fibers": "^5.0.0",
     "git-revision-webpack-plugin": "^3.0.6",
-    "husky": "^5.1.3",
     "jest": "^26.5.0",
     "lint-staged": "^10.4.0",
     "prettier": "^2.1.2",
