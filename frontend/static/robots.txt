@@ -1,2 +1,8 @@
 User-agent: *
-Disallow:
+Disallow: /profile/
+Disallow: /my_profile
+Disallow: /my_user_details
+Disallow: /release
+Disallow: /admin/
+
+
