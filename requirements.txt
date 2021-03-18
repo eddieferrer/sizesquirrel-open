@@ -32,5 +32,5 @@ six==1.13.0
 SQLAlchemy==1.4.0
 Unidecode==0.4.21
 urllib3==1.25.11
-Werkzeug==0.16.0
+Werkzeug==1.0.1
 xmltodict==0.12.0
