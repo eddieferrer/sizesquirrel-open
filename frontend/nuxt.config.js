@@ -147,15 +147,7 @@ const config = {
         href: `https://sizesquirrel.com`,
       },
     ],
-    script: [
-      { src: '/js/gtag-head.js' },
-      { src: '/js/gtag-body.js', body: true },
-      { src: '/js/fb-sdk.js', body: true },
-      {
-        src: 'https://www.googletagmanager.com/gtag/js?id=AW-872632887',
-        async: true,
-      },
-    ],
+    script: [{ src: '/js/fb-sdk.js', body: true }],
   },
 
   // Global CSS (https://go.nuxtjs.dev/config-css)
@@ -173,7 +165,8 @@ const config = {
     { src: '~/plugins/mixins' },
     { src: '~/plugins/lazy-image' },
     { src: '~/plugins/sentry' },
-    '~/plugins/axios',
+    { src: '~/plugins/vue-gtag', mode: 'client' },
+    { src: '~/plugins/axios' },
   ],
 
   // Auto import components (https://go.nuxtjs.dev/config-components)
@@ -198,13 +191,6 @@ const config = {
             wght: [400, 700],
           },
         },
-      },
-    ],
-    [
-      '@nuxtjs/google-analytics',
-      {
-        id: 'UA-75492234-4',
-        set: [{ field: 'anonymizeIp', value: true }],
       },
     ],
   ],
