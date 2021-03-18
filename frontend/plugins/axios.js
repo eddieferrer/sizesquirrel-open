@@ -9,12 +9,6 @@ export default function ({ $axios, redirect, store, $cookies }) {
   $axios.onError((error) => {
     const code = parseInt(error.response && error.response.status);
     if (code === 400 || code === 504) {
-      if (Sentry) {
-        Sentry.captureMessage(
-          `400 Error - ${error.config.url} - ${error.config.url}`
-        );
-      }
-
       const errorMessage = error.response?.data?.message;
       const errorMessageFeedback = errorMessage
         ? Object.values(errorMessage).filter((entry) => entry.trim() !== '')
@@ -37,9 +31,7 @@ export default function ({ $axios, redirect, store, $cookies }) {
       if (process.server) {
         redirect(`/login?loginagain=1`);
       } else {
-        const redirectUrl = JSON.parse(
-          decodeURIComponent(window.location.pathname)
-        );
+        const redirectUrl = decodeURIComponent(window.location.pathname);
         redirect(`/login?loginagain=1&redirect=${redirectUrl}`);
       }
     }
