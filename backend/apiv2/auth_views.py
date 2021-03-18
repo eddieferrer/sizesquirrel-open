@@ -135,7 +135,7 @@ def post_auth_login():
         return jsonify({
             'status': 'error',
             'message': 'Invalid username or password.'
-        }), 400
+        }), 401
     if 'sizesquirrel' in user.provider_id:
         if user and password and user.verify_password(password):
             user.date_last_login = datetime.datetime.now()
@@ -149,7 +149,7 @@ def post_auth_login():
         return jsonify({
             'status': 'error',
             'message': 'Invalid username or password.'
-        }), 400
+        }), 401
     else:
         return jsonify({
             'status': 'error',
