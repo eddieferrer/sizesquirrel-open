@@ -2,12 +2,9 @@
   <div class="price_buy_button">
     <span class="info_label muted">{{ datafeed.Retailer_Name }}</span>
     <a
-      :href="datafeed.Product.Buy_Link"
-      target="_blank"
+      type="button"
       class="is-clearfix"
-      :onclick="
-        'return gtag_report_conversion(\'' + datafeed.Product.Buy_Link + '\');'
-      "
+      @click.stop.prevent="sendConversion(datafeed.Product.Buy_Link)"
     >
       <span class="sales_red sales_retailer_price"
         >${{ datafeed.Product.Sale_Price }}</span
@@ -35,6 +32,16 @@ export default {
   },
   data() {
     return {};
+  },
+  methods: {
+    sendConversion(link) {
+      if (this.$gtag) {
+        this.$gtag.event('conversion', {
+          send_to: 'AW-872632887/0ru2CPfGyIUBELekjaAD',
+        });
+      }
+      window.open(link, '_blank');
+    },
   },
 };
 </script>

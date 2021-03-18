@@ -12,8 +12,11 @@
       </template> -->
     </loading>
 
+    <client-only>
+      <CookieBanner></CookieBanner>
+    </client-only>
+
     <FlashMessage></FlashMessage>
-    <!-- <PWAUpdateButton></PWAUpdateButton> -->
 
     <section class="hero">
       <v-lazy-image
@@ -137,16 +140,16 @@
 import { mapGetters } from 'vuex';
 import Loading from 'vue-loading-overlay';
 
+import CookieBanner from '@/components/CookieBanner';
 import FlashMessage from '@/components/FlashMessage';
-// import PWAUpdateButton from '@/components/PWAUpdateButton';
-import NavBar from '@/components/NavBar';
-import ItemMatchForm from '@/components/ItemMatchForm';
-import ShoeBuddies from '@/components/ShoeBuddies';
 import Footer from '@/components/Footer';
+import ItemMatchForm from '@/components/ItemMatchForm';
+import NavBar from '@/components/NavBar';
+import ShoeBuddies from '@/components/ShoeBuddies';
 
 export default {
   components: {
-    // PWAUpdateButton,
+    CookieBanner,
     FlashMessage,
     Footer,
     ItemMatchForm,
