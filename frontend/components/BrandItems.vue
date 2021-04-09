@@ -10,6 +10,9 @@
             <ItemListSearchSort
               pagetype="brand"
               :sort-order="sort_order"
+              @sortOrder="changeSortOrder"
+              @sortItems="changeSortValue"
+              @filterItems="changeFilterValue"
             ></ItemListSearchSort>
             <div v-if="getItems.length !== 0">
               <div class="columns is-multiline">
@@ -292,15 +295,6 @@ export default {
         this.componentState = 'error';
       });
 
-    this.$on('sortOrder', (value) => {
-      this.sort_order = value;
-    });
-    this.$on('filterItems', (value) => {
-      this.filter = value;
-    });
-    this.$on('sortItems', (value) => {
-      this.sort = value;
-    });
     this.$on('allFilterValues', (filterValues) => {
       this.gender = filterValues.gender;
       this.max_rating = filterValues.max_rating;
@@ -319,6 +313,15 @@ export default {
   methods: {
     resetPages() {
       this.active_page = 1;
+    },
+    changeSortOrder(value) {
+      this.sort_order = value;
+    },
+    changeSortValue(value) {
+      this.sort = value;
+    },
+    changeFilterValue(value) {
+      this.filter = value;
     },
   },
 };

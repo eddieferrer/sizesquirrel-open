@@ -159,13 +159,13 @@ export default {
   },
   methods: {
     sortOrderValue(sort) {
-      this.$parent.$parent.$emit('sortOrder', sort);
+      this.$emit('sortOrder', sort);
     },
     filterValue() {
-      this.$parent.$parent.$emit('filterItems', this.search);
+      this.$emit('filterItems', this.search);
     },
     sortValue(e) {
-      this.$parent.$parent.$emit('sortItems', e.target.value);
+      this.$emit('sortItems', e.target.value);
     },
   },
 };
