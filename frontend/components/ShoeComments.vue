@@ -12,6 +12,8 @@
             <ItemListSearchSort
               pagetype="comments"
               :sort-order="sort_order"
+              @sortOrder="changeSortOrder"
+              @sortItems="changeSortValue"
             ></ItemListSearchSort>
           </div>
         </div>
@@ -238,17 +240,15 @@ export default {
       return commentsFiltered;
     },
   },
-  created() {
-    this.$on('sortOrder', (value) => {
-      this.sort_order = value;
-    });
-    this.$on('sortItems', (value) => {
-      this.sort = value;
-    });
-  },
   methods: {
     resetPages() {
       this.active_page = 1;
+    },
+    changeSortOrder(value) {
+      this.sort_order = value;
+    },
+    changeSortValue(value) {
+      this.sort = value;
     },
   },
 };

@@ -2,9 +2,11 @@
   <div class="price_buy_button">
     <span class="info_label muted">{{ datafeed.Retailer_Name }}</span>
     <a
-      type="button"
+      rel="noopener noreferrer"
+      target="_blank"
       class="is-clearfix"
-      @click.stop.prevent="sendConversion(datafeed.Product.Buy_Link)"
+      :href="datafeed.Product.Buy_Link"
+      @click="sendConversion(datafeed.Product.Buy_Link)"
     >
       <span class="sales_red sales_retailer_price"
         >${{ datafeed.Product.Sale_Price }}</span
@@ -40,7 +42,6 @@ export default {
           send_to: 'AW-872632887/0ru2CPfGyIUBELekjaAD',
         });
       }
-      window.open(link, '_blank');
     },
   },
 };

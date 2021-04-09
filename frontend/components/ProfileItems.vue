@@ -23,6 +23,8 @@
           <ItemListSearchSort
             pagetype="profile"
             :sort-order="sort_order"
+            @sortOrder="changeSortOrder"
+            @sortItems="changeSortValue"
           ></ItemListSearchSort>
           <div class="columns is-multiline">
             <div
@@ -367,14 +369,6 @@ export default {
       return itemsFiltered;
     },
   },
-  created() {
-    this.$on('sortOrder', (value) => {
-      this.sort_order = value;
-    });
-    this.$on('sortItems', (value) => {
-      this.sort = value;
-    });
-  },
   methods: {
     prepareConfirmDeleteModal(selectedItem) {
       this.selectedItem = selectedItem;
@@ -386,6 +380,12 @@ export default {
     },
     resetPages() {
       this.active_page = 1;
+    },
+    changeSortOrder(value) {
+      this.sort_order = value;
+    },
+    changeSortValue(value) {
+      this.sort = value;
     },
   },
 };
