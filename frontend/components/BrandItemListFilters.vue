@@ -207,7 +207,7 @@ export default {
   created() {},
   methods: {
     emitFilter() {
-      this.$parent.$parent.$emit('allFilterValues', {
+      this.$emit('allFilterValues', {
         gender: this.gender,
         max_rating: this.max_rating,
         min_rating: this.min_rating,
@@ -221,7 +221,7 @@ export default {
       this.min_rating = undefined;
       this.max_rating = undefined;
       this.mostCommonFit = [];
-      this.$parent.$parent.$emit('resetAll');
+      this.$emit('resetAll');
     },
   },
 };

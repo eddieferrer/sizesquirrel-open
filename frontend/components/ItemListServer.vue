@@ -153,14 +153,37 @@ export default {
     },
   },
   watch: {
-    '$route.query'() {
-      this.updatedComponent();
+    '$route.query': {
+      deep: true,
+      handler() {
+        this.updatedComponent();
+      },
     },
   },
   created() {
     this.updatedComponent();
   },
   methods: {
+    resetQueryParam() {
+      this.queryParams = {
+        page: 1,
+        shoe_type: [],
+        gender: [],
+        mostCommonFit: [],
+        recommendedFootShape: [],
+        brand: [],
+        retailer: [],
+        min_price: undefined,
+        max_price: undefined,
+        percent_off: 0,
+        min_rating: undefined,
+        max_rating: undefined,
+        rating_by_foot_shape_shape: undefined,
+        rating_by_foot_shape_max_rating: undefined,
+        rating_by_foot_shape_mmin_rating: undefined,
+        search: undefined,
+      };
+    },
     changePage(pagenumber) {
       this.queryParams.page = pagenumber;
       this.updateRoute();
@@ -173,6 +196,7 @@ export default {
       window.scrollTo(0, 0);
     },
     updatedComponent() {
+      this.resetQueryParam();
       // other params
       this.queryParams.page = Number(this.$route.query.page) || 1;
       // filter params

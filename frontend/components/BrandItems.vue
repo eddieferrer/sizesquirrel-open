@@ -2,7 +2,10 @@
   <ComponentLoader :component-state="componentState">
     <div class="columns">
       <div class="column is-3">
-        <BrandItemListFilters></BrandItemListFilters>
+        <BrandItemListFilters
+          @allFilterValues="changeAllFilterValues"
+          @resetAll="resetAllFilters"
+        ></BrandItemListFilters>
       </div>
       <div class="column is-9">
         <div class="columns">
@@ -294,23 +297,22 @@ export default {
       .catch(() => {
         this.componentState = 'error';
       });
-
-    this.$on('allFilterValues', (filterValues) => {
+  },
+  methods: {
+    changeAllFilterValues(filterValues) {
       this.gender = filterValues.gender;
       this.max_rating = filterValues.max_rating;
       this.min_rating = filterValues.min_rating;
       this.mostCommonFit = filterValues.mostCommonFit;
       this.shoe_type = filterValues.shoe_type;
-    });
-
-    this.$on('resetAll', () => {
-      const itemsTemp = this.items;
-      Object.assign(this.$data, this.$options.data());
-      this.$forceUpdate();
-      this.items = itemsTemp;
-    });
-  },
-  methods: {
+    },
+    resetAllFilters() {
+      this.gender = [];
+      this.max_rating = undefined;
+      this.min_rating = undefined;
+      this.mostCommonFit = [];
+      this.shoe_type = [];
+    },
     resetPages() {
       this.active_page = 1;
     },
