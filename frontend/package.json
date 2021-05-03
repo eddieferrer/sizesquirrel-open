@@ -35,7 +35,7 @@
     "nuxt": "^2.15.4",
     "postscribe": "^2.0.8",
     "v-lazy-image": "^1.4.0",
-    "vue-gtag": "^1.11.0",
+    "vue-gtag": "^1.14.2",
     "vue-loading-overlay": "^3.4.2",
     "vue-multiselect": "^2.1.6"
   },
