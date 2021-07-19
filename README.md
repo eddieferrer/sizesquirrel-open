@@ -4,6 +4,31 @@
 
 Your climbing shoe resource. Climbing shoe sales, find your size for any climbing shoe, recommendations based on foot shape, and more.
 
+[SizeSquirrel - Climbing shoe sizing, recommendations, and deals](https://sizesquirrel.com)
+
+## Project Status
+
+One day I wanted to buy climbing shoes online, and the idea for SizeSquirrel sprung up.
+
+I am thankful for everyone that has used and continues to use the site and support it in some way.
+
+SizeSquirrel was never as financially successful as I had hoped and the many hours I spent on it were a labor of love. These days it barely manages to pay for the costs of running it, and I find my free time to be too valuable to continue working on it.
+
+Going forward, I will do my best to:
+
+* Keep the site active and operational.
+* Add new climbing shoes to the site as they are released.
+
+**There will probably not be any work done on new features for the time being.**
+
+## Contributing Guidelines
+
+Actively looking for contributors.
+
+If you would like to contribute to SizeSquirrel, please open a GitHub issue for discussion or a pull request directly.
+
+No contribution is too small.
+
 ## Instructions for running in development
 
 1. Clone Repository
@@ -68,7 +93,3 @@ Your climbing shoe resource. Climbing shoe sales, find your size for any climbin
         ```
 
 4. Visit localhost:5000
-
-## Contributing Guidelines 
-
-Coming soon...
