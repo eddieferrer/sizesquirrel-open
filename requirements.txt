@@ -3,7 +3,7 @@ awesome-slugify==1.6.5
 blinker==1.4
 certifi==2020.12.5
 chardet==4.0.0
-Click==7.1.2
+Click==8.0.1
 cycler==0.10.0
 Flask==1.1.2
 Flask-Caching==1.10.1
