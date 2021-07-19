@@ -20,3 +20,6 @@ updates:
     # Check for updates once a week
     schedule:
       interval: "monthly"
+    ignore:
+      - dependency-name: "Unidecode"
+      
