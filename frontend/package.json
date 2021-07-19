@@ -55,7 +55,7 @@
     "eslint-plugin-vue": "^7.8.0",
     "fibers": "^5.0.0",
     "git-revision-webpack-plugin": "^3.0.6",
-    "jest": "^26.5.0",
+    "jest": "^27.0.6",
     "lint-staged": "^10.5.4",
     "prettier": "^2.3.2",
     "sass": "^1.32.13",
