@@ -59,7 +59,7 @@
     "lint-staged": "^10.5.4",
     "prettier": "^2.1.2",
     "sass": "^1.35.2",
-    "sass-loader": "^10.1.0",
+    "sass-loader": "^10.1.1",
     "stylelint": "^13.12.0",
     "stylelint-config-prettier": "^8.0.2",
     "stylelint-config-standard": "^21.0.0",
