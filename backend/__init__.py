@@ -32,9 +32,9 @@ if app.debug is not True:
 
 # Initialize Cache
 if app.debug is not True:
-    app.config['CACHE_TYPE'] = 'simple'
+    app.config['CACHE_TYPE'] = 'SimpleCache'
 else:
-    app.config['CACHE_TYPE'] = 'null'
+    app.config['CACHE_TYPE'] = 'NullCache'
 
 app.cache = Cache(app)
 db = SQLAlchemy(app)
