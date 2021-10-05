@@ -21,7 +21,7 @@
     "@nuxtjs/axios": "^5.13.6",
     "@nuxtjs/proxy": "^2.1.0",
     "@nuxtjs/pwa": "^3.3.5",
-    "@nuxtjs/style-resources": "^1.2.0",
+    "@nuxtjs/style-resources": "^1.2.1",
     "@sentry/browser": "^6.9.0",
     "@sentry/integrations": "^6.13.2",
     "bulma": "^0.9.3",
