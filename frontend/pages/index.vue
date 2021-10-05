@@ -99,21 +99,11 @@ import HomeCards from '@/components/HomeCards';
 
 export default {
   name: 'Index',
-  layout: 'homepageForm',
   components: {
     PopularShoes,
     HomeCards,
   },
-  computed: {
-    ...mapGetters(['isAuthenticated']),
-  },
-  mounted() {
-    const postscribe = require('postscribe');
-    postscribe(
-      '#fb-script',
-      `<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v8.0&appId=943851385727348&autoLogAppEvents=1" nonce="eIcxmal8"><\/script>`
-    );
-  },
+  layout: 'homepageForm',
   head() {
     return {
       title: 'Climbing shoe sizing, recommendations, and deals',
@@ -124,6 +114,16 @@ export default {
         },
       ],
     };
+  },
+  computed: {
+    ...mapGetters(['isAuthenticated']),
+  },
+  mounted() {
+    const postscribe = require('postscribe');
+    postscribe(
+      '#fb-script',
+      `<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v8.0&appId=943851385727348&autoLogAppEvents=1" nonce="eIcxmal8"><\/script>`
+    );
   },
 };
 </script>

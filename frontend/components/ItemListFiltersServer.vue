@@ -547,10 +547,10 @@ export default {
       min_rating: this.queryParams.min_rating,
       mostCommonFit: this.queryParams.mostCommonFit,
       recommendedFootShape: this.queryParams.recommendedFootShape,
-      rating_by_foot_shape_max_rating: this.queryParams
-        .rating_by_foot_shape_max_rating,
-      rating_by_foot_shape_min_rating: this.queryParams
-        .rating_by_foot_shape_min_rating,
+      rating_by_foot_shape_max_rating:
+        this.queryParams.rating_by_foot_shape_max_rating,
+      rating_by_foot_shape_min_rating:
+        this.queryParams.rating_by_foot_shape_min_rating,
       rating_by_foot_shape_shape:
         this.queryParams.rating_by_foot_shape_shape || 1,
       shoe_type: this.queryParams.shoe_type,

@@ -7,10 +7,10 @@ import RegistrationForm from '@/components/RegistrationForm';
 
 export default {
   name: 'Register',
-  layout: 'noHomepageForm',
   components: {
     RegistrationForm,
   },
+  layout: 'noHomepageForm',
   head() {
     return {
       title: 'Register',

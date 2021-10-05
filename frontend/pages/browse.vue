@@ -18,11 +18,11 @@ import ItemListServer from '@/components/ItemListServer';
 
 export default {
   name: 'Browse',
-  layout: 'homepageForm',
-  middleware: ['auth'],
   components: {
     ItemListServer,
   },
+  layout: 'homepageForm',
+  middleware: ['auth'],
   head() {
     return {
       title: 'Browse',

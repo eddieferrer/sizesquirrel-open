@@ -3,7 +3,14 @@
     <div v-if="profileItemsLength == 0" class="columns">
       <div class="column">
         <div
-          class="level box is-marginless has-text-centered box has-background-warning has-text-white"
+          class="
+            level
+            box
+            is-marginless
+            has-text-centered
+            box
+            has-background-warning has-text-white
+          "
         >
           <p>
             You don't have any shoes. Use the form below to add shoes to your
@@ -36,7 +43,14 @@
     >
       <div class="column">
         <div
-          class="level box is-marginless has-text-centered box has-background-light"
+          class="
+            level
+            box
+            is-marginless
+            has-text-centered
+            box
+            has-background-light
+          "
         >
           <p>
             Consider adding your foot shape to your profile for better match
@@ -62,7 +76,14 @@
     >
       <div class="column">
         <div
-          class="level box is-marginless has-text-centered box has-background-light"
+          class="
+            level
+            box
+            is-marginless
+            has-text-centered
+            box
+            has-background-light
+          "
         >
           <p>
             Consider adding your climbing skill to your profile.
@@ -118,6 +139,11 @@ export default {
       showEditUserDetailsModal: false,
     };
   },
+  head() {
+    return {
+      title: this.isMyProfile ? 'My Profile' : this.profile.username,
+    };
+  },
   computed: {
     profileItemsLength() {
       return this.profile?.items?.length ?? 0;
@@ -133,11 +159,6 @@ export default {
       }
       return false;
     },
-  },
-  head() {
-    return {
-      title: this.isMyProfile ? 'My Profile' : this.profile.username,
-    };
   },
 };
 </script>

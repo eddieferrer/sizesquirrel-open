@@ -315,7 +315,6 @@ import GenderOptions from '@/mixins/GenderOptions';
 
 export default {
   name: 'Recommend',
-  layout: 'noHomepageForm',
   components: {
     MultiSelectMinimal,
     FootShapeModal,
@@ -323,6 +322,7 @@ export default {
     SvgIcon,
   },
   mixins: [SportTradOptions, BoulderOptions, FootShapeOptions, GenderOptions],
+  layout: 'noHomepageForm',
   data() {
     return {
       isFormSubmitting: false,
@@ -335,6 +335,11 @@ export default {
       boulderingSkill: null,
       sportSkill: null,
       tradSkill: null,
+    };
+  },
+  head() {
+    return {
+      title: 'Recommend A Shoe',
     };
   },
   methods: {
@@ -373,11 +378,6 @@ export default {
           this.isFormSubmitting = false;
         });
     },
-  },
-  head() {
-    return {
-      title: 'Recommend A Shoe',
-    };
   },
 };
 </script>
