@@ -89,7 +89,7 @@ No contribution is too small.
     2. Run development server
 
         ```bash
-        npm run serve
+        npm run dev
         ```
 
-4. Visit localhost:5000
+4. Visit localhost:3000
