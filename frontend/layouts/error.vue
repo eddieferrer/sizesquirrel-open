@@ -35,6 +35,7 @@
 
 <script>
 export default {
+  layout: 'noHomepageForm',
   props: {
     error: {
       type: Object,
@@ -45,7 +46,11 @@ export default {
       },
     },
   },
-  layout: 'noHomepageForm',
+  head() {
+    return {
+      title: this.pageTitle,
+    };
+  },
   computed: {
     pageTitle() {
       if (this.error.statusCode === 404) {
@@ -56,11 +61,6 @@ export default {
       }
       return 'Error';
     },
-  },
-  head() {
-    return {
-      title: this.pageTitle,
-    };
   },
 };
 </script>

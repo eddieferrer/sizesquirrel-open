@@ -55,46 +55,23 @@ export default {
     ShoeRatingsByFootShape,
     ShoeSaleLinks,
   },
-  layout: 'homepageForm',
   filters: {
     titleCase,
   },
+  layout: 'homepageForm',
   asyncData(context) {
     return context.store
       .dispatch('INITIALIZE_APP', {
         url: context.route.fullPath,
       })
       .then(() => {
-        if (context.store.getters.hasShoe) {
-        } else {
+        if (!context.store.getters.hasShoe) {
           context.redirect(`/404`);
         }
       })
       .catch(() => {
         context.store.commit('STATE_INIT_ERROR');
       });
-  },
-  computed: {
-    ...mapGetters(['isInitialized', 'shoe', 'brand']),
-    shoe_image() {
-      // eslint-disable-next-line camelcase
-      return this.shoe?.[0]?.shoe_image;
-    },
-    shoe_brand() {
-      return this.shoe?.[0]?.brand?.name;
-    },
-    shoe_model() {
-      return this.shoe?.[0]?.model;
-    },
-    brandTitleCase() {
-      return this.$options.filters.titleCase(this.brand.name);
-    },
-    model() {
-      if (this.shoe[0]) {
-        return this.$options.filters.titleCase(this.shoe[0].model);
-      }
-      return '';
-    },
   },
   head() {
     return {
@@ -121,6 +98,28 @@ export default {
         },
       ],
     };
+  },
+  computed: {
+    ...mapGetters(['isInitialized', 'shoe', 'brand']),
+    shoe_image() {
+      // eslint-disable-next-line camelcase
+      return this.shoe?.[0]?.shoe_image;
+    },
+    shoe_brand() {
+      return this.shoe?.[0]?.brand?.name;
+    },
+    shoe_model() {
+      return this.shoe?.[0]?.model;
+    },
+    brandTitleCase() {
+      return this.$options.filters.titleCase(this.brand.name);
+    },
+    model() {
+      if (this.shoe[0]) {
+        return this.$options.filters.titleCase(this.shoe[0].model);
+      }
+      return '';
+    },
   },
 };
 </script>

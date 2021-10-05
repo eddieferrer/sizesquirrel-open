@@ -17,8 +17,7 @@ export default {
         url: context.route.fullPath,
       })
       .then(() => {
-        if (context.store.getters.hasProfile) {
-        } else {
+        if (!context.store.getters.hasProfile) {
           context.redirect(`/404`);
         }
       })

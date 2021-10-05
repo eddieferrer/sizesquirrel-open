@@ -45,7 +45,10 @@
         </div>
 
         <h4
-          class="is-size-6 is-capitalized is-italic has-text-grey has-text-centered-mobile"
+          class="
+            is-size-6 is-capitalized is-italic
+            has-text-grey has-text-centered-mobile
+          "
         >
           {{ shoe.gender.name_pretty }} {{ shoe.type }} Shoe
         </h4>

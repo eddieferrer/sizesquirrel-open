@@ -53,13 +53,18 @@ import MultiSelectItems from '@/components/MultiSelectItems';
 
 export default {
   name: 'MatchTest',
-  middleware: ['auth'],
   components: { MultiSelectItems },
   layout: 'noHomepageForm',
+  middleware: ['auth'],
   data() {
     return {
       item: null,
       matchTestItems: [],
+    };
+  },
+  head() {
+    return {
+      title: 'Admin',
     };
   },
   computed: {
@@ -82,11 +87,6 @@ export default {
           this.matchTestItems = response.data.matchTest;
         });
     },
-  },
-  head() {
-    return {
-      title: 'Admin',
-    };
   },
 };
 </script>

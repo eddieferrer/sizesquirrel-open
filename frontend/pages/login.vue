@@ -7,10 +7,10 @@ import LoginForm from '@/components/LoginForm';
 
 export default {
   name: 'Login',
-  layout: 'noHomepageForm',
   components: {
     LoginForm,
   },
+  layout: 'noHomepageForm',
   data() {
     return {
       redirect: this.$route.query.redirect,

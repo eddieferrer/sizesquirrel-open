@@ -24,30 +24,23 @@ export default {
   components: {
     BrandItems,
   },
-  layout: 'homepageForm',
   filters: {
     titleCase,
   },
+  layout: 'homepageForm',
   asyncData(context) {
     return context.store
       .dispatch('INITIALIZE_APP', {
         url: context.route.fullPath,
       })
       .then(() => {
-        if (context.store.getters.hasBrand) {
-        } else {
+        if (!context.store.getters.hasBrand) {
           context.redirect(`/404`);
         }
       })
       .catch(() => {
         context.store.commit('STATE_INIT_ERROR');
       });
-  },
-  computed: {
-    ...mapGetters(['brand']),
-    brandName() {
-      return this.$options.filters.titleCase(this.brand.name);
-    },
   },
   head() {
     return {
@@ -62,6 +55,12 @@ export default {
         },
       ],
     };
+  },
+  computed: {
+    ...mapGetters(['brand']),
+    brandName() {
+      return this.$options.filters.titleCase(this.brand.name);
+    },
   },
 };
 </script>

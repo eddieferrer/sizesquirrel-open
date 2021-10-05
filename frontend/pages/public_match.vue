@@ -45,9 +45,19 @@ export default {
     MatchResult,
     ComponentLoader,
   },
-  layout: 'homepageForm',
   filters: {
     titleCase,
+  },
+  layout: 'homepageForm',
+  data() {
+    return {
+      matchResults: [],
+      targetItem: {},
+      shoe: {},
+      shoeComments: [],
+      saleLinks: [],
+      componentState: '',
+    };
   },
   async fetch() {
     const context = this.$nuxt.context;
@@ -92,14 +102,30 @@ export default {
         context.store.commit('STATE_INIT_ERROR');
       });
   },
-  data() {
+  head() {
     return {
-      matchResults: [],
-      targetItem: {},
-      shoe: {},
-      shoeComments: [],
-      saleLinks: [],
-      componentState: '',
+      // title will be injected into parent titleTemplate
+      title: `${this.brand} ${this.model} - Your Size`,
+      meta: [
+        // OpenGraph data (Most widely used)
+        {
+          vmid: 'og:title',
+          property: 'og:title',
+          content: `${this.brand} ${this.model} - Your Size | SizeSquirrel`,
+        },
+        { vmid: 'og:image', property: 'og:image', content: this.shoe_image },
+        {
+          vmid: 'twitter:image:src',
+          property: 'twitter:image:src',
+          content: this.shoe_image,
+        },
+        { vmid: 'og:image:width', property: 'og:image:width', content: '300' },
+        {
+          vmid: 'og:image:height',
+          property: 'og:image:height',
+          content: '300',
+        },
+      ],
     };
   },
   computed: {
@@ -152,32 +178,6 @@ export default {
           });
         });
     },
-  },
-  head() {
-    return {
-      // title will be injected into parent titleTemplate
-      title: `${this.brand} ${this.model} - Your Size`,
-      meta: [
-        // OpenGraph data (Most widely used)
-        {
-          vmid: 'og:title',
-          property: 'og:title',
-          content: `${this.brand} ${this.model} - Your Size | SizeSquirrel`,
-        },
-        { vmid: 'og:image', property: 'og:image', content: this.shoe_image },
-        {
-          vmid: 'twitter:image:src',
-          property: 'twitter:image:src',
-          content: this.shoe_image,
-        },
-        { vmid: 'og:image:width', property: 'og:image:width', content: '300' },
-        {
-          vmid: 'og:image:height',
-          property: 'og:image:height',
-          content: '300',
-        },
-      ],
-    };
   },
 };
 </script>

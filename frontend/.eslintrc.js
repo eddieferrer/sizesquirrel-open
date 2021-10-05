@@ -40,6 +40,7 @@ module.exports = {
         ],
       },
     ],
+    'vue/no-mutating-props': 'warn',
   },
   globals: {
     FB: true,
