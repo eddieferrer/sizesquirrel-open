@@ -34,7 +34,7 @@
     "lodash.debounce": "^4.0.8",
     "nuxt": "^2.15.8",
     "postscribe": "^2.0.8",
-    "v-lazy-image": "^1.4.0",
+    "v-lazy-image": "^2.0.1",
     "vue-gtag": "^1.16.1",
     "vue-loading-overlay": "^3.4.2",
     "vue-multiselect": "^2.1.6"
