@@ -1,4 +1,8 @@
 import Vue from 'vue';
-import { VLazyImagePlugin } from 'v-lazy-image';
+import VLazyImage from 'v-lazy-image/v2/v-lazy-image.es';
 
-Vue.use(VLazyImagePlugin);
+const components = { VLazyImage };
+
+Object.entries(components).forEach(([name, component]) => {
+  Vue.component(name, component);
+});
