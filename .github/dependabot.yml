@@ -11,8 +11,10 @@ updates:
       interval: "weekly"
     open-pull-requests-limit: 10
     ignore:
+      # husky has some drastic changes
       - dependency-name: "husky"
-      - dependency-name: "sass"
+        versions:
+        - ">=6.0.0"
       
   # Enable version updates for Python
   - package-ecosystem: "pip"
@@ -21,5 +23,18 @@ updates:
     schedule:
       interval: "monthly"
     ignore:
+      # awesome-slugify requires this at this range
       - dependency-name: "Unidecode"
+        versions:
+          - ">0.04.21"
+      # Flask 2 & these requirements are a big refactor
+      - dependency-name: "Flask"
+        versions:
+        - ">=2.0.0"
+      - dependency-name: "Werkzeug"
+        versions:
+        - ">=2.0.0"
+      - dependency-name: "itsdangerous"
+        versions:
+        - ">=2.0.0"
       
