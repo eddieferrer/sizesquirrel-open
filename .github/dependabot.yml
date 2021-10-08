@@ -38,4 +38,10 @@ updates:
       - dependency-name: "itsdangerous"
         versions:
         - ">=2.0.0"
+      - dependency-name: "Click"
+        versions:
+        - ">=8.0.0"
+      - dependency-name: "Jinja2"
+        versions:
+        - ">=3.0.0"
       
