@@ -19,9 +19,10 @@ updates:
   # Enable version updates for Python
   - package-ecosystem: "pip"
     directory: "/"
-    # Check for updates once a week
+    # Check for updates once a month
     schedule:
       interval: "monthly"
+    open-pull-requests-limit: 10
     ignore:
       # awesome-slugify requires this at this range
       - dependency-name: "Unidecode"
