@@ -24,7 +24,7 @@ numpy==1.19.5
 passlib==1.7.4
 pipdeptree==2.1.0
 pyparsing==2.4.7
-python-dateutil==2.8.1
+python-dateutil==2.8.2
 python-editor==1.0.4
 regex==2021.4.4
 requests==2.26
