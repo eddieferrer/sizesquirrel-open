@@ -48,4 +48,8 @@ updates:
       - dependency-name: "Jinja2"
         versions:
         - ">=3.0.0"
+      # higher versions drops "official" support for python 3.6 whatever that means
+      - dependency-name: "kiwisolver"
+        versions:
+        - ">=1.3.0"
       
