@@ -19,7 +19,7 @@ Jinja2==2.11.3
 kiwisolver==1.2.0
 Mako==1.1.5
 MarkupSafe==2.0.1
-matplotlib==3.3.4
+matplotlib==3.4.3
 numpy==1.21.2
 passlib==1.7.4
 pipdeptree==2.1.0
