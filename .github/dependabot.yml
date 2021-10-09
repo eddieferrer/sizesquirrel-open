@@ -47,7 +47,10 @@ updates:
         - ">=8.0.0"
       - dependency-name: "Jinja2"
         versions:
-        - ">=3.0.0"
+        - ">=3.0.0"      
+      - dependency-name: "Flask-Migrate"
+        versions:
+        - ">=2.7.0"
       # higher versions drops "official" support for python 3.6 whatever that means
       - dependency-name: "kiwisolver"
         versions:
