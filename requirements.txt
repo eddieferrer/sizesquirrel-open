@@ -13,7 +13,7 @@ Flask-Migrate==2.7.0
 Flask-Script==2.0.6
 Flask-SQLAlchemy==2.5.1
 gunicorn==20.1.0
-idna==3.2
+idna==3.3
 itsdangerous==1.1.0
 Jinja2==2.11.3
 kiwisolver==1.2.0
