@@ -65,12 +65,15 @@ footer {
   background-position: center center;
   background-size: cover;
   color: $white;
+
   a {
     color: $white;
+
     &:hover {
       color: $purple;
     }
   }
+
   li {
     line-height: 32px;
   }

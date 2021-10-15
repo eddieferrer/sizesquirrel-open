@@ -111,6 +111,7 @@ export default {
   float: left;
   height: 75px;
 }
+
 .box {
   padding: 0.5em;
 }

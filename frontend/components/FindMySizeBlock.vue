@@ -304,21 +304,27 @@ export default {
   float: left;
   width: 80%;
 }
+
 .info {
   max-width: 85%;
   margin-left: 0.55em;
 }
+
 .info_footshape {
   margin-left: 0.65em;
+
   li {
     display: flex;
+
     .shape {
       width: 71px;
       padding-right: 5px;
     }
+
     .rating {
       flex: 0.25;
     }
+
     .bar {
       flex: 0.75;
       padding-top: 3px;
@@ -326,10 +332,12 @@ export default {
     }
   }
 }
+
 span.info-label {
   display: block;
   clear: both;
 }
+
 .item_block_image {
   margin: 0 auto;
   margin-top: 0.5em;
@@ -340,16 +348,19 @@ span.info-label {
   max-width: 150px;
   padding: 1%;
   float: none;
+
   & > span {
     position: absolute;
     display: block;
     width: 86%;
   }
+
   &:after {
     content: '';
     display: block;
     padding-bottom: 100%;
   }
+
   @media (min-width: 768px) {
     float: right;
     padding: 7%;

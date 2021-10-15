@@ -224,6 +224,7 @@ textarea {
   width: 100%;
   padding: 0.5em;
 }
+
 .extra-padding-bottom {
   padding-bottom: 3.25rem;
 }

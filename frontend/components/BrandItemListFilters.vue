@@ -230,42 +230,52 @@ export default {
 <style scoped lang="scss">
 .accordion {
   margin: 1em 0;
+
   .accordion-header {
     padding-right: 1em;
+
     label {
       cursor: pointer;
     }
   }
 }
+
 .column {
   padding-top: 0;
   padding-bottom: 0;
 }
+
 .custom-margin {
   margin-top: 1em;
+
   @media (min-width: 768px) {
     margin-top: 0;
   }
 }
+
 form label.checkbox,
 form label.radio {
   clear: both;
   display: block;
   margin-bottom: 0.25em;
 }
+
 .radio + .radio {
   margin-left: 0;
 }
+
 .is-width-limited {
   max-width: 150px;
   clear: both;
   display: block;
 }
+
 label.text.rating,
 label.text.price {
   width: 40%;
   margin-right: 5%;
   float: left;
+
   input {
     max-width: 75px;
   }

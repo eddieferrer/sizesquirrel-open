@@ -128,17 +128,21 @@ export default {
   opacity: 0.25;
   width: 25px;
 }
+
 .info {
   float: left;
   margin-left: 0.55em;
 }
+
 span.info-label {
   display: block;
   clear: both;
 }
+
 img.icon {
   margin-top: 12px;
 }
+
 .item_block_image {
   margin: 0 auto;
   margin-top: 0.25em;
@@ -149,16 +153,19 @@ img.icon {
   max-width: 150px;
   padding: 1%;
   float: none;
+
   & > span {
     position: absolute;
     display: block;
     width: 86%;
   }
+
   &:after {
     content: '';
     display: block;
     padding-bottom: 100%;
   }
+
   @media (min-width: 768px) {
     float: right;
     padding: 7%;

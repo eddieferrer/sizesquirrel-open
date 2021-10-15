@@ -163,6 +163,7 @@ $white: rgba(255, 255, 255, 1);
     color: $white;
   }
 }
+
 #find_my_size {
   margin-top: 1.45em;
 }

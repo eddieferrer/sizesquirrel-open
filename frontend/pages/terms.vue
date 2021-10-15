@@ -246,6 +246,7 @@ p,
 h5 {
   margin-bottom: 1em;
 }
+
 h5 {
   font-size: 1.25em;
 }

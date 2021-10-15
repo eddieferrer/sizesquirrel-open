@@ -410,10 +410,12 @@ export default {
   float: left;
   margin-left: 0.55em;
 }
+
 span.info-label {
   display: block;
   clear: both;
 }
+
 .item_block_image {
   margin: 0 auto;
   margin-top: 0.5em;
@@ -424,16 +426,19 @@ span.info-label {
   max-width: 120px;
   padding: 1%;
   float: none;
+
   & > span {
     position: absolute;
     display: block;
     width: 86%;
   }
+
   &:after {
     content: '';
     display: block;
     padding-bottom: 100%;
   }
+
   @media (min-width: 768px) {
     // float: right;
     padding: 7%;
@@ -441,12 +446,15 @@ span.info-label {
     overflow: hidden;
   }
 }
+
 .pagination {
   margin-top: 0.65em;
 }
+
 .is-no-top-padding {
   padding-top: 0;
 }
+
 .size_gender,
 .match_size_wrapper {
   .size {
@@ -474,6 +482,7 @@ span.info-label {
   //   }
   // }
 }
+
 .size_gender {
   // padding: 0;
   .size {
@@ -493,10 +502,12 @@ span.info-label {
     font-size: 90%;
     margin-bottom: 0;
   }
+
   .info {
     float: left;
     margin-left: 0.65em;
   }
+
   span.info_label {
     display: block;
     clear: both;

@@ -175,6 +175,7 @@ export default {
 input {
   background: $white;
 }
+
 form {
   margin-bottom: 1em;
 }
@@ -182,6 +183,7 @@ form {
 .chevron {
   color: $white;
 }
+
 .chevron::before {
   border-style: solid;
   border-width: 0.25em 0.25em 0 0;

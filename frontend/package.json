@@ -8,7 +8,7 @@
     "start": "nuxt start",
     "generate": "nuxt generate",
     "lint:js": "eslint --ext .js,.vue --fix --ignore-path .gitignore .",
-    "lint:style": "stylelint **/*.{vue,css} --ignore-path .gitignore",
+    "lint:style": "stylelint **/*.{vue,css} --fix --ignore-path .gitignore",
     "lint": "npm run lint:js && npm run lint:style",
     "prepare": "cd .. && husky install frontend/.husky"
   },

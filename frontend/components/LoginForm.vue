@@ -144,10 +144,12 @@ export default {
   margin-right: 0.45em;
   margin-left: 0.05em;
 }
+
 form {
   width: 350px;
   margin: 0 auto;
 }
+
 p {
   margin-bottom: 1em;
 }

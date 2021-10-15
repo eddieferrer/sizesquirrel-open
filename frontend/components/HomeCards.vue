@@ -177,17 +177,21 @@ export default {
     margin-top: 2.5em;
   }
 }
+
 .has-equal-height {
   display: flex;
   flex-direction: column;
   height: 100%;
 }
+
 .has-equal-height .card-footer {
   margin-top: auto;
 }
+
 .card {
   overflow: visible;
 }
+
 .box-icon {
   background-color: $aqua;
   border-radius: 50%;
@@ -197,6 +201,7 @@ export default {
   width: 100px;
   margin-top: -61px;
   font-size: 3rem;
+
   span.icon-wrapper-home-cards {
     color: $white;
     display: table-cell;
@@ -211,11 +216,13 @@ export default {
     margin-top: 10px;
     letter-spacing: 2px;
     text-transform: uppercase;
+
     &.step {
       font-family: 'Shadows Into Light', cursive;
       text-transform: uppercase;
     }
   }
+
   p {
     color: $medgray;
     padding-top: 10px;

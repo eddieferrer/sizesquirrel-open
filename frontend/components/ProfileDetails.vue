@@ -349,10 +349,12 @@ export default {
   float: left;
   margin-left: 0.55em;
 }
+
 span.info-label {
   display: block;
   clear: both;
 }
+
 .item_block_image {
   margin: 0 auto;
   margin-top: 0.5em;
@@ -363,16 +365,19 @@ span.info-label {
   max-width: 150px;
   padding: 1%;
   float: none;
+
   & > span {
     position: absolute;
     display: block;
     width: 86%;
   }
+
   &:after {
     content: '';
     display: block;
     padding-bottom: 100%;
   }
+
   @media (min-width: 768px) {
     float: right;
     padding: 7%;
@@ -380,6 +385,7 @@ span.info-label {
     overflow: hidden;
   }
 }
+
 .profile_foot_shape_img {
   height: 75px;
   border: 1px solid #ddd;

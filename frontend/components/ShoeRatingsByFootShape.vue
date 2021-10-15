@@ -108,15 +108,19 @@ export default {
   color: $white;
   background-color: $aqua;
 }
+
 .your-size-card {
   border: 1px solid $aqua;
 }
+
 .card-content.content {
   padding: 0.75em;
 }
+
 .card .column {
   padding: 0.5em;
 }
+
 .foot_shape_img {
   height: 60px;
   width: 22px;

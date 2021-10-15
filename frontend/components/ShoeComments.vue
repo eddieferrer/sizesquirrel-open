@@ -258,9 +258,11 @@ export default {
 .pagination {
   margin-top: 0.65em;
 }
+
 .is-no-top-padding {
   padding-top: 0;
 }
+
 .size_gender,
 .match_size_wrapper {
   .size {
@@ -280,6 +282,7 @@ export default {
     font-size: 32px;
   }
 }
+
 .size_gender {
   // padding: 0;
   .size {
@@ -299,15 +302,18 @@ export default {
     font-size: 90%;
     margin-bottom: 0;
   }
+
   .icon-wrapper {
     .footshape {
       height: 34px;
     }
   }
+
   .info {
     float: left;
     margin-left: 0.65em;
   }
+
   span.info_label {
     display: block;
     clear: both;

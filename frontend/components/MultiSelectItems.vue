@@ -148,6 +148,7 @@ export default {
   grid-template-columns: auto 1fr;
   grid-gap: 3px;
 }
+
 .option_img {
   border: 1px solid $gray;
   float: left;
@@ -158,10 +159,12 @@ export default {
   max-width: 52px;
   min-width: 52px;
 }
+
 .option__subtitle {
   padding-top: 4px;
   font-style: italic;
 }
+
 img {
   width: 50px;
 }

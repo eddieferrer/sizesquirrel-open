@@ -391,26 +391,32 @@ label[for='foot_shape'],
 label[for='split_shoe_sizing'] {
   margin-bottom: 1em;
 }
+
 h4.step-heading {
   // margin-top: 1px;
   letter-spacing: 1px;
   text-transform: uppercase;
   font-size: 0.85rem;
 }
+
 .why-text {
   p {
     margin-bottom: 1em;
   }
 }
+
 .multiselect {
   width: 220px;
 }
+
 .previous-link {
   margin-top: 0.65em;
 }
+
 h3 {
   margin-bottom: 0.75rem;
 }
+
 .is-active {
   .steps-marker {
     color: $white;

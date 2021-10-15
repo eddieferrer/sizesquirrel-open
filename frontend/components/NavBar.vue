@@ -129,6 +129,7 @@ $squirrelDarkGray: #131313;
 .navbar.is-dark {
   background-color: $ss-transparent-gray !important;
 }
+
 .navbar.is-dark .navbar-start > a.navbar-item:hover,
 .navbar.is-dark .navbar-start > a.navbar-item.is-active,
 .navbar.is-dark .navbar-start .navbar-link:hover,
@@ -139,6 +140,7 @@ $squirrelDarkGray: #131313;
 .navbar.is-dark .navbar-end .navbar-link.is-active {
   background-color: $ss-transparent-gray;
 }
+
 .navbar-item-brand {
   font-family: Lato, 'Helvetica Neue', Helvetica, Roboto, Arial, sans-serif;
   font-weight: 900;
@@ -146,12 +148,14 @@ $squirrelDarkGray: #131313;
   letter-spacing: 0.05em;
   font-size: 1.3rem;
 }
+
 .navbar-item.brandlogo {
   overflow: visible;
   padding-right: 0;
   padding-bottom: 0;
   padding-top: 0;
   height: 3.5rem;
+
   img {
     max-height: none;
     margin-top: 28px;
@@ -161,12 +165,15 @@ $squirrelDarkGray: #131313;
     height: 88px;
   }
 }
+
 .nohover:hover {
   background-color: transparent !important;
 }
+
 a.navbar-item:hover {
   color: $white;
 }
+
 .pt-2 {
   padding-top: 2rem;
 }

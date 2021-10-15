@@ -66,6 +66,7 @@ export default {
 p {
   margin-bottom: 1em;
 }
+
 ol {
   margin: 0 0 1rem 2rem;
 }

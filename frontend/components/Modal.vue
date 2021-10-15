@@ -34,14 +34,17 @@ export default {
     width: 710px;
   }
 }
+
 @media screen and (min-width: 769px) {
   .modal-card.small {
     width: 510px;
   }
 }
+
 .modal-card {
   overflow-y: auto;
 }
+
 .modal-card-title {
   margin-bottom: 0;
 }

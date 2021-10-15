@@ -58,6 +58,7 @@ export default {
     height: 37px;
     table-layout: fixed;
     background-color: white;
+
     &:hover {
       .sales_buy_now {
         width: 110px;
@@ -106,6 +107,7 @@ export default {
     padding-left: 4px;
     font-size: 19px;
   }
+
   .sales_percent_off {
     &:before {
       position: absolute;
@@ -124,10 +126,12 @@ export default {
     color: $white;
     font-weight: bold;
     background-color: $amazon_red;
+
     @media (max-width: 1280px) and (min-width: 768px) {
       display: none;
     }
   }
+
   .sales_red {
     color: $amazon_red !important;
   }
