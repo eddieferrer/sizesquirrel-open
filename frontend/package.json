@@ -52,7 +52,7 @@
     "eslint-plugin-vue": "^7.19.1",
     "fibers": "^5.0.0",
     "git-revision-webpack-plugin": "^3.0.6",
-    "lint-staged": "^11.2.3",
+    "lint-staged": "^11.2.6",
     "prettier": "^2.4.1",
     "sass": "^1.32.13",
     "sass-loader": "^10.1.1",
