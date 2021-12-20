@@ -68,7 +68,7 @@ No contribution is too small.
     5. Run prerequisite scripts
 
         ```bash
-        python batch_process_feeds dev
+        python batch_process_feeds.py dev
         python manage.py set_stats
         ```
 
