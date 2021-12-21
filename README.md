@@ -31,6 +31,13 @@ No contribution is too small.
 
 ## Instructions for running in development
 
+Recommended software versions:
+
+```bash
+python 3.8.2
+node 14.16
+```
+
 1. Clone Repository
 
     ```bash
