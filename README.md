@@ -51,7 +51,7 @@ node 14.16
     1. Make virtual environment with python3
 
         ```bash
-        mkvirtualenv --python=/usr/bin/python3 sizesquirrel
+        mkvirtualenv --python=/usr/bin/python3.8 sizesquirrel
         ```
 
     2. Activate virtual environment
