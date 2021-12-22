@@ -3,11 +3,13 @@
     display: none;
   }
 }
+
 #mix_container.force-display {
   .item_block:last-child:first-child {
     margin: 0 auto;
   }
 }
+
 #mix_container,
 #mix_vue {
   /* Container
