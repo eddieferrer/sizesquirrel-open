@@ -1,4 +1,4 @@
-alembic==1.7.4
+alembic==1.7.6
 awesome-slugify==1.6.5
 blinker==1.4
 certifi==2021.10.8
