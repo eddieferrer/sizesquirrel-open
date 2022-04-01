@@ -30,7 +30,7 @@ regex==2021.10.8
 requests==2.26
 sentry-sdk==1.4.3
 six==1.16.0
-SQLAlchemy==1.4.25
+SQLAlchemy==1.4.34
 Unidecode==0.04.21
 urllib3==1.26.7
 Werkzeug==1.0.1
