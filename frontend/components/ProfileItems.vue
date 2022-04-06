@@ -35,10 +35,7 @@
             >
               <div class="columns">
                 <div
-                  class="
-                    column
-                    is-one-fifth-desktop is-one-quarter-tablet is-full-mobile
-                  "
+                  class="column is-one-fifth-desktop is-one-quarter-tablet is-full-mobile"
                 >
                   <div class="item_block_image">
                     <span>
@@ -63,10 +60,7 @@
                   <div class="columns">
                     <div class="column">
                       <h2
-                        class="
-                          is-size-4 is-capitalized
-                          has-text-centered-mobile
-                        "
+                        class="is-size-4 is-capitalized has-text-centered-mobile"
                       >
                         <NuxtLink
                           class="has-text-info"
@@ -81,10 +75,7 @@
                         >
                       </h2>
                       <h4
-                        class="
-                          is-size-5 is-capitalized
-                          has-text-centered-mobile
-                        "
+                        class="is-size-5 is-capitalized has-text-centered-mobile"
                       >
                         <NuxtLink
                           class="has-text-info"
@@ -98,12 +89,7 @@
                         >
                       </h4>
                       <h4
-                        class="
-                          shoe_type
-                          has-text-grey
-                          is-italic
-                          has-text-centered-mobile
-                        "
+                        class="shoe_type has-text-grey is-italic has-text-centered-mobile"
                       >
                         {{ user_item.user_item.item.gender.name_pretty }}
                         {{ user_item.user_item.item.type | capitalize }} Shoe

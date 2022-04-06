@@ -16,15 +16,13 @@
             ></ItemListSearchSortServer>
             <div v-if="items.length !== 0">
               <div class="columns is-multiline">
-                <template v-for="shoe in items" :id="'item_' + shoe.item.id">
-                  <div :key="shoe.id" class="column is-6">
-                    <FindMySizeBlock
-                      :shoe="shoe"
-                      :retailers="queryParams.retailer"
-                      :show-shape-stats="pagetype === 'browse'"
-                    ></FindMySizeBlock>
-                  </div>
-                </template>
+                <div v-for="shoe in items" :key="shoe.id" class="column is-6">
+                  <FindMySizeBlock
+                    :shoe="shoe"
+                    :retailers="queryParams.retailer"
+                    :show-shape-stats="pagetype === 'browse'"
+                  ></FindMySizeBlock>
+                </div>
               </div>
             </div>
             <div v-if="items.length === 0" class="fail-message">

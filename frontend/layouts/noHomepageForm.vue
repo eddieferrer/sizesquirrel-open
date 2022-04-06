@@ -53,10 +53,7 @@
           </div>
           <div class="columns is-centered">
             <div
-              class="
-                column
-                is-full-mobile is-two-thirds-desktop is-three-quarters-tablet
-              "
+              class="column is-full-mobile is-two-thirds-desktop is-three-quarters-tablet"
             ></div>
           </div>
         </div>

@@ -19,14 +19,13 @@
             ></ItemListSearchSort>
             <div v-if="getItems.length !== 0">
               <div class="columns is-multiline">
-                <template
+                <div
                   v-for="shoe in paginatedItems"
-                  :id="'item_' + shoe.item.id"
+                  :key="shoe.id"
+                  class="column is-6"
                 >
-                  <div :key="shoe.id" class="column is-6">
-                    <FindMySizeBlock :shoe="shoe"></FindMySizeBlock>
-                  </div>
-                </template>
+                  <FindMySizeBlock :shoe="shoe"></FindMySizeBlock>
+                </div>
               </div>
             </div>
             <div v-if="getItems.length === 0" class="fail-message">

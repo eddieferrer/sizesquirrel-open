@@ -45,12 +45,7 @@
                 class="card-footer"
               >
                 <h6
-                  class="
-                    card-footer-item
-                    is-size-7
-                    has-text-centered
-                    is-paddingless
-                  "
+                  class="card-footer-item is-size-7 has-text-centered is-paddingless"
                 >
                   Your Shape
                 </h6>
