@@ -41,6 +41,7 @@ module.exports = {
       },
     ],
     'vue/no-mutating-props': 'warn',
+    'vue/multi-word-component-names': 0,
   },
   globals: {
     FB: true,

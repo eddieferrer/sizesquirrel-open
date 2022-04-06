@@ -1,5 +1,5 @@
 import Vue from 'vue';
-import VLazyImage from 'v-lazy-image/v2/v-lazy-image.es';
+import VLazyImage from 'v-lazy-image/v2';
 
 const components = { VLazyImage };
 
