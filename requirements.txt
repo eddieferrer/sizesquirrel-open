@@ -22,7 +22,7 @@ MarkupSafe==2.0.1
 matplotlib==3.5.1
 numpy==1.22.3
 passlib==1.7.4
-pipdeptree==2.2.0
+pipdeptree==2.2.1
 pyparsing==2.4.7
 python-dateutil==2.8.2
 python-editor==1.0.4
