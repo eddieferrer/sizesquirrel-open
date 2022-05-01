@@ -23,7 +23,7 @@ matplotlib==3.5.1
 numpy==1.22.3
 passlib==1.7.4
 pipdeptree==2.2.1
-pyparsing==3.0.7
+pyparsing==3.0.8
 python-dateutil==2.8.2
 python-editor==1.0.4
 regex==2022.3.15
