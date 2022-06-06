@@ -21,7 +21,7 @@
     "@nuxtjs/proxy": "^2.1.0",
     "@nuxtjs/pwa": "^3.3.5",
     "@nuxtjs/style-resources": "^1.2.1",
-    "@sentry/browser": "^6.19.4",
+    "@sentry/browser": "^7.0.0",
     "@sentry/integrations": "^6.19.4",
     "bulma": "^0.9.3",
     "bulma-divider": "^0.2.0",
