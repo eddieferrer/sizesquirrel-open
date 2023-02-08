@@ -27,36 +27,8 @@
     <PopularShoes></PopularShoes>
 
     <section class="section">
-      <div class="columns">
-        <div class="column">
-          <h2 class="is-size-4 has-text-centered has-text-primary">News</h2>
-          <h5 class="is-size-5 has-text-centered">Updates from Facebook</h5>
-          <hr />
-          <div class="has-text-centered">
-            <div
-              class="fb-page"
-              data-href="https://www.facebook.com/sizesquirrel/"
-              data-tabs="timeline"
-              data-width="500"
-              data-height="400"
-              data-small-header="false"
-              data-adapt-container-width="true"
-              data-hide-cover="true"
-              data-show-facepile="true"
-            >
-              <blockquote
-                cite="https://www.facebook.com/sizesquirrel/"
-                class="fb-xfbml-parse-ignore"
-              >
-                <a href="https://www.facebook.com/sizesquirrel/"
-                  >SizeSquirrel</a
-                >
-              </blockquote>
-            </div>
-          </div>
-        </div>
-
-        <div class="column">
+      <div class="columns is-centered">
+        <div class="column is-8">
           <h2 class="is-size-4 has-text-centered has-text-primary">
             Contact Us
           </h2>
