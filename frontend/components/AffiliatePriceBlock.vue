@@ -6,7 +6,6 @@
       target="_blank"
       class="is-clearfix"
       :href="datafeed.Product.Buy_Link"
-      @click="sendConversion(datafeed.Product.Buy_Link)"
     >
       <span class="sales_red sales_retailer_price"
         >${{ datafeed.Product.Sale_Price }}</span
@@ -34,15 +33,6 @@ export default {
   },
   data() {
     return {};
-  },
-  methods: {
-    sendConversion(link) {
-      if (this.$gtag) {
-        this.$gtag.event('conversion', {
-          send_to: 'AW-872632887/0ru2CPfGyIUBELekjaAD',
-        });
-      }
-    },
   },
 };
 </script>

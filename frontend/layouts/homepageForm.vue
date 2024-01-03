@@ -12,10 +12,6 @@
       </template> -->
     </loading>
 
-    <client-only>
-      <CookieBanner></CookieBanner>
-    </client-only>
-
     <FlashMessage></FlashMessage>
 
     <section class="hero">
@@ -140,7 +136,6 @@
 import { mapGetters } from 'vuex';
 import Loading from 'vue-loading-overlay';
 
-import CookieBanner from '@/components/CookieBanner';
 import FlashMessage from '@/components/FlashMessage';
 import Footer from '@/components/Footer';
 import ItemMatchForm from '@/components/ItemMatchForm';
@@ -149,7 +144,6 @@ import ShoeBuddies from '@/components/ShoeBuddies';
 
 export default {
   components: {
-    CookieBanner,
     FlashMessage,
     Footer,
     ItemMatchForm,
