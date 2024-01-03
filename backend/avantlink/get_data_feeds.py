@@ -35,9 +35,6 @@ def get_data_feeds():
     # Moosejaw
     urlOpener.retrieve("http://datafeed.avantlink.com/download_feed.php?id=247387&auth=" + current_app.config['AVANT_LINK_AUTH_TOKEN'],
                        current_app.config['DATAFEED_PATH'] + "/moosejaw_datafeed.xml")
-    # Mountain Steals
-    urlOpener.retrieve("http://datafeed.avantlink.com/download_feed.php?id=259517&auth=" + current_app.config['AVANT_LINK_AUTH_TOKEN'],
-                       current_app.config['DATAFEED_PATH'] + "/mountainsteals_datafeed.xml")
     # Outdoor Gear Exchange
     urlOpener.retrieve("http://datafeed.avantlink.com/download_feed.php?id=249021&auth=" + current_app.config['AVANT_LINK_AUTH_TOKEN'],
                        current_app.config['DATAFEED_PATH'] + "/outdoorgearexchange_datafeed.xml")

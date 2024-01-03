@@ -18,7 +18,6 @@ argument_list = [
     '--feed=lasportiva', 
     '--feed=leftlanesports',     
     '--feed=moosejaw', 
-    '--feed=mountainsteals', 
     '--feed=outdoorgearexchange',
     '--feed=rei',     
     '--feed=theclymb'
