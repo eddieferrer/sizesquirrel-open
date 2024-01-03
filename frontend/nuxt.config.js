@@ -165,7 +165,6 @@ const config = {
     { src: '~/plugins/mixins' },
     { src: '~/plugins/lazy-image' },
     { src: '~/plugins/sentry' },
-    { src: '~/plugins/vue-gtag', mode: 'client' },
     { src: '~/plugins/axios' },
   ],
 
