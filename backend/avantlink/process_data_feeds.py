@@ -90,12 +90,6 @@ DATA_FEED_INFO_ARRAY = [
         'retailer_short_name': 'moosejaw'
     },
     {
-        'datafeed': get_datafeed('mountainsteals'),
-        'retailer_logo': 'https://static.avantlink.com/merchant-logos/14683.png',
-        'retailer_name': 'Mountain Steals',
-        'retailer_short_name': 'mountainsteals'
-    },
-    {
         'datafeed': get_datafeed('outdoorgearexchange'),
         'retailer_logo': 'https://static.avantlink.com/merchant-logos/14967.png',
         'retailer_name': 'Outdoor Gear Exchange',

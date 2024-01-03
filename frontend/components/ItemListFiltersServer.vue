@@ -513,7 +513,6 @@ export default {
         'La Sportiva',
         'LeftLane Sports',
         'Moosejaw',
-        'Mountain Steals',
         'Outdoor Gear Exchange',
         'REI',
         'The Clymb',
