@@ -91,6 +91,11 @@ def match_strings(product_title, brand_name, item):
     # lets remove certain annoying words from model
     model = clean_string_for_match(model)
 
+    # Special case for harnesses with same models as shoes
+    # if product title contains 'harness' in lower or upper case return false
+    if 'harness' in product_title.lower():
+        return False
+
     # lets remove annoying words from product title
     product_title = clean_string_for_match(product_title)
 

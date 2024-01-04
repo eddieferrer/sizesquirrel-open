@@ -213,6 +213,28 @@ def process_data_feeds(target_feed, sendDiscountItems = False, sendMissingItems 
                         productAlreadyAdded = True
 
                     # Takes care of some datafeeds which have 1 product with different names per size and skus
+                    # for example backcountry
+                    # TODO! duplicate items still added that have the same first 7 sku digits
+                    # different sizes and different sale prices
+                    if data_feed_info["Retailer_Name"] == 'Backcountry' and \
+                        feed["retailer_name"] == 'Backcountry' and \
+                        data_feed_info["Product"]["Sale_Price"] == product["Sale_Price"] and \
+                        data_feed_info["Product"]["Retail_Price"] == product["Retail_Price"] and \
+                        data_feed_info["Product"]["Brand_Name"] == product["Brand_Name"] and \
+                        data_feed_info["Product"]["SKU"][0:7] == product["SKU"][0:7]:
+                        productAlreadyAdded = True   
+
+                    # Takes care of some datafeeds which have 1 product with different names per size and skus
+                    # for example backcountry
+                    if data_feed_info["Retailer_Name"] == 'Black Diamond Equipment' and \
+                        feed["retailer_name"] == 'Black Diamond Equipment' and \
+                        data_feed_info["Product"]["Sale_Price"] == product["Sale_Price"] and \
+                        data_feed_info["Product"]["Retail_Price"] == product["Retail_Price"] and \
+                        data_feed_info["Product"]["Brand_Name"] == product["Brand_Name"] and \
+                        data_feed_info["Product"]["SKU"][0:10] == product["SKU"][0:10]:
+                        productAlreadyAdded = True   
+
+                    # Takes care of some datafeeds which have 1 product with different names per size and skus
                     # for example lasportiva
                     if data_feed_info["Retailer_Name"] == 'La Sportiva' and \
                         feed["retailer_name"] == 'La Sportiva' and \
