@@ -1,7 +1,7 @@
 alembic==1.7.7
 awesome-slugify==1.6.5
 blinker==1.4
-certifi==2021.10.8
+certifi==2023.11.17
 chardet==4.0.0
 Click==7.1.2
 cycler==0.11.0
