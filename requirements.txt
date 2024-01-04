@@ -32,6 +32,6 @@ sentry-sdk==1.5.8
 six==1.16.0
 SQLAlchemy==1.4.25
 Unidecode==0.04.21
-urllib3==1.26.9
+urllib3==2.1.0
 Werkzeug==1.0.1
 xmltodict==0.12.0
