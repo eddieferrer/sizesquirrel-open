@@ -19,6 +19,10 @@ updates:
       - dependency-name: "sass"
         versions:
         - ">=1.33.0"
+      # keep nuxt and vue locked to v2
+      - dependency-name: "nuxt"
+        versions:
+        - ">=3.0.0"     
       
   # Enable version updates for Python
   - package-ecosystem: "pip"
