@@ -22,7 +22,11 @@ updates:
       # keep nuxt and vue locked to v2
       - dependency-name: "nuxt"
         versions:
-        - ">=3.0.0"     
+        - ">=3.0.0"    
+      # vue-loading-overlay version 3.x for vue2 support
+      - dependency-name: "vue-loading-overlay"
+        versions:
+        - ">=4.0.0"  
       
   # Enable version updates for Python
   - package-ecosystem: "pip"
