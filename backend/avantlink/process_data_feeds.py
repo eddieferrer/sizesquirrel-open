@@ -202,57 +202,24 @@ def process_data_feeds(target_feed, sendDiscountItems = False, sendMissingItems 
                         "Product_Size" in product:
                         productAlreadyAdded = True
 
-                    # Takes care of some datafeeds which have 1 product with different names per size and skus
-                    # for example moosejaw
-                    if data_feed_info["Retailer_Name"] == 'Moosejaw' and \
-                        feed["retailer_name"] == 'Moosejaw' and \
-                        data_feed_info["Product"]["Sale_Price"] == product["Sale_Price"] and \
-                        data_feed_info["Product"]["Retail_Price"] == product["Retail_Price"] and \
+                    # Takes care of some datafeeds which have 1 product with different names per size 
+                    # and different ending digits of skus per size
+                    # for example moosejaw, backcountry, black diamond equipment, lasportiva, outdoor gear exchange
+                    if data_feed_info["Product"]["Retail_Price"] == product["Retail_Price"] and \
                         data_feed_info["Product"]["Brand_Name"] == product["Brand_Name"] and \
-                        data_feed_info["Product"]["SKU"][0:3] == product["SKU"][0:3]:
-                        productAlreadyAdded = True
+                        data_feed_info["Retailer_Name"] == feed["retailer_name"] and \
+                        isSameProduct(data_feed_info["Product"]["SKU"], product["SKU"], feed["retailer_name"]):
+                            productAlreadyAdded = True
 
-                    # Takes care of some datafeeds which have 1 product with different names per size and skus
-                    # for example backcountry
-                    # TODO! duplicate items still added that have the same first 7 sku digits
-                    # different sizes and different sale prices
-                    if data_feed_info["Retailer_Name"] == 'Backcountry' and \
-                        feed["retailer_name"] == 'Backcountry' and \
-                        data_feed_info["Product"]["Sale_Price"] == product["Sale_Price"] and \
-                        data_feed_info["Product"]["Retail_Price"] == product["Retail_Price"] and \
-                        data_feed_info["Product"]["Brand_Name"] == product["Brand_Name"] and \
-                        data_feed_info["Product"]["SKU"][0:7] == product["SKU"][0:7]:
-                        productAlreadyAdded = True   
+                            # special backcountry code
+                            # for case of same product with different sizes and different sale prices
+                            # creating a lot of duplicates on the UI
+                            if float(data_feed_info["Product"]["Sale_Price"]) > float(product["Sale_Price"]) and \
+                                feed["retailer_name"] == 'Backcountry':
+                                #lower sales price for same product, replace entry
+                                data_feed_info["Product"]["Sale_Price"] = product["Sale_Price"]
+                                data_feed_info["Percent_Off"] = int(round(percent_off))
 
-                    # Takes care of some datafeeds which have 1 product with different names per size and skus
-                    # for example backcountry
-                    if data_feed_info["Retailer_Name"] == 'Black Diamond Equipment' and \
-                        feed["retailer_name"] == 'Black Diamond Equipment' and \
-                        data_feed_info["Product"]["Sale_Price"] == product["Sale_Price"] and \
-                        data_feed_info["Product"]["Retail_Price"] == product["Retail_Price"] and \
-                        data_feed_info["Product"]["Brand_Name"] == product["Brand_Name"] and \
-                        data_feed_info["Product"]["SKU"][0:10] == product["SKU"][0:10]:
-                        productAlreadyAdded = True   
-
-                    # Takes care of some datafeeds which have 1 product with different names per size and skus
-                    # for example lasportiva
-                    if data_feed_info["Retailer_Name"] == 'La Sportiva' and \
-                        feed["retailer_name"] == 'La Sportiva' and \
-                        data_feed_info["Product"]["Sale_Price"] == product["Sale_Price"] and \
-                        data_feed_info["Product"]["Retail_Price"] == product["Retail_Price"] and \
-                        data_feed_info["Product"]["Brand_Name"] == product["Brand_Name"] and \
-                        data_feed_info["Product"]["SKU"][0:7] == product["SKU"][0:7]:
-                        productAlreadyAdded = True   
-
-                    # Takes care of some datafeeds which have 1 product with different names per size and skus
-                    # for example Outdoor Gear Exchange
-                    if data_feed_info["Retailer_Name"] == 'Outdoor Gear Exchange' and \
-                        feed["retailer_name"] == 'Outdoor Gear Exchange' and \
-                        data_feed_info["Product"]["Sale_Price"] == product["Sale_Price"] and \
-                        data_feed_info["Product"]["Retail_Price"] == product["Retail_Price"] and \
-                        data_feed_info["Product"]["Brand_Name"] == product["Brand_Name"] and \
-                        data_feed_info["Product"]["SKU"][0:5] == product["SKU"][0:5]:
-                        productAlreadyAdded = True                        
                 # end special code for feeds that have 2 entries for same product
 
                 if productAlreadyAdded is False:
@@ -263,6 +230,7 @@ def process_data_feeds(target_feed, sendDiscountItems = False, sendMissingItems 
                         'Percent_Off': int(round(percent_off))
                     })
                 product["SSMatch"] = True
+
 
     with open(app.config['ROOT_URL'] + 'itemslist', 'wb') as fp:
         pickle.dump(raw_items, fp, protocol=-1)
@@ -474,3 +442,30 @@ def clean_up_feed(feed):
                     filter(None, product["Brand_Name"]))
 
     return feed
+    
+# Function for determining if 2 SKU's are referring to the same product
+# given a retailer name, since retailers have different SKU schemes
+def isSameProduct(sku1, sku2, retailerName):
+    if sku1 == sku2:
+        return True
+    
+    if retailerName == 'Backcountry':
+        if sku1[0:7] == sku2[0:7]:
+            return True
+    elif retailerName == 'Moosejaw':
+        if sku1[0:3] == sku2[0:3]:
+            return True
+
+    elif retailerName == 'Black Diamond Equipment':
+        if sku1[0:10] == sku2[0:10]:
+            return True
+
+    elif retailerName == 'La Sportiva':
+        if sku1[0:7] == sku2[0:7]:
+            return True
+
+    elif retailerName == 'Outdoor Gear Exchange':
+        if sku1[0:5] == sku2[0:5]:
+            return True
+        
+    return False
