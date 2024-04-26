@@ -147,7 +147,6 @@ const config = {
         href: `https://sizesquirrel.com`,
       },
     ],
-    script: [{ src: '/js/fb-sdk.js', body: true }],
   },
 
   // Global CSS (https://go.nuxtjs.dev/config-css)

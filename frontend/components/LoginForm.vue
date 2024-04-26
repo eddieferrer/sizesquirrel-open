@@ -9,19 +9,12 @@
         <p class="has-text-grey">
           <em>Using your Facebook account</em>
         </p>
-        <a
-          :disabled="isFormSubmitting"
-          class="button is-normal is-info"
-          @click="
-            openFbLoginDialog('login', redirect);
-            isFormSubmitting = true;
-          "
-        >
+        <NuxtLink to="/migrate_facebook" class="button is-info is-normal">
           <span id="fbicon" class="icon is-medium">
             <img src="/images/icons/facebook32.png" alt />
           </span>
           <span>Log in using Facebook</span>
-        </a>
+        </NuxtLink>
         <hr />
         <p class="has-text-grey">
           <em>Using your SizeSquirrel username and password</em>
