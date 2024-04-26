@@ -8,30 +8,12 @@
         <p class="is-size-6">
           Register an account for all SizeSquirrel features.
         </p>
-
-        <!-- <p class="has-text-grey">
-              <em>Create an account using Facebook.</em>
-            </p>
-            <a
-              class="button is-normal is-info"
-              :disabled="isFormSubmitting"
-              @click="
-                openFbLoginDialog('register');
-                isFormSubmitting = true;
-              "
-            >
-              <span id="fbicon" class="icon is-medium">
-                <img src="/images/icons/facebook32.png" alt />
-              </span>
-              <span>Register using your Facebook account</span>
-            </a>
-            <hr /> -->
         <p class="has-text-grey">
           <em>Create an account with SizeSquirrel.</em>
         </p>
         <div v-if="registration_error" class="columns">
           <div class="column">
-            <div class="level box is-marginless has-background-danger">
+            <div class="level box is-marginless has-background-danger-dark">
               <span class="message">{{ registration_error | capitalize }}</span>
             </div>
           </div>

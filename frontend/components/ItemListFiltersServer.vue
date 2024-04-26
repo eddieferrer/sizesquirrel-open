@@ -581,7 +581,7 @@ export default {
       })
       .catch(() => {
         this.$store.dispatch('SHOW_FLASH_MESSAGE', {
-          class: 'has-background-danger',
+          class: 'has-background-danger-dark',
           message:
             'There has been a fatal server error. Please reload the page.',
         });

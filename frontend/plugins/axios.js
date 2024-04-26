@@ -18,7 +18,7 @@ export default function ({ $axios, redirect, store, $cookies }) {
       // If these exist vue template handles error
       if (!errorMessage || !errorMessageFeedback) {
         store.dispatch('SHOW_FLASH_MESSAGE', {
-          class: 'has-background-danger',
+          class: 'has-background-danger-dark',
           message:
             'There has been a fatal server error. Please reload the page.',
         });

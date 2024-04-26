@@ -286,7 +286,7 @@ export default {
         })
         .catch((error) => {
           this.$store.dispatch('SHOW_FLASH_MESSAGE', {
-            class: 'has-background-danger',
+            class: 'has-background-danger-dark',
             message: error,
           });
           this.componentState = 'error';
