@@ -147,6 +147,13 @@ const config = {
         href: `https://sizesquirrel.com`,
       },
     ],
+    script: [
+      {
+        src: 'https://static.cloudflareinsights.com/beacon.min.js',
+        'data-cf-beacon': { token: 'd7692eba851245d8adfd076bd92ba1c1' },
+        body: true,
+      },
+    ],
   },
 
   // Global CSS (https://go.nuxtjs.dev/config-css)
