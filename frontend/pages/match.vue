@@ -161,7 +161,7 @@ export default {
           this.componentState = 'error';
           // show error if params missing
           this.$store.dispatch('SHOW_FLASH_MESSAGE', {
-            class: 'has-background-danger',
+            class: 'has-background-danger-dark',
             message:
               'There has been an error. Please restart the process to find a match.',
           });

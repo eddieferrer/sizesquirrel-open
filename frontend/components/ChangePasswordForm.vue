@@ -16,7 +16,7 @@
       <form @submit.prevent="resetPassword">
         <div v-if="password_change_error.general" class="columns">
           <div class="column">
-            <div class="level box is-marginless has-background-danger">
+            <div class="level box is-marginless has-background-danger-dark">
               <span class="message">{{
                 password_change_error.general | capitalize
               }}</span>
