@@ -1,0 +1,17 @@
+{% extends "emails/email_base_text.txt" %}
+
+{% block email_title %}
+Migrate Your Facebook Login
+{% endblock %}
+
+{% block email_content %}
+Your account which was previously linked to Facebook has been migrated to a standard SizeSquirrel account. You will now log in with your username and password.
+
+Your SizeSquirrel username is:
+{{ username }}
+
+Please use the link below to reset your password:
+
+<a href="https://sizesquirrel.com/reset_password?token={{token}}">https://sizesquirrel.com/reset_password?token={{token}}</a>
+
+{% endblock %}

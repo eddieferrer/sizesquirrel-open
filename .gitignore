@@ -23,8 +23,9 @@ production_manage.py
 logs/*
 !logs/.gitkeep 
 
-# Dev database
+# Dev databases
 dev-database.db
+dev-database.back.db
 
 # Temp maintenance file
 maintenance_on.html

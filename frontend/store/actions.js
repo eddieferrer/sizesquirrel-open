@@ -411,6 +411,19 @@ const ITEM_SEARCH = async function (context, { query }) {
   }
 };
 
+const MIGRATE_FACEBOOK = async function (context, { email }) {
+  try {
+    const migrateFb = await this.$axios({
+      url: '/apiv2/user/migratefb/',
+      method: 'POST',
+      data: { email },
+    });
+    return migrateFb;
+  } catch (error) {
+    throw error;
+  }
+};
+
 const POST_ADMIN_MATCH_TEST = async function (context, matchTestItemId) {
   try {
     const adminMatchTest = await this.$axios({
@@ -599,6 +612,7 @@ export default {
   GET_USER,
   INITIALIZE_APP,
   ITEM_SEARCH,
+  MIGRATE_FACEBOOK,
   POST_ADMIN_MATCH_TEST,
   POST_LIST_ITEMS,
   PRIVATE_MATCH,
