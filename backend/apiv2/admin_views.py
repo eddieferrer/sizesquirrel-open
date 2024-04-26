@@ -1,11 +1,7 @@
-import re
-import json
-import pickle
 from collections import Counter
-from sqlalchemy import Float
-from flask import Flask, jsonify, abort, request, g
+from flask import jsonify, request
 from backend import app
-from backend.models import User, User_Item, Item, Brand
+from backend.models import User, User_Item, Item
 from backend.utils import match_strings
 from backend.avantlink.process_data_feeds import DATA_FEED_INFO_ARRAY, clean_up_feed
 

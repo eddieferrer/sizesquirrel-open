@@ -1,7 +1,7 @@
 {% extends "emails/email_base.html" %}
 
 {% block email_title %}
-Reset Your Password
+Migrate Your Facebook Login
 {% endblock %}
 
 {% block email_content %}
@@ -10,12 +10,18 @@ Reset Your Password
       <tr>
       <td valign="top" class="mcnTextContent" style="padding-top: 9px;padding-right: 18px;padding-bottom: 9px;padding-left: 18px;mso-line-height-rule: exactly;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;word-break: break-word;color: #202020;font-family: 'Segoe UI', 'Source Sans Pro', Calibri, Candara, Arial, sans-serif;font-size: 16px;line-height: 150%;text-align: left;">
 
-        <h1 style="display: block;margin: 0;padding: 0;color: #202020;font-family: 'Segoe UI', 'Source Sans Pro', Calibri, Candara, Arial, sans-serif;font-size: 26px;font-style: normal;font-weight: bold;line-height: 125%;letter-spacing: normal;text-align: left;">Reset Your Password</h1>
+        <h1 style="display: block;margin: 0;padding: 0;color: #202020;font-family: 'Segoe UI', 'Source Sans Pro', Calibri, Candara, Arial, sans-serif;font-size: 26px;font-style: normal;font-weight: bold;line-height: 125%;letter-spacing: normal;text-align: left;">Log in to SizeSquirrel</h1>
+        Your account which was previously linked to Facebook has been migrated to a standard SizeSquirrel account. You will now log in with your username and password.
+        <br><br>
+        <h1 style="display: block;margin: 0;padding: 0;color: #202020;font-family: 'Segoe UI', 'Source Sans Pro', Calibri, Candara, Arial, sans-serif;font-size: 26px;font-style: normal;font-weight: bold;line-height: 125%;letter-spacing: normal;text-align: left;">Your SizeSquirrel username is:</h1>
+        <p style="margin: 10px 0;padding: 0;mso-line-height-rule: exactly;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;color: #202020;font-family: 'Segoe UI', 'Source Sans Pro', Calibri, Candara, Arial, sans-serif;font-size: 16px;line-height: 150%;text-align: left;">
+          <h3>{{ username }}</h3>
+          <br><br>
+        </p>
         <p style="margin: 10px 0;padding: 0;mso-line-height-rule: exactly;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;color: #202020;font-family: 'Segoe UI', 'Source Sans Pro', Calibri, Candara, Arial, sans-serif;font-size: 16px;line-height: 150%;text-align: left;">Please use the link below to reset your password:<br><br>
           <a href="https://sizesquirrel.com/reset_password?token={{token}}">https://sizesquirrel.com/reset_password?token={{token}}</a>
           <br><br>
         </p>
-        If you did not request a password reset, you can ignore this email, someone probably typed in your email address by accident.
       </td>
       </tr>
     </tbody>
