@@ -31,7 +31,7 @@
         </p>
         <div v-if="registration_error" class="columns">
           <div class="column">
-            <div class="level box is-marginless has-background-danger">
+            <div class="level box is-marginless has-background-danger-dark">
               <span class="message">{{ registration_error | capitalize }}</span>
             </div>
           </div>

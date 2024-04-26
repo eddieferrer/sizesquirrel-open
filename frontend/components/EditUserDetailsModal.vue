@@ -17,7 +17,7 @@
       <section class="modal-card-body">
         <div v-if="formErrors && showAlert" class="columns">
           <div class="column">
-            <div class="level box is-marginless has-background-danger">
+            <div class="level box is-marginless has-background-danger-dark">
               <span class="has-text-white"
                 >There was an error changing your account details.</span
               >

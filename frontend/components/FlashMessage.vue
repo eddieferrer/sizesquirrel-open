@@ -36,7 +36,7 @@ export default {
       let flashClass = '';
 
       if (this.getParameterByName('deleted')) {
-        flashClass = 'has-background-danger';
+        flashClass = 'has-background-danger-dark';
         message = 'Your account has been deleted.';
       }
       if (this.getParameterByName('changed')) {
@@ -44,7 +44,7 @@ export default {
         message = 'Account details changed. This is your new profile page.';
       }
       if (this.getParameterByName('loginagain')) {
-        flashClass = 'has-background-danger';
+        flashClass = 'has-background-danger-dark';
         message = 'Please login again.';
       }
 

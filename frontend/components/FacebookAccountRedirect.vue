@@ -4,7 +4,7 @@
       <div class="column">
         <div
           v-if="fb_login_error != ''"
-          class="level box is-marginless has-background-danger"
+          class="level box is-marginless has-background-danger-dark"
         >
           <span class="has-text-white">{{ fb_login_error | capitalize }}</span>
         </div>
