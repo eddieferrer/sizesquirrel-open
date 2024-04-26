@@ -46,30 +46,6 @@ if (!Vue.__my_mixin__) {
           return undefined;
         }
       },
-      openFbLoginDialog(formType, redirect) {
-        if (process.browser) {
-          // prod appId
-          let appId = '943851385727348';
-          let protocol = 'https';
-          let port = '';
-          if (window.location.hostname === 'localhost') {
-            // dev appId
-            protocol = 'http';
-            port = ':3000';
-            appId = '944781472301006';
-          }
-          const redirecturi = `${protocol}://${window.location.hostname}${port}/facebookcallback_${formType}/`;
-          const stateParams = {
-            redirect,
-            time: new Date().getTime(), // Not currently used
-          };
-
-          const facebookURL = `https://www.facebook.com/v5.0/dialog/oauth?client_id=${appId}&redirect_uri=${redirecturi}&response_type=token&scope=email&state=${JSON.stringify(
-            stateParams
-          )}`;
-          window.location.href = facebookURL;
-        }
-      },
     },
   });
 }

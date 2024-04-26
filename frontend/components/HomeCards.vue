@@ -94,7 +94,7 @@
               <h4>Register for an account. Its completely free.</h4>
               <p>
                 We wont spam you. We wont sell your information. All you need is
-                an email address, or log in with your Facebook account.
+                an email address.
               </p>
             </div>
           </div>
