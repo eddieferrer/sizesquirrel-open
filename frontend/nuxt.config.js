@@ -48,7 +48,7 @@ const config = {
           'Your climbing shoe resource. Climbing shoe sales, find your size for any climbing shoe, recommendations based on foot shape, and more.',
       },
       { name: 'author', content: 'SizeSquirrel' },
-      { name: 'copyright', content: 'SizeSquirrel, Copyright (c) 2021' },
+      { name: 'copyright', content: 'SizeSquirrel, Copyright (c) 2024' },
       { property: 'fb:app_id', content: '943851385727348' },
 
       // Google / Schema.org markup:
