@@ -155,7 +155,7 @@ const config = {
     script: [
       {
         src: 'https://static.cloudflareinsights.com/beacon.min.js',
-        'data-cf-beacon': { token: 'd7692eba851245d8adfd076bd92ba1c1' },
+        'data-cf-beacon': '{"token": "d7692eba851245d8adfd076bd92ba1c1"}',
         body: true,
       },
     ],
