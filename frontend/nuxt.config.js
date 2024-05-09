@@ -138,6 +138,11 @@ const config = {
         property: 'og:image:alt',
         content: 'SizeSquirrel',
       },
+      // flex offers
+      {
+        name: 'fo-verify',
+        content: 'beead7dd-3a89-4175-b9b0-422548db1dd3',
+      },
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
@@ -150,7 +155,7 @@ const config = {
     script: [
       {
         src: 'https://static.cloudflareinsights.com/beacon.min.js',
-        'data-cf-beacon': { token: 'd7692eba851245d8adfd076bd92ba1c1' },
+        'data-cf-beacon': '{"token": "d7692eba851245d8adfd076bd92ba1c1"}',
         body: true,
       },
     ],

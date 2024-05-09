@@ -591,7 +591,7 @@ class User_Item(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     user = relationship('User')
     item_id = db.Column(db.Integer, db.ForeignKey('item.id'))
-    item = relationship('Item')
+    item = relationship('Item', overlaps='user_items')
     rating = db.Column(db.Integer)
     size = db.Column(db.Integer, nullable=False)
     comments = db.Column(db.UnicodeText())
