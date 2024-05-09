@@ -33,8 +33,7 @@
             <div class="columns">
               <div class="column">
                 <p>
-                  &quot;
-                  <em>{{ comment.comments }}</em
+                  &quot;<em>{{ comment.comments }}</em
                   >&quot;
                   <br />
                   <NuxtLink
@@ -47,8 +46,10 @@
                 </p>
               </div>
             </div>
-            <div class="columns is-mobile">
-              <div class="column is-narrow is-no-top-padding">
+            <div
+              class="is-flex is-flex-direction-row is-flex-wrap-wrap is-justify-content-space-between"
+            >
+              <div class="is-flex-shrink-0">
                 <span class="icon-wrapper">
                   <svg-icon icon="fi-star"></svg-icon>
                 </span>
@@ -60,7 +61,7 @@
                   </span>
                 </div>
               </div>
-              <div class="column is-narrow is-no-top-padding">
+              <div class="is-flex-shrink-0">
                 <span class="icon-wrapper">
                   <img src="/images/icon_fit.png" alt="shoe fit icon" />
                 </span>
@@ -71,7 +72,7 @@
                   </span>
                 </div>
               </div>
-              <div class="column is-narrow is-no-top-padding">
+              <div class="is-flex-shrink-0">
                 <span class="icon-wrapper">
                   <img
                     src="/images/icon_footshape.png"
@@ -93,51 +94,14 @@
             <hr />
           </div>
         </div>
-        <div v-if="numberOfPages > 1" class="columns is-centered">
-          <div class="column is-10 has-text-centered">
-            Showing {{ startIndex + 1 }} - {{ endIndex }} of
-            {{ getComments.length }} comments
-            <nav
-              class="pagination is-centered"
-              role="navigation"
-              aria-label="pagination"
-            >
-              <ul class="pagination-list">
-                <li>
-                  <a
-                    class="pagination-link"
-                    aria-label="Go to previous"
-                    :disabled="active_page == 1 ? true : false"
-                    @click.prevent.stop="
-                      active_page != 1
-                        ? (active_page = active_page - 1)
-                        : (active_page = 1)
-                    "
-                    >&laquo;</a
-                  >
-                </li>
-                <li v-for="page_number in numberOfPages" :key="page_number">
-                  <a
-                    class="pagination-link"
-                    :class="{ 'is-current': page_number == active_page }"
-                    :aria-label="'Goto page ' + page_number"
-                    @click.prevent.stop="active_page = page_number"
-                    >{{ page_number }}</a
-                  >
-                </li>
-                <li>
-                  <a
-                    class="pagination-link"
-                    aria-label="Go to next"
-                    :disabled="active_page == numberOfPages ? true : false"
-                    @click.prevent.stop="active_page = active_page + 1"
-                    >&raquo;</a
-                  >
-                </li>
-              </ul>
-            </nav>
-          </div>
-        </div>
+
+        <Pagination
+          :total="getComments.length"
+          :per-page="10"
+          noun="comments"
+          :current-page="currentPage"
+          @pagechanged="onPageChange"
+        />
       </template>
     </div>
   </div>
@@ -145,12 +109,12 @@
 
 <script>
 import SvgIcon from '@/components/SvgIcon';
-
 import ItemListSearchSort from '@/components/ItemListSearchSort';
+import Pagination from '@/components/Pagination';
 
 export default {
   name: 'ShoeComments',
-  components: { ItemListSearchSort, SvgIcon },
+  components: { ItemListSearchSort, SvgIcon, Pagination },
   props: {
     comments: {
       type: Array,
@@ -169,24 +133,14 @@ export default {
     return {
       sort: 'rating',
       sort_order: 'desc',
-      active_page: 1,
+      currentPage: 1,
+      startIndex: 0,
+      endIndex: 9,
     };
   },
   computed: {
-    numberOfPages() {
-      return Math.ceil(this.getComments.length / 10);
-    },
-    startIndex() {
-      return (this.active_page - 1) * 10;
-    },
-    endIndex() {
-      if (this.startIndex + 10 > this.getComments.length) {
-        return this.getComments.length;
-      }
-      return this.startIndex + 10;
-    },
     paginatedComments() {
-      return this.getComments.slice(this.startIndex, this.endIndex);
+      return this.getComments.slice(this.startIndex, this.endIndex + 1);
     },
     getComments() {
       // deep copy of comments
@@ -242,7 +196,9 @@ export default {
   },
   methods: {
     resetPages() {
-      this.active_page = 1;
+      this.currentPage = 1;
+      this.startIndex = 0;
+      this.endIndex = 9;
     },
     changeSortOrder(value) {
       this.sort_order = value;
@@ -250,15 +206,16 @@ export default {
     changeSortValue(value) {
       this.sort = value;
     },
+    onPageChange(page, startIndex, endIndex) {
+      this.currentPage = page;
+      this.startIndex = startIndex;
+      this.endIndex = endIndex;
+    },
   },
 };
 </script>
 
 <style scoped lang="scss">
-.pagination {
-  margin-top: 0.65em;
-}
-
 .is-no-top-padding {
   padding-top: 0;
 }

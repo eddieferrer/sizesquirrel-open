@@ -94,3 +94,17 @@
     content: "...";
   }
 }
+
+@media screen and (max-width: 768px) {
+  .pagination-list li {
+      flex-grow:0;
+  }
+}
+
+@media screen and (min-width: 769px) {
+  .pagination-previous, .pagination-next, .pagination-link, .pagination-ellipsis {
+    margin-bottom: 0.25rem;
+    margin-top: 0.25rem;
+  }
+}
+

@@ -612,16 +612,18 @@ def get_items_popular():
 def get_shoe_details(shoe_id):
     shoe = Item.query.filter_by(id=shoe_id).first()
 
-    match_users = User_Item.query.filter(and_(User_Item.comments != '', User_Item.item_id == shoe_id)).all()
+    match_users = User_Item.query.filter(and_(func.length(User_Item.comments) > 3, User_Item.comments != '', User_Item.item_id == shoe_id)).all()
     match_users_with_comments = []
     for match_user in match_users:
         match_users_with_comments.append({
+            'id': match_user.id,
             'user_id': match_user.user_id,
             'size': match_user.size,
             'size_standard': match_user.size_standard,
             'target_item_size_in': match_user.size_in,
             'target_item_id': match_user.item_id,
             'comments': match_user.comments,
+            'comments_date_readable': match_user.comments_date_readable,
             'rating': match_user.rating,
             'fit_descriptor': match_user.fit_descriptor,
             'user': match_user.user.serialize_public()
@@ -662,6 +664,7 @@ def edit_user_item():
     if user_item and user_item.user_id == user_id:
         user_item.rating = rating
         user_item.comments = comments
+        user_item.comments_date = datetime.datetime.now()
         user_item.size_in = convert_shoe_size_to_inches(size)
         user_item.size = size
         user_item.fit = fit
@@ -685,7 +688,8 @@ def new_user_item():
 
     if item_id and user_id:
         new_user_item = User_Item(user_id=user_id, item_id=item_id, rating=rating, size=size,
-                                  size_in=convert_shoe_size_to_inches(size), comments=comments, fit=fit)
+                                  size_in=convert_shoe_size_to_inches(size), comments=comments, 
+                                  comments_date=datetime.datetime.now(), fit=fit)
         db.session.add(new_user_item)
         db.session.commit()
         shoe_stats(item_id)

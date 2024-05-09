@@ -33,51 +33,13 @@
             </div>
           </div>
         </div>
-        <div v-if="numberOfPages > 1" class="columns is-centered">
-          <div class="column is-10 has-text-centered">
-            Showing {{ startIndex + 1 }} - {{ endIndex }} of
-            {{ getItems.length }} items
-            <nav
-              class="pagination is-centered"
-              role="navigation"
-              aria-label="pagination"
-            >
-              <ul class="pagination-list">
-                <li>
-                  <a
-                    class="pagination-link"
-                    aria-label="Go to previous"
-                    :disabled="active_page == 1 ? true : false"
-                    @click.prevent.stop="
-                      active_page != 1
-                        ? (active_page = active_page - 1)
-                        : (active_page = 1)
-                    "
-                    >&laquo;</a
-                  >
-                </li>
-                <li v-for="page_number in numberOfPages" :key="page_number">
-                  <a
-                    class="pagination-link"
-                    :class="{ 'is-current': page_number == active_page }"
-                    :aria-label="'Goto page ' + page_number"
-                    @click.prevent.stop="active_page = page_number"
-                    >{{ page_number }}</a
-                  >
-                </li>
-                <li>
-                  <a
-                    class="pagination-link"
-                    aria-label="Go to next"
-                    :disabled="active_page == numberOfPages ? true : false"
-                    @click.prevent.stop="active_page = active_page + 1"
-                    >&raquo;</a
-                  >
-                </li>
-              </ul>
-            </nav>
-          </div>
-        </div>
+        <Pagination
+          :total="getItems.length"
+          :per-page="30"
+          noun="shoes"
+          :current-page="currentPage"
+          @pagechanged="onPageChange"
+        />
       </div>
     </div>
   </ComponentLoader>
@@ -88,14 +50,16 @@ import ComponentLoader from '@/components/ComponentLoader';
 import BrandItemListFilters from '@/components/BrandItemListFilters';
 import ItemListSearchSort from '@/components//ItemListSearchSort';
 import FindMySizeBlock from '@/components/FindMySizeBlock';
+import Pagination from '@/components/Pagination';
 
 export default {
   name: 'BrandItems',
   components: {
-    FindMySizeBlock,
     BrandItemListFilters,
-    ItemListSearchSort,
     ComponentLoader,
+    FindMySizeBlock,
+    ItemListSearchSort,
+    Pagination,
   },
   props: {
     target: {
@@ -116,30 +80,20 @@ export default {
       brand: [],
       min_rating: undefined,
       max_rating: undefined,
-      active_page: 1,
       items: [],
       foot_shape: {
         shape: undefined,
         min: undefined,
         max: undefined,
       },
+      currentPage: 1,
+      startIndex: 0,
+      endIndex: 29,
     };
   },
   computed: {
-    numberOfPages() {
-      return Math.ceil(this.getItems.length / 30);
-    },
-    startIndex() {
-      return (this.active_page - 1) * 30;
-    },
-    endIndex() {
-      if (this.startIndex + 30 > this.getItems.length) {
-        return this.getItems.length;
-      }
-      return this.startIndex + 30;
-    },
     paginatedItems() {
-      return this.getItems.slice(this.startIndex, this.endIndex);
+      return this.getItems.slice(this.startIndex, this.endIndex + 1);
     },
     getItems() {
       // deep copy of items
@@ -313,7 +267,14 @@ export default {
       this.shoe_type = [];
     },
     resetPages() {
-      this.active_page = 1;
+      this.currentPage = 1;
+      this.startIndex = 0;
+      this.endIndex = 29;
+    },
+    onPageChange(page, startIndex, endIndex) {
+      this.currentPage = page;
+      this.startIndex = startIndex;
+      this.endIndex = endIndex;
     },
     changeSortOrder(value) {
       this.sort_order = value;
@@ -327,9 +288,3 @@ export default {
   },
 };
 </script>
-
-<style scoped lang="scss">
-.pagination {
-  margin-top: 0.65em;
-}
-</style>
