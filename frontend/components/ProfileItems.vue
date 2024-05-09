@@ -191,52 +191,13 @@
           </div>
         </div>
       </div>
-      <div v-if="numberOfPages > 1" class="columns is-centered">
-        <div class="column is-10 has-text-centered">
-          Showing {{ startIndex + 1 }} - {{ endIndex }} of
-          {{ getItems.length }} items
-          <nav
-            class="pagination is-centered"
-            role="navigation"
-            aria-label="pagination"
-          >
-            <ul class="pagination-list">
-              <li>
-                <a
-                  class="pagination-link"
-                  aria-label="Go to previous"
-                  :disabled="active_page == 1 ? true : false"
-                  @click.prevent.stop="
-                    active_page != 1
-                      ? (active_page = active_page - 1)
-                      : (active_page = 1)
-                  "
-                  >&laquo;</a
-                >
-              </li>
-              <li v-for="page_number in numberOfPages" :key="page_number">
-                <a
-                  class="pagination-link"
-                  :class="{ 'is-current': page_number == active_page }"
-                  :aria-label="'Goto page ' + page_number"
-                  @click.prevent.stop="active_page = page_number"
-                  >{{ page_number }}</a
-                >
-              </li>
-              <li>
-                <a
-                  class="pagination-link"
-                  aria-label="Go to next"
-                  :disabled="active_page == numberOfPages ? true : false"
-                  @click.prevent.stop="active_page = active_page + 1"
-                  >&raquo;</a
-                >
-              </li>
-            </ul>
-          </nav>
-        </div>
-      </div>
-
+      <Pagination
+        :total="getItems.length"
+        :per-page="10"
+        noun="shoes"
+        :current-page="currentPage"
+        @pagechanged="onPageChange"
+      />
       <template v-if="isMyProfile">
         <ProfileAddItemForm></ProfileAddItemForm>
         <!-- modals -->
@@ -264,6 +225,7 @@ import EditItemModal from '@/components/EditItemModal';
 import ConfirmDeleteModal from '@/components/ConfirmDeleteModal';
 import ItemListSearchSort from '@/components/ItemListSearchSort';
 import ProfileAddItemForm from '@/components/ProfileAddItemForm';
+import Pagination from '@/components/Pagination';
 
 export default {
   name: 'ProfileItems',
@@ -274,15 +236,17 @@ export default {
     EditItemModal,
     ConfirmDeleteModal,
     ItemListSearchSort,
+    Pagination,
     ProfileAddItemForm,
     SvgIcon,
   },
-  props: [],
   data() {
     return {
       sort: 'model',
       sort_order: 'asc',
-      active_page: 1,
+      currentPage: 1,
+      startIndex: 0,
+      endIndex: 9,
       selectedItem: {
         item: {
           brand: {
@@ -301,20 +265,8 @@ export default {
       return this.profile.items;
     },
     ...mapGetters(['profile', 'isMyProfile']),
-    numberOfPages() {
-      return Math.ceil(this.getItems.length / 50);
-    },
-    startIndex() {
-      return (this.active_page - 1) * 50;
-    },
-    endIndex() {
-      if (this.startIndex + 50 > this.getItems.length) {
-        return this.getItems.length;
-      }
-      return this.startIndex + 50;
-    },
     paginatedItems() {
-      return this.getItems.slice(this.startIndex, this.endIndex);
+      return this.getItems.slice(this.startIndex, this.endIndex + 1);
     },
     getItems() {
       // deep copy of items
@@ -379,7 +331,14 @@ export default {
       this.showEditItemModal = true;
     },
     resetPages() {
-      this.active_page = 1;
+      this.currentPage = 1;
+      this.startIndex = 0;
+      this.endIndex = 9;
+    },
+    onPageChange(page, startIndex, endIndex) {
+      this.currentPage = page;
+      this.startIndex = startIndex;
+      this.endIndex = endIndex;
     },
     changeSortOrder(value) {
       this.sort_order = value;
@@ -431,14 +390,6 @@ span.info-label {
     width: 100%;
     overflow: hidden;
   }
-}
-
-.pagination {
-  margin-top: 0.65em;
-}
-
-.is-no-top-padding {
-  padding-top: 0;
 }
 
 .size_gender,

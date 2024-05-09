@@ -597,7 +597,8 @@ class User_Item(db.Model):
     comments = db.Column(db.UnicodeText())
     fit = db.Column(db.Integer, default=2)
     size_in = db.Column(db.String(64), nullable=False)
-    
+    comments_date = Column(DateTime, default=datetime.datetime.utcnow)
+
     @property
     def shoe_size(self):
         return convert_shoe_size_to_standards(self.size_in)
@@ -618,6 +619,12 @@ class User_Item(db.Model):
         if self.fit == 3:
             return "Comfortable"
 
+    @property
+    def comments_date_readable(self):
+        if self.comments_date is None:
+            return None
+        return self.comments_date.strftime('%m-%d-%Y')
+    
     def serialize(self):
         return {
             'id': self.id,
@@ -626,6 +633,7 @@ class User_Item(db.Model):
             'item': self.item.serialize(),
             'rating': self.rating,
             'comments': self.comments,
+            'comments_date_readable': self.comments_date_readable,
             'fit': self.fit,
             'fit_descriptor': self.fit_descriptor,
             'size': self.size,

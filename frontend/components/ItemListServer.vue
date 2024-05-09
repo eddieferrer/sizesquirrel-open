@@ -30,52 +30,13 @@
             </div>
           </div>
         </div>
-        <div class="columns is-centered">
-          <div v-if="total_items > 0" class="column is-10 has-text-centered">
-            Showing {{ startIndex + 1 }} - {{ endIndex }} of
-            {{ total_items }} items
-            <nav
-              v-if="numberOfPages > 1"
-              class="pagination is-centered"
-              role="navigation"
-              aria-label="pagination"
-            >
-              <ul class="pagination-list">
-                <li>
-                  <a
-                    class="pagination-link"
-                    aria-label="Go to previous"
-                    :disabled="queryParams.page == 1 ? true : false"
-                    @click.prevent.stop="
-                      queryParams.page != 1
-                        ? changePage(queryParams.page - 1)
-                        : null
-                    "
-                    >&laquo;</a
-                  >
-                </li>
-                <li v-for="page_number in numberOfPages" :key="page_number">
-                  <a
-                    class="pagination-link"
-                    :class="{ 'is-current': page_number == queryParams.page }"
-                    :aria-label="'Goto page ' + page_number"
-                    @click.prevent.stop="changePage(page_number)"
-                    >{{ page_number }}</a
-                  >
-                </li>
-                <li>
-                  <a
-                    class="pagination-link"
-                    aria-label="Go to next"
-                    :disabled="queryParams.page == numberOfPages ? true : false"
-                    @click.prevent.stop="changePage(queryParams.page + 1)"
-                    >&raquo;</a
-                  >
-                </li>
-              </ul>
-            </nav>
-          </div>
-        </div>
+        <Pagination
+          :total="total_items"
+          :per-page="items_per_page"
+          noun="shoes"
+          :current-page="queryParams.page"
+          @pagechanged="changePage"
+        />
       </div>
     </div>
   </ComponentLoader>
@@ -86,10 +47,12 @@ import ComponentLoader from '@/components/ComponentLoader';
 import ItemListFiltersServer from '@/components/ItemListFiltersServer';
 import ItemListSearchSortServer from '@/components/ItemListSearchSortServer';
 import FindMySizeBlock from '@/components/FindMySizeBlock';
+import Pagination from '@/components/Pagination';
 
 export default {
   name: 'ItemListServer',
   components: {
+    Pagination,
     FindMySizeBlock,
     ItemListFiltersServer,
     ItemListSearchSortServer,
@@ -135,20 +98,6 @@ export default {
         search: undefined,
       },
     };
-  },
-  computed: {
-    numberOfPages() {
-      return Math.ceil(this.total_items / this.items_per_page);
-    },
-    startIndex() {
-      return (this.queryParams.page - 1) * this.items_per_page;
-    },
-    endIndex() {
-      if (this.startIndex + this.items_per_page > this.total_items) {
-        return this.total_items;
-      }
-      return this.startIndex + this.items_per_page;
-    },
   },
   watch: {
     '$route.query': {
@@ -355,9 +304,3 @@ export default {
   },
 };
 </script>
-
-<style scoped lang="scss">
-.pagination {
-  margin-top: 0.65em;
-}
-</style>

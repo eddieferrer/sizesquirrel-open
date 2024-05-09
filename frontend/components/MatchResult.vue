@@ -414,14 +414,6 @@ span.info-label {
   }
 }
 
-.pagination {
-  margin-top: 0.65em;
-}
-
-.is-no-top-padding {
-  padding-top: 0;
-}
-
 .size_gender,
 .match_size_wrapper {
   .size {

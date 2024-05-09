@@ -71,6 +71,9 @@
                 <option v-if="pagetype === 'comments'" value="size">
                   Size
                 </option>
+                <option v-if="pagetype === 'comments'" value="id">
+                  Latest
+                </option>
                 <option
                   v-if="include_pricing"
                   value="datafeeds.Product.Retail_Price"
