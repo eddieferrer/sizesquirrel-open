@@ -8,9 +8,6 @@ def get_data_feeds():
     print(currentDate)
     print("Getting Data Feeds...")
     urlOpener = urllib.request.URLopener()
-    # adidas Outdoor
-    urlOpener.retrieve("http://datafeed.avantlink.com/download_feed.php?id=254501&auth=" + current_app.config['AVANT_LINK_AUTH_TOKEN'],
-                       current_app.config['DATAFEED_PATH'] + "/adidas_outdoor_datafeed.xml")
     # BackCountry.com
     urlOpener.retrieve("http://datafeed.avantlink.com/download_feed.php?id=246199&auth=" + current_app.config['AVANT_LINK_AUTH_TOKEN'],
                        current_app.config['DATAFEED_PATH'] + "/backcountry_datafeed.xml")
@@ -29,9 +26,6 @@ def get_data_feeds():
     # LaSportiva
     urlOpener.retrieve("http://datafeed.avantlink.com/download_feed.php?id=262033&auth=" + current_app.config['AVANT_LINK_AUTH_TOKEN'],
                        current_app.config['DATAFEED_PATH'] + "/lasportiva_datafeed.xml")
-    # Left Lane Sports
-    urlOpener.retrieve("http://datafeed.avantlink.com/download_feed.php?id=255397&auth=" + current_app.config['AVANT_LINK_AUTH_TOKEN'],
-                       current_app.config['DATAFEED_PATH'] + "/leftlanesports_datafeed.xml")
     # Moosejaw
     urlOpener.retrieve("http://datafeed.avantlink.com/download_feed.php?id=247387&auth=" + current_app.config['AVANT_LINK_AUTH_TOKEN'],
                        current_app.config['DATAFEED_PATH'] + "/moosejaw_datafeed.xml")
@@ -41,8 +35,5 @@ def get_data_feeds():
     # REI
     urlOpener.retrieve("http://datafeed.avantlink.com/download_feed.php?id=247391&auth=" + current_app.config['AVANT_LINK_AUTH_TOKEN'],
                        current_app.config['DATAFEED_PATH'] + "/rei_datafeed.xml")
-    # The Clymb
-    urlOpener.retrieve("http://datafeed.avantlink.com/download_feed.php?id=255401&auth=" + current_app.config['AVANT_LINK_AUTH_TOKEN'],
-                       current_app.config['DATAFEED_PATH'] + "/theclymb_datafeed.xml")
 
     print("Done Getting Data Feeds...")

@@ -504,18 +504,15 @@ export default {
   data() {
     return {
       allRetailers: [
-        'Adidas Outdoor / Five Ten',
         'Backcountry',
         'Bent Gate',
         'Black Diamond Equipment',
         'Camp Saver',
         'Eastern Mountain Sports',
         'La Sportiva',
-        'LeftLane Sports',
         'Moosejaw',
         'Outdoor Gear Exchange',
         'REI',
-        'The Clymb',
       ],
 
       accordionType: true,

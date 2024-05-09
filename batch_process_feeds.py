@@ -9,18 +9,15 @@ else:
     process = 'production_manage.py'
 
 argument_list = [
-    '--feed=adidas_outdoor', 
     '--feed=backcountry',
     '--feed=bentgate', 
     '--feed=blackdiamondequipment',
     '--feed=campsaver',     
     '--feed=ems', 
     '--feed=lasportiva', 
-    '--feed=leftlanesports',     
     '--feed=moosejaw', 
     '--feed=outdoorgearexchange',
     '--feed=rei',     
-    '--feed=theclymb'
 ]
 
 currentDate = datetime.datetime.today()

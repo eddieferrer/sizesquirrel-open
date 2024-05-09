@@ -36,12 +36,6 @@ def get_datafeed(retailer):
 
 DATA_FEED_INFO_ARRAY = [
     {
-        'datafeed': get_datafeed('adidas_outdoor'),
-        'retailer_logo': 'https://static.avantlink.com/merchant-logos/13298.png',
-        'retailer_name': 'Adidas Outdoor / Five Ten',
-        'retailer_short_name': 'adidas_outdoor'
-    },
-    {
         'datafeed': get_datafeed('backcountry'),
         'retailer_logo': 'https://static.avantlink.com/merchant-logos/10060.png',
         'retailer_name': 'Backcountry',
@@ -78,12 +72,6 @@ DATA_FEED_INFO_ARRAY = [
         'retailer_short_name': 'lasportiva'
     },
     {
-        'datafeed': get_datafeed('leftlanesports'),
-        'retailer_logo': 'https://static.avantlink.com/merchant-logos/10965.png',
-        'retailer_name': 'LeftLane Sports',
-        'retailer_short_name': 'leftlanesports'
-    },
-    {
         'datafeed': get_datafeed('moosejaw'),
         'retailer_logo': 'https://static.avantlink.com/merchant-logos/10086.png',
         'retailer_name': 'Moosejaw',
@@ -100,12 +88,6 @@ DATA_FEED_INFO_ARRAY = [
         'retailer_logo': 'https://static.avantlink.com/merchant-logos/10248.png',
         'retailer_name': 'REI',
         'retailer_short_name': 'rei'
-    },
-    {
-        'datafeed': get_datafeed('theclymb'),
-        'retailer_logo': 'https://static.avantlink.com/merchant-logos/10845.png',
-        'retailer_name': 'The Clymb',
-        'retailer_short_name': 'theclymb'
     }
 ]
 
