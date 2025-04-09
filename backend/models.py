@@ -354,7 +354,7 @@ class Gender(db.Model):
 # 29|rock on|US
 # 30|acopa|US
 # 31|wildclimb|EUR
-
+# 32|garra|EUR
 
 
 CONSTANT_BRANDS = [
@@ -388,7 +388,8 @@ CONSTANT_BRANDS = [
     'unparallel',
     'rock on', 
     'acopa',
-    'wildclimb']
+    'wildclimb', 
+    'garra']
 
 
 class Brand(db.Model):

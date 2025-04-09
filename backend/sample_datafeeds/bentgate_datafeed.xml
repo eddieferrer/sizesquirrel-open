@@ -1,3 +1,97 @@
 <?xml version="1.0" encoding="us-ascii"?>
 <Products>
+	<Product>
+		<SKU>27543885</SKU>
+		<Manufacturer_Id></Manufacturer_Id>
+		<Brand_Name>Scarpa</Brand_Name>
+		<Product_Name>Scarpa Scarpa Vapor V Rock Climbing Shoe</Product_Name>
+		<Long_Description>A percise, versatile and best-selling shoe that marries a comfortable fit with steep climbing performance, the redesigned Vapor V features fresh colors, a microfiber upper and our Bi-Tension(TM) active rand for a premium combo of durability and sensitivity.</Long_Description>
+		<Short_Description></Short_Description>
+		<Department>Climbing &gt; Climbing Shoes</Department>
+		<Category></Category>
+		<SubCategory></SubCategory>
+		<Thumb_URL>http://i3.avlws.com/1725/s129071.png</Thumb_URL>
+		<Image_URL>http://i3.avlws.com/1725/l129071.png</Image_URL>
+		<Buy_Link>https://classic.avantlink.com/click.php?p=246471&amp;pw=197019&amp;pt=3&amp;pri=129071&amp;tt=df</Buy_Link>
+		<Keywords></Keywords>
+		<Reviews></Reviews>
+		<Retail_Price>199.00</Retail_Price>
+		<Sale_Price>119.99</Sale_Price>
+		<Brand_Page_Link></Brand_Page_Link>
+		<Brand_Logo_Image></Brand_Logo_Image>
+		<Product_Page_View_Tracking>&lt;img src=&quot;https://classic.avantlink.com/dfpv.php?p=246471&amp;amp;pri=129071&quot; width=&quot;0&quot; height=&quot;0&quot; style=&quot;border: none !important; margin: 0px !important;&quot; alt=&quot;&quot; /&gt;</Product_Page_View_Tracking>
+		<Product_Parent_Grouping_Id></Product_Parent_Grouping_Id>
+		<Product_Color></Product_Color>
+		<Product_Size></Product_Size>
+		<Product_Pattern></Product_Pattern>
+		<Product_Material></Product_Material>
+		<Product_Weight></Product_Weight>
+		<Product_Age_Group></Product_Age_Group>
+		<Product_Gender></Product_Gender>
+		<Product_UPC></Product_UPC>
+		<Product_GTIN>666898795741</Product_GTIN>
+		<Product_GUID></Product_GUID>
+		<Product_Sale_Price_Effective_Date></Product_Sale_Price_Effective_Date>
+		<Product_Availability>in stock</Product_Availability>
+		<Product_Visibility></Product_Visibility>
+		<Product_Model_Number></Product_Model_Number>
+		<Product_Quantity></Product_Quantity>
+		<Product_Alternate_Buy_URL></Product_Alternate_Buy_URL>
+		<Product_Alternate_Product_ID></Product_Alternate_Product_ID>
+		<Product_Alternate_Image_ID></Product_Alternate_Image_ID>
+		<Medium_Image_URL>http://i3.avlws.com/1725/m129071.png</Medium_Image_URL>
+		<Product_Content_Widget>&lt;script type=&quot;text/javascript&quot; src=&quot;https://classic.avantlink.com/apcw.php?mode=5&amp;amp;pw=197019&amp;amp;df=1725&amp;amp;sku=27543885&amp;amp;link=&amp;amp;tabs=-Details&quot;&gt;&lt;/script&gt;</Product_Content_Widget>
+		<Google_Categorization></Google_Categorization>
+		<Item_Based_Commission></Item_Based_Commission>
+		<Extended_Xml_Attributes>
+			<variants><variant><vendor_sku>Scarpa</vendor_sku><retail_price>119.99</retail_price><image_url>https://cdn.shoplightspeed.com/shops/634685/files/20047582/image1.jpg</image_url><detail_url>https://classic.avantlink.com/click.php?tt=cl&amp;mi=11741&amp;pw=197019&amp;url=https%3A%2F%2Fwww.bentgate.com%2Fscarpa-vapor-v-rock-climbing-shoe.html%3Fsource%3Dgooglebase</detail_url></variant></variants>
+		</Extended_Xml_Attributes>
+	</Product>
+	<Product>
+		<SKU>27543897</SKU>
+		<Manufacturer_Id></Manufacturer_Id>
+		<Brand_Name>Scarpa</Brand_Name>
+		<Product_Name>Scarpa Scarpa Women&#039;s Vapor V Rock Climbing Shoe</Product_Name>
+		<Long_Description>A percise, versatile and best-selling shoe that marries a comfortable fit with steep climbing performance, the redesigned Vapor V features fresh colors, a microfiber upper and our Bi-Tension(TM) active rand for a premium combo of durability and sensitivity.</Long_Description>
+		<Short_Description></Short_Description>
+		<Department>Climbing &gt; Climbing Shoes</Department>
+		<Category></Category>
+		<SubCategory></SubCategory>
+		<Thumb_URL>http://i3.avlws.com/1725/s129066.png</Thumb_URL>
+		<Image_URL>http://i3.avlws.com/1725/l129066.png</Image_URL>
+		<Buy_Link>https://classic.avantlink.com/click.php?p=246471&amp;pw=197019&amp;pt=3&amp;pri=129066&amp;tt=df</Buy_Link>
+		<Keywords></Keywords>
+		<Reviews></Reviews>
+		<Retail_Price>199.00</Retail_Price>
+		<Sale_Price>119.99</Sale_Price>
+		<Brand_Page_Link></Brand_Page_Link>
+		<Brand_Logo_Image></Brand_Logo_Image>
+		<Product_Page_View_Tracking>&lt;img src=&quot;https://classic.avantlink.com/dfpv.php?p=246471&amp;amp;pri=129066&quot; width=&quot;0&quot; height=&quot;0&quot; style=&quot;border: none !important; margin: 0px !important;&quot; alt=&quot;&quot; /&gt;</Product_Page_View_Tracking>
+		<Product_Parent_Grouping_Id></Product_Parent_Grouping_Id>
+		<Product_Color></Product_Color>
+		<Product_Size></Product_Size>
+		<Product_Pattern></Product_Pattern>
+		<Product_Material></Product_Material>
+		<Product_Weight></Product_Weight>
+		<Product_Age_Group></Product_Age_Group>
+		<Product_Gender></Product_Gender>
+		<Product_UPC></Product_UPC>
+		<Product_GTIN>666898795949</Product_GTIN>
+		<Product_GUID></Product_GUID>
+		<Product_Sale_Price_Effective_Date></Product_Sale_Price_Effective_Date>
+		<Product_Availability>in stock</Product_Availability>
+		<Product_Visibility></Product_Visibility>
+		<Product_Model_Number></Product_Model_Number>
+		<Product_Quantity></Product_Quantity>
+		<Product_Alternate_Buy_URL></Product_Alternate_Buy_URL>
+		<Product_Alternate_Product_ID></Product_Alternate_Product_ID>
+		<Product_Alternate_Image_ID></Product_Alternate_Image_ID>
+		<Medium_Image_URL>http://i3.avlws.com/1725/m129066.png</Medium_Image_URL>
+		<Product_Content_Widget>&lt;script type=&quot;text/javascript&quot; src=&quot;https://classic.avantlink.com/apcw.php?mode=5&amp;amp;pw=197019&amp;amp;df=1725&amp;amp;sku=27543897&amp;amp;link=&amp;amp;tabs=-Details&quot;&gt;&lt;/script&gt;</Product_Content_Widget>
+		<Google_Categorization></Google_Categorization>
+		<Item_Based_Commission></Item_Based_Commission>
+		<Extended_Xml_Attributes>
+			<variants><variant><vendor_sku>Scarpa</vendor_sku><retail_price>119.99</retail_price><image_url>https://cdn.shoplightspeed.com/shops/634685/files/20052941/image1.jpg</image_url><detail_url>https://classic.avantlink.com/click.php?tt=cl&amp;mi=11741&amp;pw=197019&amp;url=https%3A%2F%2Fwww.bentgate.com%2Fscarpa-womens-vapor-v-rock-climbing-shoe.html%3Fsource%3Dgooglebase</detail_url></variant></variants>
+		</Extended_Xml_Attributes>
+	</Product>
 </Products>
