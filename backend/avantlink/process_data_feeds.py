@@ -184,9 +184,20 @@ def process_data_feeds(target_feed, sendDiscountItems = False, sendMissingItems 
                         "Product_Size" in product:
                         productAlreadyAdded = True
 
+                    # Takes care of some datafeeds which have 1 product
+                    # with a unique SKU per size
+                    # for example outdoor gear exchange
+                    if data_feed_info["Retailer_Name"] == feed["retailer_name"] and \
+                        data_feed_info["Product"]["Brand_Name"] == product["Brand_Name"] and \
+                        data_feed_info["Product"]["Sale_Price"] == product["Sale_Price"] and \
+                        data_feed_info["Product"]["Retail_Price"] == product["Retail_Price"] and \
+                        data_feed_info["Product"]["SKU"] != product["SKU"] and \
+                        data_feed_info["Product"]["Long_Description"] == product["Long_Description"]:
+                        productAlreadyAdded = True                        
+
                     # Takes care of some datafeeds which have 1 product with different names per size 
                     # and different ending digits of skus per size
-                    # for example moosejaw, backcountry, black diamond equipment, lasportiva, outdoor gear exchange
+                    # for example moosejaw, backcountry, black diamond equipment, lasportiva
                     if data_feed_info["Product"]["Retail_Price"] == product["Retail_Price"] and \
                         data_feed_info["Product"]["Brand_Name"] == product["Brand_Name"] and \
                         data_feed_info["Retailer_Name"] == feed["retailer_name"] and \
@@ -326,6 +337,8 @@ def clean_product_list(product):
     new_Thumb_URL = None
     new_Image_URL = None
     new_Variants = None
+    new_Long_Description = None
+
 
     # lets remove most of the keys in datafeed
     if "Brand_Name" in product:
@@ -346,6 +359,8 @@ def clean_product_list(product):
         new_Thumb_URL = product["Thumb_URL"]
     if "Image_URL" in product:
         new_Image_URL = product["Image_URL"]
+    if "Long_Description" in product:
+        new_Long_Description = product["Long_Description"]
     if "Extended_Xml_Attributes" in product and product["Extended_Xml_Attributes"] is not None:
         if "variants" in product["Extended_Xml_Attributes"] and product["Extended_Xml_Attributes"]["variants"] is not None:
             tempArray = []
@@ -378,6 +393,8 @@ def clean_product_list(product):
         product["Thumb_URL"] = new_Thumb_URL
     if new_Image_URL is not None:
         product["Image_URL"] = new_Image_URL
+    if new_Long_Description is not None:
+        product["Long_Description"] = new_Long_Description
     if new_Variants is not None:
         product["Variants"] = new_Variants
 
@@ -444,10 +461,6 @@ def isSameProduct(sku1, sku2, retailerName):
 
     elif retailerName == 'La Sportiva':
         if sku1[0:7] == sku2[0:7]:
-            return True
-
-    elif retailerName == 'Outdoor Gear Exchange':
-        if sku1[0:5] == sku2[0:5]:
             return True
         
     return False
