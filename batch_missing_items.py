@@ -9,12 +9,11 @@ else:
 
 argument_list = [
     '--feed=backcountry',
-    '--feed=blackdiamondequipment',
     '--feed=bentgate', 
+    '--feed=blackdiamondequipment',
     '--feed=campsaver',     
-    '--feed=ems', 
     '--feed=lasportiva', 
-    '--feed=moosejaw', 
+    '--feed=outdoorgearexchange',
     '--feed=rei',     
 ]
 
