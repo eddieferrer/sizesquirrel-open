@@ -426,8 +426,6 @@ class Item(db.Model):
     medium_image_url = db.Column(db.String(64), nullable=True)
     thumbnail_cache = Column(DateTime, default=None)
     type = db.Column(db.String(64), nullable=False, server_default='rock')
-    asin = db.Column(db.String(64), nullable=True)
-    offer_url = db.Column(db.String(64), nullable=True)
     user_items = relationship("User_Item")
     average_rating = db.Column(db.String(64), nullable=True, default=None)
 

@@ -60,22 +60,10 @@ DATA_FEED_INFO_ARRAY = [
         'retailer_short_name': 'campsaver'
     },
     {
-        'datafeed': get_datafeed('ems'),
-        'retailer_logo': 'https://static.avantlink.com/merchant-logos/10785.png',
-        'retailer_name': 'Eastern Mountain Sports',
-        'retailer_short_name': 'ems'
-    },
-    {
         'datafeed': get_datafeed('lasportiva'),
         'retailer_logo': 'https://static.avantlink.com/merchant-logos/16709.png',
         'retailer_name': 'La Sportiva',
         'retailer_short_name': 'lasportiva'
-    },
-    {
-        'datafeed': get_datafeed('moosejaw'),
-        'retailer_logo': 'https://static.avantlink.com/merchant-logos/10086.png',
-        'retailer_name': 'Moosejaw',
-        'retailer_short_name': 'moosejaw'
     },
     {
         'datafeed': get_datafeed('outdoorgearexchange'),

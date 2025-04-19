@@ -12,9 +12,8 @@ argument_list = [
     '--feed=blackdiamondequipment',
     '--feed=bentgate', 
     '--feed=campsaver',     
-    '--feed=ems', 
     '--feed=lasportiva', 
-    '--feed=moosejaw', 
+    '--feed=outdoorgearexchange',
     '--feed=rei',     
 ]
 

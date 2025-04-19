@@ -20,15 +20,9 @@ def get_data_feeds():
     # CampSaver
     urlOpener.retrieve("http://datafeed.avantlink.com/download_feed.php?id=246495&auth=" + current_app.config['AVANT_LINK_AUTH_TOKEN'],
                        current_app.config['DATAFEED_PATH'] + "/campsaver_datafeed.xml")
-    # Eastern Mountain Sports
-    urlOpener.retrieve("http://datafeed.avantlink.com/download_feed.php?id=247395&auth=" + current_app.config['AVANT_LINK_AUTH_TOKEN'],
-                       current_app.config['DATAFEED_PATH'] + "/ems_datafeed.xml")
     # LaSportiva
     urlOpener.retrieve("http://datafeed.avantlink.com/download_feed.php?id=262033&auth=" + current_app.config['AVANT_LINK_AUTH_TOKEN'],
                        current_app.config['DATAFEED_PATH'] + "/lasportiva_datafeed.xml")
-    # Moosejaw
-    urlOpener.retrieve("http://datafeed.avantlink.com/download_feed.php?id=247387&auth=" + current_app.config['AVANT_LINK_AUTH_TOKEN'],
-                       current_app.config['DATAFEED_PATH'] + "/moosejaw_datafeed.xml")
     # Outdoor Gear Exchange
     urlOpener.retrieve("http://datafeed.avantlink.com/download_feed.php?id=249021&auth=" + current_app.config['AVANT_LINK_AUTH_TOKEN'],
                        current_app.config['DATAFEED_PATH'] + "/outdoorgearexchange_datafeed.xml")
