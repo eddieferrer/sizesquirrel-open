@@ -1,7 +1,5 @@
 import os
-from flask import Flask
-from flask_sqlalchemy import SQLAlchemy
-from flask_script import Manager, Server, Command
+from flask_script import Manager, Server
 from flask_migrate import Migrate, MigrateCommand
 
 basedir = os.path.abspath(os.path.dirname(__file__))
@@ -10,7 +8,7 @@ parent_path = os.path.abspath(os.path.join(basedir, os.pardir))
 os.environ['SETTINGS_FILE'] = os.path.join(basedir, 'dev_settings.py')
 
 from backend import app, db
-from backend.avantlink.process_data_feeds import process_data_feeds, item_list, outfile
+from backend.avantlink.process_data_feeds import process_data_feeds, item_list, outfile, send_process_log
 from backend.avantlink.get_data_feeds import get_data_feeds
 from backend.scripts.plot_user_registrations import plot_user_registrations
 from backend.scripts.sanitize_dev_database import sanitize_dev_database
@@ -32,6 +30,10 @@ def make_item_list():
 @manager.command
 def make_outfile():
     outfile()
+
+@manager.command
+def email_process_log():
+    send_process_log()
 
 @manager.option('-f', '--feed')
 @manager.option('-d', '--sendDiscountItems', default=False)
