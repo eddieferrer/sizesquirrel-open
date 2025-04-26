@@ -139,7 +139,7 @@ def process_data_feeds(target_feed, sendDiscountItems = False, sendMissingItems 
     print("Number of products: " + str(len(feed["datafeed"])))
 
     for product in feed["datafeed"]:
-        for item in raw_items:
+        for item in raw_items:  
             # print feed["retailer_name"]
             # print product["Product_Name"]
             # print product["Brand_Name"]
@@ -161,45 +161,8 @@ def process_data_feeds(target_feed, sendDiscountItems = False, sendMissingItems 
                 productAlreadyAdded = False
                 
                 for data_feed_info in item["datafeeds"]:
-                    # Takes care of some datafeeds which have 1 product
-                    # with a unique SKU per size
-                    # for example bentgate
-                    if data_feed_info["Retailer_Name"] == feed["retailer_name"] and \
-                        data_feed_info["Product"]["Product_Name"] == product["Product_Name"] and \
-                        data_feed_info["Product"]["Sale_Price"] == product["Sale_Price"] and \
-                        data_feed_info["Product"]["Retail_Price"] == product["Retail_Price"] and \
-                        data_feed_info["Product"]["SKU"] != product["SKU"] and \
-                        "Product_Size" in product:
-                        productAlreadyAdded = True
-
-                    # Takes care of some datafeeds which have 1 product
-                    # with a unique SKU per size
-                    # for example outdoor gear exchange
-                    if data_feed_info["Retailer_Name"] == feed["retailer_name"] and \
-                        data_feed_info["Product"]["Brand_Name"] == product["Brand_Name"] and \
-                        data_feed_info["Product"]["Sale_Price"] == product["Sale_Price"] and \
-                        data_feed_info["Product"]["Retail_Price"] == product["Retail_Price"] and \
-                        data_feed_info["Product"]["SKU"] != product["SKU"] and \
-                        data_feed_info["Product"]["Long_Description"] == product["Long_Description"]:
-                        productAlreadyAdded = True                        
-
-                    # Takes care of some datafeeds which have 1 product with different names per size 
-                    # and different ending digits of skus per size
-                    # for example moosejaw, backcountry, black diamond equipment, lasportiva
-                    if data_feed_info["Product"]["Retail_Price"] == product["Retail_Price"] and \
-                        data_feed_info["Product"]["Brand_Name"] == product["Brand_Name"] and \
-                        data_feed_info["Retailer_Name"] == feed["retailer_name"] and \
-                        isSameProduct(data_feed_info["Product"]["SKU"], product["SKU"], feed["retailer_name"]):
+                    if isSameProduct(data_feed_info, product, feed["retailer_name"]):
                             productAlreadyAdded = True
-
-                            # special backcountry code
-                            # for case of same product with different sizes and different sale prices
-                            # creating a lot of duplicates on the UI
-                            if float(data_feed_info["Product"]["Sale_Price"]) > float(product["Sale_Price"]) and \
-                                feed["retailer_name"] == 'Backcountry':
-                                #lower sales price for same product, replace entry
-                                data_feed_info["Product"]["Sale_Price"] = product["Sale_Price"]
-                                data_feed_info["Percent_Off"] = int(round(percent_off))
 
                 # end special code for feeds that have 2 entries for same product
 
@@ -212,6 +175,18 @@ def process_data_feeds(target_feed, sendDiscountItems = False, sendMissingItems 
                     })
                 product["SSMatch"] = True
 
+    # count products in datafeed where product["SSMatch"] is True
+    matchedProducts = [product for product in feed["datafeed"] if product.get("SSMatch") == True]
+    print ("Matched products: " + str(len(matchedProducts)))
+
+    # Log problem items
+    for item in raw_items:  
+        if item.get('datafeeds') is not None:
+            # get datafeeds for this retailer
+            datafeeds = [datafeed for datafeed in item["datafeeds"] if datafeed['Retailer_Name'] == feed["retailer_name"]]
+            if len(datafeeds) > 1:
+                print(feed["retailer_name"] + "-- Problem Item: " + item["model"] + " - " + str(len(datafeeds)))
+    
 
     with open(app.config['ROOT_URL'] + 'itemslist', 'wb') as fp:
         pickle.dump(raw_items, fp, protocol=-1)
@@ -283,6 +258,24 @@ def send_admin_discount_items(feed):
                    render_template("emails/admin_discount_items.txt", discount_items=discount_items,
                                    time=datetime.datetime.now().strftime("%m-%d-%Y %H:%M")),
                    render_template("emails/admin_discount_items.html", discount_items=discount_items, time=datetime.datetime.now().strftime("%m-%d-%Y %H:%M")))
+
+def send_process_log():
+    # send process log to admin
+    try:
+        with open('/srv/www/sizesquirrel/logs/process_cron_log', 'r') as file:
+            contents = file.read()
+    except FileNotFoundError:
+         print(f"Error: File not found: /srv/www/sizesquirrel/logs/process_cron_log")
+         return
+    
+    emailSubject = "Admin process log"
+    if app.debug is not True:
+        send_email(emailSubject,
+                   current_app.config['ADMINS'][0],
+                   [current_app.config['ADMINS'][0]],
+                   render_template("emails/admin_discount_items.txt", contents=contents,
+                                   time=datetime.datetime.now().strftime("%m-%d-%Y %H:%M")),
+                   render_template("emails/admin_discount_items.html", contents=contents, time=datetime.datetime.now().strftime("%m-%d-%Y %H:%M")))
 
 def send_admin_missing_items(feed):
     # make a list of missing items and send to admin
@@ -390,7 +383,6 @@ def clean_product_list(product):
 
 def clean_up_feed(feed):
     # takes in a raw data feed and cleans it up
-    # Fix Feeds
     if feed["retailer_short_name"] == 'blackdiamondequipment':
         for product in feed["datafeed"][:]:
             # fix missing brand name in BD feed
@@ -411,16 +403,6 @@ def clean_up_feed(feed):
                 "CLIMBING" not in product["Long_Description"]:
                 feed["datafeed"].remove(product)
 
-    if feed["retailer_short_name"] == 'adidas_outdoor':
-        for product in feed["datafeed"][:]:
-            # remove non shoe items
-            if "SHOE" not in product["Product_Name"] and \
-                "Shoe" not in product["Product_Name"] and \
-                "Boot" not in product["Product_Name"] and \
-                "BOOT" not in product["Product_Name"]:
-                feed["datafeed"].remove(product)
-    # End Fix Feeds
-
     if feed["retailer_name"] == 'rei':
         for product in feed["datafeed"]:
             # REI messed up their datafeed, including 2 properties BrandName per product, this hack fixes that
@@ -430,25 +412,39 @@ def clean_up_feed(feed):
 
     return feed
     
-# Function for determining if 2 SKU's are referring to the same product
-# given a retailer name, since retailers have different SKU schemes
-def isSameProduct(sku1, sku2, retailerName):
-    if sku1 == sku2:
-        return True
+# Function for determining if 2 properties are referring to the same product
+# itemDataFeedEntry is the entry on the sizesquirrel item
+# dataFeedProduct is the entry on the datafeed
+def isSameProduct(itemDataFeedEntry, dataFeedProduct, retailerName):
+    sku1 = itemDataFeedEntry["Product"]["SKU"]
+    sku2 = dataFeedProduct["SKU"]
     
-    if retailerName == 'Backcountry':
-        if sku1[0:7] == sku2[0:7]:
-            return True
-    elif retailerName == 'Moosejaw':
-        if sku1[0:3] == sku2[0:3]:
-            return True
+    if itemDataFeedEntry["Retailer_Name"] == retailerName and \
+        itemDataFeedEntry["Product"]["Brand_Name"] == dataFeedProduct["Brand_Name"]:
 
-    elif retailerName == 'Black Diamond Equipment':
-        if sku1[0:10] == sku2[0:10]:
+        if sku1 == sku2:
             return True
+            
+        if retailerName == 'Backcountry':
+            if sku1[0:7] == sku2[0:7]:
+                return True
+            
+        elif retailerName == 'Black Diamond Equipment':
+            if sku1[0:10] == sku2[0:10]:
+                return True
 
-    elif retailerName == 'La Sportiva':
-        if sku1[0:7] == sku2[0:7]:
+        elif retailerName == 'La Sportiva':
+            if sku1[0:7] == sku2[0:7]:
+                return True
+            
+        elif retailerName == 'Outdoor Gear Exchange':
+            # 1 product with unique sku per size
+            if itemDataFeedEntry["Product"]["Sale_Price"] == dataFeedProduct["Sale_Price"] and \
+                itemDataFeedEntry["Product"]["Retail_Price"] == dataFeedProduct["Retail_Price"] and \
+                itemDataFeedEntry["Product"]["SKU"] != dataFeedProduct["SKU"] and \
+                itemDataFeedEntry["Product"]["Long_Description"] == dataFeedProduct["Long_Description"]:
+                return True
+
+        elif retailerName == 'Bent Gate' or retailerName == 'Camp Saver' or retailerName == 'REI': 
             return True
-        
     return False

@@ -26,3 +26,5 @@ for arguments in argument_list:
     subprocess.call(['python', process, 'process_feeds', arguments])
     print("Finished:" + arguments)
 subprocess.call(['python', process, 'make_outfile'])
+subprocess.call(['python', process, 'email_process_log'])
+

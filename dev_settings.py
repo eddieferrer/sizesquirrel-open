@@ -17,5 +17,6 @@ MAIL_PORT = 25
 ADMINS = ['admin@sizesquirrel.com']
 
 AVANT_LINK_AUTH_TOKEN = ''
+
 DATAFEED_PATH = 'backend/sample_datafeeds'
 SENTRY_DSN = ''
