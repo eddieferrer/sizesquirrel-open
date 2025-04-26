@@ -273,9 +273,9 @@ def send_process_log():
         send_email(emailSubject,
                    current_app.config['ADMINS'][0],
                    [current_app.config['ADMINS'][0]],
-                   render_template("emails/admin_discount_items.txt", contents=contents,
+                   render_template("emails/admin_generic.txt", contents=contents,
                                    time=datetime.datetime.now().strftime("%m-%d-%Y %H:%M")),
-                   render_template("emails/admin_discount_items.html", contents=contents, time=datetime.datetime.now().strftime("%m-%d-%Y %H:%M")))
+                   render_template("emails/admin_generic.html", contents=contents, time=datetime.datetime.now().strftime("%m-%d-%Y %H:%M")))
 
 def send_admin_missing_items(feed):
     # make a list of missing items and send to admin
