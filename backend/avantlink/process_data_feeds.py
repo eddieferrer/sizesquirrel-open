@@ -267,7 +267,6 @@ def send_process_log():
     except FileNotFoundError:
          print(f"Error: File not found: /srv/www/sizesquirrel/logs/process_cron_log")
          return
-    
     emailSubject = "Admin process log"
     if app.debug is not True:
         send_email(emailSubject,
@@ -275,7 +274,7 @@ def send_process_log():
                    [current_app.config['ADMINS'][0]],
                    render_template("emails/admin_generic.txt", contents=contents,
                                    time=datetime.datetime.now().strftime("%m-%d-%Y %H:%M")),
-                   render_template("emails/admin_generic.html", contents=contents, time=datetime.datetime.now().strftime("%m-%d-%Y %H:%M")))
+                   render_template("emails/admin_generic.html", contents=contents.replace('\n', '<br>'), time=datetime.datetime.now().strftime("%m-%d-%Y %H:%M")))
 
 def send_admin_missing_items(feed):
     # make a list of missing items and send to admin
