@@ -29,3 +29,8 @@ dev-database.back.db
 
 # Temp maintenance file
 maintenance_on.html
+
+# Impact datafeeds
+backend/sample_datafeeds/backcountry_impact.json
+backend/sample_datafeeds/rei_impact.json
+backend/sample_datafeeds/steepandcheap_impact.json

@@ -9,7 +9,7 @@ else:
     process = 'production_manage.py'
 
 argument_list = [
-    '--feed=backcountry' ,
+    '--feed=backcountry',
     '--feed=bentgate', 
     '--feed=blackdiamondequipment',
     '--feed=campsaver',     

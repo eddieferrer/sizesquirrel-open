@@ -20,3 +20,6 @@ AVANT_LINK_AUTH_TOKEN = ''
 
 DATAFEED_PATH = 'backend/sample_datafeeds'
 SENTRY_DSN = ''
+
+IMPACT_ACCOUNT_SID = ''
+IMPACT_AUTH_TOKEN = ''
