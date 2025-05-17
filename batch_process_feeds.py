@@ -26,7 +26,7 @@ for arguments in argument_list:
     subprocess.call(['python', process, 'process_feeds', arguments])
     print("Finished:" + arguments)
 subprocess.call(['python', process, 'make_outfile'])
-if sys.argv[2] == 'cron':
+if len(sys.argv) == 3 and sys.argv[2] == 'cron':
     print("Sending Email Log...")
     subprocess.call(['python', process, 'email_process_log'])
 
