@@ -20,7 +20,7 @@ def get_avantlink_feeds():
     urlOpener.retrieve("http://datafeed.avantlink.com/download_feed.php?id=246471&auth=" + current_app.config['AVANT_LINK_AUTH_TOKEN'],
                        current_app.config['DATAFEED_PATH'] + "/bentgate_datafeed.xml")
     # Black Diamond Equipment
-    urlOpener.retrieve("http://datafeed.avantlink.com/download_feed.php?id=255265&auth=" + current_app.config['AVANT_LINK_AUTH_TOKEN'],
+    urlOpener.retrieve("http://datafeed.avantlink.com/download_feed.php?id=327229&auth=" + current_app.config['AVANT_LINK_AUTH_TOKEN'],
                        current_app.config['DATAFEED_PATH'] + "/blackdiamondequipment_datafeed.xml")
     # CampSaver
     urlOpener.retrieve("http://datafeed.avantlink.com/download_feed.php?id=246495&auth=" + current_app.config['AVANT_LINK_AUTH_TOKEN'],
