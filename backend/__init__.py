@@ -6,7 +6,6 @@ from sentry_sdk.integrations.logging import LoggingIntegration
 from sentry_sdk.integrations.flask import FlaskIntegration
 from sentry_sdk.integrations.sqlalchemy import SqlalchemyIntegration
 
-from logging.handlers import RotatingFileHandler
 from flask import Flask, current_app
 from flask_caching import Cache
 from flask_sqlalchemy import SQLAlchemy

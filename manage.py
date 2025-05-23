@@ -8,7 +8,7 @@ parent_path = os.path.abspath(os.path.join(basedir, os.pardir))
 os.environ['SETTINGS_FILE'] = os.path.join(basedir, 'dev_settings.py')
 
 from backend import app, db
-from backend.avantlink.process_data_feeds import process_data_feeds, item_list, outfile, send_process_log
+from backend.avantlink.process_data_feeds import process_data_feeds, item_list, outfile, send_process_log, send_admin_discount_items, send_admin_missing_items
 from backend.avantlink.get_data_feeds import get_data_feeds
 from backend.scripts.plot_user_registrations import plot_user_registrations
 from backend.scripts.sanitize_dev_database import sanitize_dev_database
@@ -36,10 +36,16 @@ def email_process_log():
     send_process_log()
 
 @manager.option('-f', '--feed')
-@manager.option('-d', '--sendDiscountItems', default=False)
-@manager.option('-m', '--sendMissingItems', default=False)
-def process_feeds(feed, sendDiscountItems, sendMissingItems):
-    process_data_feeds(feed, sendDiscountItems == 'True', sendMissingItems == 'True')
+def process_feeds(feed):
+    process_data_feeds(feed)
+
+@manager.option('-f', '--feed')
+def discount_items(feed):
+    send_admin_discount_items(feed)
+
+@manager.option('-f', '--feed')
+def missing_items(feed):
+    send_admin_missing_items(feed)
 
 @manager.option('-i', '--item')
 def set_stats_item(item):

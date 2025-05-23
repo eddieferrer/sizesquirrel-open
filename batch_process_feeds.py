@@ -1,14 +1,8 @@
 import subprocess
 import datetime
-
 import sys
 
-if sys.argv[1] == 'dev':
-    process = 'manage.py'
-else:
-    process = 'production_manage.py'
-
-argument_list = [
+batch_argument_list = [
     '--feed=backcountry',
     '--feed=bentgate', 
     '--feed=blackdiamondequipment',
@@ -18,11 +12,16 @@ argument_list = [
     '--feed=rei',     
 ]
 
+if sys.argv[1] == 'dev':
+    process = 'manage.py'
+else:
+    process = 'production_manage.py'
+
 currentDate = datetime.datetime.today()
 print(currentDate)
 print("Making Item List...")
 subprocess.call(['python', process, 'make_item_list'])
-for arguments in argument_list:
+for arguments in batch_argument_list:
     subprocess.call(['python', process, 'process_feeds', arguments])
     print("Finished:" + arguments)
 subprocess.call(['python', process, 'make_outfile'])

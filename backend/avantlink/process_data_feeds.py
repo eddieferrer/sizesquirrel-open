@@ -126,15 +126,15 @@ def outfile():
     with open(app.config['ROOT_URL'] + 'outfile', 'wb') as fp:
         pickle.dump(items_filtered, fp, protocol=-1)
 
-def process_data_feeds(target_feed, sendDiscountItems = False, sendMissingItems = False):
+def process_data_feeds(target_feed):
     print("-" * 25)
     print("Processing Feed: " + target_feed)
     with open(current_app.config['ROOT_URL'] + 'itemslist', 'rb') as fp:
         raw_items = pickle.load(fp)
 
-    target_feed = [feed for feed in DATA_FEED_INFO_ARRAY if feed['retailer_short_name'] == target_feed]
+    target_xml_feed = [feed for feed in DATA_FEED_INFO_ARRAY if feed['retailer_short_name'] == target_feed]
 
-    feed = target_feed[0]
+    feed = target_xml_feed[0]
     feed = clean_up_feed(feed)
     print("Number of products: " + str(len(feed["datafeed"])))
 
@@ -186,21 +186,20 @@ def process_data_feeds(target_feed, sendDiscountItems = False, sendMissingItems 
             datafeeds = [datafeed for datafeed in item["datafeeds"] if datafeed['Retailer_Name'] == feed["retailer_name"]]
             if len(datafeeds) > 1:
                 print(feed["retailer_name"] + "-- Problem Item: " + item["model"] + " - " + str(len(datafeeds)))
-    
 
     with open(app.config['ROOT_URL'] + 'itemslist', 'wb') as fp:
         pickle.dump(raw_items, fp, protocol=-1)
     print("Finished Processing Feed")
 
-    if sendDiscountItems is True:
-        print("Sending Discount Items")
-        send_admin_discount_items(feed)
+    # save processed feed
+    with open(app.config['ROOT_URL'] + app.config['DATAFEED_PATH'] + '/processed/' + target_feed +'_datafeed', 'wb') as fp:
+        pickle.dump(feed, fp, protocol=-1)
 
-    if sendMissingItems is True:
-        print("Sending Missing Items")
-        send_admin_missing_items(feed)
+def send_admin_discount_items(target_feed):
+    # open processed feed
+    with open(app.config['ROOT_URL'] + app.config['DATAFEED_PATH'] + '/processed/' + target_feed +'_datafeed', 'rb') as fp:
+        feed = pickle.load(fp)
 
-def send_admin_discount_items(feed):
     # discount items
     discount_items = []
 
@@ -276,7 +275,11 @@ def send_process_log():
                                    time=datetime.datetime.now().strftime("%m-%d-%Y %H:%M")),
                    render_template("emails/admin_generic.html", contents=contents.replace('\n', '<br>'), time=datetime.datetime.now().strftime("%m-%d-%Y %H:%M")))
 
-def send_admin_missing_items(feed):
+def send_admin_missing_items(target_feed):
+    # open processed feed
+    with open(app.config['ROOT_URL'] + app.config['DATAFEED_PATH'] + '/processed/' + target_feed +'_datafeed', 'rb') as fp:
+        feed = pickle.load(fp)
+
     # make a list of missing items and send to admin
     missing_items = []
     missing_brands = []
