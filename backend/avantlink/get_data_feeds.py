@@ -3,6 +3,8 @@ import datetime
 import requests
 from backend.models import CONSTANT_BRANDS
 from flask import current_app
+from backend.datafeeds import DATA_FEED_INFO_ARRAY
+
 
 def get_data_feeds():
     get_avantlink_feeds()
@@ -13,27 +15,11 @@ def get_avantlink_feeds():
     print(currentDate)
     print("Getting Avantlink Data Feeds...")
     urlOpener = urllib.request.URLopener()
-    # BackCountry.com
-    urlOpener.retrieve("http://datafeed.avantlink.com/download_feed.php?id=246199&auth=" + current_app.config['AVANT_LINK_AUTH_TOKEN'],
-                       current_app.config['DATAFEED_PATH'] + "/backcountry_datafeed.xml")
-    # BentGate
-    urlOpener.retrieve("http://datafeed.avantlink.com/download_feed.php?id=246471&auth=" + current_app.config['AVANT_LINK_AUTH_TOKEN'],
-                       current_app.config['DATAFEED_PATH'] + "/bentgate_datafeed.xml")
-    # Black Diamond Equipment
-    urlOpener.retrieve("http://datafeed.avantlink.com/download_feed.php?id=327229&auth=" + current_app.config['AVANT_LINK_AUTH_TOKEN'],
-                       current_app.config['DATAFEED_PATH'] + "/blackdiamondequipment_datafeed.xml")
-    # CampSaver
-    urlOpener.retrieve("http://datafeed.avantlink.com/download_feed.php?id=246495&auth=" + current_app.config['AVANT_LINK_AUTH_TOKEN'],
-                       current_app.config['DATAFEED_PATH'] + "/campsaver_datafeed.xml")
-    # LaSportiva
-    urlOpener.retrieve("http://datafeed.avantlink.com/download_feed.php?id=262033&auth=" + current_app.config['AVANT_LINK_AUTH_TOKEN'],
-                       current_app.config['DATAFEED_PATH'] + "/lasportiva_datafeed.xml")
-    # Outdoor Gear Exchange
-    urlOpener.retrieve("http://datafeed.avantlink.com/download_feed.php?id=249021&auth=" + current_app.config['AVANT_LINK_AUTH_TOKEN'],
-                       current_app.config['DATAFEED_PATH'] + "/outdoorgearexchange_datafeed.xml")
-    # REI
-    urlOpener.retrieve("http://datafeed.avantlink.com/download_feed.php?id=247391&auth=" + current_app.config['AVANT_LINK_AUTH_TOKEN'],
-                       current_app.config['DATAFEED_PATH'] + "/rei_datafeed.xml")
+
+    for feedinfo in DATA_FEED_INFO_ARRAY:
+        # Get the datafeed for each retailer
+        urlOpener.retrieve("http://datafeed.avantlink.com/download_feed.php?id=" + feedinfo['avantlink_id'] + "&auth=" + current_app.config['AVANT_LINK_AUTH_TOKEN'],
+                           current_app.config['DATAFEED_PATH'] + "/" + feedinfo['retailer_short_name'] + "_datafeed.xml")
 
     print("Done Getting Avantlink Data Feeds...")
 
