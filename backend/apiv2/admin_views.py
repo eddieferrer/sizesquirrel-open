@@ -3,8 +3,8 @@ from flask import jsonify, request
 from backend import app
 from backend.models import User, User_Item, Item
 from backend.utils import match_strings
-from backend.avantlink.process_data_feeds import DATA_FEED_INFO_ARRAY, clean_up_feed
-
+from backend.avantlink.process_data_feeds import clean_up_feed
+from backend.datafeeds import DATA_FEED_INFO_ARRAY
 from .views import token_auth
 
 # /apiv2/admin/
