@@ -34,3 +34,6 @@ maintenance_on.html
 backend/sample_datafeeds/backcountry_impact.json
 backend/sample_datafeeds/rei_impact.json
 backend/sample_datafeeds/steepandcheap_impact.json
+
+# 
+backend/sample_datafeeds/processed/
