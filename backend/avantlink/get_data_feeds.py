@@ -17,6 +17,9 @@ def get_avantlink_feeds():
     urlOpener = urllib.request.URLopener()
 
     for feedinfo in DATA_FEED_INFO_ARRAY:
+        # Get only config objects that have the key 'avantlink_id'
+        if 'avantlink_id' not in feedinfo:
+            continue
         # Get the datafeed for each retailer
         urlOpener.retrieve("http://datafeed.avantlink.com/download_feed.php?id=" + feedinfo['avantlink_id'] + "&auth=" + current_app.config['AVANT_LINK_AUTH_TOKEN'],
                            current_app.config['DATAFEED_PATH'] + "/" + feedinfo['retailer_short_name'] + "_datafeed.xml")
@@ -41,28 +44,16 @@ def get_impact_feeds():
     brands = ','.join(brands)
 
     print("Brands: " + brands)
-    impactDataFeeds = [
-        {
-            'name': 'backcountry',
-            'id': '15874',
-        },
-                {
-            'name': 'rei',
-            'id': '11020',
-        },
-                {
-            'name': 'steepandcheap',
-            'id': '2394',
-        },
-
-    ]
 
     headers = {
         'Accept': 'application/json',
     }
 
-    for feed in impactDataFeeds:
-        requestUrl = 'https://api.impact.com/Mediapartners/' + current_app.config['IMPACT_ACCOUNT_SID'] + '/Catalogs/' + feed['id'] + '/Items?Query=ManufacturerIN('+ brands + ')ANDStockAvailability=\"InStock\"&Keyword=\"climb\"&PageSize=1000'
+    for feedinfo in DATA_FEED_INFO_ARRAY:
+        # Get only config objects that have the key 'impact_id'
+        if 'impact_id' not in feedinfo:
+            continue
+        requestUrl = 'https://api.impact.com/Mediapartners/' + current_app.config['IMPACT_ACCOUNT_SID'] + '/Catalogs/' + feedinfo['impact_id'] + '/Items?Query=ManufacturerIN('+ brands + ')ANDStockAvailability=\"InStock\"&Keyword=\"climb\"&PageSize=1000'
 
         response = requests.get(
             requestUrl,
@@ -71,7 +62,7 @@ def get_impact_feeds():
         )
 
         # save file
-        with open(current_app.config['DATAFEED_PATH'] + '/' + feed['name'] + '_impact.json', 'wb') as f:
+        with open(current_app.config['DATAFEED_PATH'] + '/' + feedinfo['retailer_short_name'] + '_impact.json', 'wb') as f:
             f.write(response.content)
 
         try:
@@ -88,6 +79,6 @@ def get_impact_feeds():
                     auth=(current_app.config['IMPACT_ACCOUNT_SID'], current_app.config['IMPACT_AUTH_TOKEN'])
                 )
                 # save file
-                with open(current_app.config['DATAFEED_PATH'] + '/' + feed['name'] + '_impact.json', 'ab') as f:
+                with open(current_app.config['DATAFEED_PATH'] + '/' + feedinfo['retailer_short_name'] + '_impact.json', 'ab') as f:
                     f.write(response.content)
     print("Done Getting Impact Data Feeds...")

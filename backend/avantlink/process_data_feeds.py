@@ -241,18 +241,16 @@ def send_admin_missing_items(target_feed):
                    render_template("emails/admin_missing_items.html", missing_items=missing_items, missing_brands=missing_brands, time=datetime.datetime.now().strftime("%m-%d-%Y %H:%M")))
 
 def clean_product_list(product):
-    new_Product_Name = None
     new_Brand_Name = None
     new_Buy_Link = None
-    new_Retail_Price = None
-    new_SKU = None
-    new_Sale_Price = None
-    new_Product_Size = None
-    new_Thumb_URL = None
     new_Image_URL = None
-    new_Variants = None
     new_Long_Description = None
-
+    new_Product_Name = None
+    new_Retail_Price = None
+    new_Sale_Price = None
+    new_SKU = None
+    new_Thumb_URL = None
+    new_Variants = None
 
     # lets remove most of the keys in datafeed
     if "Brand_Name" in product:
@@ -267,8 +265,6 @@ def clean_product_list(product):
         new_SKU = product["SKU"]
     if "Sale_Price" in product:
         new_Sale_Price = product["Sale_Price"]
-    if "Product_Size" in product:
-        new_Product_Size = product["Product_Size"]
     if "Thumb_URL" in product:
         new_Thumb_URL = product["Thumb_URL"]
     if "Image_URL" in product:
@@ -301,8 +297,6 @@ def clean_product_list(product):
         product["SKU"] = new_SKU
     if new_Sale_Price is not None:
         product["Sale_Price"] = new_Sale_Price
-    if new_Product_Size is not None:
-        product["Product_Size"] = new_Product_Size
     if new_Thumb_URL is not None:
         product["Thumb_URL"] = new_Thumb_URL
     if new_Image_URL is not None:
@@ -351,14 +345,14 @@ def clean_up_feed(feed):
 def isSameProduct(itemDataFeedEntry, dataFeedProduct, retailerName):
     sku1 = itemDataFeedEntry["Product"]["SKU"]
     sku2 = dataFeedProduct["SKU"]
-    
+
     if itemDataFeedEntry["Retailer_Name"] == retailerName and \
         itemDataFeedEntry["Product"]["Brand_Name"] == dataFeedProduct["Brand_Name"]:
 
         if sku1 == sku2:
             return True
             
-        if retailerName == 'Backcountry':
+        if retailerName == 'Backcountry' or retailerName == 'Steep And Cheap':
             if sku1[0:7] == sku2[0:7]:
                 return True
             
@@ -372,9 +366,7 @@ def isSameProduct(itemDataFeedEntry, dataFeedProduct, retailerName):
             
         elif retailerName == 'Outdoor Gear Exchange':
             # 1 product with unique sku per size
-            if itemDataFeedEntry["Product"]["Sale_Price"] == dataFeedProduct["Sale_Price"] and \
-                itemDataFeedEntry["Product"]["Retail_Price"] == dataFeedProduct["Retail_Price"] and \
-                itemDataFeedEntry["Product"]["SKU"] != dataFeedProduct["SKU"] and \
+            if itemDataFeedEntry["Product"]["SKU"] != dataFeedProduct["SKU"] and \
                 itemDataFeedEntry["Product"]["Long_Description"] == dataFeedProduct["Long_Description"]:
                 return True
 
