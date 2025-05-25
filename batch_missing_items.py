@@ -2,12 +2,12 @@ import subprocess
 import datetime
 import sys
 
-from backend.datafeeds import DATA_FEED_INFO_ARRAY
+from batch_arguments import BATCH_ARGUMENTS
 
-# create argument list from DATA_FEED_INFO_ARRAY
+# create argument list from BATCH_ARGUMENTS
 batch_argument_list = []
-for feedinfo in DATA_FEED_INFO_ARRAY:
-    batch_argument_list.append('--feed=' + feedinfo['retailer_short_name'])
+for feedArgument in BATCH_ARGUMENTS:
+    batch_argument_list.append(feedArgument)
 
 if sys.argv[1] == 'dev':
     process = 'manage.py'

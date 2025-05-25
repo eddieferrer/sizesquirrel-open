@@ -511,6 +511,7 @@ export default {
         'La Sportiva',
         'Outdoor Gear Exchange',
         'REI',
+        'Steep And Cheap',
       ],
 
       accordionType: true,
