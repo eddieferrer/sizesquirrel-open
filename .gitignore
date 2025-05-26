@@ -13,7 +13,9 @@ itemslist
 outfile
 
 # Merchant Feeds
-backend/datafeeds/
+backend/datafeeds/*
+# exception to the rule
+!backend/datafeeds/processed
 
 # SizeSquirrel Deployment Files
 production-database.db
