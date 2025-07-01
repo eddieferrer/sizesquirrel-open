@@ -34,11 +34,6 @@
             </template>
           </div>
         </div>
-        <template v-if="page === 'match'">
-          <client-only>
-            <AvantLinkAd :number-of-sale-links="saleLinks.length" />
-          </client-only>
-        </template>
       </div>
     </div>
   </div>
@@ -47,11 +42,10 @@
 <script>
 import { capitalize } from '@/filters';
 import AffiliatePriceBlock from '@/components/AffiliatePriceBlock';
-import AvantLinkAd from '@/components/AvantLinkAd';
 
 export default {
   name: 'ShoeSaleLinks',
-  components: { AffiliatePriceBlock, AvantLinkAd },
+  components: { AffiliatePriceBlock },
   filters: {
     capitalize,
   },
